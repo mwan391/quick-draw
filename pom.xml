@@ -120,6 +120,11 @@
       <groupId>org.slf4j</groupId>
       <version>1.7.21</version>
     </dependency>
+    <dependency>
+      <groupId>com.fasterxml.jackson.dataformat</groupId>
+      <artifactId>jackson-dataformat-csv</artifactId>
+      <version>2.13.0</version>
+	</dependency>
   </dependencies>
   <groupId>nz.ac.auckland.se206</groupId>
   <modelVersion>4.0.0</modelVersion>
