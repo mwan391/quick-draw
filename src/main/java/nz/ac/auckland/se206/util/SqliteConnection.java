@@ -3,16 +3,16 @@ package nz.ac.auckland.se206.util;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 public class SqliteConnection {
 
   private static final String URL = "jdbc:sqlite:database.db";
   private static SqliteConnection instance;
 
-  // testing
-  public static void main(String[] args) {
-    Connection connection = openConnection();
-    closeConnection(connection);
+  public static void start() {
+    SqliteConnection test = new SqliteConnection();
+    test.createTables();
   }
 
   public static SqliteConnection getInstance() throws SQLException {
@@ -44,6 +44,26 @@ public class SqliteConnection {
       System.out.println("Closed connection succesfully");
     } catch (SQLException e) {
       Logger.printSqlError(e);
+    }
+  }
+
+  private void createTables() {
+    Connection connection = null;
+    try {
+      connection = openConnection();
+      Statement statement = connection.createStatement();
+      boolean tableCreated =
+          statement.execute(
+              "CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY AUTOINCREMENT, username VARCHAR(256) NOT NULL, password VARCHAR(256) NOT NULL, active BOOLEAN, game_id INTEGER);");
+      if (tableCreated) System.out.println("Created Users table.");
+      tableCreated =
+          statement.execute(
+              "CREATE TABLE IF NOT EXISTS games (id INTEGER PRIMARY KEY AUTOINCREMENT, user_id INTEGER, difficulty INTEGER, word VARCHAR, won BOOLEAN, time INTEGER);");
+      if (tableCreated) System.out.println("Created Games table.");
+    } catch (SQLException e) {
+      Logger.printSqlError(e);
+    } finally {
+      closeConnection(connection);
     }
   }
 }
