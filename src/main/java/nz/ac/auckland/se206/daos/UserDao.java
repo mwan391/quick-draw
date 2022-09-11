@@ -105,6 +105,23 @@ public class UserDao {
   }
 
   /**
+   * set the latest game the user has played
+   *
+   * @param gameId of latest game played
+   * @param userId of user
+   * @throws SQLException
+   */
+  public void setGameId(int gameId, int userId) throws SQLException {
+    Connection connection = SqliteConnection.openConnection();
+    String query = "UPDATE users SET game_id=? WHERE id=?";
+    PreparedStatement ps = connection.prepareStatement(query);
+    ps.setInt(1, gameId);
+    ps.setInt(2, userId);
+    ps.execute();
+    SqliteConnection.closeConnection(connection);
+  }
+
+  /**
    * getter for user model instance
    *
    * @param rs
