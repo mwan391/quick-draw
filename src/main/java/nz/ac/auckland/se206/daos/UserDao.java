@@ -67,6 +67,18 @@ public class UserDao {
     return userId;
   }
 
+  public UserModel getUserById(int userId) throws SQLException {
+    Connection connection = SqliteConnection.openConnection();
+    String query = "SELECT id, username, password, active, game_id FROM users WHERE id=?";
+    PreparedStatement ps = connection.prepareStatement(query);
+    ps.setInt(1, userId);
+    ResultSet rs = ps.executeQuery();
+
+    UserModel user = rs.next() ? getUser(rs) : null;
+    SqliteConnection.closeConnection(connection);
+    return user;
+  }
+
   private UserModel getUser(ResultSet rs) throws SQLException {
     return new UserModel(
         rs.getInt("id"),
