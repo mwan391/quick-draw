@@ -67,6 +67,13 @@ public class UserDao {
     return userId;
   }
 
+  /**
+   * get instance of user by id
+   *
+   * @param userId
+   * @return user
+   * @throws SQLException
+   */
   public UserModel getUserById(int userId) throws SQLException {
     Connection connection = SqliteConnection.openConnection();
     String query = "SELECT id, username, password, active, game_id FROM users WHERE id=?";
@@ -79,6 +86,31 @@ public class UserDao {
     return user;
   }
 
+  /**
+   * set the active status of a user
+   *
+   * @param userId of user
+   * @param isActive status of user
+   * @throws SQLException
+   */
+  public void setActive(int userId, boolean isActive) throws SQLException {
+    Connection connection = SqliteConnection.openConnection();
+    String query = "UPDATE users SET active=? WHERE id=?";
+
+    PreparedStatement ps = connection.prepareStatement(query);
+    ps.setBoolean(1, isActive);
+    ps.setInt(2, userId);
+    ps.execute();
+    SqliteConnection.closeConnection(connection);
+  }
+
+  /**
+   * getter for user model instance
+   *
+   * @param rs
+   * @return instance of user
+   * @throws SQLException
+   */
   private UserModel getUser(ResultSet rs) throws SQLException {
     return new UserModel(
         rs.getInt("id"),
