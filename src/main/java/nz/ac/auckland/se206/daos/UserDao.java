@@ -18,24 +18,51 @@ public class UserDao {
    * @throws SQLException
    */
   public int addNewUser(String username, String password, boolean active) throws SQLException {
+
     Connection connection = SqliteConnection.openConnection();
     String query = "INSERT INTO users (username, password, active, game_id) VALUES (?,?,?,0)";
     PreparedStatement ps = connection.prepareStatement(query);
-
+    // input query parameters
     ps.setString(1, username);
     ps.setString(2, password);
     ps.setBoolean(3, active);
     ps.executeUpdate();
 
     int userId = 0;
+    // get next unique id for user
     ResultSet resultSet = ps.getGeneratedKeys();
+
     if (resultSet.next()) {
-      // System.out.println("there is user next: ");
       userId = resultSet.getInt(1);
-      // System.out.println("user id is " + userId);
     }
     SqliteConnection.closeConnection(connection);
+    return userId;
+  }
 
+  /**
+   * Get user by username and password and returns the id, if no user is found will return -1
+   *
+   * @param username of user
+   * @param pwd of user
+   * @return id or -1 if no existing user is found
+   * @throws SQLException
+   */
+  public int getUser(String username, String pwd) throws SQLException {
+
+    int userId = -1;
+    Connection connection = SqliteConnection.openConnection();
+    PreparedStatement statement =
+        connection.prepareStatement("SELECT id FROM users WHERE username=? AND password=?");
+    // input query parameters
+    statement.setString(1, username);
+    statement.setString(2, pwd);
+
+    ResultSet rst = statement.executeQuery();
+
+    if (rst.next()) {
+      userId = rst.getInt("id");
+    }
+    SqliteConnection.closeConnection(connection);
     return userId;
   }
 }
