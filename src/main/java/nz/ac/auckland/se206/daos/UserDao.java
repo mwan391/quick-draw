@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import nz.ac.auckland.se206.models.UserModel;
 import nz.ac.auckland.se206.util.SqliteConnection;
 
 public class UserDao {
@@ -47,7 +48,7 @@ public class UserDao {
    * @return id or -1 if no existing user is found
    * @throws SQLException
    */
-  public int getUser(String username, String pwd) throws SQLException {
+  public int getId(String username, String pwd) throws SQLException {
 
     int userId = -1;
     Connection connection = SqliteConnection.openConnection();
@@ -64,5 +65,14 @@ public class UserDao {
     }
     SqliteConnection.closeConnection(connection);
     return userId;
+  }
+
+  private UserModel getUser(ResultSet rs) throws SQLException {
+    return new UserModel(
+        rs.getInt("id"),
+        rs.getString("username"),
+        rs.getString("password"),
+        rs.getBoolean("active"),
+        rs.getInt("game_id"));
   }
 }
