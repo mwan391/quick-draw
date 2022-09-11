@@ -125,6 +125,11 @@
       <artifactId>jackson-dataformat-csv</artifactId>
       <version>2.13.0</version>
 	</dependency>
+  <dependency>
+      <groupId>org.xerial</groupId>
+      <artifactId>sqlite-jdbc</artifactId>
+      <version>3.39.2.1</version>
+  </dependency>
   </dependencies>
   <groupId>nz.ac.auckland.se206</groupId>
   <modelVersion>4.0.0</modelVersion>
