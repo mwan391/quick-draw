@@ -36,5 +36,7 @@
       <Button fx:id="btnMedium" layoutX="234.0" layoutY="207.0" mnemonicParsing="false" text="Medium" />
       <Button fx:id="btnHard" layoutX="312.0" layoutY="207.0" mnemonicParsing="false" text="Hard" />
       <Button fx:id="btnMaster" layoutX="376.0" layoutY="207.0" mnemonicParsing="false" text="Master" />
+      <Button fx:id="btnLogOut" layoutX="527.0" layoutY="361.0" mnemonicParsing="false" onAction="#onLogOut" text="Log Out" />
+      <Button fx:id="btnExitGame" layoutX="14.0" layoutY="361.0" mnemonicParsing="false" onAction="#onExitGame" text="Exit Game" />
    </children>
 </Pane>

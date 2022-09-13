@@ -51,5 +51,18 @@ public class LogInController implements Controller {
     // start the thread
     Thread backgroundThread = new Thread(backgroundTask);
     backgroundThread.start();
+
+    // reset the page for the next log in
+    resetPage();
+  }
+
+  private void resetPage() {
+    fldUserName.setText("");
+    fldPassword.setText("");
+  }
+
+  @FXML
+  private void onExitGame() {
+    System.exit(0);
   }
 }

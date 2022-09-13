@@ -16,6 +16,7 @@ import nz.ac.auckland.se206.speech.TextToSpeech;
 public class CategoryController implements Controller {
 
   @FXML private Button btnStartGame;
+  @FXML private Button btnLogOut;
   @FXML private Button btnEasy;
   @FXML private Button btnMedium;
   @FXML private Button btnHard;
@@ -81,6 +82,22 @@ public class CategoryController implements Controller {
     // disable the category button so users cannot reroll
     btnStartGame.setDisable(false);
     btnEasy.setDisable(true);
+  }
+
+  @FXML
+  private void onLogOut(ActionEvent event) {
+    // change the scene
+    Scene scene = ((Button) event.getSource()).getScene();
+    Parent logInRoot = SceneManager.getUiRoot(AppUi.LOG_IN);
+    scene.setRoot(logInRoot);
+
+    // reset the page in case a new game gets started
+    resetPage();
+  }
+
+  @FXML
+  private void onExitGame() {
+    System.exit(0);
   }
 
   private void resetPage() {

@@ -33,6 +33,7 @@
       </VBox>
       <HBox alignment="CENTER" spacing="10.0">
          <children>
+            <Button fx:id="btnExitGame" mnemonicParsing="false" onAction="#onExitGame" text="Exit Game" />
             <Button fx:id="btnSignUp" mnemonicParsing="false" onAction="#onSignUp" text="Sign Up" />
             <Button fx:id="btnLogIn" mnemonicParsing="false" onAction="#onLogIn" text="Log In" />
          </children>
