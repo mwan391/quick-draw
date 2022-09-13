@@ -47,4 +47,14 @@ public class GameDao {
     ps.execute();
     SqliteConnection.closeConnection(connection);
   }
+
+  public void setWon(boolean won, int gameId) throws SQLException {
+    Connection connection = SqliteConnection.openConnection();
+    String query = "UPDATE games SET won=? WHERE id=?";
+    PreparedStatement ps = connection.prepareStatement(query);
+    ps.setBoolean(1, won);
+    ps.setInt(2, gameId);
+    ps.execute();
+    SqliteConnection.closeConnection(connection);
+  }
 }
