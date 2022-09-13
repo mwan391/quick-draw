@@ -17,7 +17,7 @@ public class MenuController implements Controller {
   private void onStartGame(ActionEvent event) {
     // change the scene
     Scene scene = ((Button) event.getSource()).getScene();
-    scene.setRoot(SceneManager.getUiRoot(AppUi.CATEGORY_SELECT));
+    scene.setRoot(SceneManager.getUiRoot(AppUi.LOG_IN));
 
     // run the text to speech on a background thread to avoid lags
     TextToSpeech textToSpeech = new TextToSpeech();
@@ -26,7 +26,7 @@ public class MenuController implements Controller {
 
           @Override
           protected Void call() throws Exception {
-            textToSpeech.speak("Pick a difficulty.");
+            textToSpeech.speak("Welcome to Quick Draw.");
             return null;
           }
         };
