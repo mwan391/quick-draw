@@ -65,6 +65,17 @@ public class UserDao {
     return userId;
   }
 
+  public boolean checkExists(String username) throws SQLException {
+    Connection connection = SqliteConnection.openConnection();
+    PreparedStatement statement =
+        connection.prepareStatement("SELECT 1 FROM users WHERE username=?");
+    statement.setString(1, username);
+    ResultSet rst = statement.executeQuery();
+    boolean exists = rst.next();
+    SqliteConnection.closeConnection(connection);
+    return exists;
+  }
+
   /**
    * get instance of user by id
    *
