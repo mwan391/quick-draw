@@ -20,7 +20,7 @@ public class UserDao {
   public int addNewUser(String username, String password) throws SQLException {
 
     Connection connection = SqliteConnection.openConnection();
-    String query = "INSERT INTO users (username, password, game_id) VALUES (?,?,?,0)";
+    String query = "INSERT INTO users (username, password, game_id) VALUES (?,?,0)";
     PreparedStatement ps = connection.prepareStatement(query);
     // input query parameters
     ps.setString(1, username);
