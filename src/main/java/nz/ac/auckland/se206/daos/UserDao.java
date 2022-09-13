@@ -65,6 +65,13 @@ public class UserDao {
     return userId;
   }
 
+  /**
+   * check if a username has already been used in the database and returns the result
+   *
+   * @param username to check for
+   * @return true or false
+   * @throws SQLException
+   */
   public boolean checkExists(String username) throws SQLException {
     Connection connection = SqliteConnection.openConnection();
     PreparedStatement statement =
