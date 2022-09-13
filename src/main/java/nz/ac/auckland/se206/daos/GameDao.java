@@ -37,4 +37,14 @@ public class GameDao {
     SqliteConnection.closeConnection(connection);
     return gameId;
   }
+
+  public void setTime(int time, int gameId) throws SQLException {
+    Connection connection = SqliteConnection.openConnection();
+    String query = "UPDATE games SET time=? WHERE id=?";
+    PreparedStatement ps = connection.prepareStatement(query);
+    ps.setInt(1, time);
+    ps.setInt(2, gameId);
+    ps.execute();
+    SqliteConnection.closeConnection(connection);
+  }
 }
