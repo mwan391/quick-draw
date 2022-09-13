@@ -8,6 +8,15 @@ import nz.ac.auckland.se206.util.SqliteConnection;
 
 public class GameDao {
 
+  /**
+   * add a new game to the database and return its id
+   *
+   * @param userId of current user
+   * @param difficultyValue using ordinal of difficulty enum
+   * @param word of chosen category
+   * @return id of new game
+   * @throws SQLException
+   */
   public int addNewGame(int userId, int difficultyValue, String word) throws SQLException {
     Connection connection = SqliteConnection.openConnection();
     String query = "INSERT INTO games (user_id, difficulty, word, won, time) VALUES (?,?,?,0,60)";
