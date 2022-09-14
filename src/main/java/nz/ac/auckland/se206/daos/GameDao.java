@@ -39,6 +39,13 @@ public class GameDao {
     return gameId;
   }
 
+  /**
+   * when game ends, update time it took to draw the prediction in seconds
+   *
+   * @param time in seconds of drawing time
+   * @param gameId of current game
+   * @throws SQLException
+   */
   public void setTime(int time, int gameId) throws SQLException {
     Connection connection = SqliteConnection.openConnection();
     String query = "UPDATE games SET time=? WHERE id=?";
