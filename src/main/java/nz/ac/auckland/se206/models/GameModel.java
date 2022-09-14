@@ -41,4 +41,21 @@ public class GameModel {
   public int getTime() {
     return time;
   }
+
+  @Override
+  public String toString() {
+    StringBuilder sb = new StringBuilder("Game ID: ");
+    sb.append(getId());
+    sb.append("\nPlayed by user ID: ");
+    sb.append(getUserId());
+    sb.append("\nDifficulty: ");
+    sb.append(getDifficulty());
+    sb.append("\nSelected word: ");
+    sb.append(getWord());
+    sb.append("\nResult: ");
+    sb.append(getWon());
+    sb.append("\nTime (s)");
+    sb.append(getTime());
+    return sb.toString();
+  }
 }
