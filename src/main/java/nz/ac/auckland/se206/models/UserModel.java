@@ -1,6 +1,9 @@
 package nz.ac.auckland.se206.models;
 
 public class UserModel {
+
+  private static UserModel activeUser = null;
+
   private int id;
   private String username;
   private String password;
@@ -33,5 +36,13 @@ public class UserModel {
   public String toString() {
     StringBuilder sb = new StringBuilder(username);
     return sb.toString();
+  }
+
+  public static UserModel getActiveUser() {
+    return activeUser;
+  }
+
+  public static void setActiveUser(UserModel activeUser) {
+    UserModel.activeUser = activeUser;
   }
 }

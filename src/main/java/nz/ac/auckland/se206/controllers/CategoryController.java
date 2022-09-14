@@ -11,6 +11,7 @@ import nz.ac.auckland.se206.CategorySelect;
 import nz.ac.auckland.se206.CategorySelect.Difficulty;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
+import nz.ac.auckland.se206.models.UserModel;
 import nz.ac.auckland.se206.speech.TextToSpeech;
 
 public class CategoryController implements Controller {
@@ -90,6 +91,7 @@ public class CategoryController implements Controller {
     Scene scene = ((Button) event.getSource()).getScene();
     Parent logInRoot = SceneManager.getUiRoot(AppUi.LOG_IN);
     scene.setRoot(logInRoot);
+    UserModel.setActiveUser(null);
 
     // reset the page in case a new game gets started
     resetPage();

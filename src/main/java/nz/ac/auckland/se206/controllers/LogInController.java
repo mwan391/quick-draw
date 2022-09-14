@@ -12,6 +12,7 @@ import javafx.scene.control.TextField;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.daos.UserDao;
+import nz.ac.auckland.se206.models.UserModel;
 import nz.ac.auckland.se206.speech.TextToSpeech;
 
 public class LogInController implements Controller {
@@ -22,8 +23,6 @@ public class LogInController implements Controller {
   @FXML private TextField fldUserName;
   @FXML private PasswordField fldPassword;
   private UserDao userDao = new UserDao();
-
-  public Integer activeUserId = -1;
 
   @FXML
   private void onSignUp(ActionEvent event) throws SQLException {
@@ -37,8 +36,10 @@ public class LogInController implements Controller {
       return;
     }
 
-    // the user name is not taken so we add it to the database, and the user is logged in
-    activeUserId = userDao.addNewUser(userName, password);
+    // the user name is not taken so we add it to the database, set the newly made user as the
+    // active user
+    UserModel.setActiveUser(userDao.getUserById(userDao.addNewUser(userName, password)));
+    ;
 
     // go to the next screen
     nextScreen(event);
@@ -51,11 +52,12 @@ public class LogInController implements Controller {
     String password = fldPassword.getText();
 
     // check if the un/pw combination is correct
-    activeUserId = userDao.getId(userName, password);
-    if (activeUserId == -1) {
+    int userId = userDao.getId(userName, password);
+    if (userId == -1) {
       lblWarning.setText("Invalid login attempt.");
       return;
     }
+    userDao.getUserById(userId);
 
     // go to the next screen
     nextScreen(event);
