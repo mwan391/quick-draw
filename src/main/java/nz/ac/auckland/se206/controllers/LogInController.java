@@ -1,31 +1,62 @@
 package nz.ac.auckland.se206.controllers;
 
+import java.sql.SQLException;
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
+import nz.ac.auckland.se206.daos.UserDao;
 import nz.ac.auckland.se206.speech.TextToSpeech;
 
 public class LogInController implements Controller {
 
   @FXML private Button btnSignUp;
   @FXML private Button btnLogIn;
+  @FXML private Label lblWarning;
   @FXML private TextField fldUserName;
   @FXML private PasswordField fldPassword;
+  private UserDao userDao = new UserDao();
+
+  public Integer activeUserId = -1;
 
   @FXML
-  private void onSignUp(ActionEvent event) {
+  private void onSignUp(ActionEvent event) throws SQLException {
+    String userName = fldUserName.getText();
+    String password = fldPassword.getText();
+
+    // check if the user name/password combination is taken
+
+    if (userDao.checkExists(userName)) {
+      lblWarning.setText("This username is already taken.");
+      return;
+    }
+
+    // the user name is not taken so we add it to the database, and the user is logged in
+    activeUserId = userDao.addNewUser(userName, password);
+
     // go to the next screen
     nextScreen(event);
   }
 
   @FXML
-  private void onLogIn(ActionEvent event) {
+  private void onLogIn(ActionEvent event) throws SQLException {
+
+    String userName = fldUserName.getText();
+    String password = fldPassword.getText();
+
+    // check if the un/pw combination is correct
+    activeUserId = userDao.getId(userName, password);
+    if (activeUserId == -1) {
+      lblWarning.setText("Invalid login attempt.");
+      return;
+    }
+
     // go to the next screen
     nextScreen(event);
   }
@@ -59,6 +90,7 @@ public class LogInController implements Controller {
   private void resetPage() {
     fldUserName.setText("");
     fldPassword.setText("");
+    lblWarning.setText("");
   }
 
   @FXML

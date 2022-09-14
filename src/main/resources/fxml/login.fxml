@@ -38,5 +38,6 @@
             <Button fx:id="btnLogIn" mnemonicParsing="false" onAction="#onLogIn" text="Log In" />
          </children>
       </HBox>
+      <Label fx:id="lblWarning" />
    </children>
 </VBox>
