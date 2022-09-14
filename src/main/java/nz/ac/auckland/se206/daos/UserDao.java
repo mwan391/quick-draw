@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import nz.ac.auckland.se206.models.UserModel;
 import nz.ac.auckland.se206.util.SqliteConnection;
 
@@ -117,6 +119,27 @@ public class UserDao {
     ps.setInt(2, userId);
     ps.execute();
     SqliteConnection.closeConnection(connection);
+  }
+
+  /**
+   * Returns a list of all existing users in the database
+   *
+   * @return list of all user instances in database
+   * @throws SQLException
+   */
+  public List<UserModel> getUsers() throws SQLException {
+    List<UserModel> users = new ArrayList<>();
+    Connection connection = SqliteConnection.openConnection();
+    String query = "SELECT id, username, password, game_id from users";
+    PreparedStatement ps = connection.prepareStatement(query);
+    ResultSet rs = ps.executeQuery();
+
+    while (rs.next()) {
+      UserModel user = getUser(rs);
+      users.add(user);
+    }
+    SqliteConnection.closeConnection(connection);
+    return users;
   }
 
   /**
