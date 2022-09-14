@@ -56,7 +56,7 @@ public class SqliteConnection {
 
   private boolean createUsersTable(Statement statement) throws SQLException {
     return statement.execute(
-        "CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY AUTOINCREMENT, username VARCHAR(256) NOT NULL, password VARCHAR(256) NOT NULL, active BOOLEAN, game_id INTEGER);");
+        "CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY AUTOINCREMENT, username VARCHAR(256) NOT NULL, password VARCHAR(256) NOT NULL, game_id INTEGER);");
   }
 
   private boolean createGamesTable(Statement statement) throws SQLException {
