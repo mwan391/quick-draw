@@ -1,6 +1,9 @@
 package nz.ac.auckland.se206.controllers;
 
 import java.sql.SQLException;
+import java.util.List;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -23,9 +26,21 @@ public class LogInController implements Controller {
   @FXML private ComboBox<String> fldUserName;
   @FXML private PasswordField fldPassword;
   private UserDao userDao = new UserDao();
+  private ObservableList<String> existingUsers;
 
-  public void initialize() {
+  public void initialize() throws SQLException {
     fldUserName.setEditable(true);
+
+    // create the observable list of existing user names for the drop down menu
+    existingUsers = FXCollections.observableArrayList();
+
+    List<UserModel> tempUsers = userDao.getUsers();
+
+    for (UserModel user : tempUsers) {
+      existingUsers.add(user.toString());
+    }
+
+    fldUserName.setItems(existingUsers);
   }
 
   @FXML
@@ -45,9 +60,9 @@ public class LogInController implements Controller {
       return;
     }
 
-    // the user name is not taken so we add it to the database, set the newly made user as the
-    // active user
+    // set the newly made user as the active user and add to the drop down list
     UserModel.setActiveUser(userDao.getUserById(userDao.addNewUser(userName, password)));
+    existingUsers.add(userName);
 
     // go to the next screen
     nextScreen(event);
