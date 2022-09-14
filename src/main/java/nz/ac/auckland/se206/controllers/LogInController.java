@@ -33,17 +33,21 @@ public class LogInController implements Controller {
     String userName = fldUserName.getValue();
     String password = fldPassword.getText();
 
-    // check if the user name/password combination is taken
-
+    // check if the user name is taken
     if (userDao.checkExists(userName)) {
       lblWarning.setText("This username is already taken.");
+      return;
+    }
+
+    // check if either field is left blank
+    if (userName.equals("") || password.equals("")) {
+      lblWarning.setText("Please select a valid username and password.");
       return;
     }
 
     // the user name is not taken so we add it to the database, set the newly made user as the
     // active user
     UserModel.setActiveUser(userDao.getUserById(userDao.addNewUser(userName, password)));
-    ;
 
     // go to the next screen
     nextScreen(event);
