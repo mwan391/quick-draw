@@ -306,29 +306,29 @@ public class CanvasController implements Controller {
 	@FXML
 	private void onToggleEraser() {
 
-		// change label
+		// Switching between pen and eraser
 		if (btnToggleEraser.isSelected()) {
+			// Changing label
 			btnToggleEraser.setText("Pen");
+			canvas.setOnMouseDragged(e -> {
+				// Activate eraser
+				final double size = 20.0;
+				final double x = e.getX() - size / 2;
+				final double y = e.getY() - size / 2;
+				graphic.setFill(Color.WHITE);
+				graphic.fillOval(x, y, size, size);
+			});
 		} else {
 			btnToggleEraser.setText("Eraser");
-		}
-
-		// change pen color
-		canvas.setOnMouseDragged(e -> {
-			// keep existing settings
-			final double size = 5.0;
-
-			final double x = e.getX() - size / 2;
-			final double y = e.getY() - size / 2;
-
-			// change color depending on toggle
-			if (btnToggleEraser.isSelected()) {
-				graphic.setFill(Color.WHITE);
-			} else {
+			// Changing label
+			canvas.setOnMouseDragged(e -> {
+				// Activate pen
+				final double size = 5.0;
+				final double x = e.getX() - size / 2;
+				final double y = e.getY() - size / 2;
 				graphic.setFill(Color.BLACK);
-			}
-
-			graphic.fillOval(x, y, size, size);
-		});
+				graphic.fillOval(x, y, size, size);
+			});
+		}
 	}
 }
