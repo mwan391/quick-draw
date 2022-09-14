@@ -56,6 +56,13 @@ public class GameDao {
     SqliteConnection.closeConnection(connection);
   }
 
+  /**
+   * set the result of the game
+   *
+   * @param won boolean of winning status
+   * @param gameId of current game
+   * @throws SQLException
+   */
   public void setWon(boolean won, int gameId) throws SQLException {
     Connection connection = SqliteConnection.openConnection();
     String query = "UPDATE games SET won=? WHERE id=?";
