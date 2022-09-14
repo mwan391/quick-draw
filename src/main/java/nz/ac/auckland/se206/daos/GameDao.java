@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import nz.ac.auckland.se206.models.GameModel;
 import nz.ac.auckland.se206.util.SqliteConnection;
 
 public class GameDao {
@@ -56,5 +57,28 @@ public class GameDao {
     ps.setInt(2, gameId);
     ps.execute();
     SqliteConnection.closeConnection(connection);
+  }
+
+  public GameModel getGameById(int gameId) throws SQLException {
+    Connection connection = SqliteConnection.openConnection();
+    String query = "SELECT id, user_id, difficulty, word, won, time FROM games WHERE id=?";
+    PreparedStatement ps = connection.prepareStatement(query);
+    ps.setInt(1, gameId);
+    ResultSet rs = ps.executeQuery();
+
+    GameModel game = rs.next() ? getGame(rs) : null;
+    SqliteConnection.closeConnection(connection);
+
+    return game;
+  }
+
+  private GameModel getGame(ResultSet rs) throws SQLException {
+    return new GameModel(
+        rs.getInt("id"),
+        rs.getInt("user_id"),
+        rs.getInt("difficulty"),
+        rs.getString("word"),
+        rs.getBoolean("won"),
+        rs.getInt("time"));
   }
 }
