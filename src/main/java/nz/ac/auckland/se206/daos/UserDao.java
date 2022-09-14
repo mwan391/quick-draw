@@ -14,19 +14,17 @@ public class UserDao {
    *
    * @param username of new user
    * @param password of new user
-   * @param active status of new user
    * @return id of new user
    * @throws SQLException
    */
-  public int addNewUser(String username, String password, boolean active) throws SQLException {
+  public int addNewUser(String username, String password) throws SQLException {
 
     Connection connection = SqliteConnection.openConnection();
-    String query = "INSERT INTO users (username, password, active, game_id) VALUES (?,?,?,0)";
+    String query = "INSERT INTO users (username, password, game_id) VALUES (?,?,0)";
     PreparedStatement ps = connection.prepareStatement(query);
     // input query parameters
     ps.setString(1, username);
     ps.setString(2, password);
-    ps.setBoolean(3, active);
     ps.executeUpdate();
 
     int userId = 0;
@@ -68,6 +66,24 @@ public class UserDao {
   }
 
   /**
+   * check if a username has already been used in the database and returns the result
+   *
+   * @param username to check for
+   * @return true or false
+   * @throws SQLException
+   */
+  public boolean checkExists(String username) throws SQLException {
+    Connection connection = SqliteConnection.openConnection();
+    PreparedStatement statement =
+        connection.prepareStatement("SELECT 1 FROM users WHERE username=?");
+    statement.setString(1, username);
+    ResultSet rst = statement.executeQuery();
+    boolean exists = rst.next();
+    SqliteConnection.closeConnection(connection);
+    return exists;
+  }
+
+  /**
    * get instance of user by id
    *
    * @param userId
@@ -76,7 +92,7 @@ public class UserDao {
    */
   public UserModel getUserById(int userId) throws SQLException {
     Connection connection = SqliteConnection.openConnection();
-    String query = "SELECT id, username, password, active, game_id FROM users WHERE id=?";
+    String query = "SELECT id, username, password, game_id FROM users WHERE id=?";
     PreparedStatement ps = connection.prepareStatement(query);
     ps.setInt(1, userId);
     ResultSet rs = ps.executeQuery();
@@ -84,24 +100,6 @@ public class UserDao {
     UserModel user = rs.next() ? getUser(rs) : null;
     SqliteConnection.closeConnection(connection);
     return user;
-  }
-
-  /**
-   * set the active status of a user
-   *
-   * @param userId of user
-   * @param isActive status of user
-   * @throws SQLException
-   */
-  public void setActive(int userId, boolean isActive) throws SQLException {
-    Connection connection = SqliteConnection.openConnection();
-    String query = "UPDATE users SET active=? WHERE id=?";
-
-    PreparedStatement ps = connection.prepareStatement(query);
-    ps.setBoolean(1, isActive);
-    ps.setInt(2, userId);
-    ps.execute();
-    SqliteConnection.closeConnection(connection);
   }
 
   /**
@@ -130,10 +128,6 @@ public class UserDao {
    */
   private UserModel getUser(ResultSet rs) throws SQLException {
     return new UserModel(
-        rs.getInt("id"),
-        rs.getString("username"),
-        rs.getString("password"),
-        rs.getBoolean("active"),
-        rs.getInt("game_id"));
+        rs.getInt("id"), rs.getString("username"), rs.getString("password"), rs.getInt("game_id"));
   }
 }
