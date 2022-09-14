@@ -88,6 +88,13 @@ public class GameDao {
     return game;
   }
 
+  /**
+   * retrieves all games played by a given user
+   *
+   * @param userId of given user
+   * @return list of games
+   * @throws SQLException
+   */
   public List<GameModel> getGames(int userId) throws SQLException {
     List<GameModel> games = new ArrayList<>();
     Connection connection = SqliteConnection.openConnection();
