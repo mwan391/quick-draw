@@ -6,9 +6,9 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.daos.UserDao;
@@ -20,13 +20,17 @@ public class LogInController implements Controller {
   @FXML private Button btnSignUp;
   @FXML private Button btnLogIn;
   @FXML private Label lblWarning;
-  @FXML private TextField fldUserName;
+  @FXML private ComboBox<String> fldUserName;
   @FXML private PasswordField fldPassword;
   private UserDao userDao = new UserDao();
 
+  public void initialize() {
+    fldUserName.setEditable(true);
+  }
+
   @FXML
   private void onSignUp(ActionEvent event) throws SQLException {
-    String userName = fldUserName.getText();
+    String userName = fldUserName.getValue();
     String password = fldPassword.getText();
 
     // check if the user name/password combination is taken
@@ -48,7 +52,7 @@ public class LogInController implements Controller {
   @FXML
   private void onLogIn(ActionEvent event) throws SQLException {
 
-    String userName = fldUserName.getText();
+    String userName = fldUserName.getValue();
     String password = fldPassword.getText();
 
     // check if the un/pw combination is correct
@@ -90,7 +94,7 @@ public class LogInController implements Controller {
   }
 
   private void resetPage() {
-    fldUserName.setText("");
+    fldUserName.setValue("");
     fldPassword.setText("");
     lblWarning.setText("");
   }
