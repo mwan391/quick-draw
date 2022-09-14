@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import nz.ac.auckland.se206.models.GameModel;
 import nz.ac.auckland.se206.util.SqliteConnection;
 
@@ -84,6 +86,23 @@ public class GameDao {
     SqliteConnection.closeConnection(connection);
 
     return game;
+  }
+
+  public List<GameModel> getGames(int userId) throws SQLException {
+    List<GameModel> games = new ArrayList<>();
+    Connection connection = SqliteConnection.openConnection();
+    String query =
+        "SELECT id, user_id, difficulty, word, won, time FROM games FROM games WHERE user_id=? ORDER by id";
+    PreparedStatement ps = connection.prepareStatement(query);
+    ps.setInt(userId, 1);
+    ResultSet rs = ps.executeQuery();
+    // convert the results to GameModel instances
+    while (rs.next()) {
+      GameModel game = getGame(rs);
+      games.add(game);
+    }
+    SqliteConnection.closeConnection(connection);
+    return games;
   }
 
   private GameModel getGame(ResultSet rs) throws SQLException {
