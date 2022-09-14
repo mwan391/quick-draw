@@ -22,13 +22,13 @@
                   <Font size="20.0" />
                </font>
             </Label>
-            <ComboBox fx:id="fldUserName" prefWidth="150.0" />
+            <ComboBox fx:id="fldUserName" prefWidth="150.0" promptText="Your Username" />
             <Label text="Password:">
                <font>
                   <Font size="20.0" />
                </font>
             </Label>
-            <PasswordField fx:id="fldPassword" />
+            <PasswordField fx:id="fldPassword" promptText="Your Password" />
          </children>
       </VBox>
       <HBox alignment="CENTER" spacing="10.0">
