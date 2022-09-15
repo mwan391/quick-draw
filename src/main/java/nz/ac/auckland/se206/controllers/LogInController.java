@@ -117,9 +117,4 @@ public class LogInController implements Controller {
     fldPassword.setText("");
     lblWarning.setText("");
   }
-
-  @FXML
-  private void onExitGame() {
-    System.exit(0);
-  }
 }

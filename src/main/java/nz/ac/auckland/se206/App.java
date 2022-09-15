@@ -2,10 +2,13 @@ package nz.ac.auckland.se206;
 
 import java.io.IOException;
 import javafx.application.Application;
+import javafx.application.Platform;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.util.SqliteConnection;
 
@@ -58,5 +61,15 @@ public class App extends Application {
     stage.show();
 
     CategorySelect.setCategories("category_difficulty");
+
+    // Stopping processes when window closes
+    stage.setOnCloseRequest(
+        new EventHandler<WindowEvent>() {
+          @Override
+          public void handle(WindowEvent e) {
+            Platform.exit();
+            System.exit(0);
+          }
+        });
   }
 }

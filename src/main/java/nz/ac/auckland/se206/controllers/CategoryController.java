@@ -97,11 +97,6 @@ public class CategoryController implements Controller {
     resetPage();
   }
 
-  @FXML
-  private void onExitGame() {
-    System.exit(0);
-  }
-
   private void resetPage() {
     // return the page to its initial state.
     lblCategory.setText("[Choose A Difficulty]");

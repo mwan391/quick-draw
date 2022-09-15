@@ -40,7 +40,6 @@
                <children>
                   <Button fx:id="btnSave" mnemonicParsing="false" onAction="#onSave" text="Save Drawing" />
                   <Button fx:id="btnNewGame" mnemonicParsing="false" onAction="#onNewGame" text="New Game" />
-                  <Button fx:id="btnExitGame" mnemonicParsing="false" onAction="#onExitGame" text="Exit Game" />
                </children>
             </HBox>
          </children>
