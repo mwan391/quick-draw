@@ -269,6 +269,7 @@ public class CanvasController implements Controller {
   private void resetGame() {
     // reset timer and re-enable the canvas and drawing tools
     switchToPen();
+    btnToggleEraser.setText("Eraser");
     btnToggleEraser.setSelected(false);
     lblTimer.setText("60");
     canvas.setDisable(false);
