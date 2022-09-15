@@ -193,31 +193,14 @@ public class CanvasController implements Controller {
     hbxGameEnd.setVisible(true);
     hbxNewGame.setVisible(true);
 
-    // set the label to win/lose event
+    // set the label to win/lose event and use the tts
     if (wonGame) {
       lblCategory.setText("You Win!");
+      useTextToSpeech("You Win.");
     } else {
       lblCategory.setText("You Lose!");
+      useTextToSpeech("You Lose!");
     }
-
-    // run the text to speech on a background thread to avoid lag
-    Task<Void> backgroundTask =
-        new Task<Void>() {
-
-          @Override
-          protected Void call() throws Exception {
-            if (wonGame) {
-              textToSpeech.speak("You Win!");
-            } else {
-              textToSpeech.speak("You Lose!");
-            }
-            return null;
-          }
-        };
-
-    // start the thread
-    Thread backgroundThread = new Thread(backgroundTask);
-    backgroundThread.start();
   }
 
   /**
@@ -255,20 +238,8 @@ public class CanvasController implements Controller {
     Scene scene = ((Button) event.getSource()).getScene();
     scene.setRoot(SceneManager.getUiRoot(AppUi.CATEGORY_SELECT));
 
-    // run the text to speech on a background thread to avoid lag
-    Task<Void> backgroundTask =
-        new Task<Void>() {
-
-          @Override
-          protected Void call() throws Exception {
-            // repeat the instructions from the start of the game
-            textToSpeech.speak("Pick a category.");
-            return null;
-          }
-        };
-
-    Thread backgroundThread = new Thread(backgroundTask);
-    backgroundThread.start();
+    // repeat instructions
+    useTextToSpeech("Pick a category.");
   }
 
   private void resetGame() {
@@ -340,5 +311,22 @@ public class CanvasController implements Controller {
       btnNewGame.setText("New Game");
       startTimer();
     }
+  }
+
+  private void useTextToSpeech(String phrase) {
+    // run the text to speech on a background thread to avoid lag
+    Task<Void> backgroundTask =
+        new Task<Void>() {
+
+          @Override
+          protected Void call() throws Exception {
+            textToSpeech.speak(phrase);
+            return null;
+          }
+        };
+
+    // start the thread
+    Thread backgroundThread = new Thread(backgroundTask);
+    backgroundThread.start();
   }
 }
