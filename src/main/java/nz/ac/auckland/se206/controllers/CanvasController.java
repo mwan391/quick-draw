@@ -55,6 +55,7 @@ public class CanvasController implements Controller {
   @FXML private Label lblCategory;
   @FXML private Button clearButton;
   @FXML private Button btnSave;
+
   @FXML private Button btnReturnToMenu;
   @FXML private Button btnExitGame;
   @FXML private ToggleButton btnToggleEraser;
@@ -62,6 +63,7 @@ public class CanvasController implements Controller {
   @FXML private HBox hbxGameEnd;
   @FXML private HBox hbxDrawTools;
   @FXML private HBox hbxNewGame;
+
   private Timeline timer;
   private ObservableList<String> predictions;
   private String category;
@@ -70,6 +72,10 @@ public class CanvasController implements Controller {
   private TextToSpeech textToSpeech = new TextToSpeech();
   private DoodlePrediction model;
 
+  // mouse coordinates
+  private double currentX;
+  private double currentY;
+  
   /**
    * JavaFX calls this method once the GUI elements are loaded. In our case we create a listener for
    * the drawing, and we load the ML model.
@@ -86,18 +92,14 @@ public class CanvasController implements Controller {
 
     graphic = canvas.getGraphicsContext2D();
 
-    canvas.setOnMouseDragged(
+    // save coordinates when mouse is pressed on the canvas
+    canvas.setOnMousePressed(
         e -> {
-          // Brush size (you can change this, it should not be too small or too large).
-          final double size = 5.0;
-
-          final double x = e.getX() - size / 2;
-          final double y = e.getY() - size / 2;
-
-          // This is the colour of the brush.
-          graphic.setFill(Color.BLACK);
-          graphic.fillOval(x, y, size, size);
+          currentX = e.getX();
+          currentY = e.getY();
         });
+
+    switchToPen();
 
     model = new DoodlePrediction();
   }
@@ -244,18 +246,9 @@ public class CanvasController implements Controller {
 
   private void resetGame() {
     // reset timer and re-enable the canvas and drawing tools
-    canvas.setOnMouseDragged(
-        e -> {
-          // Brush size (you can change this, it should not be too small or too large).
-          final double size = 5.0;
-
-          final double x = e.getX() - size / 2;
-          final double y = e.getY() - size / 2;
-
-          // This is the colour of the brush.
-          graphic.setFill(Color.BLACK);
-          graphic.fillOval(x, y, size, size);
-        });
+    switchToPen();
+    btnToggleEraser.setText("Eraser");
+    btnToggleEraser.setSelected(false);
     lblTimer.setText("60");
     canvas.setDisable(false);
     hbxDrawTools.setVisible(true);
@@ -276,27 +269,11 @@ public class CanvasController implements Controller {
     if (btnToggleEraser.isSelected()) {
       // Changing label
       btnToggleEraser.setText("Pen");
-      canvas.setOnMouseDragged(
-          e -> {
-            // Activate eraser
-            final double size = 20.0;
-            final double x = e.getX() - size / 2;
-            final double y = e.getY() - size / 2;
-            graphic.setFill(Color.WHITE);
-            graphic.fillOval(x, y, size, size);
-          });
+      switchToEraser();
     } else {
-      btnToggleEraser.setText("Eraser");
       // Changing label
-      canvas.setOnMouseDragged(
-          e -> {
-            // Activate pen
-            final double size = 5.0;
-            final double x = e.getX() - size / 2;
-            final double y = e.getY() - size / 2;
-            graphic.setFill(Color.BLACK);
-            graphic.fillOval(x, y, size, size);
-          });
+      btnToggleEraser.setText("Eraser");
+      switchToPen();
     }
   }
 
@@ -332,5 +309,45 @@ public class CanvasController implements Controller {
     // start the thread
     Thread backgroundThread = new Thread(backgroundTask);
     backgroundThread.start();
+    }
+    
+  private void switchToPen() {
+    canvas.setOnMouseDagged(
+        e -> {
+          // Brush size (you can change this, it should not be too small or too large).
+          final double size = 5;
+
+          final double x = e.getX() - size / 2;
+          final double y = e.getY() - size / 2;
+
+          // This is the colour of the brush.
+          graphic.setFill(Color.BLACK);
+          graphic.setLineWidth(size);
+
+          // Create a line that goes from the point (currentX, currentY) and (x,y)
+          graphic.strokeLine(currentX, currentY, x, y);
+
+          // update the coordinates
+          currentX = x;
+          currentY = y;
+        });
+  }
+
+  private void switchToEraser() {
+    canvas.setOnMouseDragged(
+        e -> {
+          // Brush size (you can change this, it should not be too small or too large).
+          final double size = 20;
+
+          final double x = e.getX() - size / 2;
+          final double y = e.getY() - size / 2;
+
+          // clear in the area specified
+          graphic.clearRect(currentX, currentY, x, y);
+
+          // update the coordinates
+          currentX = x;
+          currentY = y;
+        });
   }
 }
