@@ -19,6 +19,7 @@ public class CategorySelect {
 
   private static HashMap<Difficulty, ArrayList<String>> categories = new HashMap<>();
   private static String category = null;
+  private static Difficulty wordDifficulty;
 
   /*
    * This method is invoked when the application starts. It loads the given csv file into a hashmap
@@ -68,7 +69,19 @@ public class CategorySelect {
     return category;
   }
 
+  public static String generateSetCategory() {
+    return (generateCategory(wordDifficulty));
+  }
+
   public static String getCategory() {
     return category;
+  }
+
+  public static Difficulty getWordDifficulty() {
+    return wordDifficulty;
+  }
+
+  public static void setWordDifficulty(Difficulty wordDifficulty) {
+    CategorySelect.wordDifficulty = wordDifficulty;
   }
 }

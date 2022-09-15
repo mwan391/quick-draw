@@ -30,7 +30,6 @@ import javafx.stage.FileChooser;
 import javafx.util.Duration;
 import javax.imageio.ImageIO;
 import nz.ac.auckland.se206.CategorySelect;
-import nz.ac.auckland.se206.CategorySelect.Difficulty;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.ml.DoodlePrediction;
@@ -335,7 +334,7 @@ public class CanvasController implements Controller {
     if (btnNewGame.isSelected()) {
       resetGame();
       btnNewGame.setText("Start Game");
-      lblCategory.setText("Draw: " + CategorySelect.generateCategory(Difficulty.EASY));
+      lblCategory.setText("Draw: " + CategorySelect.generateSetCategory());
     } else {
       hbxNewGame.setVisible(false);
       btnNewGame.setText("New Game");
