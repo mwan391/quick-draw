@@ -30,6 +30,7 @@ import javafx.stage.FileChooser;
 import javafx.util.Duration;
 import javax.imageio.ImageIO;
 import nz.ac.auckland.se206.CategorySelect;
+import nz.ac.auckland.se206.CategorySelect.Difficulty;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.ml.DoodlePrediction;
@@ -58,8 +59,10 @@ public class CanvasController implements Controller {
   @FXML private Button btnReturnToMenu;
   @FXML private Button btnExitGame;
   @FXML private ToggleButton btnToggleEraser;
+  @FXML private ToggleButton btnNewGame;
   @FXML private HBox hbxGameEnd;
   @FXML private HBox hbxDrawTools;
+  @FXML private HBox hbxNewGame;
   private Timeline timer;
   private ObservableList<String> predictions;
   private String category;
@@ -80,6 +83,7 @@ public class CanvasController implements Controller {
     predictions = FXCollections.observableArrayList();
     lvwPredictions.setItems(predictions);
     hbxGameEnd.setVisible(false);
+    hbxNewGame.setVisible(false);
 
     graphic = canvas.getGraphicsContext2D();
 
@@ -188,6 +192,7 @@ public class CanvasController implements Controller {
     canvas.setDisable(true);
     hbxDrawTools.setVisible(false);
     hbxGameEnd.setVisible(true);
+    hbxNewGame.setVisible(true);
 
     // set the label to win/lose event
     if (wonGame) {
@@ -246,6 +251,7 @@ public class CanvasController implements Controller {
   @FXML
   private void onReturnToMenu(ActionEvent event) {
     resetGame();
+    hbxNewGame.setVisible(false);
 
     Scene scene = ((Button) event.getSource()).getScene();
     scene.setRoot(SceneManager.getUiRoot(AppUi.CATEGORY_SELECT));
@@ -321,6 +327,19 @@ public class CanvasController implements Controller {
             graphic.setFill(Color.BLACK);
             graphic.fillOval(x, y, size, size);
           });
+    }
+  }
+
+  @FXML
+  private void onNewGame() {
+    if (btnNewGame.isSelected()) {
+      resetGame();
+      btnNewGame.setText("Start Game");
+      lblCategory.setText("Draw: " + CategorySelect.generateCategory(Difficulty.EASY));
+    } else {
+      hbxNewGame.setVisible(false);
+      btnNewGame.setText("New Game");
+      startTimer();
     }
   }
 }
