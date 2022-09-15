@@ -16,96 +16,96 @@ import nz.ac.auckland.se206.speech.TextToSpeech;
 
 public class CategoryController implements Controller {
 
-  @FXML private Button btnStartGame;
-  @FXML private Button btnLogOut;
-  @FXML private Button btnEasy;
-  @FXML private Button btnMedium;
-  @FXML private Button btnHard;
-  @FXML private Button btnMaster;
-  @FXML private Label lblCategory;
-  private TextToSpeech textToSpeech = new TextToSpeech();
+	@FXML
+	private Button btnStartGame;
+	@FXML
+	private Button btnLogOut;
+	@FXML
+	private Button btnEasy;
+	@FXML
+	private Button btnMedium;
+	@FXML
+	private Button btnHard;
+	@FXML
+	private Button btnMaster;
+	@FXML
+	private Label lblCategory;
+	private TextToSpeech textToSpeech = new TextToSpeech();
 
-  @FXML
-  public void initialize() {
-    btnMedium.setDisable(true);
-    btnHard.setDisable(true);
-    btnMaster.setDisable(true);
-    btnStartGame.setDisable(true);
-  }
+	@FXML
+	public void initialize() {
+		btnMedium.setDisable(true);
+		btnHard.setDisable(true);
+		btnMaster.setDisable(true);
+		btnStartGame.setDisable(true);
+	}
 
-  @FXML
-  private void onStartGame(ActionEvent event) {
+	@FXML
+	private void onStartGame(ActionEvent event) {
 
-    // get the parent and controller of the canvas game page
-    Scene scene = ((Button) event.getSource()).getScene();
-    Parent canvasRoot = SceneManager.getUiRoot(AppUi.CANVAS);
-    CanvasController canvasController = (CanvasController) SceneManager.getController(canvasRoot);
+		// get the parent and controller of the canvas game page
+		Scene scene = ((Button) event.getSource()).getScene();
+		Parent canvasRoot = SceneManager.getUiRoot(AppUi.CANVAS);
+		CanvasController canvasController = (CanvasController) SceneManager.getController(canvasRoot);
 
-    Task<Void> backgroundTask =
-        new Task<Void>() {
+		Task<Void> backgroundTask = new Task<Void>() {
 
-          @Override
-          protected Void call() throws Exception {
-            textToSpeech.speak("Let's draw!");
-            return null;
-          }
-        };
+			@Override
+			protected Void call() throws Exception {
+				textToSpeech.speak("Let's draw!");
+				return null;
+			}
+		};
 
-    Thread backgroundThread = new Thread(backgroundTask);
-    backgroundThread.start();
+		Thread backgroundThread = new Thread(backgroundTask);
+		backgroundThread.start();
 
-    // change the scene and start the game
-    canvasController.startTimer();
-    scene.setRoot(canvasRoot);
+		// change the scene and start the game
+		canvasController.startTimer();
+		scene.setRoot(canvasRoot);
 
-    // reset the page in case a new game gets started
-    resetPage();
-  }
+		// reset the page in case a new game gets started
+		resetPage();
+	}
 
-  @FXML
-  private void onGenerateEasyCategory(ActionEvent event) {
-    lblCategory.setText("\"" + CategorySelect.generateCategory(Difficulty.EASY) + "\"");
+	@FXML
+	private void onGenerateEasyCategory(ActionEvent event) {
+		lblCategory.setText("\"" + CategorySelect.generateCategory(Difficulty.EASY) + "\"");
 
-    // speak
-    Task<Void> backgroundTask =
-        new Task<Void>() {
+		// speak
+		Task<Void> backgroundTask = new Task<Void>() {
 
-          @Override
-          protected Void call() throws Exception {
-            textToSpeech.speak("Your category is " + CategorySelect.getCategory());
-            return null;
-          }
-        };
+			@Override
+			protected Void call() throws Exception {
+				textToSpeech.speak("Your category is " + CategorySelect.getCategory());
+				return null;
+			}
+		};
 
-    Thread backgroundThread = new Thread(backgroundTask);
-    backgroundThread.start();
+		Thread backgroundThread = new Thread(backgroundTask);
+		backgroundThread.start();
 
-    // disable the category button so users cannot reroll
-    btnStartGame.setDisable(false);
-    btnEasy.setDisable(true);
-  }
+		// disable the category button so users cannot reroll
+		btnStartGame.setDisable(false);
+		btnEasy.setDisable(true);
+	}
 
-  @FXML
-  private void onLogOut(ActionEvent event) {
-    // change the scene
-    Scene scene = ((Button) event.getSource()).getScene();
-    Parent logInRoot = SceneManager.getUiRoot(AppUi.LOG_IN);
-    scene.setRoot(logInRoot);
-    UserModel.setActiveUser(null);
+	@FXML
+	private void onLogOut(ActionEvent event) {
+		// change the scene
+		Scene scene = ((Button) event.getSource()).getScene();
+		Parent logInRoot = SceneManager.getUiRoot(AppUi.LOG_IN);
+		scene.setRoot(logInRoot);
+		UserModel.setActiveUser(null);
 
-    // reset the page in case a new game gets started
-    resetPage();
-  }
+		// reset the page in case a new game gets started
+		resetPage();
+	}
 
-  @FXML
-  private void onExitGame() {
-    System.exit(0);
-  }
-
-  private void resetPage() {
-    // return the page to its initial state.
-    lblCategory.setText("[Choose A Difficulty]");
-    btnStartGame.setDisable(true);
-    btnEasy.setDisable(false);
-  }
+	private void resetPage() {
+		// return the page to its initial state.
+		lblCategory.setText("[Choose A Difficulty]");
+		btnStartGame.setDisable(true);
+		btnEasy.setDisable(false);
+	}
 }

@@ -15,7 +15,7 @@
             <Font size="40.0" />
          </font>
       </Label>
-      <VBox alignment="BOTTOM_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" spacing="5.0">
+      <VBox alignment="BOTTOM_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" spacing="5.0">
          <children>
             <Label text="Username:">
                <font>
@@ -33,7 +33,6 @@
       </VBox>
       <HBox alignment="CENTER" spacing="10.0">
          <children>
-            <Button fx:id="btnExitGame" mnemonicParsing="false" onAction="#onExitGame" text="Exit Game" />
             <Button fx:id="btnSignUp" mnemonicParsing="false" onAction="#onSignUp" text="Sign Up" />
             <Button fx:id="btnLogIn" mnemonicParsing="false" onAction="#onLogIn" text="Log In" />
          </children>
