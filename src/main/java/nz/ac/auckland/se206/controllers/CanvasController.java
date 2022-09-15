@@ -305,8 +305,12 @@ public class CanvasController implements Controller {
     if (btnNewGame.isSelected()) {
       resetGame();
       btnNewGame.setText("Start Game");
-      lblCategory.setText("Draw: " + CategorySelect.generateSetCategory());
+      String category = CategorySelect.generateSetCategory();
+      lblCategory.setText("Draw: " + category);
+      useTextToSpeech("Your category is" + category);
+
     } else {
+      useTextToSpeech("Let's draw");
       hbxNewGame.setVisible(false);
       btnNewGame.setText("New Game");
       startTimer();
