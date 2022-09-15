@@ -1,16 +1,13 @@
 package nz.ac.auckland.se206.controllers;
 
+import ai.djl.ModelException;
+import ai.djl.modality.Classifications;
+import ai.djl.translate.TranslateException;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
-
-import javax.imageio.ImageIO;
-
-import ai.djl.ModelException;
-import ai.djl.modality.Classifications;
-import ai.djl.translate.TranslateException;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.collections.FXCollections;
@@ -31,6 +28,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 import javafx.util.Duration;
+import javax.imageio.ImageIO;
 import nz.ac.auckland.se206.CategorySelect;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
@@ -38,297 +36,291 @@ import nz.ac.auckland.se206.ml.DoodlePrediction;
 import nz.ac.auckland.se206.speech.TextToSpeech;
 
 /**
- * This is the controller of the canvas. You are free to modify this class and
- * the corresponding FXML file as you see fit. For example, you might no longer
- * need the "Predict" button because the DL model should be automatically
- * queried in the background every second.
+ * This is the controller of the canvas. You are free to modify this class and the corresponding
+ * FXML file as you see fit. For example, you might no longer need the "Predict" button because the
+ * DL model should be automatically queried in the background every second.
  *
- * <p>
- * !! IMPORTANT !!
+ * <p>!! IMPORTANT !!
  *
- * <p>
- * Although we added the scale of the image, you need to be careful when
- * changing the size of the drawable canvas and the brush size. If you make the
- * brush too big or too small with respect to the canvas size, the ML model will
- * not work correctly. So be careful. If you make some changes in the canvas and
- * brush sizes, make sure that the prediction works fine.
+ * <p>Although we added the scale of the image, you need to be careful when changing the size of the
+ * drawable canvas and the brush size. If you make the brush too big or too small with respect to
+ * the canvas size, the ML model will not work correctly. So be careful. If you make some changes in
+ * the canvas and brush sizes, make sure that the prediction works fine.
  */
 public class CanvasController implements Controller {
 
-	@FXML
-	private ListView<String> lvwPredictions;
-	@FXML
-	private Canvas canvas;
-	@FXML
-	private Label lblTimer;
-	@FXML
-	private Label lblCategory;
-	@FXML
-	private Button clearButton;
-	@FXML
-	private Button btnSave;
-	@FXML
-	private Button btnNewGame;
-	@FXML
-	private Button btnExitGame;
-	@FXML
-	private ToggleButton btnToggleEraser;
-	@FXML
-	private HBox hbxGameEnd;
-	@FXML
-	private HBox hbxDrawTools;
-	private Timeline timer;
-	private ObservableList<String> predictions;
-	private String category;
+  @FXML private ListView<String> lvwPredictions;
+  @FXML private Canvas canvas;
+  @FXML private Label lblTimer;
+  @FXML private Label lblCategory;
+  @FXML private Button clearButton;
+  @FXML private Button btnSave;
+  @FXML private Button btnNewGame;
+  @FXML private Button btnExitGame;
+  @FXML private ToggleButton btnToggleEraser;
+  @FXML private HBox hbxGameEnd;
+  @FXML private HBox hbxDrawTools;
+  private Timeline timer;
+  private ObservableList<String> predictions;
+  private String category;
 
-	private GraphicsContext graphic;
-	private TextToSpeech textToSpeech = new TextToSpeech();
-	private DoodlePrediction model;
+  private GraphicsContext graphic;
+  private TextToSpeech textToSpeech = new TextToSpeech();
+  private DoodlePrediction model;
 
-	/**
-	 * JavaFX calls this method once the GUI elements are loaded. In our case we
-	 * create a listener for the drawing, and we load the ML model.
-	 *
-	 * @throws ModelException If there is an error in reading the input/output of
-	 *                        the DL model.
-	 * @throws IOException    If the model cannot be found on the file system.
-	 */
-	public void initialize() throws ModelException, IOException {
+  /**
+   * JavaFX calls this method once the GUI elements are loaded. In our case we create a listener for
+   * the drawing, and we load the ML model.
+   *
+   * @throws ModelException If there is an error in reading the input/output of the DL model.
+   * @throws IOException If the model cannot be found on the file system.
+   */
+  public void initialize() throws ModelException, IOException {
 
-		predictions = FXCollections.observableArrayList();
-		lvwPredictions.setItems(predictions);
-		hbxGameEnd.setVisible(false);
+    predictions = FXCollections.observableArrayList();
+    lvwPredictions.setItems(predictions);
+    hbxGameEnd.setVisible(false);
 
-		graphic = canvas.getGraphicsContext2D();
+    graphic = canvas.getGraphicsContext2D();
 
-		canvas.setOnMouseDragged(e -> {
-			// Brush size (you can change this, it should not be too small or too large).
-			final double size = 5.0;
+    switchToPen();
 
-			final double x = e.getX() - size / 2;
-			final double y = e.getY() - size / 2;
+    model = new DoodlePrediction();
+  }
 
-			// This is the colour of the brush.
-			graphic.setFill(Color.BLACK);
-			graphic.fillOval(x, y, size, size);
-		});
+  /** This method is called when the "Clear" button is pressed. */
+  @FXML
+  private void onClear() {
+    graphic.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
+  }
 
-		model = new DoodlePrediction();
-	}
+  /**
+   * Get the current snapshot of the canvas.
+   *
+   * @return The BufferedImage corresponding to the current canvas content.
+   */
+  private BufferedImage getCurrentSnapshot() {
+    final Image snapshot = canvas.snapshot(null, null);
+    final BufferedImage image = SwingFXUtils.fromFXImage(snapshot, null);
 
-	/** This method is called when the "Clear" button is pressed. */
-	@FXML
-	private void onClear() {
-		graphic.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
-	}
+    // Convert into a binary image.
+    final BufferedImage imageBinary =
+        new BufferedImage(image.getWidth(), image.getHeight(), BufferedImage.TYPE_BYTE_BINARY);
 
-	/**
-	 * Get the current snapshot of the canvas.
-	 *
-	 * @return The BufferedImage corresponding to the current canvas content.
-	 */
-	private BufferedImage getCurrentSnapshot() {
-		final Image snapshot = canvas.snapshot(null, null);
-		final BufferedImage image = SwingFXUtils.fromFXImage(snapshot, null);
+    final Graphics2D graphics = imageBinary.createGraphics();
 
-		// Convert into a binary image.
-		final BufferedImage imageBinary = new BufferedImage(image.getWidth(), image.getHeight(),
-				BufferedImage.TYPE_BYTE_BINARY);
+    graphics.drawImage(image, 0, 0, null);
 
-		final Graphics2D graphics = imageBinary.createGraphics();
+    // To release memory we dispose.
+    graphics.dispose();
 
-		graphics.drawImage(image, 0, 0, null);
+    return imageBinary;
+  }
 
-		// To release memory we dispose.
-		graphics.dispose();
+  public void startTimer() {
+    // set up the label
+    category = CategorySelect.getCategory();
+    lblCategory.setText("Draw: " + category);
+    // set up what to do every second
+    timer = new Timeline(new KeyFrame(Duration.seconds(1), e -> changeTime()));
+    timer.getKeyFrames().add(new KeyFrame(Duration.seconds(1), e -> triggerPredict()));
+    timer.setCycleCount(60);
+    timer.setOnFinished(e -> endGame(false)); // if the timer runs to zero
+    timer.play();
+  }
 
-		return imageBinary;
-	}
+  private void changeTime() {
+    lblTimer.setText(String.valueOf(Integer.valueOf(lblTimer.getText()) - 1));
+  }
 
-	public void startTimer() {
-		// set up the label
-		category = CategorySelect.getCategory();
-		lblCategory.setText("Draw: " + category);
-		// set up what to do every second
-		timer = new Timeline(new KeyFrame(Duration.seconds(1), e -> changeTime()));
-		timer.getKeyFrames().add(new KeyFrame(Duration.seconds(1), e -> triggerPredict()));
-		timer.setCycleCount(60);
-		timer.setOnFinished(e -> endGame(false)); // if the timer runs to zero
-		timer.play();
-	}
+  private void triggerPredict() {
+    predictions.clear();
 
-	private void changeTime() {
-		lblTimer.setText(String.valueOf(Integer.valueOf(lblTimer.getText()) - 1));
-	}
+    List<Classifications.Classification> rawPredictions = null;
 
-	private void triggerPredict() {
-		predictions.clear();
+    // get the predictions
+    try {
+      rawPredictions = model.getPredictions(getCurrentSnapshot(), 10);
+    } catch (TranslateException e) {
+      System.out.println("Translate Exception when getting predictions");
+      System.exit(-1);
+    }
 
-		List<Classifications.Classification> rawPredictions = null;
+    StringBuilder sb = new StringBuilder();
 
-		// get the predictions
-		try {
-			rawPredictions = model.getPredictions(getCurrentSnapshot(), 10);
-		} catch (TranslateException e) {
-			System.out.println("Translate Exception when getting predictions");
-			System.exit(-1);
-		}
+    int i = 1;
 
-		StringBuilder sb = new StringBuilder();
+    // add the retrieved predictions to the observable list
+    for (final Classifications.Classification classification : rawPredictions) {
+      sb.setLength(0);
+      // format the string and replace the underscores with a space
+      sb.append(i)
+          .append(" : ")
+          .append(classification.getClassName().replace('_', ' '))
+          .append(" : ")
+          .append(String.format("%.2f%%", 100 * classification.getProbability()));
+      predictions.add(sb.toString());
 
-		int i = 1;
+      // check if player won (guess is correct within the top three)
+      if ((i < 4) && (category.equals(classification.getClassName().replace('_', ' ')))) {
+        endGame(true);
+      }
 
-		// add the retrieved predictions to the observable list
-		for (final Classifications.Classification classification : rawPredictions) {
-			sb.setLength(0);
-			// format the string and replace the underscores with a space
-			sb.append(i).append(" : ").append(classification.getClassName().replace('_', ' ')).append(" : ")
-					.append(String.format("%.2f%%", 100 * classification.getProbability()));
-			predictions.add(sb.toString());
+      i++;
+    }
+  }
 
-			// check if player won (guess is correct within the top three)
-			if ((i < 4) && (category.equals(classification.getClassName().replace('_', ' ')))) {
-				endGame(true);
-			}
+  private void endGame(Boolean wonGame) {
+    // lock the drawing and stop timer
+    canvas.setOnMouseDragged(e -> {});
+    timer.pause();
+    canvas.setDisable(true);
+    hbxDrawTools.setVisible(false);
+    hbxGameEnd.setVisible(true);
 
-			i++;
-		}
-	}
+    // set the label to win/lose event
+    if (wonGame) {
+      lblCategory.setText("You Win!");
+    } else {
+      lblCategory.setText("You Lose!");
+    }
 
-	private void endGame(Boolean wonGame) {
-		// lock the drawing and stop timer
-		canvas.setOnMouseDragged(e -> {
-		});
-		timer.pause();
-		canvas.setDisable(true);
-		hbxDrawTools.setVisible(false);
-		hbxGameEnd.setVisible(true);
+    // run the text to speech on a background thread to avoid lag
+    Task<Void> backgroundTask =
+        new Task<Void>() {
 
-		// set the label to win/lose event
-		if (wonGame) {
-			lblCategory.setText("You Win!");
-		} else {
-			lblCategory.setText("You Lose!");
-		}
+          @Override
+          protected Void call() throws Exception {
+            if (wonGame) {
+              textToSpeech.speak("You Win!");
+            } else {
+              textToSpeech.speak("You Lose!");
+            }
+            return null;
+          }
+        };
 
-		// run the text to speech on a background thread to avoid lag
-		Task<Void> backgroundTask = new Task<Void>() {
+    // start the thread
+    Thread backgroundThread = new Thread(backgroundTask);
+    backgroundThread.start();
+  }
 
-			@Override
-			protected Void call() throws Exception {
-				if (wonGame) {
-					textToSpeech.speak("You Win!");
-				} else {
-					textToSpeech.speak("You Lose!");
-				}
-				return null;
-			}
-		};
+  /**
+   * Save the current snapshot on a bitmap file in the location specified by the user.
+   *
+   * @throws IOException If the image cannot be saved.
+   */
+  @FXML
+  private void onSave(ActionEvent event) {
+    // set up file chooser
+    FileChooser fileChooser = new FileChooser();
+    fileChooser
+        .getExtensionFilters()
+        .add(new FileChooser.ExtensionFilter("BMP files (*.bmp)", "*.bmp"));
 
-		// start the thread
-		Thread backgroundThread = new Thread(backgroundTask);
-		backgroundThread.start();
-	}
+    // get directory and name of the new file
+    File fileToSave =
+        fileChooser.showSaveDialog(((Button) event.getSource()).getScene().getWindow());
 
-	/**
-	 * Save the current snapshot on a bitmap file in the location specified by the
-	 * user.
-	 *
-	 * @throws IOException If the image cannot be saved.
-	 */
-	@FXML
-	private void onSave(ActionEvent event) {
-		// set up file chooser
-		FileChooser fileChooser = new FileChooser();
-		fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("BMP files (*.bmp)", "*.bmp"));
+    // save the file to the selected directory and name (if selected)
+    try {
+      ImageIO.write(getCurrentSnapshot(), "bmp", fileToSave);
+      lblCategory.setText("File Saved!");
+    } catch (Exception e) {
+      // if the file save fails, tell the user.
+      lblCategory.setText("Save cancelled.");
+    }
+  }
 
-		// get directory and name of the new file
-		File fileToSave = fileChooser.showSaveDialog(((Button) event.getSource()).getScene().getWindow());
+  @FXML
+  private void onNewGame(ActionEvent event) {
+    resetGame();
 
-		// save the file to the selected directory and name (if selected)
-		try {
-			ImageIO.write(getCurrentSnapshot(), "bmp", fileToSave);
-			lblCategory.setText("File Saved!");
-		} catch (Exception e) {
-			// if the file save fails, tell the user.
-			lblCategory.setText("Save cancelled.");
-		}
-	}
+    Scene scene = ((Button) event.getSource()).getScene();
+    scene.setRoot(SceneManager.getUiRoot(AppUi.CATEGORY_SELECT));
 
-	@FXML
-	private void onNewGame(ActionEvent event) {
-		resetGame();
+    // run the text to speech on a background thread to avoid lag
+    Task<Void> backgroundTask =
+        new Task<Void>() {
 
-		Scene scene = ((Button) event.getSource()).getScene();
-		scene.setRoot(SceneManager.getUiRoot(AppUi.CATEGORY_SELECT));
+          @Override
+          protected Void call() throws Exception {
+            // repeat the instructions from the start of the game
+            textToSpeech.speak("Pick a category.");
+            return null;
+          }
+        };
 
-		// run the text to speech on a background thread to avoid lag
-		Task<Void> backgroundTask = new Task<Void>() {
+    Thread backgroundThread = new Thread(backgroundTask);
+    backgroundThread.start();
+  }
 
-			@Override
-			protected Void call() throws Exception {
-				// repeat the instructions from the start of the game
-				textToSpeech.speak("Pick a category.");
-				return null;
-			}
-		};
+  private void resetGame() {
+    // reset timer and re-enable the canvas and drawing tools
+    canvas.setOnMouseDragged(
+        e -> {
+          // Brush size (you can change this, it should not be too small or too large).
+          final double size = 5.0;
 
-		Thread backgroundThread = new Thread(backgroundTask);
-		backgroundThread.start();
-	}
+          final double x = e.getX() - size / 2;
+          final double y = e.getY() - size / 2;
 
-	private void resetGame() {
-		// reset timer and re-enable the canvas and drawing tools
-		canvas.setOnMouseDragged(e -> {
-			// Brush size (you can change this, it should not be too small or too large).
-			final double size = 5.0;
+          // This is the colour of the brush.
+          graphic.setFill(Color.BLACK);
+          graphic.fillOval(x, y, size, size);
+        });
+    lblTimer.setText("60");
+    canvas.setDisable(false);
+    hbxDrawTools.setVisible(true);
+    hbxGameEnd.setVisible(false);
+    predictions.clear();
+    onClear();
+  }
 
-			final double x = e.getX() - size / 2;
-			final double y = e.getY() - size / 2;
+  @FXML
+  private void onExitGame() {
+    System.exit(0);
+  }
 
-			// This is the colour of the brush.
-			graphic.setFill(Color.BLACK);
-			graphic.fillOval(x, y, size, size);
-		});
-		lblTimer.setText("60");
-		canvas.setDisable(false);
-		hbxDrawTools.setVisible(true);
-		hbxGameEnd.setVisible(false);
-		predictions.clear();
-		onClear();
-	}
+  @FXML
+  private void onToggleEraser() {
 
-	@FXML
-	private void onExitGame() {
-		System.exit(0);
-	}
+    // Switching between pen and eraser
+    if (btnToggleEraser.isSelected()) {
+      // Changing label
+      btnToggleEraser.setText("Pen");
+      switchToEraser();
+    } else {
+      // Changing label
+      btnToggleEraser.setText("Eraser");
+      switchToPen();
+    }
+  }
 
-	@FXML
-	private void onToggleEraser() {
+  private void switchToPen() {
+    canvas.setOnMouseDragged(
+        e -> {
+          // Brush size (you can change this, it should not be too small or too large).
+          final double size = 5.0;
 
-		// Switching between pen and eraser
-		if (btnToggleEraser.isSelected()) {
-			// Changing label
-			btnToggleEraser.setText("Pen");
-			canvas.setOnMouseDragged(e -> {
-				// Activate eraser
-				final double size = 20.0;
-				final double x = e.getX() - size / 2;
-				final double y = e.getY() - size / 2;
-				graphic.setFill(Color.WHITE);
-				graphic.fillOval(x, y, size, size);
-			});
-		} else {
-			btnToggleEraser.setText("Eraser");
-			// Changing label
-			canvas.setOnMouseDragged(e -> {
-				// Activate pen
-				final double size = 5.0;
-				final double x = e.getX() - size / 2;
-				final double y = e.getY() - size / 2;
-				graphic.setFill(Color.BLACK);
-				graphic.fillOval(x, y, size, size);
-			});
-		}
-	}
+          final double x = e.getX() - size / 2;
+          final double y = e.getY() - size / 2;
+
+          // This is the colour of the brush.
+          graphic.setFill(Color.BLACK);
+          graphic.fillOval(x, y, size, size);
+        });
+  }
+
+  private void switchToEraser() {
+    canvas.setOnMouseDragged(
+        e -> {
+          // Activate eraser
+          final double size = 20.0;
+          final double x = e.getX() - size / 2;
+          final double y = e.getY() - size / 2;
+          graphic.setFill(Color.WHITE);
+          graphic.fillOval(x, y, size, size);
+        });
+  }
 }
