@@ -2,7 +2,6 @@ package nz.ac.auckland.se206.controllers;
 
 import java.sql.SQLException;
 import java.util.List;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.concurrent.Task;
@@ -21,105 +20,101 @@ import nz.ac.auckland.se206.speech.TextToSpeech;
 
 public class LogInController implements Controller {
 
-	@FXML
-	private Button btnSignUp;
-	@FXML
-	private Button btnLogIn;
-	@FXML
-	private Label lblWarning;
-	@FXML
-	private ComboBox<String> fldUserName;
-	@FXML
-	private PasswordField fldPassword;
-	private UserDao userDao = new UserDao();
-	private ObservableList<String> existingUsers;
+  @FXML private Button btnSignUp;
+  @FXML private Button btnLogIn;
+  @FXML private Label lblWarning;
+  @FXML private ComboBox<String> fldUserName;
+  @FXML private PasswordField fldPassword;
+  private UserDao userDao = new UserDao();
+  private ObservableList<String> existingUsers;
 
-	public void initialize() throws SQLException {
-		fldUserName.setEditable(true);
+  public void initialize() throws SQLException {
+    fldUserName.setEditable(true);
 
-		// create the observable list of existing user names for the drop down menu
-		existingUsers = FXCollections.observableArrayList();
+    // create the observable list of existing user names for the drop down menu
+    existingUsers = FXCollections.observableArrayList();
 
-		List<UserModel> tempUsers = userDao.getUsers();
+    List<UserModel> tempUsers = userDao.getUsers();
 
-		for (UserModel user : tempUsers) {
-			existingUsers.add(user.toString());
-		}
+    for (UserModel user : tempUsers) {
+      existingUsers.add(user.toString());
+    }
 
-		fldUserName.setItems(existingUsers);
-	}
+    fldUserName.setItems(existingUsers);
+  }
 
-	@FXML
-	private void onSignUp(ActionEvent event) throws SQLException {
-		String userName = fldUserName.getValue();
-		String password = fldPassword.getText();
+  @FXML
+  private void onSignUp(ActionEvent event) throws SQLException {
+    String userName = fldUserName.getValue();
+    String password = fldPassword.getText();
 
-		// check if the user name is taken
-		if (userDao.checkExists(userName)) {
-			lblWarning.setText("This username is already taken.");
-			return;
-		}
+    // check if the user name is taken
+    if (userDao.checkExists(userName)) {
+      lblWarning.setText("This username is already taken.");
+      return;
+    }
 
-		// check if either field is left blank
-		if (userName.equals("") || password.equals("")) {
-			lblWarning.setText("Please select a valid username and password.");
-			return;
-		}
+    // check if either field is left blank
+    if (userName.equals("") || password.equals("")) {
+      lblWarning.setText("Please select a valid username and password.");
+      return;
+    }
 
-		// set the newly made user as the active user and add to the drop down list
-		UserModel.setActiveUser(userDao.getUserById(userDao.addNewUser(userName, password)));
-		existingUsers.add(userName);
+    // set the newly made user as the active user and add to the drop down list
+    UserModel.setActiveUser(userDao.getUserById(userDao.addNewUser(userName, password)));
+    existingUsers.add(userName);
 
-		// go to the next screen
-		nextScreen(event);
-	}
+    // go to the next screen
+    nextScreen(event);
+  }
 
-	@FXML
-	private void onLogIn(ActionEvent event) throws SQLException {
+  @FXML
+  private void onLogIn(ActionEvent event) throws SQLException {
 
-		String userName = fldUserName.getValue();
-		String password = fldPassword.getText();
+    String userName = fldUserName.getValue();
+    String password = fldPassword.getText();
 
-		// check if the un/pw combination is correct
-		int userId = userDao.getId(userName, password);
-		if (userId == -1) {
-			lblWarning.setText("Invalid login attempt.");
-			return;
-		}
-		userDao.getUserById(userId);
+    // check if the un/pw combination is correct
+    int userId = userDao.getId(userName, password);
+    if (userId == -1) {
+      lblWarning.setText("Invalid login attempt.");
+      return;
+    }
+    userDao.getUserById(userId);
 
-		// go to the next screen
-		nextScreen(event);
-	}
+    // go to the next screen
+    nextScreen(event);
+  }
 
-	private void nextScreen(ActionEvent event) {
+  private void nextScreen(ActionEvent event) {
 
-		// change the scene
-		Scene scene = ((Button) event.getSource()).getScene();
-		scene.setRoot(SceneManager.getUiRoot(AppUi.CATEGORY_SELECT));
+    // change the scene
+    Scene scene = ((Button) event.getSource()).getScene();
+    scene.setRoot(SceneManager.getUiRoot(AppUi.CATEGORY_SELECT));
 
-		// run the text to speech on a background thread to avoid lags
-		TextToSpeech textToSpeech = new TextToSpeech();
-		Task<Void> backgroundTask = new Task<Void>() {
+    // run the text to speech on a background thread to avoid lags
+    TextToSpeech textToSpeech = new TextToSpeech();
+    Task<Void> backgroundTask =
+        new Task<Void>() {
 
-			@Override
-			protected Void call() throws Exception {
-				textToSpeech.speak("Select a category.");
-				return null;
-			}
-		};
+          @Override
+          protected Void call() throws Exception {
+            textToSpeech.speak("Select a category.");
+            return null;
+          }
+        };
 
-		// start the thread
-		Thread backgroundThread = new Thread(backgroundTask);
-		backgroundThread.start();
+    // start the thread
+    Thread backgroundThread = new Thread(backgroundTask);
+    backgroundThread.start();
 
-		// reset the page for the next log in
-		resetPage();
-	}
+    // reset the page for the next log in
+    resetPage();
+  }
 
-	private void resetPage() {
-		fldUserName.setValue("");
-		fldPassword.setText("");
-		lblWarning.setText("");
-	}
+  private void resetPage() {
+    fldUserName.setValue("");
+    fldPassword.setText("");
+    lblWarning.setText("");
+  }
 }
