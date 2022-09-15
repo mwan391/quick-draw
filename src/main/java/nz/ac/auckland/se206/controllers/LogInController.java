@@ -60,6 +60,12 @@ public class LogInController implements Controller {
       return;
     }
 
+    // check if either the user name or password is too long
+    if (userName.length() > 15 || password.length() > 15) {
+      lblWarning.setText("Max length is 15.");
+      return;
+    }
+
     // set the newly made user as the active user and add to the drop down list
     UserModel.setActiveUser(userDao.getUserById(userDao.addNewUser(userName, password)));
     existingUsers.add(userName);
