@@ -45,6 +45,8 @@ public class App extends Application {
   @Override
   public void start(final Stage stage) throws IOException {
 
+    SqliteConnection.start();
+
     SceneManager.addUi(AppUi.MAIN_MENU, loadFxml("menu"));
     SceneManager.addUi(AppUi.LOG_IN, loadFxml("login"));
     SceneManager.addUi(AppUi.CATEGORY_SELECT, loadFxml("category"));
@@ -56,6 +58,5 @@ public class App extends Application {
     stage.show();
 
     CategorySelect.setCategories("category_difficulty");
-    SqliteConnection.start();
   }
 }
