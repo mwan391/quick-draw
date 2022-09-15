@@ -268,18 +268,8 @@ public class CanvasController implements Controller {
 
   private void resetGame() {
     // reset timer and re-enable the canvas and drawing tools
-    canvas.setOnMouseDragged(
-        e -> {
-          // Brush size (you can change this, it should not be too small or too large).
-          final double size = 5.0;
-
-          final double x = e.getX() - size / 2;
-          final double y = e.getY() - size / 2;
-
-          // This is the colour of the brush.
-          graphic.setFill(Color.BLACK);
-          graphic.fillOval(x, y, size, size);
-        });
+    switchToPen();
+    btnToggleEraser.setSelected(false);
     lblTimer.setText("60");
     canvas.setDisable(false);
     hbxDrawTools.setVisible(true);
