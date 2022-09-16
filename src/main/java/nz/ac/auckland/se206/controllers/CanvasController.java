@@ -55,7 +55,6 @@ public class CanvasController implements Controller {
   @FXML private Label lblCategory;
   @FXML private Button clearButton;
   @FXML private Button btnSave;
-
   @FXML private Button btnReturnToMenu;
   @FXML private Button btnExitGame;
   @FXML private ToggleButton btnToggleEraser;
@@ -255,11 +254,6 @@ public class CanvasController implements Controller {
     hbxGameEnd.setVisible(false);
     predictions.clear();
     onClear();
-  }
-
-  @FXML
-  private void onExitGame() {
-    System.exit(0);
   }
 
   @FXML
