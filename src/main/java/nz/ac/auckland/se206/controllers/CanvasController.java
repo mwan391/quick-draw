@@ -132,7 +132,9 @@ public class CanvasController implements Controller {
   }
 
   public void startTimer() {
-    // set up the label
+    // set up the label and enable canvas
+    canvas.setDisable(false);
+    hbxDrawTools.setVisible(true);
     category = CategorySelect.getCategory();
     lblCategory.setText("Draw: " + category);
     // set up what to do every second
@@ -243,13 +245,11 @@ public class CanvasController implements Controller {
   }
 
   private void resetGame() {
-    // reset timer and re-enable the canvas and drawing tools
+    // reset timer and re-enable the drawing tools
     switchToPen();
     btnToggleEraser.setText("Eraser");
     btnToggleEraser.setSelected(false);
     lblTimer.setText("60");
-    canvas.setDisable(false);
-    hbxDrawTools.setVisible(true);
     hbxGameEnd.setVisible(false);
     predictions.clear();
     onClear();
