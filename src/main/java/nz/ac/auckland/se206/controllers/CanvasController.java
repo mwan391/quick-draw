@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.util.List;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.concurrent.Task;
@@ -69,6 +70,7 @@ public class CanvasController implements Controller {
   private GraphicsContext graphic;
   private TextToSpeech textToSpeech = new TextToSpeech();
   private DoodlePrediction model;
+  private Boolean isFinished;
 
   // mouse coordinates
   private double currentX;
@@ -133,16 +135,17 @@ public class CanvasController implements Controller {
 
   public void startTimer() {
     // set up the label and enable canvas
+    isFinished = false;
     canvas.setDisable(false);
     hbxDrawTools.setVisible(true);
     category = CategorySelect.getCategory();
     lblCategory.setText("Draw: " + category);
     // set up what to do every second
     timer = new Timeline(new KeyFrame(Duration.seconds(1), e -> changeTime()));
-    timer.getKeyFrames().add(new KeyFrame(Duration.seconds(1), e -> triggerPredict()));
     timer.setCycleCount(60);
     timer.setOnFinished(e -> endGame(false)); // if the timer runs to zero
     timer.play();
+    runPredictionsInBkg();
   }
 
   private void changeTime() {
@@ -194,6 +197,7 @@ public class CanvasController implements Controller {
     hbxDrawTools.setVisible(false);
     hbxGameEnd.setVisible(true);
     hbxNewGame.setVisible(true);
+    isFinished = true;
 
     // set the label to win/lose event and use the tts
     if (wonGame) {
@@ -342,5 +346,39 @@ public class CanvasController implements Controller {
           currentX = x;
           currentY = y;
         });
+  }
+
+  private void runPredictionsInBkg() {
+    // run the text to speech on a background thread to avoid lag
+    Task<Void> backgroundTask =
+        new Task<Void>() {
+
+          @Override
+          protected Void call() throws Exception {
+            while (!isFinished) {
+              doPredict();
+            }
+            return null;
+          }
+
+          private void doPredict() {
+
+            try {
+              Thread.sleep(1000);
+            } catch (InterruptedException e1) {
+              // TODO Auto-generated catch block
+              e1.printStackTrace();
+            }
+
+            Platform.runLater(
+                () -> {
+                  triggerPredict();
+                });
+          }
+        };
+
+    // start the thread
+    Thread backgroundThread = new Thread(backgroundTask);
+    backgroundThread.start();
   }
 }
