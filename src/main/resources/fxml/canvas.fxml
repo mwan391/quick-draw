@@ -13,7 +13,7 @@
 
 <HBox maxHeight="-Infinity" maxWidth="-Infinity" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.CanvasController">
    <children>
-      <VBox alignment="CENTER" prefHeight="230.0" prefWidth="440.0" spacing="20.0" style="-fx-background-color: white;">
+      <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" spacing="5.0" style="-fx-background-color: white;">
          <children>
             <Label alignment="CENTER" text="Quick, Draw! SE206  Edition" textAlignment="CENTER">
                <font>
@@ -39,7 +39,12 @@
             <HBox fx:id="hbxGameEnd" alignment="TOP_CENTER" spacing="5.0">
                <children>
                   <Button fx:id="btnSave" mnemonicParsing="false" onAction="#onSave" text="Save Drawing" />
-                  <Button fx:id="btnNewGame" mnemonicParsing="false" onAction="#onNewGame" text="New Game" />
+                  <Button fx:id="btnReturnToMenu" mnemonicParsing="false" onAction="#onReturnToMenu" text="Return to Menu" />
+               </children>
+            </HBox>
+            <HBox fx:id="hbxNewGame" alignment="TOP_CENTER" spacing="5.0">
+               <children>
+                  <ToggleButton fx:id="btnNewGame" mnemonicParsing="false" onAction="#onNewGame" text="New Game" />
                </children>
             </HBox>
          </children>

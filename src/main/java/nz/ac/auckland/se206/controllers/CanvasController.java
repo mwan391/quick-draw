@@ -55,10 +55,13 @@ public class CanvasController implements Controller {
   @FXML private Label lblCategory;
   @FXML private Button clearButton;
   @FXML private Button btnSave;
-  @FXML private Button btnNewGame;
+  @FXML private Button btnReturnToMenu;
   @FXML private ToggleButton btnToggleEraser;
+  @FXML private ToggleButton btnNewGame;
   @FXML private HBox hbxGameEnd;
   @FXML private HBox hbxDrawTools;
+  @FXML private HBox hbxNewGame;
+
   private Timeline timer;
   private ObservableList<String> predictions;
   private String category;
@@ -83,6 +86,7 @@ public class CanvasController implements Controller {
     predictions = FXCollections.observableArrayList();
     lvwPredictions.setItems(predictions);
     hbxGameEnd.setVisible(false);
+    hbxNewGame.setVisible(false);
 
     graphic = canvas.getGraphicsContext2D();
 
@@ -128,7 +132,9 @@ public class CanvasController implements Controller {
   }
 
   public void startTimer() {
-    // set up the label
+    // set up the label and enable canvas
+    canvas.setDisable(false);
+    hbxDrawTools.setVisible(true);
     category = CategorySelect.getCategory();
     lblCategory.setText("Draw: " + category);
     // set up what to do every second
@@ -187,32 +193,16 @@ public class CanvasController implements Controller {
     canvas.setDisable(true);
     hbxDrawTools.setVisible(false);
     hbxGameEnd.setVisible(true);
+    hbxNewGame.setVisible(true);
 
-    // set the label to win/lose event
+    // set the label to win/lose event and use the tts
     if (wonGame) {
       lblCategory.setText("You Win!");
+      useTextToSpeech("You Win.");
     } else {
       lblCategory.setText("You Lose!");
+      useTextToSpeech("You Lose!");
     }
-
-    // run the text to speech on a background thread to avoid lag
-    Task<Void> backgroundTask =
-        new Task<Void>() {
-
-          @Override
-          protected Void call() throws Exception {
-            if (wonGame) {
-              textToSpeech.speak("You Win!");
-            } else {
-              textToSpeech.speak("You Lose!");
-            }
-            return null;
-          }
-        };
-
-    // start the thread
-    Thread backgroundThread = new Thread(backgroundTask);
-    backgroundThread.start();
   }
 
   /**
@@ -243,36 +233,23 @@ public class CanvasController implements Controller {
   }
 
   @FXML
-  private void onNewGame(ActionEvent event) {
+  private void onReturnToMenu(ActionEvent event) {
     resetGame();
+    hbxNewGame.setVisible(false);
 
     Scene scene = ((Button) event.getSource()).getScene();
     scene.setRoot(SceneManager.getUiRoot(AppUi.CATEGORY_SELECT));
 
-    // run the text to speech on a background thread to avoid lag
-    Task<Void> backgroundTask =
-        new Task<Void>() {
-
-          @Override
-          protected Void call() throws Exception {
-            // repeat the instructions from the start of the game
-            textToSpeech.speak("Pick a category.");
-            return null;
-          }
-        };
-
-    Thread backgroundThread = new Thread(backgroundTask);
-    backgroundThread.start();
+    // repeat instructions
+    useTextToSpeech("Pick a category.");
   }
 
   private void resetGame() {
-    // reset timer and re-enable the canvas and drawing tools
+    // reset timer and re-enable the drawing tools
     switchToPen();
     btnToggleEraser.setText("Eraser");
     btnToggleEraser.setSelected(false);
     lblTimer.setText("60");
-    canvas.setDisable(false);
-    hbxDrawTools.setVisible(true);
     hbxGameEnd.setVisible(false);
     predictions.clear();
     onClear();
@@ -291,6 +268,40 @@ public class CanvasController implements Controller {
       btnToggleEraser.setText("Eraser");
       switchToPen();
     }
+  }
+
+  @FXML
+  private void onNewGame() {
+    if (btnNewGame.isSelected()) {
+      resetGame();
+      btnNewGame.setText("Start Game");
+      String category = CategorySelect.generateSetCategory();
+      lblCategory.setText("Draw: " + category);
+      useTextToSpeech("Your category is" + category);
+
+    } else {
+      useTextToSpeech("Let's draw");
+      hbxNewGame.setVisible(false);
+      btnNewGame.setText("New Game");
+      startTimer();
+    }
+  }
+
+  private void useTextToSpeech(String phrase) {
+    // run the text to speech on a background thread to avoid lag
+    Task<Void> backgroundTask =
+        new Task<Void>() {
+
+          @Override
+          protected Void call() throws Exception {
+            textToSpeech.speak(phrase);
+            return null;
+          }
+        };
+
+    // start the thread
+    Thread backgroundThread = new Thread(backgroundTask);
+    backgroundThread.start();
   }
 
   private void switchToPen() {
