@@ -340,7 +340,7 @@ public class CanvasController implements Controller {
           final double y = e.getY() - size / 2;
 
           // clear in the area specified
-          graphic.clearRect(currentX, currentY, x, y);
+          graphic.clearRect(x, y, size, size);
 
           // update the coordinates
           currentX = x;
