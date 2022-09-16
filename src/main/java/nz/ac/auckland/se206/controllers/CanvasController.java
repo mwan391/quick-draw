@@ -75,7 +75,7 @@ public class CanvasController implements Controller {
   // mouse coordinates
   private double currentX;
   private double currentY;
-  
+
   /**
    * JavaFX calls this method once the GUI elements are loaded. In our case we create a listener for
    * the drawing, and we load the ML model.
@@ -309,10 +309,10 @@ public class CanvasController implements Controller {
     // start the thread
     Thread backgroundThread = new Thread(backgroundTask);
     backgroundThread.start();
-    }
-    
+  }
+
   private void switchToPen() {
-    canvas.setOnMouseDagged(
+    canvas.setOnMouseDragged(
         e -> {
           // Brush size (you can change this, it should not be too small or too large).
           final double size = 5;
