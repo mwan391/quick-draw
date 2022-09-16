@@ -56,7 +56,6 @@ public class CanvasController implements Controller {
   @FXML private Button clearButton;
   @FXML private Button btnSave;
   @FXML private Button btnReturnToMenu;
-  @FXML private Button btnExitGame;
   @FXML private ToggleButton btnToggleEraser;
   @FXML private ToggleButton btnNewGame;
   @FXML private HBox hbxGameEnd;
