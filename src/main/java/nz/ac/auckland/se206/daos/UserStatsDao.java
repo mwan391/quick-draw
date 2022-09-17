@@ -29,4 +29,15 @@ public class UserStatsDao {
     SqliteConnection.closeConnection(connection);
     return count;
   }
+
+  public int getBestTime(int userId) throws SQLException {
+    Connection connection = SqliteConnection.openConnection();
+    String query = "SELECT MIN(time) AS best FROM games WHERE user_id=? AND won=1";
+    PreparedStatement ps = connection.prepareStatement(query);
+    ps.setInt(1, userId);
+    ResultSet rs = ps.executeQuery();
+    int bestTime = rs.next() ? rs.getInt("best") : 0;
+    SqliteConnection.closeConnection(connection);
+    return bestTime;
+  }
 }
