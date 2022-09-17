@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import nz.ac.auckland.se206.util.SqliteConnection;
 
 public class UserStatsDao {
@@ -39,5 +41,19 @@ public class UserStatsDao {
     int bestTime = rs.next() ? rs.getInt("best") : 0;
     SqliteConnection.closeConnection(connection);
     return bestTime;
+  }
+
+  public List<String> getWordHistory(int userId) throws SQLException {
+    List<String> words = new ArrayList<>();
+    Connection connection = SqliteConnection.openConnection();
+    String query = "SELECT word FROM games WHERE user_id=? ORDER BY id";
+    PreparedStatement ps = connection.prepareStatement(query);
+    ps.setInt(1, userId);
+    ResultSet rs = ps.executeQuery();
+    while (rs.next()) {
+      words.add(rs.getString("word"));
+    }
+    SqliteConnection.closeConnection(connection);
+    return words;
   }
 }
