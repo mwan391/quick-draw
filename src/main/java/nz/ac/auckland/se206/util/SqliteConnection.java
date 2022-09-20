@@ -22,6 +22,7 @@ public class SqliteConnection {
   public static Connection openConnection() {
     Connection connection = null;
     try {
+      // connect to jdbc .db file
       connection = DriverManager.getConnection(URL);
       System.out.println("Opened database successfully");
     } catch (SQLException e) {
@@ -32,8 +33,10 @@ public class SqliteConnection {
 
   public static void closeConnection(Connection connection) {
     try {
-      if (connection != null) connection.close();
-      System.out.println("Closed connection succesfully");
+      // close jdbc connection
+      if (connection != null) {
+        connection.close();
+      }
     } catch (SQLException e) {
       Logger.printSqlError(e);
     }
