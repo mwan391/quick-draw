@@ -114,6 +114,7 @@ public class GameDao {
   }
 
   private GameModel getGame(ResultSet rs) throws SQLException {
+    // return an instance of a particular game game
     return new GameModel(
         rs.getInt("id"),
         rs.getInt("user_id"),
