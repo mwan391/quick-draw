@@ -35,7 +35,6 @@ public class GameDao {
     if (rs.next()) {
       gameId = rs.getInt(1);
     }
-
     SqliteConnection.closeConnection(connection);
     return gameId;
   }
@@ -101,8 +100,8 @@ public class GameDao {
     String query =
         "SELECT id, user_id, difficulty, word, won, time FROM games FROM games WHERE user_id=? ORDER by id";
     PreparedStatement ps = connection.prepareStatement(query);
-    ps.setInt(userId, 1);
     // filter for games played by given user
+    ps.setInt(userId, 1);
     ResultSet rs = ps.executeQuery();
     // convert the results to GameModel instances
     while (rs.next()) {
@@ -114,7 +113,7 @@ public class GameDao {
   }
 
   private GameModel getGame(ResultSet rs) throws SQLException {
-    // return an instance of a particular game game
+    // return an instance of a particular game
     return new GameModel(
         rs.getInt("id"),
         rs.getInt("user_id"),
