@@ -24,13 +24,12 @@ public class GameDao {
     Connection connection = SqliteConnection.openConnection();
     String query = "INSERT INTO games (user_id, difficulty, word, won, time) VALUES (?,?,?,0,60)";
     PreparedStatement ps = connection.prepareStatement(query);
-    // get next primary key
-
+    // set paramaters for the user table
     ps.setInt(1, userId);
     ps.setInt(2, difficultyValue);
     ps.setString(3, word);
     ps.executeUpdate();
-
+    // get next unique id for new game
     ResultSet rs = ps.getGeneratedKeys();
     int gameId = 0;
     if (rs.next()) {
@@ -54,6 +53,7 @@ public class GameDao {
     PreparedStatement ps = connection.prepareStatement(query);
     ps.setInt(1, time);
     ps.setInt(2, gameId);
+    // update playing time for given game
     ps.execute();
     SqliteConnection.closeConnection(connection);
   }
@@ -71,6 +71,7 @@ public class GameDao {
     PreparedStatement ps = connection.prepareStatement(query);
     ps.setBoolean(1, won);
     ps.setInt(2, gameId);
+    // update winning status for given game
     ps.execute();
     SqliteConnection.closeConnection(connection);
   }
@@ -81,10 +82,9 @@ public class GameDao {
     PreparedStatement ps = connection.prepareStatement(query);
     ps.setInt(1, gameId);
     ResultSet rs = ps.executeQuery();
-
+    // return an instance of the given game
     GameModel game = rs.next() ? getGame(rs) : null;
     SqliteConnection.closeConnection(connection);
-
     return game;
   }
 
@@ -102,6 +102,7 @@ public class GameDao {
         "SELECT id, user_id, difficulty, word, won, time FROM games FROM games WHERE user_id=? ORDER by id";
     PreparedStatement ps = connection.prepareStatement(query);
     ps.setInt(userId, 1);
+    // filter for games played by given user
     ResultSet rs = ps.executeQuery();
     // convert the results to GameModel instances
     while (rs.next()) {
