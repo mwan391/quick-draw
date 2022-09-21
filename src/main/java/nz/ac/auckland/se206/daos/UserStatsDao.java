@@ -67,6 +67,23 @@ public class UserStatsDao {
     return words;
   }
 
+  public GameModel getLatest(int userId) throws SQLException {
+    Connection connection = SqliteConnection.openConnection();
+    // query for most recent game by finding last id
+    StringBuilder sb =
+        new StringBuilder("SELECT MAX(id), user_id, difficulty, word, won, time FROM games ");
+    sb.append("WHERE user_id=?");
+    String query = sb.toString();
+    PreparedStatement ps = connection.prepareStatement(query);
+    // filter for given user
+    ps.setInt(1, userId);
+    ResultSet rs = ps.executeQuery();
+    // convert result to a game instance
+    GameModel game = rs.next() ? getGame(rs) : null;
+    SqliteConnection.closeConnection(connection);
+    return game;
+  }
+
   private GameModel getGame(ResultSet rs) throws SQLException {
     return new GameModel(
         rs.getInt("id"),
