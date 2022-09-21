@@ -39,11 +39,11 @@ public class UserStatsDao {
     Connection connection = SqliteConnection.openConnection();
     // query for game with shortest time
     StringBuilder sb =
-        new StringBuilder("SELECT id, user_id, difficulty, word, won, time FROM games ");
-    sb.append("WHERE time = ");
-    sb.append("(SELECT MIN(time) FROM games WHERE user_id=? AND won=1)");
+        new StringBuilder("SELECT id, user_id, difficulty, word, won, MIN(time) FROM games ");
+    sb.append("WHERE user_id=? AND won=1");
     String query = sb.toString();
     PreparedStatement ps = connection.prepareStatement(query);
+    // filter for given user
     ps.setInt(1, userId);
     ResultSet rs = ps.executeQuery();
     // convert results to a game instance
