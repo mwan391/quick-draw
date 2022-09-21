@@ -16,6 +16,7 @@ public class UserStatsDao {
     PreparedStatement ps = connection.prepareStatement(query);
     ps.setInt(1, userId);
     ResultSet rs = ps.executeQuery();
+    // number of played games
     int count = rs.next() ? rs.getInt("count") : 0;
     SqliteConnection.closeConnection(connection);
     return count;
@@ -27,6 +28,7 @@ public class UserStatsDao {
     PreparedStatement ps = connection.prepareStatement(query);
     ps.setInt(1, userId);
     ResultSet rs = ps.executeQuery();
+    // number of winning games
     int count = rs.next() ? rs.getInt("count") : 0;
     SqliteConnection.closeConnection(connection);
     return count;
@@ -38,12 +40,14 @@ public class UserStatsDao {
     PreparedStatement ps = connection.prepareStatement(query);
     ps.setInt(1, userId);
     ResultSet rs = ps.executeQuery();
+    // shortest winning game time
     int bestTime = rs.next() ? rs.getInt("best") : 0;
     SqliteConnection.closeConnection(connection);
     return bestTime;
   }
 
   public List<String> getWordHistory(int userId) throws SQLException {
+    // words from games given user has played
     List<String> words = new ArrayList<>();
     Connection connection = SqliteConnection.openConnection();
     String query = "SELECT word FROM games WHERE user_id=? ORDER BY id";
