@@ -97,8 +97,7 @@ public class GameDao {
   public List<GameModel> getGames(int userId) throws SQLException {
     List<GameModel> games = new ArrayList<>();
     Connection connection = SqliteConnection.openConnection();
-    String query =
-        "SELECT id, user_id, difficulty, word, won, time FROM games FROM games WHERE user_id=? ORDER by id";
+    String query = "SELECT * FROM games WHERE user_id=? ORDER by id";
     PreparedStatement ps = connection.prepareStatement(query);
     // filter for games played by given user
     ps.setInt(userId, 1);
