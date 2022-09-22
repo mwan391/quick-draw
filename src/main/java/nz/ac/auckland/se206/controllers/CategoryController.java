@@ -1,5 +1,6 @@
 package nz.ac.auckland.se206.controllers;
 
+import java.sql.SQLException;
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -34,7 +35,7 @@ public class CategoryController implements Controller {
   }
 
   @FXML
-  private void onStartGame(ActionEvent event) {
+  private void onStartGame(ActionEvent event) throws SQLException {
 
     // get the parent and controller of the canvas game page
     Scene scene = ((Button) event.getSource()).getScene();
