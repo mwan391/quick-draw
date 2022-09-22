@@ -99,7 +99,7 @@ public class UserStatsDao {
     List<GameModel> games = new ArrayList<>();
     try {
       // query for most recent game by finding last id
-      String query = "SELECT * FROM games WHERE user_id=? ORDER BY id ASC LIMIT 10";
+      String query = "SELECT * FROM games WHERE user_id=? ORDER BY id DESC LIMIT 10";
       PreparedStatement ps = connection.prepareStatement(query);
       // filter results under user
       ps.setInt(1, userId);
