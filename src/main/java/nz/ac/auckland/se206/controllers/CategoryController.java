@@ -23,7 +23,6 @@ public class CategoryController implements Controller {
   @FXML private Button btnHard;
   @FXML private Button btnMaster;
   @FXML private Label lblCategory;
-  private TextToSpeech textToSpeech = new TextToSpeech();
 
   @FXML
   public void initialize() {
@@ -46,7 +45,7 @@ public class CategoryController implements Controller {
 
           @Override
           protected Void call() throws Exception {
-            textToSpeech.speak("Let's draw!");
+            TextToSpeech.main(new String[] {"Let's draw!"});
             return null;
           }
         };
@@ -73,7 +72,7 @@ public class CategoryController implements Controller {
 
           @Override
           protected Void call() throws Exception {
-            textToSpeech.speak("Your category is " + CategorySelect.getCategory());
+            TextToSpeech.main(new String[] {"Your category is " + CategorySelect.getCategory()});
             return null;
           }
         };
