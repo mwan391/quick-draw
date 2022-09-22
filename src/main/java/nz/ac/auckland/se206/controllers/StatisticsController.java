@@ -9,6 +9,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.text.Text;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
+import nz.ac.auckland.se206.models.UserModel;
 
 public class StatisticsController implements Controller {
 
@@ -20,10 +21,20 @@ public class StatisticsController implements Controller {
   @FXML private Text txtLastGame;
   @FXML private Button btnBackToMenu;
 
+  private UserModel activeUser;
+
   @FXML
   private void onBackToMenu(ActionEvent event) {
     Scene scene = ((Button) event.getSource()).getScene();
     Parent logInRoot = SceneManager.getUiRoot(AppUi.CATEGORY_SELECT);
     scene.setRoot(logInRoot);
+  }
+
+  public void loadPage() {
+    // get relevant statistics
+    activeUser = UserModel.getActiveUser();
+
+    // set header label
+    txtHeader.setText(activeUser.getUsername() + "'s Statistics");
   }
 }

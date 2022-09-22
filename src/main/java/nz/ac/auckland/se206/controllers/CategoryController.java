@@ -103,8 +103,11 @@ public class CategoryController implements Controller {
   @FXML
   private void onUserStatistics(ActionEvent event) {
     Scene scene = ((Button) event.getSource()).getScene();
-    Parent logInRoot = SceneManager.getUiRoot(AppUi.USER_STATS);
-    scene.setRoot(logInRoot);
+    Parent statsRoot = SceneManager.getUiRoot(AppUi.USER_STATS);
+    StatisticsController statisticsController =
+        (StatisticsController) SceneManager.getController(statsRoot);
+    statisticsController.loadPage();
+    scene.setRoot(statsRoot);
   }
 
   private void resetPage() {
