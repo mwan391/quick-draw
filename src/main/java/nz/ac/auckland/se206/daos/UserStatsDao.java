@@ -94,27 +94,26 @@ public class UserStatsDao {
     return words;
   }
 
-  public GameModel getLatest(int userId) {
+  public List<GameModel> getTen(int userId) {
     Connection connection = SqliteConnection.openConnection();
-    GameModel game = null;
+    List<GameModel> games = new ArrayList<>();
     try {
       // query for most recent game by finding last id
-      StringBuilder sb =
-          new StringBuilder("SELECT MAX(id) AS id, user_id, difficulty, word, won, time ");
-      sb.append("FROM games WHERE user_id=?");
-      String query = sb.toString();
+      String query = "SELECT * FROM games WHERE user_id=? ORDER BY id ASC LIMIT 10";
       PreparedStatement ps = connection.prepareStatement(query);
-      // filter for given user
+      // filter results under user
       ps.setInt(1, userId);
       ResultSet rs = ps.executeQuery();
-      // convert result to a game instance
-      game = rs.next() ? getGame(rs) : null;
+      // convert results to a game instance to list
+      while (rs.next()) {
+        games.add(getGame(rs));
+      }
     } catch (SQLException e) {
       Logger.printSqlError(e);
     } finally {
       SqliteConnection.closeConnection(connection);
     }
-    return game;
+    return games;
   }
 
   private GameModel getGame(ResultSet rs) throws SQLException {
