@@ -39,8 +39,8 @@ public class UserStatsDao {
     Connection connection = SqliteConnection.openConnection();
     // query for game with shortest time
     StringBuilder sb =
-        new StringBuilder("SELECT id, user_id, difficulty, word, won, MIN(time) FROM games ");
-    sb.append("WHERE user_id=? AND won=1");
+        new StringBuilder("SELECT id, user_id, difficulty, word, won, MIN(time) AS time ");
+    sb.append("FROM games WHERE user_id=? AND won=1");
     String query = sb.toString();
     PreparedStatement ps = connection.prepareStatement(query);
     // filter for given user
@@ -71,8 +71,8 @@ public class UserStatsDao {
     Connection connection = SqliteConnection.openConnection();
     // query for most recent game by finding last id
     StringBuilder sb =
-        new StringBuilder("SELECT MAX(id), user_id, difficulty, word, won, time FROM games ");
-    sb.append("WHERE user_id=?");
+        new StringBuilder("SELECT MAX(id) AS id, user_id, difficulty, word, won, time ");
+    sb.append("FROM games WHERE user_id=?");
     String query = sb.toString();
     PreparedStatement ps = connection.prepareStatement(query);
     // filter for given user
@@ -85,6 +85,7 @@ public class UserStatsDao {
   }
 
   private GameModel getGame(ResultSet rs) throws SQLException {
+    // helper to convert to game instance
     return new GameModel(
         rs.getInt("id"),
         rs.getInt("user_id"),
