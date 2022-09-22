@@ -19,6 +19,7 @@ public class CategoryController implements Controller {
 
   @FXML private Button btnStartGame;
   @FXML private Button btnLogOut;
+  @FXML private Button btnUserStatistics;
   @FXML private Button btnEasy;
   @FXML private Button btnMedium;
   @FXML private Button btnHard;
@@ -97,6 +98,13 @@ public class CategoryController implements Controller {
 
     // reset the page in case a new game gets started
     resetPage();
+  }
+
+  @FXML
+  private void onUserStatistics(ActionEvent event) {
+    Scene scene = ((Button) event.getSource()).getScene();
+    Parent logInRoot = SceneManager.getUiRoot(AppUi.USER_STATS);
+    scene.setRoot(logInRoot);
   }
 
   private void resetPage() {
