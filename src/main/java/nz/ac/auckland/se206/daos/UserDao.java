@@ -20,7 +20,6 @@ public class UserDao {
    * @throws SQLException
    */
   public int addNewUser(String username, String password) throws SQLException {
-
     Connection connection = SqliteConnection.openConnection();
     String query = "INSERT INTO users (username, password, game_id) VALUES (?,?,0)";
     PreparedStatement ps = connection.prepareStatement(query);
@@ -28,11 +27,9 @@ public class UserDao {
     ps.setString(1, username);
     ps.setString(2, password);
     ps.executeUpdate();
-
     int userId = 0;
     // get next unique id for user
     ResultSet resultSet = ps.getGeneratedKeys();
-
     if (resultSet.next()) {
       userId = resultSet.getInt(1);
     }
@@ -49,7 +46,6 @@ public class UserDao {
    * @throws SQLException
    */
   public int getId(String username, String pwd) throws SQLException {
-
     int userId = -1;
     Connection connection = SqliteConnection.openConnection();
     PreparedStatement statement =
@@ -57,9 +53,8 @@ public class UserDao {
     // input query parameters
     statement.setString(1, username);
     statement.setString(2, pwd);
-
     ResultSet rst = statement.executeQuery();
-
+    // filter for id of given user
     if (rst.next()) {
       userId = rst.getInt("id");
     }
@@ -78,6 +73,7 @@ public class UserDao {
     Connection connection = SqliteConnection.openConnection();
     PreparedStatement statement =
         connection.prepareStatement("SELECT 1 FROM users WHERE username=?");
+    // filter for matching username
     statement.setString(1, username);
     ResultSet rst = statement.executeQuery();
     boolean exists = rst.next();
@@ -98,7 +94,7 @@ public class UserDao {
     PreparedStatement ps = connection.prepareStatement(query);
     ps.setInt(1, userId);
     ResultSet rs = ps.executeQuery();
-
+    // convert result to an instance of user
     UserModel user = rs.next() ? getUser(rs) : null;
     SqliteConnection.closeConnection(connection);
     return user;
@@ -115,6 +111,7 @@ public class UserDao {
     Connection connection = SqliteConnection.openConnection();
     String query = "UPDATE users SET game_id=? WHERE id=?";
     PreparedStatement ps = connection.prepareStatement(query);
+    // update the current game
     ps.setInt(1, gameId);
     ps.setInt(2, userId);
     ps.execute();
@@ -133,7 +130,7 @@ public class UserDao {
     String query = "SELECT id, username, password, game_id from users";
     PreparedStatement ps = connection.prepareStatement(query);
     ResultSet rs = ps.executeQuery();
-
+    // convert all found users to a user instance
     while (rs.next()) {
       UserModel user = getUser(rs);
       users.add(user);

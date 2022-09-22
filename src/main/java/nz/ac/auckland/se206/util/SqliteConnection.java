@@ -22,6 +22,7 @@ public class SqliteConnection {
   public static Connection openConnection() {
     Connection connection = null;
     try {
+      // connect to jdbc .db file
       connection = DriverManager.getConnection(URL);
       System.out.println("Opened database successfully");
     } catch (SQLException e) {
@@ -32,8 +33,11 @@ public class SqliteConnection {
 
   public static void closeConnection(Connection connection) {
     try {
-      if (connection != null) connection.close();
-      System.out.println("Closed connection succesfully");
+      // close jdbc connection
+      if (connection != null) {
+        connection.close();
+        System.out.println("Closed connection");
+      }
     } catch (SQLException e) {
       Logger.printSqlError(e);
     }
@@ -55,12 +59,22 @@ public class SqliteConnection {
   }
 
   private boolean createUsersTable(Statement statement) throws SQLException {
-    return statement.execute(
-        "CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY AUTOINCREMENT, username VARCHAR(256) NOT NULL, password VARCHAR(256) NOT NULL, game_id INTEGER);");
+    // create a table with following fields
+    StringBuilder sb = new StringBuilder("CREATE TABLE IF NOT EXISTS users ");
+    sb.append("(id INTEGER PRIMARY KEY AUTOINCREMENT, ");
+    sb.append("username VARCHAR(256) NOT NULL, ");
+    sb.append("password VARCHAR(256) NOT NULL, ");
+    sb.append("game_id INTEGER);");
+    return statement.execute(sb.toString());
   }
 
   private boolean createGamesTable(Statement statement) throws SQLException {
-    return statement.execute(
-        "CREATE TABLE IF NOT EXISTS games (id INTEGER PRIMARY KEY AUTOINCREMENT, user_id INTEGER, difficulty INTEGER, word VARCHAR, won BOOLEAN, time INTEGER);");
+    // create a table with following fields
+    StringBuilder sb = new StringBuilder("CREATE TABLE IF NOT EXISTS games ");
+    sb.append("(id INTEGER PRIMARY KEY AUTOINCREMENT, ");
+    sb.append("user_id INTEGER, ");
+    sb.append("difficulty INTEGER, word VARCHAR, won BOOLEAN, ");
+    sb.append("time INTEGER);");
+    return statement.execute(sb.toString());
   }
 }
