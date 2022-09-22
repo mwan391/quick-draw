@@ -1,5 +1,6 @@
 package nz.ac.auckland.se206.controllers;
 
+import java.sql.SQLException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
@@ -9,6 +10,8 @@ import javafx.scene.control.ListView;
 import javafx.scene.text.Text;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
+import nz.ac.auckland.se206.daos.GameDao;
+import nz.ac.auckland.se206.daos.UserStatsDao;
 import nz.ac.auckland.se206.models.UserModel;
 
 public class StatisticsController implements Controller {
@@ -22,6 +25,8 @@ public class StatisticsController implements Controller {
   @FXML private Button btnBackToMenu;
 
   private UserModel activeUser;
+  private UserStatsDao userStatsDao = new UserStatsDao();
+  private GameDao gameDao = new GameDao();
 
   @FXML
   private void onBackToMenu(ActionEvent event) {
@@ -33,8 +38,31 @@ public class StatisticsController implements Controller {
   public void loadPage() {
     // get relevant statistics
     activeUser = UserModel.getActiveUser();
+    StringBuilder stringBuilder = new StringBuilder();
+    int winCount = 0;
+    int gameCount = 0;
+    try {
+      winCount = userStatsDao.countWins(activeUser.getId());
+      gameCount = userStatsDao.countGames(activeUser.getId());
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
 
     // set header label
     txtHeader.setText(activeUser.getUsername() + "'s Statistics");
+
+    // set win rate
+    stringBuilder
+        .append(winCount)
+        .append(" games won out of ")
+        .append(gameCount)
+        .append(" games total.");
+    txtWinRateWord.setText(stringBuilder.toString());
+    stringBuilder.setLength(0);
+    stringBuilder
+        .append("Win rate of ")
+        .append(100 * ((float) winCount / (float) gameCount))
+        .append("%");
+    txtWinRatePercent.setText(stringBuilder.toString());
   }
 }
