@@ -300,13 +300,16 @@ public class CanvasController implements Controller {
   @FXML
   private void onNewGame() throws SQLException {
     if (btnNewGame.isSelected()) {
+      // clear the canvas and timer
       resetGame();
       btnNewGame.setText("Start Game");
-      String category = CategorySelect.generateSetCategory();
+      // generate a new word
+      category = CategorySelect.generateSetCategory();
       lblCategory.setText("Draw: " + category);
       useTextToSpeech("Your category is" + category);
 
     } else {
+      // start the game and hide the new game toolbar
       useTextToSpeech("Let's draw");
       hbxNewGame.setVisible(false);
       btnNewGame.setText("New Game");
@@ -372,12 +375,13 @@ public class CanvasController implements Controller {
   }
 
   private void runPredictionsInBkg() {
-    // run the text to speech on a background thread to avoid lag
+    // run the predictions on a background thread to avoid lag
     Task<Void> backgroundTask =
         new Task<Void>() {
 
           @Override
           protected Void call() throws Exception {
+            // run predictions for as long as the game is not considered finished
             while (!isFinished) {
               doPredict();
             }
@@ -386,12 +390,14 @@ public class CanvasController implements Controller {
 
           private void doPredict() {
 
+            // add time delay of one second
             try {
               Thread.sleep(1000);
             } catch (InterruptedException e1) {
               e1.printStackTrace();
             }
 
+            // run the prediction function as a 'run later' so that the page updates
             Platform.runLater(
                 () -> {
                   try {
