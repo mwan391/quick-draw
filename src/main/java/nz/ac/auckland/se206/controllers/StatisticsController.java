@@ -38,7 +38,17 @@ public class StatisticsController implements Controller {
   public void loadPage() {
     // get relevant statistics
     activeUser = UserModel.getActiveUser();
-    StringBuilder stringBuilder = new StringBuilder();
+
+    // set header label
+    txtHeader.setText(activeUser.getUsername() + "'s Statistics");
+
+    // set win rate
+    setWinRate();
+  }
+
+  private void setWinRate() {
+    // get relevant statistics
+    // initialise counts to avoid breakage
     int winCount = 0;
     int gameCount = 0;
     try {
@@ -48,16 +58,15 @@ public class StatisticsController implements Controller {
       e.printStackTrace();
     }
 
-    // set header label
-    txtHeader.setText(activeUser.getUsername() + "'s Statistics");
-
-    // set win rate
+    // build and update the win rate text
+    StringBuilder stringBuilder = new StringBuilder();
     stringBuilder
         .append(winCount)
         .append(" games won out of ")
         .append(gameCount)
         .append(" games total.");
     txtWinRateWord.setText(stringBuilder.toString());
+    // clear builder, and build and update the win rate percentage
     stringBuilder.setLength(0);
     stringBuilder
         .append("Win rate of ")
