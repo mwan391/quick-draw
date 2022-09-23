@@ -72,7 +72,7 @@
             </TitledPane>
          </panes>
       </Accordion>
-      <Label layoutX="107.0" layoutY="49.0" text="Game History">
+      <Label layoutX="47.0" layoutY="49.0" text="Game History — Last 10 Games">
          <font>
             <Font size="15.0" />
          </font>

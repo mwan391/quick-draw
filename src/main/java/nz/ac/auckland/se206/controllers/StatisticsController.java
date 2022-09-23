@@ -1,6 +1,8 @@
 package nz.ac.auckland.se206.controllers;
 
 import java.util.List;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
@@ -11,7 +13,6 @@ import javafx.scene.text.Text;
 import nz.ac.auckland.se206.CategorySelect;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
-import nz.ac.auckland.se206.daos.GameDao;
 import nz.ac.auckland.se206.daos.UserStatsDao;
 import nz.ac.auckland.se206.models.GameModel;
 import nz.ac.auckland.se206.models.UserModel;
@@ -28,7 +29,13 @@ public class StatisticsController implements Controller {
 
   private UserModel activeUser;
   private UserStatsDao userStatsDao = new UserStatsDao();
-  private GameDao gameDao = new GameDao();
+  private ObservableList<String> gamesEasyHistory;
+
+  public void initialize() {
+    // ready the games history back end
+    gamesEasyHistory = FXCollections.observableArrayList();
+    lvwEasyHistory.setItems(gamesEasyHistory);
+  }
 
   @FXML
   private void onBackToMenu(ActionEvent event) {
@@ -44,14 +51,52 @@ public class StatisticsController implements Controller {
     // set header label
     txtHeader.setText(activeUser.getUsername() + "'s Statistics");
 
-    // set win rate
+    // set game statistics
     setWinRate();
-
-    // set best game
     setBestGame();
-
-    // set latest game
     setLastGame();
+
+    // set word histories
+    setEasyHistory();
+  }
+
+  private void setEasyHistory() {
+    // get relevant statistics
+    List<GameModel> latestGames = userStatsDao.getTen(activeUser.getId());
+
+    // refresh history
+    gamesEasyHistory.clear();
+    StringBuilder stringBuilder = new StringBuilder();
+
+    // build strings and add to list view
+    for (GameModel game : latestGames) {
+
+      // get category name
+      String category = CategorySelect.Difficulty.values()[game.getDifficulty()].toString();
+
+      // get won status
+      String won;
+      if (game.getWon()) {
+        won = ": Won \"";
+      } else {
+        won = ": Lost \"";
+      }
+
+      // build string
+      stringBuilder.setLength(0);
+      stringBuilder
+          .append(game.getId())
+          .append(won)
+          .append(game.getWord())
+          .append("\" in ")
+          .append(game.getTime())
+          .append(" seconds, from the ")
+          .append(category)
+          .append(" category");
+
+      // add to list
+      gamesEasyHistory.add(stringBuilder.toString());
+    }
   }
 
   private void setWinRate() {
