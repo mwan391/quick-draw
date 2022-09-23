@@ -7,10 +7,12 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.text.Text;
+import nz.ac.auckland.se206.CategorySelect;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.daos.GameDao;
 import nz.ac.auckland.se206.daos.UserStatsDao;
+import nz.ac.auckland.se206.models.GameModel;
 import nz.ac.auckland.se206.models.UserModel;
 
 public class StatisticsController implements Controller {
@@ -43,15 +45,16 @@ public class StatisticsController implements Controller {
 
     // set win rate
     setWinRate();
+
+    // set best game
+    setBestGame();
   }
 
   private void setWinRate() {
     // get relevant statistics
     // initialise counts to avoid breakage
-    int winCount = 0;
-    int gameCount = 0;
-    winCount = userStatsDao.countWins(activeUser.getId());
-    gameCount = userStatsDao.countGames(activeUser.getId());
+    int winCount = userStatsDao.countWins(activeUser.getId());
+    int gameCount = userStatsDao.countGames(activeUser.getId());
 
     // build and update the win rate text
     StringBuilder stringBuilder = new StringBuilder();
@@ -68,5 +71,23 @@ public class StatisticsController implements Controller {
         .append(100 * ((float) winCount / (float) gameCount))
         .append("%");
     txtWinRatePercent.setText(stringBuilder.toString());
+  }
+
+  private void setBestGame() {
+    // get relevant statistics
+    GameModel bestGame = userStatsDao.getBestGame(activeUser.getId());
+    String category = CategorySelect.Difficulty.values()[bestGame.getDifficulty()].toString();
+
+    // build and update the best game text
+    StringBuilder stringBuilder = new StringBuilder();
+    stringBuilder
+        .append("Drew \"")
+        .append(bestGame.getWord())
+        .append("\" in ")
+        .append(bestGame.getTime())
+        .append(" seconds, from the ")
+        .append(category)
+        .append(" category");
+    txtBestGame.setText(stringBuilder.toString());
   }
 }
