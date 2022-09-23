@@ -18,8 +18,11 @@
          <children>
             <Label fx:id="lblCategory" alignment="CENTER" text="Draw a:" textAlignment="CENTER">
                <font>
-                  <Font name="Gill Sans MT" size="18.0" />
+                  <Font name="Gill Sans MT" size="30.0" />
                </font>
+               <padding>
+                  <Insets top="55.0" />
+               </padding>
             </Label>
             <Pane prefHeight="243.0" prefWidth="400.0" style="-fx-background-color: white;">
                <children>
@@ -32,33 +35,33 @@
             </Pane>
             <HBox fx:id="hbxDrawTools" alignment="TOP_CENTER" spacing="5.0">
                <children>
-                  <Button fx:id="clearButton" mnemonicParsing="false" onAction="#onClear" style="-fx-background-color: #882FF6;" text="Clear" textFill="WHITE">
+                  <Button fx:id="clearButton" mnemonicParsing="false" onAction="#onClear" prefHeight="40.0" prefWidth="80.0" style="-fx-background-color: #882FF6;" text="Clear" textFill="WHITE">
                      <font>
-                        <Font name="Gill Sans MT" size="12.0" />
+                        <Font name="Gill Sans MT" size="20.0" />
                      </font></Button>
-                  <ToggleButton fx:id="btnToggleEraser" mnemonicParsing="false" onAction="#onToggleEraser" style="-fx-background-color: #882FF6;" text="Eraser" textFill="WHITE">
+                  <ToggleButton fx:id="btnToggleEraser" mnemonicParsing="false" onAction="#onToggleEraser" prefHeight="40.0" prefWidth="80.0" style="-fx-background-color: #882FF6;" text="Eraser" textFill="WHITE">
                      <font>
-                        <Font name="Gill Sans MT" size="12.0" />
+                        <Font name="Gill Sans MT" size="20.0" />
                      </font></ToggleButton>
                </children>
             </HBox>
             <HBox fx:id="hbxGameEnd" alignment="TOP_CENTER" spacing="5.0">
                <children>
-                  <Button fx:id="btnSave" mnemonicParsing="false" onAction="#onSave" style="-fx-background-color: #882FF6;" text="Save Drawing" textFill="WHITE">
+                  <Button fx:id="btnSave" mnemonicParsing="false" onAction="#onSave" prefHeight="40.0" prefWidth="120.0" style="-fx-background-color: #882FF6;" text="Save Drawing" textFill="WHITE">
                      <font>
-                        <Font name="Gill Sans MT" size="12.0" />
+                        <Font name="Gill Sans MT" size="15.0" />
                      </font></Button>
-                  <Button fx:id="btnReturnToMenu" mnemonicParsing="false" onAction="#onReturnToMenu" style="-fx-background-color: #882FF6;" text="Return to Menu" textFill="WHITE">
+                  <Button fx:id="btnReturnToMenu" mnemonicParsing="false" onAction="#onReturnToMenu" prefHeight="40.0" prefWidth="120.0" style="-fx-background-color: #882FF6;" text="Return to Menu" textFill="WHITE">
                      <font>
-                        <Font name="Gill Sans MT" size="12.0" />
+                        <Font name="Gill Sans MT" size="15.0" />
                      </font></Button>
                </children>
             </HBox>
             <HBox fx:id="hbxNewGame" alignment="TOP_CENTER" spacing="5.0">
                <children>
-                  <ToggleButton fx:id="btnNewGame" mnemonicParsing="false" onAction="#onNewGame" style="-fx-background-color: #882FF6;" text="New Game" textFill="WHITE">
+                  <ToggleButton fx:id="btnNewGame" mnemonicParsing="false" onAction="#onNewGame" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: #882FF6;" text="New Game" textFill="WHITE">
                      <font>
-                        <Font name="Gill Sans MT" size="12.0" />
+                        <Font name="Gill Sans MT" size="15.0" />
                      </font></ToggleButton>
                </children>
             </HBox>
@@ -67,7 +70,7 @@
             <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
          </padding>
       </VBox>
-      <VBox alignment="CENTER">
+      <VBox alignment="CENTER" prefHeight="600.0" prefWidth="245.0">
          <children>
             <Label alignment="CENTER" text="Time Left:" textAlignment="CENTER">
                <font>
@@ -84,11 +87,14 @@
                   <Font name="Gill Sans MT" size="17.0" />
                </font>
             </Label>
-            <ListView fx:id="lvwPredictions" prefWidth="131.0" />
+            <ListView fx:id="lvwPredictions" prefHeight="400.0" prefWidth="224.0" />
          </children>
          <padding>
             <Insets bottom="10.0" left="10.0" right="10.0" top="20.0" />
          </padding>
+         <HBox.margin>
+            <Insets />
+         </HBox.margin>
       </VBox>
    </children>
 </HBox>
