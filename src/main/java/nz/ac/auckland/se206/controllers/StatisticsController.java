@@ -1,6 +1,5 @@
 package nz.ac.auckland.se206.controllers;
 
-import java.sql.SQLException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
@@ -51,12 +50,8 @@ public class StatisticsController implements Controller {
     // initialise counts to avoid breakage
     int winCount = 0;
     int gameCount = 0;
-    try {
-      winCount = userStatsDao.countWins(activeUser.getId());
-      gameCount = userStatsDao.countGames(activeUser.getId());
-    } catch (SQLException e) {
-      e.printStackTrace();
-    }
+    winCount = userStatsDao.countWins(activeUser.getId());
+    gameCount = userStatsDao.countGames(activeUser.getId());
 
     // build and update the win rate text
     StringBuilder stringBuilder = new StringBuilder();
