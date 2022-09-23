@@ -21,15 +21,25 @@ public class TextToSpeech {
    * @param args A sequence of strings to speak.
    */
   public static void main(final String[] args) {
+    // If no input is provided, an error message is sent
     if (args.length == 0) {
       throw new IllegalArgumentException(
           "You are not providing any arguments. You need to provide one or more sentences.");
     }
 
-    final TextToSpeech textToSpeech = new TextToSpeech();
+    // Creating a task to read out the input speech
+    Runnable speech =
+        new Runnable() {
+          @Override
+          public void run() {
+            final TextToSpeech textToSpeech = new TextToSpeech();
+            textToSpeech.speak(args);
+          }
+        };
 
-    textToSpeech.speak(args);
-    textToSpeech.terminate();
+    // Running the task on a new thread
+    Thread speechThread = new Thread(speech);
+    speechThread.start();
   }
 
   private final Synthesizer synthesizer;

@@ -71,7 +71,6 @@ public class CanvasController implements Controller {
   private String category;
 
   private GraphicsContext graphic;
-  private TextToSpeech textToSpeech = new TextToSpeech();
   private DoodlePrediction model;
   private Boolean isFinished;
 
@@ -225,10 +224,10 @@ public class CanvasController implements Controller {
     // set the label to win/lose event and use the tts
     if (wonGame) {
       lblCategory.setText("You Win!");
-      useTextToSpeech("You Win.");
+      TextToSpeech.main(new String[] {"You Win!"});
     } else {
       lblCategory.setText("You Lose!");
-      useTextToSpeech("You Lose!");
+      TextToSpeech.main(new String[] {"You Lose!"});
     }
   }
 
@@ -268,7 +267,7 @@ public class CanvasController implements Controller {
     scene.setRoot(SceneManager.getUiRoot(AppUi.CATEGORY_SELECT));
 
     // repeat instructions
-    useTextToSpeech("Pick a category.");
+    TextToSpeech.main(new String[] {"Pick a category"});
   }
 
   private void resetGame() {
@@ -306,32 +305,15 @@ public class CanvasController implements Controller {
       // generate a new word
       category = CategorySelect.generateSetCategory();
       lblCategory.setText("Draw: " + category);
-      useTextToSpeech("Your category is" + category);
+      TextToSpeech.main(new String[] {"Your category is" + category});
 
     } else {
+      TextToSpeech.main(new String[] {"Let's draw"});
       // start the game and hide the new game toolbar
-      useTextToSpeech("Let's draw");
       hbxNewGame.setVisible(false);
       btnNewGame.setText("New Game");
       startTimer();
     }
-  }
-
-  private void useTextToSpeech(String phrase) {
-    // run the text to speech on a background thread to avoid lag
-    Task<Void> backgroundTask =
-        new Task<Void>() {
-
-          @Override
-          protected Void call() throws Exception {
-            textToSpeech.speak(phrase);
-            return null;
-          }
-        };
-
-    // start the thread
-    Thread backgroundThread = new Thread(backgroundTask);
-    backgroundThread.start();
   }
 
   private void switchToPen() {

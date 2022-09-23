@@ -4,7 +4,6 @@ import java.sql.SQLException;
 import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
@@ -100,21 +99,8 @@ public class LogInController implements Controller {
     Scene scene = ((Button) event.getSource()).getScene();
     scene.setRoot(SceneManager.getUiRoot(AppUi.CATEGORY_SELECT));
 
-    // run the text to speech on a background thread to avoid lags
-    TextToSpeech textToSpeech = new TextToSpeech();
-    Task<Void> backgroundTask =
-        new Task<Void>() {
-
-          @Override
-          protected Void call() throws Exception {
-            textToSpeech.speak("Select a category.");
-            return null;
-          }
-        };
-
-    // start the thread
-    Thread backgroundThread = new Thread(backgroundTask);
-    backgroundThread.start();
+    // Activating text to speech
+    TextToSpeech.main(new String[] {"Select a category."});
 
     // reset the page for the next log in
     resetPage();

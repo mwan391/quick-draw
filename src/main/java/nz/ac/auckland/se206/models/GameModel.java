@@ -45,11 +45,11 @@ public class GameModel {
   @Override
   public String toString() {
     // print out details of the game
-    StringBuilder sb = new StringBuilder("Game ID: ");
+    StringBuilder sb = new StringBuilder("\nGame ID: ");
     sb.append(getId());
-    sb.append("\nPlayed by user ID: ");
+    sb.append(" Played by user ID: ");
     sb.append(getUserId());
-    sb.append("\nResult: ");
+    sb.append(" Result: ");
     sb.append(getWon());
     return sb.toString();
   }
