@@ -7,14 +7,14 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="700.0" style="-fx-background-color: #37B6F6;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.MenuController">
    <children>
-      <Label alignment="CENTER" layoutX="50.0" layoutY="220.0" prefHeight="70.0" prefWidth="600.0" text="Quick, Draw! SE206 Edition" textAlignment="CENTER">
+      <Label alignment="CENTER" layoutX="50.0" layoutY="183.0" prefHeight="70.0" prefWidth="600.0" text="Quick, Draw! SE206 Edition" textAlignment="CENTER">
          <font>
             <Font name="Gill Sans MT Bold" size="46.0" />
          </font>
       </Label>
-      <Button fx:id="btnStart" alignment="CENTER" layoutX="309.0" layoutY="330.0" mnemonicParsing="false" onAction="#onStartGame" style="-fx-background-color: #882FF6;" text="Let's Go!" textFill="WHITE">
+      <Button fx:id="btnStart" alignment="CENTER" layoutX="275.0" layoutY="318.0" mnemonicParsing="false" onAction="#onStartGame" prefHeight="60.0" prefWidth="150.0" style="-fx-background-color: #882FF6;" text="Let's Go!" textFill="WHITE">
          <font>
-            <Font size="16.0" />
+            <Font name="Gill Sans MT" size="26.0" />
          </font>
       </Button>
    </children>
