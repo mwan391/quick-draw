@@ -55,7 +55,7 @@ public class App extends Application {
     SceneManager.addUi(AppUi.CATEGORY_SELECT, loadFxml("category"));
     SceneManager.addUi(AppUi.CANVAS, loadFxml("canvas"));
 
-    Scene scene = new Scene(SceneManager.getUiRoot(AppUi.MAIN_MENU), 640, 480);
+    Scene scene = new Scene(SceneManager.getUiRoot(AppUi.MAIN_MENU));
 
     stage.setScene(scene);
     stage.show();

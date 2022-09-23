@@ -12,7 +12,7 @@
             <Font name="Gill Sans MT Bold" size="46.0" />
          </font>
       </Label>
-      <Button fx:id="btnStart" layoutX="300.0" layoutY="326.0" mnemonicParsing="false" onAction="#onStartGame" style="-fx-background-color: #882ff6;" text="Start Game" textFill="WHITE">
+      <Button fx:id="btnStart" alignment="CENTER" layoutX="300.0" layoutY="326.0" mnemonicParsing="false" onAction="#onStartGame" style="-fx-background-color: #882FF6;" text="Start Game" textFill="WHITE">
          <font>
             <Font size="16.0" />
          </font>
