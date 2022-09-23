@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import nz.ac.auckland.se206.models.GameModel;
+import nz.ac.auckland.se206.util.Logger;
 import nz.ac.auckland.se206.util.SqliteConnection;
 
 public class GameDao {
@@ -18,25 +19,29 @@ public class GameDao {
    * @param difficultyValue using ordinal of difficulty enum
    * @param word of chosen category
    * @return id of new game
-   * @throws SQLException
    */
-  public int addNewGame(int userId, int difficultyValue, String word) throws SQLException {
+  public int addNewGame(int userId, int difficultyValue, String word) {
     Connection connection = SqliteConnection.openConnection();
-    String query = "INSERT INTO games (user_id, difficulty, word, won, time) VALUES (?,?,?,0,60)";
-    PreparedStatement ps = connection.prepareStatement(query);
-    // set paramaters for the user table
-    ps.setInt(1, userId);
-    ps.setInt(2, difficultyValue);
-    ps.setString(3, word);
-    ps.executeUpdate();
-    // get next unique id for new game
-    ResultSet rs = ps.getGeneratedKeys();
-    int gameId = 0;
-    if (rs.next()) {
-      gameId = rs.getInt(1);
+    int id = 0;
+    try {
+      String query = "INSERT INTO games (user_id, difficulty, word, won, time) VALUES (?,?,?,0,60)";
+      PreparedStatement ps = connection.prepareStatement(query);
+      // set paramaters (column titles) to add into the table
+      ps.setInt(1, userId);
+      ps.setInt(2, difficultyValue);
+      ps.setString(3, word);
+      ps.executeUpdate();
+      // get next unique id for new game
+      ResultSet rs = ps.getGeneratedKeys();
+      if (rs.next()) {
+        id = rs.getInt(1);
+      }
+    } catch (SQLException e) {
+      Logger.printSqlError(e);
+    } finally {
+      SqliteConnection.closeConnection(connection);
     }
-    SqliteConnection.closeConnection(connection);
-    return gameId;
+    return id;
   }
 
   /**
@@ -44,17 +49,21 @@ public class GameDao {
    *
    * @param time in seconds of drawing time
    * @param gameId of current game
-   * @throws SQLException
    */
-  public void setTime(int time, int gameId) throws SQLException {
+  public void setTime(int time, int gameId) {
     Connection connection = SqliteConnection.openConnection();
-    String query = "UPDATE games SET time=? WHERE id=?";
-    PreparedStatement ps = connection.prepareStatement(query);
-    ps.setInt(1, time);
-    ps.setInt(2, gameId);
-    // update playing time for given game
-    ps.execute();
-    SqliteConnection.closeConnection(connection);
+    try {
+      // update playing time for given game
+      String query = "UPDATE games SET time=? WHERE id=?";
+      PreparedStatement ps = connection.prepareStatement(query);
+      ps.setInt(1, time);
+      ps.setInt(2, gameId);
+      ps.execute();
+    } catch (SQLException e) {
+      Logger.printSqlError(e);
+    } finally {
+      SqliteConnection.closeConnection(connection);
+    }
   }
 
   /**
@@ -62,28 +71,39 @@ public class GameDao {
    *
    * @param won boolean of winning status
    * @param gameId of current game
-   * @throws SQLException
    */
-  public void setWon(boolean won, int gameId) throws SQLException {
+  public void setWon(boolean won, int gameId) {
     Connection connection = SqliteConnection.openConnection();
-    String query = "UPDATE games SET won=? WHERE id=?";
-    PreparedStatement ps = connection.prepareStatement(query);
-    ps.setBoolean(1, won);
-    ps.setInt(2, gameId);
-    // update winning status for given game
-    ps.execute();
-    SqliteConnection.closeConnection(connection);
+    try {
+      // update winning status for given game
+      String query = "UPDATE games SET won=? WHERE id=?";
+      PreparedStatement ps = connection.prepareStatement(query);
+      ps.setBoolean(1, won);
+      ps.setInt(2, gameId);
+      ps.execute();
+    } catch (SQLException e) {
+      Logger.printSqlError(e);
+    } finally {
+      SqliteConnection.closeConnection(connection);
+    }
   }
 
-  public GameModel getGameById(int gameId) throws SQLException {
+  public GameModel getGameById(int gameId) {
     Connection connection = SqliteConnection.openConnection();
-    String query = "SELECT id, user_id, difficulty, word, won, time FROM games WHERE id=?";
-    PreparedStatement ps = connection.prepareStatement(query);
-    ps.setInt(1, gameId);
-    ResultSet rs = ps.executeQuery();
-    // return an instance of the given game
-    GameModel game = rs.next() ? getGame(rs) : null;
-    SqliteConnection.closeConnection(connection);
+    GameModel game = null;
+    try {
+      // find matching game
+      String query = "SELECT id, user_id, difficulty, word, won, time FROM games WHERE id=?";
+      PreparedStatement ps = connection.prepareStatement(query);
+      ps.setInt(1, gameId);
+      ResultSet rs = ps.executeQuery();
+      // return an instance of the given game
+      game = rs.next() ? getGame(rs) : null;
+    } catch (SQLException e) {
+      Logger.printSqlError(e);
+    } finally {
+      SqliteConnection.closeConnection(connection);
+    }
     return game;
   }
 
@@ -92,27 +112,31 @@ public class GameDao {
    *
    * @param userId of given user
    * @return list of games
-   * @throws SQLException
    */
-  public List<GameModel> getGames(int userId) throws SQLException {
-    List<GameModel> games = new ArrayList<>();
+  public List<GameModel> getGames(int userId) {
     Connection connection = SqliteConnection.openConnection();
-    String query = "SELECT * FROM games WHERE user_id=? ORDER by id";
-    PreparedStatement ps = connection.prepareStatement(query);
-    // filter for games played by given user
-    ps.setInt(userId, 1);
-    ResultSet rs = ps.executeQuery();
-    // convert the results to GameModel instances
-    while (rs.next()) {
-      GameModel game = getGame(rs);
-      games.add(game);
+    List<GameModel> games = new ArrayList<>();
+    try {
+      String query = "SELECT * FROM games WHERE user_id=? ORDER by id";
+      PreparedStatement ps = connection.prepareStatement(query);
+      // filter for games played by given user
+      ps.setInt(userId, 1);
+      ResultSet rs = ps.executeQuery();
+      // convert the results to game instances
+      while (rs.next()) {
+        GameModel game = getGame(rs);
+        games.add(game);
+      }
+    } catch (SQLException e) {
+      Logger.printSqlError(e);
+    } finally {
+      SqliteConnection.closeConnection(connection);
     }
-    SqliteConnection.closeConnection(connection);
     return games;
   }
 
   private GameModel getGame(ResultSet rs) throws SQLException {
-    // return an instance of a particular game
+    // helper to convert a game row in table to game instance
     return new GameModel(
         rs.getInt("id"),
         rs.getInt("user_id"),
