@@ -68,6 +68,13 @@ public class StatisticsController implements Controller {
         .append(gameCount)
         .append(" games total.");
     txtWinRateWord.setText(stringBuilder.toString());
+
+    // check if user has played any games
+    if (gameCount == 0) {
+      txtWinRatePercent.setText("You have not played any games yet!");
+      return;
+    }
+
     // clear builder, and build and update the win rate percentage
     stringBuilder.setLength(0);
     stringBuilder
@@ -80,6 +87,13 @@ public class StatisticsController implements Controller {
   private void setBestGame() {
     // get relevant statistics
     GameModel bestGame = userStatsDao.getBestGame(activeUser.getId());
+
+    // check if user has played any games
+    if (bestGame.getId() == 0) {
+      txtBestGame.setText("You have not played any games yet!");
+      return;
+    }
+
     String category = CategorySelect.Difficulty.values()[bestGame.getDifficulty()].toString();
 
     // build and update the best game text
@@ -98,6 +112,13 @@ public class StatisticsController implements Controller {
   private void setLastGame() {
     // get relevant statistics
     List<GameModel> lastGames = userStatsDao.getTen(activeUser.getId());
+
+    // check if user has played any games
+    if (lastGames.size() == 0) {
+      txtLastGame.setText("You have not played any games yet!");
+      return;
+    }
+
     GameModel lastGame = lastGames.get(0);
     String category = CategorySelect.Difficulty.values()[lastGame.getDifficulty()].toString();
 
