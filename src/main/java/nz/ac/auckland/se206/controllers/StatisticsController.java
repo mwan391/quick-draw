@@ -1,5 +1,6 @@
 package nz.ac.auckland.se206.controllers;
 
+import java.util.List;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
@@ -48,6 +49,9 @@ public class StatisticsController implements Controller {
 
     // set best game
     setBestGame();
+
+    // set latest game
+    setLastGame();
   }
 
   private void setWinRate() {
@@ -89,5 +93,24 @@ public class StatisticsController implements Controller {
         .append(category)
         .append(" category");
     txtBestGame.setText(stringBuilder.toString());
+  }
+
+  private void setLastGame() {
+    // get relevant statistics
+    List<GameModel> lastGames = userStatsDao.getTen(activeUser.getId());
+    GameModel lastGame = lastGames.get(0);
+    String category = CategorySelect.Difficulty.values()[lastGame.getDifficulty()].toString();
+
+    // build and update the best game text
+    StringBuilder stringBuilder = new StringBuilder();
+    stringBuilder
+        .append("Drew \"")
+        .append(lastGame.getWord())
+        .append("\" in ")
+        .append(lastGame.getTime())
+        .append(" seconds, from the ")
+        .append(category)
+        .append(" category");
+    txtLastGame.setText(stringBuilder.toString());
   }
 }
