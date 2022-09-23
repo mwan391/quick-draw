@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
@@ -12,20 +13,20 @@
    <children>
       <Label text="Quick, Draw! SE206  Edition">
          <font>
-            <Font name="Gill Sans MT" size="40.0" />
+            <Font name="Gill Sans MT Bold" size="40.0" />
          </font>
       </Label>
       <VBox alignment="BOTTOM_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" spacing="5.0">
          <children>
             <Label text="Username:">
                <font>
-                  <Font name="Gill Sans MT" size="20.0" />
+                  <Font name="Gill Sans MT" size="30.0" />
                </font>
             </Label>
             <ComboBox fx:id="fldUserName" editable="true" prefWidth="150.0" promptText="Your Username" style="-fx-background-color: #FFFFFF;" />
             <Label text="Password:">
                <font>
-                  <Font name="Gill Sans MT" size="20.0" />
+                  <Font name="Gill Sans MT" size="30.0" />
                </font>
             </Label>
             <PasswordField fx:id="fldPassword" promptText="Your Password" />
@@ -33,15 +34,18 @@
       </VBox>
       <HBox alignment="CENTER" spacing="10.0">
          <children>
-            <Button fx:id="btnSignUp" mnemonicParsing="false" onAction="#onSignUp" style="-fx-background-color: #882FF6;" text="Sign Up" textFill="WHITE">
+            <Button fx:id="btnSignUp" mnemonicParsing="false" onAction="#onSignUp" prefHeight="40.0" prefWidth="80.0" style="-fx-background-color: #882FF6;" text="Sign Up" textFill="WHITE">
                <font>
-                  <Font name="Gill Sans MT" size="12.0" />
+                  <Font name="Gill Sans MT" size="17.0" />
                </font></Button>
-            <Button fx:id="btnLogIn" mnemonicParsing="false" onAction="#onLogIn" style="-fx-background-color: #882FF6;" text="Log In" textFill="WHITE">
+            <Button fx:id="btnLogIn" mnemonicParsing="false" onAction="#onLogIn" prefHeight="40.0" prefWidth="80.0" style="-fx-background-color: #882FF6;" text="Log In" textFill="WHITE">
                <font>
-                  <Font name="Gill Sans MT" size="12.0" />
+                  <Font name="Gill Sans MT" size="17.0" />
                </font></Button>
          </children>
+         <VBox.margin>
+            <Insets top="20.0" />
+         </VBox.margin>
       </HBox>
       <Label fx:id="lblWarning" />
    </children>
