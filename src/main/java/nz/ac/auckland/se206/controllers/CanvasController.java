@@ -220,6 +220,7 @@ public class CanvasController implements Controller {
     fileChooser
         .getExtensionFilters()
         .add(new FileChooser.ExtensionFilter("BMP files (*.bmp)", "*.bmp"));
+    fileChooser.setInitialFileName(category);
 
     // get directory and name of the new file
     File fileToSave =
