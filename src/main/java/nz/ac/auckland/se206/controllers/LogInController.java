@@ -85,7 +85,9 @@ public class LogInController implements Controller {
       lblWarning.setText("Invalid login attempt.");
       return;
     }
-    userDao.getUserById(userId);
+
+    // set the user as the active user
+    UserModel.setActiveUser(userDao.getUserById(userId));
 
     // go to the next screen
     nextScreen(event);
