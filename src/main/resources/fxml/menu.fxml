@@ -5,14 +5,14 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.MenuController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="700.0" style="-fx-background-color: #37B6F6;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.MenuController">
    <children>
-      <Label alignment="CENTER" layoutX="5.0" layoutY="166.0" prefHeight="68.0" prefWidth="589.0" text="Quick, Draw! SE206  Edition" textAlignment="CENTER">
+      <Label alignment="CENTER" layoutX="50.0" layoutY="220.0" prefHeight="70.0" prefWidth="600.0" text="Quick, Draw! SE206 Edition" textAlignment="CENTER">
          <font>
-            <Font size="46.0" />
+            <Font name="Gill Sans MT Bold" size="46.0" />
          </font>
       </Label>
-      <Button fx:id="btnStart" layoutX="250.0" layoutY="234.0" mnemonicParsing="false" onAction="#onStartGame" text="Start Game">
+      <Button fx:id="btnStart" layoutX="300.0" layoutY="326.0" mnemonicParsing="false" onAction="#onStartGame" style="-fx-background-color: #882ff6;" text="Start Game" textFill="WHITE">
          <font>
             <Font size="16.0" />
          </font>
