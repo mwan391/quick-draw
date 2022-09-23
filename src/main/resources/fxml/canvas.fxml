@@ -18,7 +18,7 @@
          <children>
             <Label fx:id="lblCategory" alignment="CENTER" text="Draw a:" textAlignment="CENTER">
                <font>
-                  <Font size="18.0" />
+                  <Font name="Gill Sans MT" size="18.0" />
                </font>
             </Label>
             <Pane prefHeight="243.0" prefWidth="400.0" style="-fx-background-color: white;">
@@ -32,19 +32,34 @@
             </Pane>
             <HBox fx:id="hbxDrawTools" alignment="TOP_CENTER" spacing="5.0">
                <children>
-                  <Button fx:id="clearButton" mnemonicParsing="false" onAction="#onClear" text="Clear" />
-                  <ToggleButton fx:id="btnToggleEraser" mnemonicParsing="false" onAction="#onToggleEraser" text="Eraser" />
+                  <Button fx:id="clearButton" mnemonicParsing="false" onAction="#onClear" text="Clear">
+                     <font>
+                        <Font name="Gill Sans MT" size="12.0" />
+                     </font></Button>
+                  <ToggleButton fx:id="btnToggleEraser" mnemonicParsing="false" onAction="#onToggleEraser" text="Eraser">
+                     <font>
+                        <Font name="Gill Sans MT" size="12.0" />
+                     </font></ToggleButton>
                </children>
             </HBox>
             <HBox fx:id="hbxGameEnd" alignment="TOP_CENTER" spacing="5.0">
                <children>
-                  <Button fx:id="btnSave" mnemonicParsing="false" onAction="#onSave" text="Save Drawing" />
-                  <Button fx:id="btnReturnToMenu" mnemonicParsing="false" onAction="#onReturnToMenu" text="Return to Menu" />
+                  <Button fx:id="btnSave" mnemonicParsing="false" onAction="#onSave" text="Save Drawing">
+                     <font>
+                        <Font name="Gill Sans MT" size="12.0" />
+                     </font></Button>
+                  <Button fx:id="btnReturnToMenu" mnemonicParsing="false" onAction="#onReturnToMenu" text="Return to Menu">
+                     <font>
+                        <Font name="Gill Sans MT" size="12.0" />
+                     </font></Button>
                </children>
             </HBox>
             <HBox fx:id="hbxNewGame" alignment="TOP_CENTER" spacing="5.0">
                <children>
-                  <ToggleButton fx:id="btnNewGame" mnemonicParsing="false" onAction="#onNewGame" text="New Game" />
+                  <ToggleButton fx:id="btnNewGame" mnemonicParsing="false" onAction="#onNewGame" text="New Game">
+                     <font>
+                        <Font name="Gill Sans MT" size="12.0" />
+                     </font></ToggleButton>
                </children>
             </HBox>
          </children>
@@ -56,17 +71,17 @@
          <children>
             <Label alignment="CENTER" text="Time Left:" textAlignment="CENTER">
                <font>
-                  <Font size="17.0" />
+                  <Font name="Gill Sans MT" size="17.0" />
                </font>
             </Label>
             <Label fx:id="lblTimer" alignment="CENTER" text="60" textAlignment="CENTER">
                <font>
-                  <Font size="49.0" />
+                  <Font name="Gill Sans MT" size="49.0" />
                </font>
             </Label>
             <Label alignment="CENTER" minHeight="-Infinity" prefHeight="30.0" prefWidth="87.0" text="Predictions:" textAlignment="CENTER">
                <font>
-                  <Font size="17.0" />
+                  <Font name="Gill Sans MT" size="17.0" />
                </font>
             </Label>
             <ListView fx:id="lvwPredictions" prefWidth="131.0" />

@@ -9,33 +9,48 @@
    <children>
       <Label alignment="CENTER" layoutX="172.0" layoutY="118.0" prefHeight="23.0" prefWidth="355.0" text="Quick, Draw! SE206  Edition" textAlignment="CENTER">
          <font>
-            <Font size="18.0" />
+            <Font name="Gill Sans MT" size="18.0" />
          </font>
       </Label>
       <Label alignment="CENTER" layoutX="172.0" layoutY="209.0" prefHeight="23.0" prefWidth="355.0" text="Your Category Is:" textAlignment="CENTER">
          <font>
-            <Font size="20.0" />
+            <Font name="Gill Sans MT" size="20.0" />
          </font>
       </Label>
       <Label fx:id="lblCategory" alignment="CENTER" layoutX="156.0" layoutY="239.0" prefHeight="58.0" prefWidth="388.0" text="[Choose A Difficulty]" textAlignment="CENTER">
          <font>
-            <Font size="40.0" />
+            <Font name="Gill Sans MT" size="40.0" />
          </font>
       </Label>
       <Button fx:id="btnStartGame" layoutX="299.0" layoutY="403.0" mnemonicParsing="false" onAction="#onStartGame" text="Start Game">
          <font>
-            <Font size="16.0" />
+            <Font name="Gill Sans MT" size="16.0" />
          </font>
       </Button>
       <Label alignment="CENTER" layoutX="172.0" layoutY="357.0" prefHeight="23.0" prefWidth="355.0" text="Ready Up!" textAlignment="CENTER">
          <font>
-            <Font size="26.0" />
+            <Font name="Gill Sans MT" size="26.0" />
          </font>
       </Label>
-      <Button fx:id="btnEasy" layoutX="222.0" layoutY="304.0" mnemonicParsing="false" onAction="#onGenerateEasyCategory" text="Easy" />
-      <Button fx:id="btnMedium" layoutX="283.0" layoutY="304.0" mnemonicParsing="false" text="Medium" />
-      <Button fx:id="btnHard" layoutX="361.0" layoutY="304.0" mnemonicParsing="false" text="Hard" />
-      <Button fx:id="btnMaster" layoutX="425.0" layoutY="304.0" mnemonicParsing="false" text="Master" />
-      <Button fx:id="btnLogOut" layoutX="320.0" layoutY="458.0" mnemonicParsing="false" onAction="#onLogOut" text="Log Out" />
+      <Button fx:id="btnEasy" layoutX="222.0" layoutY="304.0" mnemonicParsing="false" onAction="#onGenerateEasyCategory" text="Easy">
+         <font>
+            <Font name="Gill Sans MT" size="12.0" />
+         </font></Button>
+      <Button fx:id="btnMedium" layoutX="283.0" layoutY="304.0" mnemonicParsing="false" text="Medium">
+         <font>
+            <Font name="Gill Sans MT" size="12.0" />
+         </font></Button>
+      <Button fx:id="btnHard" layoutX="361.0" layoutY="304.0" mnemonicParsing="false" text="Hard">
+         <font>
+            <Font name="Gill Sans MT" size="12.0" />
+         </font></Button>
+      <Button fx:id="btnMaster" layoutX="425.0" layoutY="304.0" mnemonicParsing="false" text="Master">
+         <font>
+            <Font name="Gill Sans MT" size="12.0" />
+         </font></Button>
+      <Button fx:id="btnLogOut" layoutX="320.0" layoutY="458.0" mnemonicParsing="false" onAction="#onLogOut" text="Log Out">
+         <font>
+            <Font name="Gill Sans MT" size="12.0" />
+         </font></Button>
    </children>
 </Pane>
