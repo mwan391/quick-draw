@@ -76,7 +76,6 @@ public class UserDao {
    *
    * @param username to check for
    * @return true or false
-   * @throws SQLException
    */
   public boolean checkExists(String username) {
     Connection connection = SqliteConnection.openConnection();
