@@ -148,6 +148,7 @@ public class UserDao {
    * @throws SQLException
    */
   private UserModel getUser(ResultSet rs) throws SQLException {
+    // helper to convert a user in sql to user in java
     return new UserModel(
         rs.getInt("id"), rs.getString("username"), rs.getString("password"), rs.getInt("game_id"));
   }
