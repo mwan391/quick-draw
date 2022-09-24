@@ -105,5 +105,6 @@ public class CategoryController implements Controller {
     lblCategory.setText("[Choose A Difficulty]");
     btnStartGame.setDisable(true);
     btnEasy.setDisable(false);
+    categoryMessage.setVisible(false);
   }
 }
