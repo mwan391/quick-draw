@@ -281,7 +281,7 @@ public class CanvasController implements Controller {
       btnNewGame.setText("Start Game");
       String category = CategorySelect.generateSetCategory();
       lblCategory.setText("Draw: " + category);
-      TextToSpeech.main(new String[] {"Your category is" + category});
+      TextToSpeech.main(new String[] {"Your category is:" + category});
 
     } else {
       TextToSpeech.main(new String[] {"Let's draw"});
