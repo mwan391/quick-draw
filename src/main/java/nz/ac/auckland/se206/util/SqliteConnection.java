@@ -46,6 +46,7 @@ public class SqliteConnection {
   private void createTables() {
     Connection connection = null;
     try {
+      // establish connetion to jdbc sqlite
       connection = openConnection();
       Statement statement = connection.createStatement();
       // initialise tables if they do not exist
@@ -59,7 +60,7 @@ public class SqliteConnection {
   }
 
   private boolean createUsersTable(Statement statement) throws SQLException {
-    // create a table with following fields
+    // create users table with following fields
     StringBuilder sb = new StringBuilder("CREATE TABLE IF NOT EXISTS users ");
     sb.append("(id INTEGER PRIMARY KEY AUTOINCREMENT, ");
     sb.append("username VARCHAR(256) NOT NULL, ");
@@ -69,7 +70,7 @@ public class SqliteConnection {
   }
 
   private boolean createGamesTable(Statement statement) throws SQLException {
-    // create a table with following fields
+    // create games table with following fields
     StringBuilder sb = new StringBuilder("CREATE TABLE IF NOT EXISTS games ");
     sb.append("(id INTEGER PRIMARY KEY AUTOINCREMENT, ");
     sb.append("user_id INTEGER, ");

@@ -153,7 +153,7 @@ public class UserDao {
     Connection connection = SqliteConnection.openConnection();
     List<UserModel> users = new ArrayList<>();
     try {
-      // get all users
+      // get all users in database
       String query = "SELECT id, username, password, game_id from users";
       PreparedStatement ps = connection.prepareStatement(query);
       ResultSet rs = ps.executeQuery();
@@ -178,7 +178,7 @@ public class UserDao {
    * @throws SQLException
    */
   private UserModel getUser(ResultSet rs) throws SQLException {
-    // helper to convert a user row in table to user instnace
+    // helper to convert a user in sql to user in java
     return new UserModel(
         rs.getInt("id"), rs.getString("username"), rs.getString("password"), rs.getInt("game_id"));
   }
