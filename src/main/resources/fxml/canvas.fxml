@@ -38,11 +38,17 @@
                   <Button fx:id="clearButton" mnemonicParsing="false" onAction="#onClear" prefHeight="40.0" prefWidth="80.0" style="-fx-background-color: #882FF6;" text="Clear" textFill="WHITE">
                      <font>
                         <Font name="Gill Sans MT" size="20.0" />
-                     </font></Button>
+                     </font>
+                     <HBox.margin>
+                        <Insets right="5.0" />
+                     </HBox.margin></Button>
                   <ToggleButton fx:id="btnToggleEraser" mnemonicParsing="false" onAction="#onToggleEraser" prefHeight="40.0" prefWidth="80.0" style="-fx-background-color: #882FF6;" styleClass="button" text="Eraser" textFill="WHITE">
                      <font>
                         <Font name="Gill Sans MT" size="20.0" />
-                     </font></ToggleButton>
+                     </font>
+                     <HBox.margin>
+                        <Insets left="5.0" />
+                     </HBox.margin></ToggleButton>
                </children>
             </HBox>
             <HBox fx:id="hbxGameEnd" alignment="TOP_CENTER" spacing="5.0">
@@ -50,11 +56,17 @@
                   <Button fx:id="btnSave" mnemonicParsing="false" onAction="#onSave" prefHeight="40.0" prefWidth="120.0" style="-fx-background-color: #882FF6;" text="Save Drawing" textFill="WHITE">
                      <font>
                         <Font name="Gill Sans MT" size="15.0" />
-                     </font></Button>
+                     </font>
+                     <HBox.margin>
+                        <Insets right="5.0" />
+                     </HBox.margin></Button>
                   <Button fx:id="btnReturnToMenu" mnemonicParsing="false" onAction="#onReturnToMenu" prefHeight="40.0" prefWidth="120.0" style="-fx-background-color: #882FF6;" text="Return to Menu" textFill="WHITE">
                      <font>
                         <Font name="Gill Sans MT" size="15.0" />
-                     </font></Button>
+                     </font>
+                     <HBox.margin>
+                        <Insets left="5.0" />
+                     </HBox.margin></Button>
                </children>
             </HBox>
             <HBox fx:id="hbxNewGame" alignment="TOP_CENTER" spacing="5.0">
