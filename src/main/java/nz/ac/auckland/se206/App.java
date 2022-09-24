@@ -59,6 +59,7 @@ public class App extends Application {
 
     stage.setScene(scene);
     stage.show();
+    stage.setTitle("Quick Draw Beta");
 
     CategorySelect.setCategories("category_difficulty");
 
