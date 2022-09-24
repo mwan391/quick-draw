@@ -127,6 +127,7 @@ public class UserDao {
   public List<UserModel> getUsers() throws SQLException {
     List<UserModel> users = new ArrayList<>();
     Connection connection = SqliteConnection.openConnection();
+    // select all users
     String query = "SELECT id, username, password, game_id from users";
     PreparedStatement ps = connection.prepareStatement(query);
     ResultSet rs = ps.executeQuery();
