@@ -7,6 +7,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import nz.ac.auckland.se206.SceneManager.AppUi;
@@ -60,6 +61,13 @@ public class App extends Application {
     stage.setScene(scene);
     stage.show();
     stage.setTitle("Quick Draw Beta");
+    stage
+        .getIcons()
+        .add(
+            new Image(
+                Thread.currentThread()
+                    .getContextClassLoader()
+                    .getResourceAsStream("images/icon.png")));
 
     CategorySelect.setCategories("category_difficulty");
 
