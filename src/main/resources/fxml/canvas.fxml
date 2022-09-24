@@ -28,7 +28,7 @@
                         <Insets top="55.0" />
                      </padding>
                   </Label>
-                  <Pane prefHeight="243.0" prefWidth="400.0" style="-fx-background-color: white;">
+                  <Pane prefHeight="243.0" prefWidth="400.0" style="-fx-background-color: white; -fx-border-color: black;">
                      <children>
                         <Canvas fx:id="canvas" height="243.0" width="400.0">
                            <cursor>
