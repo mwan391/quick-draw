@@ -7,6 +7,7 @@ import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.List;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -33,7 +34,9 @@ import javax.imageio.ImageIO;
 import nz.ac.auckland.se206.CategorySelect;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
+import nz.ac.auckland.se206.daos.GameDao;
 import nz.ac.auckland.se206.ml.DoodlePrediction;
+import nz.ac.auckland.se206.models.UserModel;
 import nz.ac.auckland.se206.speech.TextToSpeech;
 
 /**
@@ -74,6 +77,11 @@ public class CanvasController implements Controller {
   // mouse coordinates
   private double currentX;
   private double currentY;
+
+  // database tools
+  private GameDao gameDao = new GameDao();
+  private int activeUserId;
+  private int activeGameId;
 
   /**
    * JavaFX calls this method once the GUI elements are loaded. In our case we create a listener for
@@ -132,17 +140,28 @@ public class CanvasController implements Controller {
     return imageBinary;
   }
 
-  public void startTimer() {
+  public void startTimer() throws SQLException {
     // set up the label and enable canvas
     isFinished = false;
     canvas.setDisable(false);
     hbxDrawTools.setVisible(true);
     category = CategorySelect.getCategory();
     lblCategory.setText("Draw: " + category);
+    // create new game database object
+    activeUserId = UserModel.getActiveUser().getId();
+    activeGameId =
+        gameDao.addNewGame(activeUserId, CategorySelect.getWordDifficulty().ordinal(), category);
     // set up what to do every second
     timer = new Timeline(new KeyFrame(Duration.seconds(1), e -> changeTime()));
     timer.setCycleCount(60);
-    timer.setOnFinished(e -> endGame(false)); // if the timer runs to zero
+    timer.setOnFinished(
+        e -> {
+          try {
+            endGame(false);
+          } catch (SQLException e1) {
+            e1.printStackTrace();
+          }
+        }); // if the timer runs to zero
     timer.play();
     runPredictionsInBkg();
   }
@@ -151,7 +170,12 @@ public class CanvasController implements Controller {
     lblTimer.setText(String.valueOf(Integer.valueOf(lblTimer.getText()) - 1));
   }
 
-  private void triggerPredict() {
+  private void triggerPredict() throws SQLException {
+
+    if (isFinished) {
+      return;
+    }
+
     predictions.clear();
 
     List<Classifications.Classification> rawPredictions = null;
@@ -188,7 +212,7 @@ public class CanvasController implements Controller {
     }
   }
 
-  private void endGame(Boolean wonGame) {
+  private void endGame(Boolean wonGame) throws SQLException {
     // lock the drawing and stop timer
     canvas.setOnMouseDragged(e -> {});
     timer.pause();
@@ -197,6 +221,10 @@ public class CanvasController implements Controller {
     hbxGameEnd.setVisible(true);
     hbxNewGame.setVisible(true);
     isFinished = true;
+
+    // update current game stats
+    gameDao.setWon(wonGame, activeGameId);
+    gameDao.setTime((60 - Integer.valueOf(lblTimer.getText())), activeGameId);
 
     // set the label to win/lose event and use the tts
     if (wonGame) {
@@ -275,16 +303,19 @@ public class CanvasController implements Controller {
   }
 
   @FXML
-  private void onNewGame() {
+  private void onNewGame() throws SQLException {
     if (btnNewGame.isSelected()) {
+      // clear the canvas and timer
       resetGame();
       btnNewGame.setText("Start Game");
-      String category = CategorySelect.generateSetCategory();
+      // generate a new word
+      category = CategorySelect.generateSetCategory();
       lblCategory.setText("Draw: " + category);
       TextToSpeech.main(new String[] {"Your category is:" + category});
 
     } else {
       TextToSpeech.main(new String[] {"Let's draw"});
+      // start the game and hide the new game toolbar
       hbxNewGame.setVisible(false);
       btnNewGame.setText("New Game");
       startTimer();
@@ -332,12 +363,13 @@ public class CanvasController implements Controller {
   }
 
   private void runPredictionsInBkg() {
-    // run the text to speech on a background thread to avoid lag
+    // run the predictions on a background thread to avoid lag
     Task<Void> backgroundTask =
         new Task<Void>() {
 
           @Override
           protected Void call() throws Exception {
+            // run predictions for as long as the game is not considered finished
             while (!isFinished) {
               doPredict();
             }
@@ -346,15 +378,21 @@ public class CanvasController implements Controller {
 
           private void doPredict() {
 
+            // add time delay of one second
             try {
               Thread.sleep(1000);
             } catch (InterruptedException e1) {
               e1.printStackTrace();
             }
 
+            // run the prediction function as a 'run later' so that the page updates
             Platform.runLater(
                 () -> {
-                  triggerPredict();
+                  try {
+                    triggerPredict();
+                  } catch (SQLException e) {
+                    e.printStackTrace();
+                  }
                 });
           }
         };

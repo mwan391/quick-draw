@@ -1,6 +1,5 @@
 package nz.ac.auckland.se206.controllers;
 
-import java.sql.SQLException;
 import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -27,7 +26,7 @@ public class LogInController implements Controller {
   private UserDao userDao = new UserDao();
   private ObservableList<String> existingUsers;
 
-  public void initialize() throws SQLException {
+  public void initialize() {
     fldUserName.setEditable(true);
 
     // create the observable list of existing user names for the drop down menu
@@ -43,7 +42,7 @@ public class LogInController implements Controller {
   }
 
   @FXML
-  private void onSignUp(ActionEvent event) throws SQLException {
+  private void onSignUp(ActionEvent event) {
     String userName = fldUserName.getValue();
     String password = fldPassword.getText();
 
@@ -74,7 +73,7 @@ public class LogInController implements Controller {
   }
 
   @FXML
-  private void onLogIn(ActionEvent event) throws SQLException {
+  private void onLogIn(ActionEvent event) {
 
     String userName = fldUserName.getValue();
     String password = fldPassword.getText();
@@ -85,7 +84,9 @@ public class LogInController implements Controller {
       lblWarning.setText("Invalid login attempt.");
       return;
     }
-    userDao.getUserById(userId);
+
+    // set the user as the active user
+    UserModel.setActiveUser(userDao.getUserById(userId));
 
     // go to the next screen
     nextScreen(event);
