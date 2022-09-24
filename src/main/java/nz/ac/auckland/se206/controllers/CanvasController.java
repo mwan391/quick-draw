@@ -248,6 +248,7 @@ public class CanvasController implements Controller {
     fileChooser
         .getExtensionFilters()
         .add(new FileChooser.ExtensionFilter("BMP files (*.bmp)", "*.bmp"));
+    fileChooser.setInitialFileName(category);
 
     // get directory and name of the new file
     File fileToSave =
@@ -310,7 +311,7 @@ public class CanvasController implements Controller {
       // generate a new word
       category = CategorySelect.generateSetCategory();
       lblCategory.setText("Draw: " + category);
-      TextToSpeech.main(new String[] {"Your category is" + category});
+      TextToSpeech.main(new String[] {"Your category is:" + category});
 
     } else {
       TextToSpeech.main(new String[] {"Let's draw"});

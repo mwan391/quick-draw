@@ -99,7 +99,7 @@ public class LogInController implements Controller {
     scene.setRoot(SceneManager.getUiRoot(AppUi.CATEGORY_SELECT));
 
     // Activating text to speech
-    TextToSpeech.main(new String[] {"Select a category."});
+    TextToSpeech.main(new String[] {"Select a difficulty"});
 
     // reset the page for the next log in
     resetPage();

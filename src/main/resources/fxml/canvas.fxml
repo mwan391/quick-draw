@@ -7,73 +7,117 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" style="-fx-background-color: #ADD8E6;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.CanvasController">
+
+<AnchorPane style="-fx-background-color: #37b6f6;" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.CanvasController">
    <children>
-      <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" spacing="5.0">
+      <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="700.0">
          <children>
-            <Label fx:id="lblCategory" alignment="CENTER" text="Draw a:" textAlignment="CENTER">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Label>
-            <Pane prefHeight="243.0" prefWidth="400.0" style="-fx-background-color: white;">
+            <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" spacing="5.0">
                <children>
-                  <Canvas fx:id="canvas" height="243.0" width="400.0">
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </Canvas>
+                  <Label fx:id="lblCategory" alignment="CENTER" text="Draw a:" textAlignment="CENTER">
+                     <font>
+                        <Font name="Gill Sans MT" size="30.0" />
+                     </font>
+                     <padding>
+                        <Insets top="55.0" />
+                     </padding>
+                  </Label>
+                  <Pane prefHeight="243.0" prefWidth="400.0" style="-fx-background-color: white; -fx-border-color: black;">
+                     <children>
+                        <Canvas fx:id="canvas" height="243.0" width="400.0">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Canvas>
+                     </children>
+                  </Pane>
+                  <HBox fx:id="hbxDrawTools" alignment="TOP_CENTER" spacing="5.0">
+                     <children>
+                        <Button fx:id="clearButton" mnemonicParsing="false" onAction="#onClear" prefHeight="40.0" prefWidth="80.0" style="-fx-background-color: #882FF6;" text="Clear" textFill="WHITE">
+                           <font>
+                              <Font name="Gill Sans MT" size="20.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets right="5.0" />
+                           </HBox.margin>
+                        </Button>
+                        <ToggleButton fx:id="btnToggleEraser" mnemonicParsing="false" onAction="#onToggleEraser" prefHeight="40.0" prefWidth="80.0" style="-fx-background-color: #882FF6;" styleClass="button" text="Eraser" textFill="WHITE">
+                           <font>
+                              <Font name="Gill Sans MT" size="20.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="5.0" />
+                           </HBox.margin>
+                        </ToggleButton>
+                     </children>
+                  </HBox>
+                  <HBox fx:id="hbxGameEnd" alignment="TOP_CENTER" spacing="5.0">
+                     <children>
+                        <Button fx:id="btnSave" mnemonicParsing="false" onAction="#onSave" prefHeight="40.0" prefWidth="120.0" style="-fx-background-color: #882FF6;" text="Save Drawing" textFill="WHITE">
+                           <font>
+                              <Font name="Gill Sans MT" size="15.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets right="5.0" />
+                           </HBox.margin>
+                        </Button>
+                        <Button fx:id="btnReturnToMenu" mnemonicParsing="false" onAction="#onReturnToMenu" prefHeight="40.0" prefWidth="120.0" style="-fx-background-color: #882FF6;" text="Return to Menu" textFill="WHITE">
+                           <font>
+                              <Font name="Gill Sans MT" size="15.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="5.0" />
+                           </HBox.margin>
+                        </Button>
+                     </children>
+                  </HBox>
+                  <HBox fx:id="hbxNewGame" alignment="TOP_CENTER" spacing="5.0">
+                     <children>
+                        <ToggleButton fx:id="btnNewGame" mnemonicParsing="false" onAction="#onNewGame" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: #882FF6;" styleClass="button" text="New Game" textFill="WHITE">
+                           <font>
+                              <Font name="Gill Sans MT" size="15.0" />
+                           </font>
+                        </ToggleButton>
+                     </children>
+                  </HBox>
                </children>
-            </Pane>
-            <HBox fx:id="hbxDrawTools" alignment="TOP_CENTER" spacing="5.0">
+               <padding>
+                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+               </padding>
+            </VBox>
+            <VBox alignment="CENTER" prefHeight="600.0" prefWidth="245.0">
                <children>
-                  <Button fx:id="clearButton" mnemonicParsing="false" onAction="#onClear" text="Clear" />
-                  <ToggleButton fx:id="btnToggleEraser" mnemonicParsing="false" onAction="#onToggleEraser" text="Eraser" />
+                  <Label alignment="CENTER" text="Time Left:" textAlignment="CENTER">
+                     <font>
+                        <Font name="Gill Sans MT" size="17.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lblTimer" alignment="CENTER" text="60" textAlignment="CENTER">
+                     <font>
+                        <Font name="Gill Sans MT" size="49.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="CENTER" minHeight="-Infinity" prefHeight="30.0" prefWidth="87.0" text="Predictions:" textAlignment="CENTER">
+                     <font>
+                        <Font name="Gill Sans MT" size="17.0" />
+                     </font>
+                  </Label>
+                  <ListView fx:id="lvwPredictions" prefHeight="400.0" prefWidth="224.0" />
                </children>
-            </HBox>
-            <HBox fx:id="hbxGameEnd" alignment="TOP_CENTER" spacing="5.0">
-               <children>
-                  <Button fx:id="btnSave" mnemonicParsing="false" onAction="#onSave" text="Save Drawing" />
-                  <Button fx:id="btnReturnToMenu" mnemonicParsing="false" onAction="#onReturnToMenu" text="Return to Menu" />
-               </children>
-            </HBox>
-            <HBox fx:id="hbxNewGame" alignment="TOP_CENTER" spacing="5.0">
-               <children>
-                  <ToggleButton fx:id="btnNewGame" mnemonicParsing="false" onAction="#onNewGame" text="New Game" />
-               </children>
-            </HBox>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="20.0" />
+               </padding>
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+            </VBox>
          </children>
-         <padding>
-            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-         </padding>
-      </VBox>
-      <VBox alignment="CENTER">
-         <children>
-            <Label alignment="CENTER" text="Time Left:" textAlignment="CENTER">
-               <font>
-                  <Font size="17.0" />
-               </font>
-            </Label>
-            <Label fx:id="lblTimer" alignment="CENTER" text="60" textAlignment="CENTER">
-               <font>
-                  <Font size="49.0" />
-               </font>
-            </Label>
-            <Label alignment="CENTER" minHeight="-Infinity" prefHeight="30.0" prefWidth="87.0" text="Predictions:" textAlignment="CENTER">
-               <font>
-                  <Font size="17.0" />
-               </font>
-            </Label>
-            <ListView fx:id="lvwPredictions" prefWidth="131.0" />
-         </children>
-         <padding>
-            <Insets bottom="10.0" left="10.0" right="10.0" top="20.0" />
-         </padding>
-      </VBox>
+      </HBox>
    </children>
-</HBox>
+</AnchorPane>
