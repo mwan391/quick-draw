@@ -12,12 +12,12 @@
    <children>
       <VBox alignment="CENTER" prefHeight="600.0" prefWidth="700.0">
          <children>
-            <Label alignment="CENTER" prefHeight="23.0" prefWidth="355.0" text="Your Category Is:" textAlignment="CENTER">
+            <Label fx:id="categoryMessage" alignment="CENTER" prefHeight="23.0" prefWidth="355.0" text="Your Category Is:" textAlignment="CENTER">
                <font>
                   <Font name="Gill Sans MT" size="20.0" />
                </font>
             </Label>
-            <Label fx:id="lblCategory" alignment="CENTER" prefHeight="58.0" prefWidth="388.0" text="[Choose A Difficulty]" textAlignment="CENTER">
+            <Label fx:id="lblCategory" alignment="CENTER" prefHeight="58.0" prefWidth="388.0" text="Choose A Difficulty:" textAlignment="CENTER">
                <font>
                   <Font name="Gill Sans MT" size="40.0" />
                </font>
