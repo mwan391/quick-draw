@@ -22,11 +22,6 @@
       </ImageView>
       <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="700.0" spacing="25.0">
          <children>
-            <Label text="Quick, Draw! SE206  Edition">
-               <font>
-                  <Font name="Gill Sans MT Bold" size="40.0" />
-               </font>
-            </Label>
             <VBox alignment="BOTTOM_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" spacing="5.0">
                <children>
                   <Label text="Username:">
