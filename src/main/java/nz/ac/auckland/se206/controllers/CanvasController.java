@@ -171,6 +171,11 @@ public class CanvasController implements Controller {
   }
 
   private void triggerPredict() throws SQLException {
+
+    if (isFinished) {
+      return;
+    }
+
     predictions.clear();
 
     List<Classifications.Classification> rawPredictions = null;
