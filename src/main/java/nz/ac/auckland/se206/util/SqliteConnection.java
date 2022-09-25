@@ -64,7 +64,6 @@ public class SqliteConnection {
     StringBuilder sb = new StringBuilder("CREATE TABLE IF NOT EXISTS users ");
     sb.append("(id INTEGER PRIMARY KEY AUTOINCREMENT, ");
     sb.append("username VARCHAR(256) NOT NULL, ");
-    sb.append("password VARCHAR(256) NOT NULL, ");
     sb.append("game_id INTEGER);");
     return statement.execute(sb.toString());
   }
