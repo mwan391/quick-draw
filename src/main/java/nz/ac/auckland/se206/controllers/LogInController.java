@@ -9,7 +9,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.daos.UserDao;
@@ -22,7 +21,6 @@ public class LogInController implements Controller {
   @FXML private Button btnLogIn;
   @FXML private Label lblWarning;
   @FXML private ComboBox<String> fldUserName;
-  @FXML private PasswordField fldPassword;
   private UserDao userDao = new UserDao();
   private ObservableList<String> existingUsers;
 
@@ -44,7 +42,6 @@ public class LogInController implements Controller {
   @FXML
   private void onSignUp(ActionEvent event) {
     String userName = fldUserName.getValue();
-    String password = fldPassword.getText();
 
     // check if the user name is taken
     if (userDao.checkExists(userName)) {
@@ -52,20 +49,20 @@ public class LogInController implements Controller {
       return;
     }
 
-    // check if either field is left blank
-    if (userName.equals("") || password.equals("")) {
-      lblWarning.setText("Please select a valid username and password.");
+    // check if the field is left blank
+    if (userName.equals("")) {
+      lblWarning.setText("Please select a valid username.");
       return;
     }
 
     // check if either the user name or password is too long
-    if (userName.length() > 15 || password.length() > 15) {
+    if (userName.length() > 15) {
       lblWarning.setText("Max length is 15.");
       return;
     }
 
     // set the newly made user as the active user and add to the drop down list
-    UserModel.setActiveUser(userDao.getUserById(userDao.addNewUser(userName, password)));
+    UserModel.setActiveUser(userDao.getUserById(userDao.addNewUser(userName)));
     existingUsers.add(userName);
 
     // go to the next screen
@@ -76,10 +73,9 @@ public class LogInController implements Controller {
   private void onLogIn(ActionEvent event) {
 
     String userName = fldUserName.getValue();
-    String password = fldPassword.getText();
 
-    // check if the un/pw combination is correct
-    int userId = userDao.getId(userName, password);
+    // check if the un is in the system
+    int userId = userDao.getId(userName);
     if (userId == -1) {
       lblWarning.setText("Invalid login attempt.");
       return;
@@ -107,7 +103,6 @@ public class LogInController implements Controller {
 
   private void resetPage() {
     fldUserName.setValue("");
-    fldPassword.setText("");
     lblWarning.setText("");
   }
 }
