@@ -23,6 +23,7 @@ public class UserDao {
     Connection connection = SqliteConnection.openConnection();
     int id = 0;
     try {
+      // add new user to table
       String query = "INSERT INTO users (username, password, game_id) VALUES (?,?,0)";
       PreparedStatement ps = connection.prepareStatement(query);
       // input query parameters
@@ -81,9 +82,10 @@ public class UserDao {
     Connection connection = SqliteConnection.openConnection();
     boolean exists = false;
     try {
+      // filter for matching username
       PreparedStatement statement =
           connection.prepareStatement("SELECT 1 FROM users WHERE username=?");
-      // filter for matching username
+      // input query parameters
       statement.setString(1, username);
       ResultSet rst = statement.executeQuery();
       exists = rst.next();
@@ -131,9 +133,10 @@ public class UserDao {
   public void setGameId(int gameId, int userId) {
     Connection connection = SqliteConnection.openConnection();
     try {
+      // update current game for user
       String query = "UPDATE users SET game_id=? WHERE id=?";
       PreparedStatement ps = connection.prepareStatement(query);
-      // update the current game
+      // input query paramters
       ps.setInt(1, gameId);
       ps.setInt(2, userId);
       ps.execute();
@@ -153,7 +156,7 @@ public class UserDao {
     Connection connection = SqliteConnection.openConnection();
     List<UserModel> users = new ArrayList<>();
     try {
-      // get all users in database
+      // get all rows in table
       String query = "SELECT id, username, password, game_id from users";
       PreparedStatement ps = connection.prepareStatement(query);
       ResultSet rs = ps.executeQuery();

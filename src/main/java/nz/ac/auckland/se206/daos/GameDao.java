@@ -24,6 +24,7 @@ public class GameDao {
     Connection connection = SqliteConnection.openConnection();
     int id = 0;
     try {
+      // add new row to table
       String query = "INSERT INTO games (user_id, difficulty, word, won, time) VALUES (?,?,?,0,60)";
       PreparedStatement ps = connection.prepareStatement(query);
       // set paramaters (column titles) to add into the table
@@ -53,9 +54,10 @@ public class GameDao {
   public void setTime(int time, int gameId) {
     Connection connection = SqliteConnection.openConnection();
     try {
-      // update playing time for given game
+      // update drawing time for given game
       String query = "UPDATE games SET time=? WHERE id=?";
       PreparedStatement ps = connection.prepareStatement(query);
+      // input query parameters
       ps.setInt(1, time);
       ps.setInt(2, gameId);
       ps.execute();
@@ -78,6 +80,7 @@ public class GameDao {
       // update winning status for given game
       String query = "UPDATE games SET won=? WHERE id=?";
       PreparedStatement ps = connection.prepareStatement(query);
+      // input query parameters
       ps.setBoolean(1, won);
       ps.setInt(2, gameId);
       ps.execute();
@@ -117,9 +120,10 @@ public class GameDao {
     Connection connection = SqliteConnection.openConnection();
     List<GameModel> games = new ArrayList<>();
     try {
+      // filter for matching games
       String query = "SELECT * FROM games WHERE user_id=? ORDER by id";
       PreparedStatement ps = connection.prepareStatement(query);
-      // filter for games played by given user
+      // input query paramter
       ps.setInt(userId, 1);
       ResultSet rs = ps.executeQuery();
       // convert the results to game instances
