@@ -8,6 +8,8 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import nz.ac.auckland.se206.daos.UserStatsDao;
+import nz.ac.auckland.se206.models.UserModel;
 
 public class CategorySelect {
 
@@ -59,13 +61,31 @@ public class CategorySelect {
     categories.put(Difficulty.HARD, tempCategories.get("H"));
   }
 
-  public static String generateCategory(Difficulty wordDifficulty) {
+  private static String generateCategory(Difficulty wordDifficulty) {
 
-    ArrayList<String> words = categories.get(wordDifficulty);
+    // get words in category
+    ArrayList<String> words = new ArrayList<>(categories.get(wordDifficulty));
+    // get user's history of words
+    UserStatsDao userStatsDao = new UserStatsDao();
+    int activeUserId = UserModel.getActiveUser().getId();
+    List<String> completeHistory = userStatsDao.getWordHistory(activeUserId);
 
-    // get random word in array
-    int randomNum = (int) Math.floor(Math.random() * words.size());
-    category = words.get(randomNum);
+    // create relevant history list (ignoring repeats)
+    int completeSize = (completeHistory.size());
+    int relevantSize = completeSize - (completeSize % words.size());
+    List<String> relevantHistory = completeHistory.subList(relevantSize, completeSize);
+
+    // generate random words until the new word isn't in the relevant history
+    category = "";
+
+    while (category.equals("") || relevantHistory.contains(category)) {
+      // get random word in the words array
+      int randomNum = (int) Math.floor(Math.random() * words.size());
+      category = words.get(randomNum);
+
+      // remove from potential pool of words
+      words.remove(category);
+    }
     return category;
   }
 

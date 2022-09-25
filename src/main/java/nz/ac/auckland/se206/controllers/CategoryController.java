@@ -1,7 +1,6 @@
 package nz.ac.auckland.se206.controllers;
 
 import java.sql.SQLException;
-import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
@@ -44,18 +43,9 @@ public class CategoryController implements Controller {
     Parent canvasRoot = SceneManager.getUiRoot(AppUi.CANVAS);
     CanvasController canvasController = (CanvasController) SceneManager.getController(canvasRoot);
 
-    Task<Void> backgroundTask =
-        new Task<Void>() {
-
-          @Override
-          protected Void call() throws Exception {
-            TextToSpeech.main(new String[] {"Let's draw!"});
-            return null;
-          }
-        };
-
-    Thread backgroundThread = new Thread(backgroundTask);
-    backgroundThread.start();
+    // use tts on background thread to avoid lags
+    TextToSpeech.main(new String[] {"Let's draw!"});
+    ;
 
     // change the scene and start the game
     canvasController.startTimer();
@@ -69,21 +59,11 @@ public class CategoryController implements Controller {
   private void onGenerateEasyCategory(ActionEvent event) {
     categoryMessage.setVisible(true);
     CategorySelect.setWordDifficulty(Difficulty.EASY);
-    lblCategory.setText("\"" + CategorySelect.generateCategory(Difficulty.EASY) + "\"");
+    lblCategory.setText("\"" + CategorySelect.generateSetCategory() + "\"");
 
-    // speak
-    Task<Void> backgroundTask =
-        new Task<Void>() {
-
-          @Override
-          protected Void call() throws Exception {
-            TextToSpeech.main(new String[] {"Your category is " + CategorySelect.getCategory()});
-            return null;
-          }
-        };
-
-    Thread backgroundThread = new Thread(backgroundTask);
-    backgroundThread.start();
+    // use tts on background thread to avoid lags
+    TextToSpeech.main(new String[] {"Your Category is " + CategorySelect.getCategory()});
+    ;
 
     // disable the category button so users cannot reroll
     btnStartGame.setDisable(false);
@@ -103,11 +83,14 @@ public class CategoryController implements Controller {
   }
 
   @FXML
-  private void onUserStatistics(ActionEvent event) {
+  private void onSeeUserStatistics(ActionEvent event) {
+    // get root and controller for statistics page
     Scene scene = ((Button) event.getSource()).getScene();
     Parent statsRoot = SceneManager.getUiRoot(AppUi.USER_STATS);
     StatisticsController statisticsController =
         (StatisticsController) SceneManager.getController(statsRoot);
+
+    // load the necessary stats and change the scene
     statisticsController.loadPage();
     scene.setRoot(statsRoot);
   }

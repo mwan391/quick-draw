@@ -86,7 +86,7 @@
                         <Font name="Gill Sans MT" size="16.0" />
                      </font>
                   </Button>
-                  <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onUserStatistics" prefHeight="30.0" prefWidth="80.0" style="-fx-background-color: #882FF6;" text="Statistics" textFill="WHITE">
+                  <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onSeeUserStatistics" prefHeight="30.0" prefWidth="80.0" style="-fx-background-color: #882FF6;" text="Statistics" textFill="WHITE">
                      <font>
                         <Font name="Gill Sans MT" size="16.0" />
                      </font>
