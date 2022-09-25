@@ -19,7 +19,7 @@
       </ImageView>
       <VBox alignment="CENTER" prefHeight="600.0" prefWidth="700.0">
          <children>
-            <Label fx:id="categoryMessage" alignment="CENTER" prefHeight="23.0" prefWidth="355.0" text="Your Category Is:" textAlignment="CENTER">
+            <Label fx:id="categoryMessage" alignment="CENTER" prefHeight="23.0" prefWidth="355.0" text="Your Word Is:" textAlignment="CENTER">
                <font>
                   <Font name="Gill Sans MT" size="20.0" />
                </font>
