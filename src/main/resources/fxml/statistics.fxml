@@ -5,14 +5,21 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.StatisticsController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="700.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.StatisticsController">
    <children>
-      <Accordion layoutX="14.0" layoutY="76.0" prefHeight="275.0" prefWidth="275.0">
+      <ImageView fitHeight="600.0" fitWidth="700.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/doodlebg.jpg" />
+         </image>
+      </ImageView>
+      <Accordion layoutX="64.0" layoutY="176.0" prefHeight="275.0" prefWidth="275.0">
         <panes>
           <TitledPane animated="false" prefHeight="207.0" prefWidth="316.0" text="Easy">
             <content>
@@ -40,7 +47,7 @@
             </TitledPane>
         </panes>
       </Accordion>
-      <Accordion layoutX="311.0" layoutY="76.0" prefHeight="275.0" prefWidth="275.0">
+      <Accordion layoutX="361.0" layoutY="176.0" prefHeight="275.0" prefWidth="275.0">
          <panes>
             <TitledPane animated="false" prefHeight="207.0" prefWidth="316.0" text="Win Rate">
                <content>
@@ -72,20 +79,23 @@
             </TitledPane>
          </panes>
       </Accordion>
-      <Label layoutX="47.0" layoutY="49.0" text="Game History — Last 10 Games">
+      <Label layoutX="97.0" layoutY="149.0" text="Game History — Last 10 Games">
          <font>
             <Font size="15.0" />
          </font>
       </Label>
-      <Label layoutX="398.0" layoutY="49.0" text="Game Statistics">
+      <Label layoutX="448.0" layoutY="149.0" text="Game Statistics">
          <font>
             <Font size="15.0" />
          </font>
       </Label>
-      <Button fx:id="btnBackToMenu" layoutX="255.0" layoutY="361.0" mnemonicParsing="false" onAction="#onBackToMenu" text="Back to Menu" />
-      <Text fx:id="txtHeader" layoutX="15.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="[User]'s Statistics" textAlignment="CENTER" wrappingWidth="569.3999938964844">
+      <Button fx:id="btnBackToMenu" layoutX="281.0" layoutY="463.0" mnemonicParsing="false" onAction="#onBackToMenu" style="-fx-background-color: #882FF6;" text="Back to Menu" textFill="WHITE">
          <font>
-            <Font size="20.0" />
+            <Font name="Gill Sans MT" size="23.0" />
+         </font></Button>
+      <Text fx:id="txtHeader" fill="WHITE" layoutX="65.0" layoutY="136.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-: #882FF6;" text="[User]'s Statistics" textAlignment="CENTER" wrappingWidth="569.3999938964844">
+         <font>
+            <Font name="Gill Sans MT" size="43.0" />
          </font>
       </Text>
    </children>

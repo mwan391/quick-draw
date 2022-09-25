@@ -25,6 +25,7 @@ public class CategoryController implements Controller {
   @FXML private Button btnHard;
   @FXML private Button btnMaster;
   @FXML private Label lblCategory;
+  @FXML private Label categoryMessage;
 
   @FXML
   public void initialize() {
@@ -32,6 +33,7 @@ public class CategoryController implements Controller {
     btnHard.setDisable(true);
     btnMaster.setDisable(true);
     btnStartGame.setDisable(true);
+    categoryMessage.setVisible(false);
   }
 
   @FXML
@@ -65,6 +67,7 @@ public class CategoryController implements Controller {
 
   @FXML
   private void onGenerateEasyCategory(ActionEvent event) {
+    categoryMessage.setVisible(true);
     CategorySelect.setWordDifficulty(Difficulty.EASY);
     lblCategory.setText("\"" + CategorySelect.generateCategory(Difficulty.EASY) + "\"");
 
@@ -114,5 +117,6 @@ public class CategoryController implements Controller {
     lblCategory.setText("[Choose A Difficulty]");
     btnStartGame.setDisable(true);
     btnEasy.setDisable(false);
+    categoryMessage.setVisible(false);
   }
 }
