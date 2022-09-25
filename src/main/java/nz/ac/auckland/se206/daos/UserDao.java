@@ -16,18 +16,16 @@ public class UserDao {
    * Creates a new user into the database and returns the id
    *
    * @param username of new user
-   * @param password of new user
    * @return id of new user
    */
-  public int addNewUser(String username, String password) {
+  public int addNewUser(String username) {
     Connection connection = SqliteConnection.openConnection();
     int id = 0;
     try {
-      String query = "INSERT INTO users (username, password, game_id) VALUES (?,?,0)";
+      String query = "INSERT INTO users (username, game_id) VALUES (?,?,0)";
       PreparedStatement ps = connection.prepareStatement(query);
       // input query parameters
       ps.setString(1, username);
-      ps.setString(2, password);
       ps.executeUpdate();
       // get next unique id for user
       ResultSet resultSet = ps.getGeneratedKeys();
@@ -43,7 +41,7 @@ public class UserDao {
   }
 
   /**
-   * Get user by username and password and returns the id, if no user is found will return -1
+   * Get user by username returns the id, returns -1 if no user is found
    *
    * @param username of user
    * @param pwd of user
@@ -105,7 +103,7 @@ public class UserDao {
     UserModel user = null;
     try {
       // find the matching user
-      String query = "SELECT id, username, password, game_id FROM users WHERE id=?";
+      String query = "SELECT id, username, game_id FROM users WHERE id=?";
       PreparedStatement ps = connection.prepareStatement(query);
       ps.setInt(1, userId);
       ResultSet rs = ps.executeQuery();
@@ -153,7 +151,7 @@ public class UserDao {
     List<UserModel> users = new ArrayList<>();
     try {
       // get all users in database
-      String query = "SELECT id, username, password, game_id from users";
+      String query = "SELECT id, username, game_id from users";
       PreparedStatement ps = connection.prepareStatement(query);
       ResultSet rs = ps.executeQuery();
       // convert all found users to a user instance
@@ -178,7 +176,6 @@ public class UserDao {
    */
   private UserModel getUser(ResultSet rs) throws SQLException {
     // helper to convert a user in sql to user in java
-    return new UserModel(
-        rs.getInt("id"), rs.getString("username"), rs.getString("password"), rs.getInt("game_id"));
+    return new UserModel(rs.getInt("id"), rs.getString("username"), rs.getInt("game_id"));
   }
 }
