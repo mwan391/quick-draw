@@ -80,7 +80,7 @@ public class LogInController implements Controller {
 
     // check if the un/pw combination is correct
     int userId = userDao.getId(userName, password);
-    if (userId == 0) {
+    if (userId == -1) {
       lblWarning.setText("Invalid login attempt.");
       return;
     }

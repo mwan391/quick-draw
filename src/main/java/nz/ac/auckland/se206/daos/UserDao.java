@@ -51,7 +51,7 @@ public class UserDao {
    */
   public int getId(String username, String pwd) {
     Connection connection = SqliteConnection.openConnection();
-    int id = 0;
+    int id = -1;
     try {
       PreparedStatement statement =
           connection.prepareStatement("SELECT id FROM users WHERE username=? AND password=?");
