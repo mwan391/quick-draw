@@ -66,7 +66,7 @@ public class CategoryController implements Controller {
   @FXML
   private void onGenerateEasyCategory(ActionEvent event) {
     CategorySelect.setWordDifficulty(Difficulty.EASY);
-    lblCategory.setText("\"" + CategorySelect.generateCategory(Difficulty.EASY) + "\"");
+    lblCategory.setText("\"" + CategorySelect.generateSetCategory() + "\"");
 
     // speak
     Task<Void> backgroundTask =

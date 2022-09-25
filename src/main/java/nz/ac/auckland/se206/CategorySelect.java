@@ -59,7 +59,7 @@ public class CategorySelect {
     categories.put(Difficulty.HARD, tempCategories.get("H"));
   }
 
-  public static String generateCategory(Difficulty wordDifficulty) {
+  private static String generateCategory(Difficulty wordDifficulty) {
 
     ArrayList<String> words = categories.get(wordDifficulty);
 
