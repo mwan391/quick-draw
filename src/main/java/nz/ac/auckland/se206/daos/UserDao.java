@@ -49,15 +49,14 @@ public class UserDao {
    * @param pwd of user
    * @return id or -1 if no existing user is found
    */
-  public int getId(String username, String pwd) {
+  public int getId(String username) {
     Connection connection = SqliteConnection.openConnection();
     int id = -1;
     try {
       PreparedStatement statement =
-          connection.prepareStatement("SELECT id FROM users WHERE username=? AND password=?");
+          connection.prepareStatement("SELECT id FROM users WHERE username=?");
       // input query parameters
       statement.setString(1, username);
-      statement.setString(2, pwd);
       ResultSet rst = statement.executeQuery();
       // filter for id of given user
       if (rst.next()) {
