@@ -1,7 +1,6 @@
 package nz.ac.auckland.se206.controllers;
 
 import java.sql.SQLException;
-import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
@@ -42,18 +41,9 @@ public class CategoryController implements Controller {
     Parent canvasRoot = SceneManager.getUiRoot(AppUi.CANVAS);
     CanvasController canvasController = (CanvasController) SceneManager.getController(canvasRoot);
 
-    Task<Void> backgroundTask =
-        new Task<Void>() {
-
-          @Override
-          protected Void call() throws Exception {
-            TextToSpeech.main(new String[] {"Let's draw!"});
-            return null;
-          }
-        };
-
-    Thread backgroundThread = new Thread(backgroundTask);
-    backgroundThread.start();
+    // use tts on background thread to avoid lags
+    TextToSpeech.main(new String[] {"Let's draw!"});
+    ;
 
     // change the scene and start the game
     canvasController.startTimer();
@@ -68,19 +58,9 @@ public class CategoryController implements Controller {
     CategorySelect.setWordDifficulty(Difficulty.EASY);
     lblCategory.setText("\"" + CategorySelect.generateSetCategory() + "\"");
 
-    // speak
-    Task<Void> backgroundTask =
-        new Task<Void>() {
-
-          @Override
-          protected Void call() throws Exception {
-            TextToSpeech.main(new String[] {"Your category is " + CategorySelect.getCategory()});
-            return null;
-          }
-        };
-
-    Thread backgroundThread = new Thread(backgroundTask);
-    backgroundThread.start();
+    // use tts on background thread to avoid lags
+    TextToSpeech.main(new String[] {"Your Category is" + CategorySelect.getCategory()});
+    ;
 
     // disable the category button so users cannot reroll
     btnStartGame.setDisable(false);
