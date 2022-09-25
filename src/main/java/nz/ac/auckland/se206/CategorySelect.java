@@ -72,16 +72,12 @@ public class CategorySelect {
 
     // create relevant history list (ignoring repeats)
     int completeSize = (completeHistory.size());
-    int relevantSize = completeSize - (completeSize % 10); // words.size());
+    int relevantSize = completeSize - (completeSize % words.size());
     List<String> relevantHistory = completeHistory.subList(relevantSize, completeSize);
 
-    for (String word : relevantHistory) {
-      System.out.println(word);
-    }
-
-    // get random word in array
     int randomNum = (int) Math.floor(Math.random() * words.size());
     category = words.get(randomNum);
+
     return category;
   }
 
