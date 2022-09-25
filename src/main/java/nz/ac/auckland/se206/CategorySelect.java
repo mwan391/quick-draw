@@ -8,6 +8,8 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import nz.ac.auckland.se206.daos.UserStatsDao;
+import nz.ac.auckland.se206.models.UserModel;
 
 public class CategorySelect {
 
@@ -61,7 +63,21 @@ public class CategorySelect {
 
   private static String generateCategory(Difficulty wordDifficulty) {
 
+    // get words in category
     ArrayList<String> words = categories.get(wordDifficulty);
+    // get user's history of words
+    UserStatsDao userStatsDao = new UserStatsDao();
+    int activeUserId = UserModel.getActiveUser().getId();
+    List<String> completeHistory = userStatsDao.getWordHistory(activeUserId);
+
+    // create relevant history list (ignoring repeats)
+    int completeSize = (completeHistory.size());
+    int relevantSize = completeSize - (completeSize % 10); // words.size());
+    List<String> relevantHistory = completeHistory.subList(relevantSize, completeSize);
+
+    for (String word : relevantHistory) {
+      System.out.println(word);
+    }
 
     // get random word in array
     int randomNum = (int) Math.floor(Math.random() * words.size());
