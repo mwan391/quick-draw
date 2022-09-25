@@ -64,7 +64,7 @@ public class CategorySelect {
   private static String generateCategory(Difficulty wordDifficulty) {
 
     // get words in category
-    ArrayList<String> words = categories.get(wordDifficulty);
+    ArrayList<String> words = new ArrayList<>(categories.get(wordDifficulty));
     // get user's history of words
     UserStatsDao userStatsDao = new UserStatsDao();
     int activeUserId = UserModel.getActiveUser().getId();
@@ -75,9 +75,17 @@ public class CategorySelect {
     int relevantSize = completeSize - (completeSize % words.size());
     List<String> relevantHistory = completeHistory.subList(relevantSize, completeSize);
 
-    int randomNum = (int) Math.floor(Math.random() * words.size());
-    category = words.get(randomNum);
+    // generate random words until the new word isn't in the relevant history
+    category = "";
 
+    while (category.equals("") || relevantHistory.contains(category)) {
+      // get random word in the words array
+      int randomNum = (int) Math.floor(Math.random() * words.size());
+      category = words.get(randomNum);
+
+      // remove from potential pool of words
+      words.remove(category);
+    }
     return category;
   }
 
