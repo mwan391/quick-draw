@@ -62,7 +62,7 @@ public class LogInController implements Controller {
     }
 
     // set the newly made user as the active user and add to the drop down list
-    UserModel.setActiveUser(userDao.getUserById(userDao.addNewUser(userName, "")));
+    UserModel.setActiveUser(userDao.getUserById(userDao.addNewUser(userName)));
     existingUsers.add(userName);
 
     // go to the next screen
