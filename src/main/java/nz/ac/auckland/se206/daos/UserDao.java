@@ -22,8 +22,7 @@ public class UserDao {
     Connection connection = SqliteConnection.openConnection();
     int id = 0;
     try {
-      // add new user to table
-      String query = "INSERT INTO users (username, game_id) VALUES (?,?,0)";
+      String query = "INSERT INTO users (username, game_id) VALUES (?,0)";
       PreparedStatement ps = connection.prepareStatement(query);
       // input query parameters
       ps.setString(1, username);
