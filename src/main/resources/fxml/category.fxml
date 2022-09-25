@@ -79,14 +79,23 @@
                   <Insets top="30.0" />
                </VBox.margin>
             </Button>
-            <Button fx:id="btnLogOut" mnemonicParsing="false" onAction="#onLogOut" style="-fx-background-color: #882FF6;" text="Log Out" textFill="WHITE">
-               <font>
-                  <Font name="Gill Sans MT" size="12.0" />
-               </font>
-               <VBox.margin>
-                  <Insets top="40.0" />
-               </VBox.margin>
-            </Button>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Button fx:id="btnLogOut" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onLogOut" prefHeight="30.0" prefWidth="80.0" style="-fx-background-color: #882FF6;" text="Log Out" textFill="WHITE">
+                     <font>
+                        <Font name="Gill Sans MT" size="16.0" />
+                     </font>
+                  </Button>
+                  <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onUserStatistics" prefHeight="30.0" prefWidth="80.0" style="-fx-background-color: #882FF6;" text="Statistics" textFill="WHITE">
+                     <font>
+                        <Font name="Gill Sans MT" size="16.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+            </HBox>
          </children>
       </VBox>
    </children>
