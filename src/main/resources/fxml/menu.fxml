@@ -18,7 +18,7 @@
             <Image url="@../images/logo.png" />
          </image>
       </ImageView>
-      <Button fx:id="btnStart" alignment="CENTER" layoutX="275.0" layoutY="361.0" mnemonicParsing="false" onAction="#onStartGame" prefHeight="60.0" prefWidth="150.0" style="-fx-background-color: #882FF6;" text="Let's Go!" textFill="WHITE">
+      <Button fx:id="btnStart" alignment="CENTER" layoutX="275.0" layoutY="386.0" mnemonicParsing="false" onAction="#onStartGame" prefHeight="60.0" prefWidth="150.0" style="-fx-background-color: #882FF6;" text="Let's Go!" textFill="WHITE">
          <font>
             <Font name="Gill Sans MT" size="26.0" />
          </font>
