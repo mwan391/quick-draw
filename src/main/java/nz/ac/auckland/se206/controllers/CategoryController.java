@@ -80,7 +80,7 @@ public class CategoryController implements Controller {
   }
 
   @FXML
-  private void onUserStatistics(ActionEvent event) {
+  private void onSeeUserStatistics(ActionEvent event) {
     Scene scene = ((Button) event.getSource()).getScene();
     Parent statsRoot = SceneManager.getUiRoot(AppUi.USER_STATS);
     StatisticsController statisticsController =
