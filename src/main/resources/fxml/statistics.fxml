@@ -10,6 +10,7 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
@@ -62,14 +63,6 @@
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
-      <Label fx:id="header" alignment="CENTER" contentDisplay="CENTER" layoutX="197.0" layoutY="74.0" prefHeight="57.0" style="-fx-background-color: #173ab5; -fx-background-radius: 20px;" text="User Statistics" textFill="WHITE">
-         <font>
-            <Font name="Arial Rounded MT Bold" size="40.0" />
-         </font>
-         <padding>
-            <Insets left="10.0" right="10.0" />
-         </padding>
-      </Label>
       <Label alignment="CENTER" layoutX="361.0" layoutY="145.0" prefHeight="25.0" prefWidth="275.0" style="-fx-background-color: #173ab5; -fx-background-radius: 5px;" text="Your Statistics" textFill="WHITE">
          <font>
             <Font name="Arial Rounded MT Bold" size="15.0" />
@@ -143,5 +136,17 @@
             </Text>
          </children>
       </VBox>
+      <HBox alignment="CENTER" layoutY="52.0" prefHeight="83.0" prefWidth="700.0">
+         <children>
+            <Label fx:id="header" alignment="CENTER" contentDisplay="CENTER" prefHeight="70.0" style="-fx-background-color: #173ab5; -fx-background-radius: 20px;" text="User Statistics" textFill="WHITE">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="40.0" />
+               </font>
+               <padding>
+                  <Insets left="15.0" right="15.0" />
+               </padding>
+            </Label>
+         </children>
+      </HBox>
    </children>
 </Pane>
