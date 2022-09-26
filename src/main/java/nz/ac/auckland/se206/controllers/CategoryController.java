@@ -28,10 +28,12 @@ public class CategoryController implements Controller {
 
   @FXML
   public void initialize() {
+    // disable placeholder buttons
     btnMedium.setDisable(true);
     btnHard.setDisable(true);
     btnMaster.setDisable(true);
     btnStartGame.setDisable(true);
+    // hide message before it has been set
     categoryMessage.setVisible(false);
   }
 
