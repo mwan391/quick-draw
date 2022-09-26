@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
@@ -27,7 +28,10 @@
                         <Font name="Gill Sans MT" size="30.0" />
                      </font>
                   </Label>
-                  <ComboBox fx:id="fldUserName" editable="true" prefWidth="150.0" promptText="Your Username" style="-fx-background-color: #FFFFFF;" />
+                  <ComboBox fx:id="fldUserName" editable="true" prefWidth="150.0" promptText="Your Username" style="-fx-background-color: #FFFFFF;">
+                     <cursor>
+                        <Cursor fx:constant="TEXT" />
+                     </cursor></ComboBox>
                </children>
             </VBox>
             <HBox alignment="CENTER" spacing="10.0">
@@ -36,11 +40,17 @@
                      <font>
                         <Font name="Gill Sans MT" size="17.0" />
                      </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                   </Button>
                   <Button fx:id="btnLogIn" mnemonicParsing="false" onAction="#onLogIn" prefHeight="40.0" prefWidth="80.0" style="-fx-background-color: #882FF6;" text="Log In" textFill="WHITE">
                      <font>
                         <Font name="Gill Sans MT" size="17.0" />
                      </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                   </Button>
                </children>
                <VBox.margin>

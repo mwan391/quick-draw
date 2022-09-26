@@ -13,7 +13,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane style="-fx-background-color: #37b6f6;" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.CanvasController">
    <children>
       <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="700.0">
@@ -32,7 +31,7 @@
                      <children>
                         <Canvas fx:id="canvas" height="243.0" width="400.0">
                            <cursor>
-                              <Cursor fx:constant="HAND" />
+                              <Cursor fx:constant="CROSSHAIR" />
                            </cursor>
                         </Canvas>
                      </children>
@@ -46,6 +45,9 @@
                            <HBox.margin>
                               <Insets right="5.0" />
                            </HBox.margin>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
                         </Button>
                         <ToggleButton fx:id="btnToggleEraser" mnemonicParsing="false" onAction="#onToggleEraser" prefHeight="40.0" prefWidth="80.0" style="-fx-background-color: #882FF6;" styleClass="button" text="Eraser" textFill="WHITE">
                            <font>
@@ -54,6 +56,9 @@
                            <HBox.margin>
                               <Insets left="5.0" />
                            </HBox.margin>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
                         </ToggleButton>
                      </children>
                   </HBox>
@@ -66,6 +71,9 @@
                            <HBox.margin>
                               <Insets right="5.0" />
                            </HBox.margin>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
                         </Button>
                         <Button fx:id="btnReturnToMenu" mnemonicParsing="false" onAction="#onReturnToMenu" prefHeight="40.0" prefWidth="120.0" style="-fx-background-color: #882FF6;" text="Return to Menu" textFill="WHITE">
                            <font>
@@ -74,6 +82,9 @@
                            <HBox.margin>
                               <Insets left="5.0" />
                            </HBox.margin>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
                         </Button>
                      </children>
                   </HBox>
@@ -83,6 +94,9 @@
                            <font>
                               <Font name="Gill Sans MT" size="15.0" />
                            </font>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
                         </ToggleButton>
                      </children>
                   </HBox>
