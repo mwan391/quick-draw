@@ -62,7 +62,7 @@ public class CategoryController implements Controller {
     lblCategory.setText("\"" + CategorySelect.generateSetCategory() + "\"");
 
     // use tts on background thread to avoid lags
-    TextToSpeech.main(new String[] {"Your Category is " + CategorySelect.getCategory()});
+    TextToSpeech.main(new String[] {"Your word is " + CategorySelect.getCategory()});
     ;
 
     // disable the category button so users cannot reroll
