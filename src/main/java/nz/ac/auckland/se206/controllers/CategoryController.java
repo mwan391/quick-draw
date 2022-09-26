@@ -64,7 +64,7 @@ public class CategoryController implements Controller {
     lblCategory.setText("\"" + CategorySelect.generateSetCategory() + "\"");
 
     // use tts on background thread to avoid lags
-    TextToSpeech.main(new String[] {"Your Category is " + CategorySelect.getCategory()});
+    TextToSpeech.main(new String[] {"Your word is " + CategorySelect.getCategory()});
     ;
 
     // disable the category button so users cannot reroll
@@ -99,7 +99,7 @@ public class CategoryController implements Controller {
 
   private void resetPage() {
     // return the page to its initial state.
-    lblCategory.setText("[Choose A Difficulty]");
+    lblCategory.setText("Choose A Difficulty:");
     btnStartGame.setDisable(true);
     btnEasy.setDisable(false);
     categoryMessage.setVisible(false);

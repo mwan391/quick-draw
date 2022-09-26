@@ -57,6 +57,7 @@ public class CanvasController implements Controller {
   @FXML private Canvas canvas;
   @FXML private Label lblTimer;
   @FXML private Label lblCategory;
+  @FXML private Label eraserMessage;
   @FXML private Button clearButton;
   @FXML private Button btnSave;
   @FXML private Button btnReturnToMenu;
@@ -273,13 +274,13 @@ public class CanvasController implements Controller {
     scene.setRoot(SceneManager.getUiRoot(AppUi.CATEGORY_SELECT));
 
     // repeat instructions
-    TextToSpeech.main(new String[] {"Pick a category"});
+    TextToSpeech.main(new String[] {"Pick a difficulty"});
   }
 
   private void resetGame() {
     // reset timer and re-enable the drawing tools
     switchToPen();
-    btnToggleEraser.setText("Eraser");
+    eraserMessage.setText("Eraser OFF");
     btnToggleEraser.setSelected(false);
     lblTimer.setText("60");
     hbxGameEnd.setVisible(false);
@@ -293,11 +294,11 @@ public class CanvasController implements Controller {
     // Switching between pen and eraser
     if (btnToggleEraser.isSelected()) {
       // Changing label
-      btnToggleEraser.setText("Pen");
+      eraserMessage.setText("Eraser ON");
       switchToEraser();
     } else {
       // Changing label
-      btnToggleEraser.setText("Eraser");
+      eraserMessage.setText("Eraser OFF");
       switchToPen();
     }
   }
@@ -311,13 +312,13 @@ public class CanvasController implements Controller {
       // generate a new word
       category = CategorySelect.generateSetCategory();
       lblCategory.setText("Draw: " + category);
-      TextToSpeech.main(new String[] {"Your category is:" + category});
+      TextToSpeech.main(new String[] {"Your word is:" + category});
 
     } else {
       TextToSpeech.main(new String[] {"Let's draw"});
       // start the game and hide the new game toolbar
       hbxNewGame.setVisible(false);
-      btnNewGame.setText("New Game");
+      btnNewGame.setText("Play Again?");
       startTimer();
     }
   }

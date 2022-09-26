@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
@@ -20,34 +21,49 @@
       </ImageView>
       <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="700.0" spacing="25.0">
          <children>
-            <VBox alignment="BOTTOM_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" spacing="5.0">
+            <VBox alignment="BOTTOM_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="117.0" prefWidth="524.0" spacing="5.0">
                <children>
-                  <Label text="Username:">
+                  <Label alignment="CENTER" prefHeight="59.0" prefWidth="304.0" style="-fx-background-color: #173ab5; -fx-background-radius: 10px;" text="Pick a User" textFill="WHITE">
                      <font>
-                        <Font name="Gill Sans MT" size="30.0" />
+                        <Font name="Arial Rounded MT Bold" size="50.0" />
                      </font>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
                   </Label>
-                  <ComboBox fx:id="fldUserName" editable="true" prefWidth="150.0" promptText="Your Username" style="-fx-background-color: #FFFFFF;" />
+                  <ComboBox fx:id="fldUserName" editable="true" prefHeight="53.0" prefWidth="297.0" promptText="Enter your username:" style="-fx-background-color: #FFFFFF;">
+                     <cursor>
+                        <Cursor fx:constant="TEXT" />
+                     </cursor>
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin></ComboBox>
                </children>
             </VBox>
+            <Label fx:id="lblWarning" />
             <HBox alignment="CENTER" spacing="10.0">
                <children>
-                  <Button fx:id="btnSignUp" mnemonicParsing="false" onAction="#onSignUp" prefHeight="40.0" prefWidth="80.0" style="-fx-background-color: #882FF6;" text="Sign Up" textFill="WHITE">
+                  <Button fx:id="btnSignUp" mnemonicParsing="false" onAction="#onSignUp" prefHeight="60.0" prefWidth="100.0" style="-fx-background-color: #882FF6;" text="Sign Up" textFill="WHITE">
                      <font>
-                        <Font name="Gill Sans MT" size="17.0" />
+                        <Font name="Arial Rounded MT Bold" size="18.0" />
                      </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                   </Button>
-                  <Button fx:id="btnLogIn" mnemonicParsing="false" onAction="#onLogIn" prefHeight="40.0" prefWidth="80.0" style="-fx-background-color: #882FF6;" text="Log In" textFill="WHITE">
+                  <Button fx:id="btnLogIn" mnemonicParsing="false" onAction="#onLogIn" prefHeight="60.0" prefWidth="100.0" style="-fx-background-color: #882FF6;" text="Log In" textFill="WHITE">
                      <font>
-                        <Font name="Gill Sans MT" size="17.0" />
+                        <Font name="Arial Rounded MT Bold" size="18.0" />
                      </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                   </Button>
                </children>
                <VBox.margin>
-                  <Insets top="20.0" />
+                  <Insets />
                </VBox.margin>
             </HBox>
-            <Label fx:id="lblWarning" />
          </children>
       </VBox>
    </children>

@@ -8,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.text.Text;
 import nz.ac.auckland.se206.CategorySelect;
@@ -20,7 +21,7 @@ import nz.ac.auckland.se206.models.UserModel;
 public class StatisticsController implements Controller {
 
   @FXML private ListView<String> lvwEasyHistory;
-  @FXML private Text txtHeader;
+  @FXML private Label header;
   @FXML private Text txtWinRateWord;
   @FXML private Text txtWinRatePercent;
   @FXML private Text txtBestGame;
@@ -49,7 +50,7 @@ public class StatisticsController implements Controller {
     activeUser = UserModel.getActiveUser();
 
     // set header label
-    txtHeader.setText(activeUser.getUsername() + "'s Statistics");
+    header.setText(activeUser.getUsername() + "'s Statistics");
 
     // set game statistics
     setWinRate();
