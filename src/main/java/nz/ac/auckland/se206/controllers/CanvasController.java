@@ -274,7 +274,7 @@ public class CanvasController implements Controller {
     scene.setRoot(SceneManager.getUiRoot(AppUi.CATEGORY_SELECT));
 
     // repeat instructions
-    TextToSpeech.main(new String[] {"Pick a category"});
+    TextToSpeech.main(new String[] {"Pick a difficulty"});
   }
 
   private void resetGame() {
@@ -312,7 +312,7 @@ public class CanvasController implements Controller {
       // generate a new word
       category = CategorySelect.generateSetCategory();
       lblCategory.setText("Draw: " + category);
-      TextToSpeech.main(new String[] {"Your category is:" + category});
+      TextToSpeech.main(new String[] {"Your word is:" + category});
 
     } else {
       TextToSpeech.main(new String[] {"Let's draw"});
