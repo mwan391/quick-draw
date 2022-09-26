@@ -97,7 +97,7 @@ public class CategoryController implements Controller {
 
   private void resetPage() {
     // return the page to its initial state.
-    lblCategory.setText("[Choose A Difficulty]");
+    lblCategory.setText("Choose A Difficulty:");
     btnStartGame.setDisable(true);
     btnEasy.setDisable(false);
     categoryMessage.setVisible(false);
