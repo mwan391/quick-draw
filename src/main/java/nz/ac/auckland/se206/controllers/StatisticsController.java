@@ -11,7 +11,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.text.Text;
-import nz.ac.auckland.se206.CategorySelect;
+import nz.ac.auckland.se206.CategorySelect.Difficulty;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.daos.UserStatsDao;
@@ -73,7 +73,7 @@ public class StatisticsController implements Controller {
     for (GameModel game : latestGames) {
 
       // get category name
-      String category = CategorySelect.Difficulty.values()[game.getDifficulty()].toString();
+      String category = Difficulty.valueOf(game.getDifficulty()).toString();
 
       // get won status
       String won;
@@ -140,7 +140,7 @@ public class StatisticsController implements Controller {
       return;
     }
 
-    String category = CategorySelect.Difficulty.values()[bestGame.getDifficulty()].toString();
+    String category = Difficulty.valueOf(bestGame.getDifficulty()).toString();
 
     // build and update the best game text
     StringBuilder stringBuilder = new StringBuilder();
@@ -166,7 +166,7 @@ public class StatisticsController implements Controller {
     }
 
     GameModel lastGame = lastGames.get(0);
-    String category = CategorySelect.Difficulty.values()[lastGame.getDifficulty()].toString();
+    String category = Difficulty.valueOf(lastGame.getDifficulty()).toString();
 
     // build and update the best game text
     StringBuilder stringBuilder = new StringBuilder();

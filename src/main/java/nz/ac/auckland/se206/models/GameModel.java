@@ -4,12 +4,12 @@ public class GameModel {
 
   private int id;
   private int userId;
-  private int difficulty;
+  private String difficulty;
   private String word;
   private boolean won;
   private int time;
 
-  public GameModel(int id, int userId, int difficulty, String word, boolean won, int time) {
+  public GameModel(int id, int userId, String difficulty, String word, boolean won, int time) {
     this.id = id;
     this.userId = userId;
     this.difficulty = difficulty;
@@ -26,7 +26,7 @@ public class GameModel {
     return userId;
   }
 
-  public int getDifficulty() {
+  public String getDifficulty() {
     return difficulty;
   }
 
