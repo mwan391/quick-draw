@@ -121,7 +121,7 @@ public class UserStatsDao {
     return new GameModel(
         rs.getInt("id"),
         rs.getInt("user_id"),
-        rs.getInt("difficulty"),
+        rs.getString("difficulty"),
         rs.getString("word"),
         rs.getBoolean("won"),
         rs.getInt("time"));

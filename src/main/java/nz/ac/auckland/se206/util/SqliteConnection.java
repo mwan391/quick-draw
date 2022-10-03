@@ -64,7 +64,7 @@ public class SqliteConnection {
     // create users table with following fields
     StringBuilder sb = new StringBuilder("CREATE TABLE IF NOT EXISTS users ");
     sb.append("(id INTEGER PRIMARY KEY AUTOINCREMENT, ");
-    sb.append("username VARCHAR(256) NOT NULL, ");
+    sb.append("username TEXT NOT NULL, ");
     sb.append("game_id INTEGER);");
     return statement.execute(sb.toString());
   }
@@ -74,7 +74,7 @@ public class SqliteConnection {
     StringBuilder sb = new StringBuilder("CREATE TABLE IF NOT EXISTS games ");
     sb.append("(id INTEGER PRIMARY KEY AUTOINCREMENT, ");
     sb.append("user_id INTEGER, ");
-    sb.append("difficulty INTEGER, word VARCHAR, won BOOLEAN, ");
+    sb.append("difficulty TEXT, word TEXT, won BOOLEAN, ");
     sb.append("time INTEGER);");
     return statement.execute(sb.toString());
   }
