@@ -104,7 +104,7 @@ public class GameSettingDao {
     try {
       // update any settings for a user
       String query =
-          "UPDATE settings SET words=?, time=?, accuracy=?, confidence=? WHERE user_id=?";
+          "UPDATE settings SET words=?, time=?, accuracy=?, confidence=? WHERE username=?";
       PreparedStatement ps = connection.prepareStatement(query);
       // input the different settings to the query
       ps.setString(1, settings.getTime());
