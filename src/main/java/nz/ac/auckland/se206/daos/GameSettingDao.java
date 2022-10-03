@@ -126,7 +126,7 @@ public class GameSettingDao {
   /**
    * getter for game settings instance
    *
-   * @param rs
+   * @param rs a table of data from a sql query
    * @return instance of game setting
    * @throws SQLException
    */

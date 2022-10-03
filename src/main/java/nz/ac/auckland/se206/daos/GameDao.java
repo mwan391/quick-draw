@@ -92,6 +92,12 @@ public class GameDao {
     }
   }
 
+  /**
+   * retrieves a previously played game by its id
+   *
+   * @param gameId of current game
+   * @return the game instance with all its details
+   */
   public GameModel getGameById(int gameId) {
     Connection connection = SqliteConnection.openConnection();
     GameModel game = null;
@@ -115,7 +121,7 @@ public class GameDao {
    * retrieves all games played by a given user
    *
    * @param userId of given user
-   * @return list of games
+   * @return list of game session
    */
   public List<GameModel> getGames(int userId) {
     Connection connection = SqliteConnection.openConnection();
@@ -140,6 +146,13 @@ public class GameDao {
     return games;
   }
 
+  /**
+   * getter for game session instance
+   *
+   * @param rs a table of data from a sql query
+   * @return instance of game session
+   * @throws SQLException
+   */
   private GameModel getGame(ResultSet rs) throws SQLException {
     // helper to convert a game row in table to game instance
     return new GameModel(
