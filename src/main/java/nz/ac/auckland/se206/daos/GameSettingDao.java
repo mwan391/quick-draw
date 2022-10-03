@@ -10,6 +10,12 @@ import nz.ac.auckland.se206.util.SqliteConnection;
 
 public class GameSettingDao {
 
+  /**
+   * creates a new setting into the database and returns the id
+   *
+   * @param username of current user
+   * @return id of new setting
+   */
   public int add(String username) {
     Connection connection = SqliteConnection.openConnection();
     int id = 0;
@@ -59,6 +65,12 @@ public class GameSettingDao {
     return settingFound;
   }
 
+  /**
+   * retrieves the settings of the latest game played by a user
+   *
+   * @param username of current user
+   * @return the settings for the user
+   */
   public GameSettingModel get(String username) {
     Connection connection = SqliteConnection.openConnection();
     GameSettingModel user = null;
@@ -80,6 +92,12 @@ public class GameSettingDao {
     return user;
   }
 
+  /**
+   * update the selected settings for a game played by a user
+   *
+   * @param settings any changes to settings even if user keeps the same settings
+   * @return whether or not the settings have been updated
+   */
   public boolean update(GameSettingModel settings) {
     Connection connection = SqliteConnection.openConnection();
     boolean updated = false;
