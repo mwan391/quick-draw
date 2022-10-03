@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import nz.ac.auckland.se206.CategorySelect.Difficulty;
 import nz.ac.auckland.se206.models.GameModel;
 import nz.ac.auckland.se206.util.Logger;
 import nz.ac.auckland.se206.util.SqliteConnection;
@@ -16,11 +17,11 @@ public class GameDao {
    * add a new game to the database and return its id
    *
    * @param userId of current user
-   * @param difficultyValue using ordinal of difficulty enum
+   * @param difficulty using difficulty enum
    * @param word of chosen category
    * @return id of new game
    */
-  public int addNewGame(int userId, int difficultyValue, String word) {
+  public int addNewGame(int userId, Difficulty difficulty, String word) {
     Connection connection = SqliteConnection.openConnection();
     int id = 0;
     try {
@@ -29,7 +30,7 @@ public class GameDao {
       PreparedStatement ps = connection.prepareStatement(query);
       // set paramaters (column titles) to add into the table
       ps.setInt(1, userId);
-      ps.setInt(2, difficultyValue);
+      ps.setString(2, difficulty.toString());
       ps.setString(3, word);
       ps.executeUpdate();
       // get next unique id for new game
@@ -144,7 +145,7 @@ public class GameDao {
     return new GameModel(
         rs.getInt("id"),
         rs.getInt("user_id"),
-        rs.getInt("difficulty"),
+        rs.getString("difficulty"),
         rs.getString("word"),
         rs.getBoolean("won"),
         rs.getInt("time"));
