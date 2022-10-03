@@ -4,13 +4,13 @@ public class GameSettingModel {
 
   private int id;
   private String username;
-  private int words;
-  private int time;
-  private int accuracy;
-  private int confidence;
+  private String words;
+  private String time;
+  private String accuracy;
+  private String confidence;
 
   public GameSettingModel(
-      int id, String username, int words, int time, int accuracy, int confidence) {
+      int id, String username, String words, String time, String accuracy, String confidence) {
     this.id = id;
     this.username = username;
     this.words = words;
@@ -27,19 +27,19 @@ public class GameSettingModel {
     return username;
   }
 
-  public int getWords() {
+  public String getWords() {
     return words;
   }
 
-  public int getTime() {
+  public String getTime() {
     return time;
   }
 
-  public int getAccuracy() {
+  public String getAccuracy() {
     return accuracy;
   }
 
-  public int getConfidence() {
+  public String getConfidence() {
     return confidence;
   }
 }

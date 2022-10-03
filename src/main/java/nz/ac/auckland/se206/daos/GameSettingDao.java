@@ -89,10 +89,10 @@ public class GameSettingDao {
           "UPDATE settings SET words=?, time=?, accuracy=?, confidence=? WHERE user_id=?";
       PreparedStatement ps = connection.prepareStatement(query);
       // input the different settings to the query
-      ps.setInt(1, settings.getTime());
-      ps.setInt(2, settings.getAccuracy());
-      ps.setInt(3, settings.getAccuracy());
-      ps.setInt(4, settings.getConfidence());
+      ps.setString(1, settings.getTime());
+      ps.setString(2, settings.getAccuracy());
+      ps.setString(3, settings.getAccuracy());
+      ps.setString(4, settings.getConfidence());
       // for this user
       ps.setString(5, settings.getUser());
       ps.execute();
@@ -117,9 +117,9 @@ public class GameSettingDao {
     return new GameSettingModel(
         rs.getInt("id"),
         rs.getString("username"),
-        rs.getInt("words"),
-        rs.getInt("time"),
-        rs.getInt("accuracy"),
-        rs.getInt("confidence"));
+        rs.getString("words"),
+        rs.getString("time"),
+        rs.getString("accuracy"),
+        rs.getString("confidence"));
   }
 }
