@@ -52,6 +52,7 @@ public class SqliteConnection {
       // initialise tables if they do not exist
       createUsersTable(statement);
       createGamesTable(statement);
+      createSettingsTable(statement);
     } catch (SQLException e) {
       Logger.printSqlError(e);
     } finally {
@@ -75,6 +76,16 @@ public class SqliteConnection {
     sb.append("user_id INTEGER, ");
     sb.append("difficulty INTEGER, word VARCHAR, won BOOLEAN, ");
     sb.append("time INTEGER);");
+    return statement.execute(sb.toString());
+  }
+
+  private boolean createSettingsTable(Statement statement) throws SQLException {
+    // create settings table, integers correspond to a difficulty (0=Easy 1=Medium 2=Hard 3=Master)
+    StringBuilder sb = new StringBuilder("CREATE TABLE IF NOT EXISTS settings ");
+    sb.append("(id INTEGER PRIMARY KEY AUTOINCREMENT, ");
+    sb.append("username TEXT, ");
+    sb.append("words INTEGER, time INTEGER, ");
+    sb.append("accuracy INTEGER, confidence INTEGER);");
     return statement.execute(sb.toString());
   }
 }
