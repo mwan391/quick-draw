@@ -22,7 +22,7 @@ public class GameSettingDao {
     try {
       // add new row to table
       String query =
-          "INSERT INTO settings (user_id, words, time, accuracy, confidence) VALUES (?,-1,-1,-1,-1)";
+          "INSERT INTO settings (user_id, words, time, accuracy, confidence) VALUES (?,NULL,NULL,NULL,NULL)";
       PreparedStatement ps = connection.prepareStatement(query);
       // set paramaters (column values) to into the table
       ps.setInt(1, userId);
@@ -107,8 +107,8 @@ public class GameSettingDao {
           "UPDATE settings SET words=?, time=?, accuracy=?, confidence=? WHERE user_id=?";
       PreparedStatement ps = connection.prepareStatement(query);
       // input the different settings to the query
-      ps.setString(1, settings.getTime());
-      ps.setString(2, settings.getAccuracy());
+      ps.setString(1, settings.getWords());
+      ps.setString(2, settings.getTime());
       ps.setString(3, settings.getAccuracy());
       ps.setString(4, settings.getConfidence());
       // for this user
