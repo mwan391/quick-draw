@@ -116,9 +116,9 @@ public class SqliteConnection {
     // create settings table, integers correspond to a difficulty (0=Easy 1=Medium 2=Hard 3=Master)
     StringBuilder sb = new StringBuilder("CREATE TABLE IF NOT EXISTS settings ");
     sb.append("(id INTEGER PRIMARY KEY AUTOINCREMENT, ");
-    sb.append("username TEXT, ");
-    sb.append("words INTEGER, time INTEGER, ");
-    sb.append("accuracy INTEGER, confidence INTEGER);");
+    sb.append("user_id INTEGER, ");
+    sb.append("words TEXT, time TEXT, ");
+    sb.append("accuracy TEXT, confidence TEXT);");
     return statement.execute(sb.toString());
   }
 }
