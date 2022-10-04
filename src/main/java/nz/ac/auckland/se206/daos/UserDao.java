@@ -173,7 +173,7 @@ public class UserDao {
   /**
    * getter for user model instance
    *
-   * @param rs
+   * @param rs a table of data from a sql query
    * @return instance of user
    * @throws SQLException
    */
