@@ -41,31 +41,6 @@ public class GameSettingDao {
   }
 
   /**
-   * check if any settings exist for a given user
-   *
-   * @param userId of user
-   * @return whether or not settings were found for the user
-   */
-  public boolean check(int userId) {
-    Connection connection = SqliteConnection.openConnection();
-    boolean settingFound = false;
-    try {
-      // filter for a setting configured for the user
-      PreparedStatement statement =
-          connection.prepareStatement("SELECT 1 FROM settings WHERE user_id=?");
-      // input query parameters
-      statement.setInt(1, userId);
-      ResultSet rst = statement.executeQuery();
-      settingFound = rst.next();
-    } catch (SQLException e) {
-      Logger.printSqlError(e);
-    } finally {
-      SqliteConnection.closeConnection(connection);
-    }
-    return settingFound;
-  }
-
-  /**
    * retrieves the settings of the latest game played by a user
    *
    * @param userId of current user
