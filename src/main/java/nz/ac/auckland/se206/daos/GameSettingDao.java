@@ -20,14 +20,14 @@ public class GameSettingDao {
     Connection connection = SqliteConnection.openConnection();
     int id = 0;
     try {
-      // add new row to table
+      // add new row with all settings initialised to null
       String query =
           "INSERT INTO settings (user_id, words, time, accuracy, confidence) VALUES (?,NULL,NULL,NULL,NULL)";
       PreparedStatement ps = connection.prepareStatement(query);
       // set paramaters (column values) to into the table
       ps.setInt(1, userId);
       ps.executeUpdate();
-      // get next unique id for new game
+      // get next unique id for setting
       ResultSet rs = ps.getGeneratedKeys();
       if (rs.next()) {
         id = rs.getInt(1);
@@ -81,12 +81,12 @@ public class GameSettingDao {
       String query =
           "UPDATE settings SET words=?, time=?, accuracy=?, confidence=? WHERE user_id=?";
       PreparedStatement ps = connection.prepareStatement(query);
-      // input the different settings to the query
+      // input the values to the different settings
       ps.setString(1, settings.getWords());
       ps.setString(2, settings.getTime());
       ps.setString(3, settings.getAccuracy());
       ps.setString(4, settings.getConfidence());
-      // for this user
+      // settings for this user
       ps.setInt(5, settings.getUser());
       ps.execute();
       updated = true;
