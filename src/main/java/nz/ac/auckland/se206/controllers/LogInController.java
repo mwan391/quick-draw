@@ -11,6 +11,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
+import nz.ac.auckland.se206.daos.GameSettingDao;
 import nz.ac.auckland.se206.daos.UserDao;
 import nz.ac.auckland.se206.models.UserModel;
 import nz.ac.auckland.se206.speech.TextToSpeech;
@@ -62,8 +63,13 @@ public class LogInController implements Controller {
     }
 
     // set the newly made user as the active user and add to the drop down list
-    UserModel.setActiveUser(userDao.getUserById(userDao.addNewUser(userName)));
+    int newId = userDao.addNewUser(userName);
+    UserModel.setActiveUser(userDao.getUserById(newId));
     existingUsers.add(userName);
+
+    // create a blank settings entry for the new user
+    GameSettingDao settingDao = new GameSettingDao();
+    settingDao.add(newId);
 
     // go to the next screen
     nextScreen(event);
