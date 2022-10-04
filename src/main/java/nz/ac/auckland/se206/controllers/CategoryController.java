@@ -19,6 +19,7 @@ public class CategoryController implements Controller {
   @FXML private Button btnStartGame;
   @FXML private Button btnLogOut;
   @FXML private Button btnUserStatistics;
+  @FXML private Button btnSettings;
   @FXML private Button btnEasy;
   @FXML private Button btnMedium;
   @FXML private Button btnHard;
@@ -95,6 +96,11 @@ public class CategoryController implements Controller {
     // load the necessary stats and change the scene
     statisticsController.loadPage();
     scene.setRoot(statsRoot);
+  }
+
+  @FXML
+  private void onSeeSettings(ActionEvent event) {
+    // TODO
   }
 
   private void resetPage() {

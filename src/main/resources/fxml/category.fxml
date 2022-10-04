@@ -206,6 +206,30 @@
                         </VBox>
                      </graphic>
                   </Button>
+                  <Button fx:id="btnSettings" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onSeeSettings" prefHeight="70.0" prefWidth="110.0" style="-fx-background-color: #882FF6;" textFill="WHITE">
+                     <font>
+                        <Font name="Gill Sans MT" size="16.0" />
+                     </font>
+                     <graphic>
+                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                           <children>
+                              <ImageView fitHeight="38.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/buttonicons/stats.png" />
+                                 </image>
+                              </ImageView>
+                              <Label text="Settings" textFill="WHITE">
+                                 <font>
+                                    <Font name="Arial Rounded MT Bold" size="17.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                              </Label>
+                           </children>
+                        </VBox>
+                     </graphic>
+                  </Button>
                </children>
             </HBox>
          </children>
