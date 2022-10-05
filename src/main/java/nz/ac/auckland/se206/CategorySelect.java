@@ -16,7 +16,8 @@ public class CategorySelect {
   public enum Difficulty {
     EASY,
     MEDIUM,
-    HARD
+    HARD,
+    MASTER
   }
 
   private static HashMap<Difficulty, ArrayList<String>> categories = new HashMap<>();
@@ -24,7 +25,8 @@ public class CategorySelect {
   private static Difficulty wordDifficulty;
 
   /*
-   * This method is invoked when the application starts. It loads the given csv file into a hashmap
+   * This method is invoked when the application starts. It loads the given csv
+   * file into a hashmap
    * corresponding to the difficulty.
    *
    * @param csvName the name of the csv file in the resource folder.
@@ -41,7 +43,8 @@ public class CategorySelect {
 
     URL csvFile = CategorySelect.class.getResource("/" + csvName + ".csv");
 
-    // code adapted from https://cowtowncoder.medium.com/reading-csv-with-jackson-c4e74a15ddc1
+    // code adapted from
+    // https://cowtowncoder.medium.com/reading-csv-with-jackson-c4e74a15ddc1
     final CsvMapper mapper = new CsvMapper();
     // read csv file lines into an iterator class
     MappingIterator<List<String>> csvValues =
@@ -49,7 +52,8 @@ public class CategorySelect {
             .readerForListOf(String.class)
             .with(CsvParser.Feature.WRAP_AS_ARRAY)
             .readValues(csvFile);
-    // iterate through every line in the csv and assign the values to the corresponding array
+    // iterate through every line in the csv and assign the values to the
+    // corresponding array
     while (csvValues.hasNextValue()) {
       List<String> row = csvValues.nextValue();
       tempCategories.get(row.get(1)).add(row.get(0));
