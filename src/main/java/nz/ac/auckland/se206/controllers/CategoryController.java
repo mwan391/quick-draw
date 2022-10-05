@@ -59,6 +59,10 @@ public class CategoryController implements Controller {
     TextToSpeech.main(new String[] {"Let's draw!"});
     ;
 
+    // update settings in database
+    GameSettingDao settingDao = new GameSettingDao();
+    settingDao.update(userSetting);
+
     // change the scene and start the game
     canvasController.startTimer();
     scene.setRoot(canvasRoot);
@@ -80,7 +84,11 @@ public class CategoryController implements Controller {
 
   @FXML
   private void onGenerateEasyCategory(ActionEvent event) {
+    // set categories
     generateCategory(Difficulty.EASY);
+
+    // update game model
+    userSetting.setWords("EASY");
 
     // disable the category button so users cannot reroll
     btnStartGame.setDisable(false);
