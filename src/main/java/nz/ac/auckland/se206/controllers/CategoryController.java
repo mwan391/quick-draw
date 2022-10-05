@@ -11,6 +11,8 @@ import nz.ac.auckland.se206.CategorySelect;
 import nz.ac.auckland.se206.CategorySelect.Difficulty;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
+import nz.ac.auckland.se206.daos.GameSettingDao;
+import nz.ac.auckland.se206.models.GameSettingModel;
 import nz.ac.auckland.se206.models.UserModel;
 import nz.ac.auckland.se206.speech.TextToSpeech;
 
@@ -27,6 +29,8 @@ public class CategoryController implements Controller {
   @FXML private Label lblCategory;
   @FXML private Label categoryMessage;
 
+  private GameSettingModel userSetting;
+
   @FXML
   public void initialize() {
     // disable placeholder buttons
@@ -36,6 +40,11 @@ public class CategoryController implements Controller {
     btnStartGame.setDisable(true);
     // hide message before it has been set
     categoryMessage.setVisible(false);
+  }
+
+  public void setUserSettings(int settingId) {
+    GameSettingDao settingDao = new GameSettingDao();
+    userSetting = settingDao.get(settingId);
   }
 
   @FXML
