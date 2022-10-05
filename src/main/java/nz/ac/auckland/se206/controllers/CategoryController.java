@@ -45,6 +45,18 @@ public class CategoryController implements Controller {
   public void setUserSettings(int settingId) {
     GameSettingDao settingDao = new GameSettingDao();
     userSetting = settingDao.get(settingId);
+
+    // set presets
+
+    // set word difficulty
+    String wordDifficulty = userSetting.getWords();
+    switch (wordDifficulty) {
+      case "EASY":
+        onGenerateEasyCategory();
+        break;
+      default:
+        // TODO other categories;
+    }
   }
 
   @FXML
@@ -79,11 +91,10 @@ public class CategoryController implements Controller {
 
     // use tts on background thread to avoid lags
     TextToSpeech.main(new String[] {"Your word is " + CategorySelect.getCategory()});
-    ;
   }
 
   @FXML
-  private void onGenerateEasyCategory(ActionEvent event) {
+  private void onGenerateEasyCategory() {
     // set categories
     generateCategory(Difficulty.EASY);
 
