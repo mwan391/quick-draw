@@ -42,6 +42,7 @@ public class SettingsController implements Controller {
 
     // update page buttons and labels
     loadAccuracy();
+    loadTime();
   }
 
   @FXML
@@ -73,6 +74,40 @@ public class SettingsController implements Controller {
         break;
       default:
         // do nothing
+        break;
+    }
+  }
+
+  @FXML
+  private void onSetTime(ActionEvent event) {
+    // get button that triggered event
+    Button button = (Button) event.getSource();
+    // set difficulty according to button
+    time = button.getText().toUpperCase();
+    // enable and disable correct buttons
+    loadTime();
+  }
+
+  private void loadTime() {
+    // enable all time buttons
+    btnTimeEasy.setDisable(false);
+    btnTimeMedium.setDisable(false);
+    btnTimeHard.setDisable(false);
+    btnTimeMaster.setDisable(false);
+
+    // disable relevant button
+    switch (time) {
+      case "EASY":
+        btnTimeEasy.setDisable(true);
+        break;
+      case "MEDIUM":
+        btnTimeMedium.setDisable(true);
+        break;
+      case "HARD":
+        btnTimeHard.setDisable(true);
+        break;
+      default:
+        btnTimeMaster.setDisable(true);
         break;
     }
   }

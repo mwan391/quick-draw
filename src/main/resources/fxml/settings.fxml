@@ -39,10 +39,10 @@
             </Label>
             <HBox alignment="TOP_CENTER" prefWidth="200.0" spacing="10.0">
                <children>
-                  <Button fx:id="btnTimeEasy" mnemonicParsing="false" text="Easy" />
-                  <Button fx:id="btnTimeMedium" mnemonicParsing="false" text="Medium" />
-                  <Button fx:id="btnTimeHard" mnemonicParsing="false" text="Hard" />
-                  <Button fx:id="btnTimeMaster" mnemonicParsing="false" text="Master" />
+                  <Button fx:id="btnTimeEasy" mnemonicParsing="false" onAction="#onSetTime" text="Easy" />
+                  <Button fx:id="btnTimeMedium" mnemonicParsing="false" onAction="#onSetTime" text="Medium" />
+                  <Button fx:id="btnTimeHard" mnemonicParsing="false" onAction="#onSetTime" text="Hard" />
+                  <Button fx:id="btnTimeMaster" mnemonicParsing="false" onAction="#onSetTime" text="Master" />
                </children>
             </HBox>
             <Label text="Insert Description Here" />
