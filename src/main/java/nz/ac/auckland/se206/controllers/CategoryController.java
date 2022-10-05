@@ -180,11 +180,11 @@ public class CategoryController implements Controller {
     // get root and controller for settings page
     Scene scene = ((Button) event.getSource()).getScene();
     Parent settingsRoot = SceneManager.getUiRoot(AppUi.SETTINGS);
-    // SettingsController settingsController = (SettingsController)
-    // SceneManager.getController(settingsRoot);
+    SettingsController settingsController =
+        (SettingsController) SceneManager.getController(settingsRoot);
 
     // load the necessary settings and change the scene
-    // settingsController.loadPage();
+    settingsController.loadPage(userSetting);
     scene.setRoot(settingsRoot);
   }
 

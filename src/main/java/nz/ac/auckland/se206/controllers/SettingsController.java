@@ -6,6 +6,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
+import nz.ac.auckland.se206.daos.GameSettingDao;
+import nz.ac.auckland.se206.models.GameSettingModel;
 
 public class SettingsController implements Controller {
 
@@ -26,15 +28,37 @@ public class SettingsController implements Controller {
   @FXML private Button btnConfidenceHard;
   @FXML private Button btnConfidenceMaster;
 
+  // saved settings model and updated settings
+  private GameSettingModel userSetting;
+  private String accuracy;
+  private String time;
+  private String confidence;
+
+  public void loadPage(GameSettingModel model) {
+    userSetting = model;
+    accuracy = model.getAccuracy();
+    time = model.getTime();
+    confidence = model.getConfidence();
+  }
+
   @FXML
   private void onCancel(ActionEvent event) {
-    // TODO
+    // do nothing except run the scene change procedure
     changeScene(event);
   }
 
   @FXML
   private void onSave(ActionEvent event) {
-    // TODO
+    // update settings model
+    userSetting.setAccuracy(accuracy);
+    userSetting.setTime(time);
+    userSetting.setConfidence(confidence);
+
+    // update settings in database
+    GameSettingDao settingDao = new GameSettingDao();
+    settingDao.update(userSetting);
+
+    // run scene change procedure
     changeScene(event);
   }
 
