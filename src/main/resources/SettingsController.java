@@ -9,6 +9,20 @@ public class SettingsController implements Controller {
 
     @FXML private Button btnCancel;
     @FXML private Button btnSave;
+    //Accuracy buttons
+    @FXML private Button btnAccuracyEasy;
+    @FXML private Button btnAccuracyMedium;
+    @FXML private Button btnAccuracyHard;
+    //Time buttons
+    @FXML private Button btnTimeEasy;
+    @FXML private Button btnTimeMedium;
+    @FXML private Button btnTimeHard;
+    @FXML private Button btnTimeMaster;
+    //confidence buttons
+    @FXML private Button btnConfidenceEasy;
+    @FXML private Button btnConfidenceMedium;
+    @FXML private Button btnConfidenceHard;
+    @FXML private Button btnConfidenceMaster;
     
     @FXML
     private void onCancel(ActionEvent event) {

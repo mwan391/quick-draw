@@ -23,9 +23,9 @@
             </Label>
             <HBox alignment="TOP_CENTER" prefWidth="200.0" spacing="10.0">
                <children>
-                  <Button mnemonicParsing="false" text="Easy" />
-                  <Button mnemonicParsing="false" text="Medium" />
-                  <Button mnemonicParsing="false" text="Hard" />
+                  <Button fx:id="btnAccuracyEasy" mnemonicParsing="false" text="Easy" />
+                  <Button fx:id="btnAccuracyMedium" mnemonicParsing="false" text="Medium" />
+                  <Button fx:id="btnAccuracyHard" mnemonicParsing="false" text="Hard" />
                </children>
             </HBox>
             <Label text="Insert Description Here" />
@@ -40,10 +40,10 @@
             </Label>
             <HBox alignment="TOP_CENTER" prefWidth="200.0" spacing="10.0">
                <children>
-                  <Button mnemonicParsing="false" text="Easy" />
-                  <Button mnemonicParsing="false" text="Medium" />
-                  <Button mnemonicParsing="false" text="Hard" />
-                  <Button mnemonicParsing="false" text="Master" />
+                  <Button fx:id="btnTimeEasy" mnemonicParsing="false" text="Easy" />
+                  <Button fx:id="btnTimeMedium" mnemonicParsing="false" text="Medium" />
+                  <Button fx:id="btnTimeHard" mnemonicParsing="false" text="Hard" />
+                  <Button fx:id="btnTimeMaster" mnemonicParsing="false" text="Master" />
                </children>
             </HBox>
             <Label text="Insert Description Here" />
@@ -58,10 +58,10 @@
             </Label>
             <HBox alignment="TOP_CENTER" prefWidth="200.0" spacing="10.0">
                <children>
-                  <Button mnemonicParsing="false" text="Easy" />
-                  <Button mnemonicParsing="false" text="Medium" />
-                  <Button mnemonicParsing="false" text="Hard" />
-                  <Button mnemonicParsing="false" text="Master" />
+                  <Button fx:id="btnConfidenceEasy" mnemonicParsing="false" text="Easy" />
+                  <Button fx:id="btnConfidenceMedium" mnemonicParsing="false" text="Medium" />
+                  <Button fx:id="btnConfidenceHard" mnemonicParsing="false" text="Hard" />
+                  <Button fx:id="btnConfidenceMaster" mnemonicParsing="false" text="Master" />
                </children>
             </HBox>
             <Label text="Insert Description Here" />
