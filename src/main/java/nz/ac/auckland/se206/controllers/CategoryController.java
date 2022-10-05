@@ -31,17 +31,6 @@ public class CategoryController implements Controller {
 
   private GameSettingModel userSetting;
 
-  @FXML
-  public void initialize() {
-    // disable placeholder buttons
-    btnMedium.setDisable(true);
-    btnHard.setDisable(true);
-    btnMaster.setDisable(true);
-    btnStartGame.setDisable(true);
-    // hide message before it has been set
-    categoryMessage.setVisible(false);
-  }
-
   public void setUserSettings(int settingId) {
     GameSettingDao settingDao = new GameSettingDao();
     userSetting = settingDao.get(settingId);
@@ -54,8 +43,21 @@ public class CategoryController implements Controller {
       case "EASY":
         onGenerateEasyCategory();
         break;
+      case "MEDIUM":
+        onGenerateMediumCategory();
+        break;
+      case "HARD":
+        onGenerateHardCategory();
+        break;
+      case "MASTER":
+        onGenerateMasterCategory();
+        break;
       default:
-        // TODO other categories;
+        // disable start game button
+        btnStartGame.setDisable(true);
+        // hide message before it has been set
+        categoryMessage.setVisible(false);
+        break;
     }
   }
 
@@ -84,6 +86,13 @@ public class CategoryController implements Controller {
   }
 
   private void generateCategory(CategorySelect.Difficulty wordDifficulty) {
+    // re-enable all buttons
+    btnStartGame.setDisable(false);
+    btnEasy.setDisable(false);
+    btnMedium.setDisable(false);
+    btnHard.setDisable(false);
+    btnMaster.setDisable(false);
+
     // generate set word
     categoryMessage.setVisible(true);
     CategorySelect.setWordDifficulty(wordDifficulty);
@@ -102,8 +111,43 @@ public class CategoryController implements Controller {
     userSetting.setWords("EASY");
 
     // disable the category button so users cannot reroll
-    btnStartGame.setDisable(false);
     btnEasy.setDisable(true);
+  }
+
+  @FXML
+  private void onGenerateMediumCategory() {
+    // set categories
+    generateCategory(Difficulty.MEDIUM);
+
+    // update game model
+    userSetting.setWords("MEDIUM");
+
+    // disable the category button so users cannot reroll
+    btnMedium.setDisable(true);
+  }
+
+  @FXML
+  private void onGenerateHardCategory() {
+    // set categories
+    generateCategory(Difficulty.HARD);
+
+    // update game model
+    userSetting.setWords("HARD");
+
+    // disable the category button so users cannot reroll
+    btnHard.setDisable(true);
+  }
+
+  @FXML
+  private void onGenerateMasterCategory() {
+    // set categories
+    generateCategory(Difficulty.MASTER);
+
+    // update game model
+    userSetting.setWords("MASTER");
+
+    // disable the category button so users cannot reroll
+    btnMaster.setDisable(true);
   }
 
   @FXML

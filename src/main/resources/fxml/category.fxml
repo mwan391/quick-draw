@@ -71,7 +71,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Button fx:id="btnMedium" mnemonicParsing="false" prefHeight="80.0" prefWidth="120.0" style="-fx-background-color: #F99D07;">
+                  <Button fx:id="btnMedium" mnemonicParsing="false" onAction="#onGenerateMediumCategory" prefHeight="80.0" prefWidth="120.0" style="-fx-background-color: #F99D07;">
                      <font>
                         <Font name="Gill Sans MT" size="17.0" />
                      </font>
@@ -95,7 +95,7 @@
                         </VBox>
                      </graphic>
                   </Button>
-                  <Button fx:id="btnHard" mnemonicParsing="false" prefHeight="80.0" prefWidth="120.0" style="-fx-background-color: RED;" textFill="WHITE">
+                  <Button fx:id="btnHard" mnemonicParsing="false" onAction="#onGenerateHardCategory" prefHeight="80.0" prefWidth="120.0" style="-fx-background-color: RED;" textFill="WHITE">
                      <font>
                         <Font name="Gill Sans MT" size="17.0" />
                      </font>
@@ -119,7 +119,7 @@
                         </VBox>
                      </graphic>
                   </Button>
-                  <Button fx:id="btnMaster" mnemonicParsing="false" prefHeight="80.0" prefWidth="120.0" style="-fx-background-color: #8b0000;" textFill="WHITE">
+                  <Button fx:id="btnMaster" mnemonicParsing="false" onAction="#onGenerateMasterCategory" prefHeight="80.0" prefWidth="120.0" style="-fx-background-color: #8b0000;" textFill="WHITE">
                      <font>
                         <Font name="Gill Sans MT" size="17.0" />
                      </font>
