@@ -46,20 +46,20 @@ public class SettingsController implements Controller {
 
   @FXML
   private void onSetAccuracy(ActionEvent event) {
+    // get button that triggered event
+    Button button = (Button) event.getSource();
+    // set difficulty according to button
+    accuracy = button.getText().toUpperCase();
+    // enable and disable correct buttons
+    loadAccuracy();
+  }
+
+  private void loadAccuracy() {
     // enable all accuracy buttons
     btnAccuracyEasy.setDisable(false);
     btnAccuracyMedium.setDisable(false);
     btnAccuracyHard.setDisable(false);
 
-    // get button that triggered event
-    Button button = (Button) event.getSource();
-    // set difficulty according to button
-    accuracy = button.getText().toUpperCase();
-    // disable correct button
-    loadAccuracy();
-  }
-
-  private void loadAccuracy() {
     // disable relevant button
     switch (accuracy) {
       case "EASY":
