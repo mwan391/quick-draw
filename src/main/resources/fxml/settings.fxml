@@ -57,10 +57,10 @@
             </Label>
             <HBox alignment="TOP_CENTER" prefWidth="200.0" spacing="10.0">
                <children>
-                  <Button fx:id="btnConfidenceEasy" mnemonicParsing="false" text="Easy" />
-                  <Button fx:id="btnConfidenceMedium" mnemonicParsing="false" text="Medium" />
-                  <Button fx:id="btnConfidenceHard" mnemonicParsing="false" text="Hard" />
-                  <Button fx:id="btnConfidenceMaster" mnemonicParsing="false" text="Master" />
+                  <Button fx:id="btnConfidenceEasy" mnemonicParsing="false" onAction="#onSetConfidence" text="Easy" />
+                  <Button fx:id="btnConfidenceMedium" mnemonicParsing="false" onAction="#onSetConfidence" text="Medium" />
+                  <Button fx:id="btnConfidenceHard" mnemonicParsing="false" onAction="#onSetConfidence" text="Hard" />
+                  <Button fx:id="btnConfidenceMaster" mnemonicParsing="false" onAction="#onSetConfidence" text="Master" />
                </children>
             </HBox>
             <Label text="Insert Description Here" />

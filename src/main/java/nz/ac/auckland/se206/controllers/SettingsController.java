@@ -43,6 +43,7 @@ public class SettingsController implements Controller {
     // update page buttons and labels
     loadAccuracy();
     loadTime();
+    loadConfidence();
   }
 
   @FXML
@@ -108,6 +109,40 @@ public class SettingsController implements Controller {
         break;
       default:
         btnTimeMaster.setDisable(true);
+        break;
+    }
+  }
+
+  @FXML
+  private void onSetConfidence(ActionEvent event) {
+    // get button that triggered event
+    Button button = (Button) event.getSource();
+    // set difficulty according to button
+    confidence = button.getText().toUpperCase();
+    // enable and disable correct buttons
+    loadConfidence();
+  }
+
+  private void loadConfidence() {
+    // enable all time buttons
+    btnConfidenceEasy.setDisable(false);
+    btnConfidenceMedium.setDisable(false);
+    btnConfidenceHard.setDisable(false);
+    btnConfidenceMaster.setDisable(false);
+
+    // disable relevant button
+    switch (confidence) {
+      case "EASY":
+        btnConfidenceEasy.setDisable(true);
+        break;
+      case "MEDIUM":
+        btnConfidenceMedium.setDisable(true);
+        break;
+      case "HARD":
+        btnConfidenceHard.setDisable(true);
+        break;
+      default:
+        btnConfidenceMaster.setDisable(true);
         break;
     }
   }
