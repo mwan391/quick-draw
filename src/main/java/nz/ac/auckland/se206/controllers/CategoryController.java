@@ -177,7 +177,15 @@ public class CategoryController implements Controller {
 
   @FXML
   private void onSeeSettings(ActionEvent event) {
-    // TODO
+    // get root and controller for settings page
+    Scene scene = ((Button) event.getSource()).getScene();
+    Parent settingsRoot = SceneManager.getUiRoot(AppUi.SETTINGS);
+    // SettingsController settingsController = (SettingsController)
+    // SceneManager.getController(settingsRoot);
+
+    // load the necessary settings and change the scene
+    // settingsController.loadPage();
+    scene.setRoot(settingsRoot);
   }
 
   private void resetPage() {
