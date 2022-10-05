@@ -39,6 +39,42 @@ public class SettingsController implements Controller {
     accuracy = model.getAccuracy();
     time = model.getTime();
     confidence = model.getConfidence();
+
+    // update page buttons and labels
+    loadAccuracy();
+  }
+
+  @FXML
+  private void onSetAccuracy(ActionEvent event) {
+    // enable all accuracy buttons
+    btnAccuracyEasy.setDisable(false);
+    btnAccuracyMedium.setDisable(false);
+    btnAccuracyHard.setDisable(false);
+
+    // get button that triggered event
+    Button button = (Button) event.getSource();
+    // set difficulty according to button
+    accuracy = button.getText().toUpperCase();
+    // disable correct button
+    loadAccuracy();
+  }
+
+  private void loadAccuracy() {
+    // disable relevant button
+    switch (accuracy) {
+      case "EASY":
+        btnAccuracyEasy.setDisable(true);
+        break;
+      case "MEDIUM":
+        btnAccuracyMedium.setDisable(true);
+        break;
+      case "HARD":
+        btnAccuracyHard.setDisable(true);
+        break;
+      default:
+        // do nothing
+        break;
+    }
   }
 
   @FXML

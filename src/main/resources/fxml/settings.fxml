@@ -6,7 +6,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" spacing="10.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.SettingsController">
    <children>
       <Label text="Settings">
@@ -23,9 +22,9 @@
             </Label>
             <HBox alignment="TOP_CENTER" prefWidth="200.0" spacing="10.0">
                <children>
-                  <Button fx:id="btnAccuracyEasy" mnemonicParsing="false" text="Easy" />
-                  <Button fx:id="btnAccuracyMedium" mnemonicParsing="false" text="Medium" />
-                  <Button fx:id="btnAccuracyHard" mnemonicParsing="false" text="Hard" />
+                  <Button fx:id="btnAccuracyEasy" mnemonicParsing="false" onAction="#onSetAccuracy" text="Easy" />
+                  <Button fx:id="btnAccuracyMedium" mnemonicParsing="false" onAction="#onSetAccuracy" text="Medium" />
+                  <Button fx:id="btnAccuracyHard" mnemonicParsing="false" onAction="#onSetAccuracy" text="Hard" />
                </children>
             </HBox>
             <Label text="Insert Description Here" />
