@@ -53,6 +53,8 @@ public class CategoryController implements Controller {
         onGenerateMasterCategory();
         break;
       default:
+        // Activating text to speech instructions
+        TextToSpeech.main(new String[] {"Select a difficulty"});
         // disable start game button
         btnStartGame.setDisable(true);
         // hide message before it has been set

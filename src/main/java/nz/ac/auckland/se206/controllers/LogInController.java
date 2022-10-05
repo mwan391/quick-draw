@@ -15,7 +15,6 @@ import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.daos.GameSettingDao;
 import nz.ac.auckland.se206.daos.UserDao;
 import nz.ac.auckland.se206.models.UserModel;
-import nz.ac.auckland.se206.speech.TextToSpeech;
 
 public class LogInController implements Controller {
 
@@ -109,9 +108,6 @@ public class LogInController implements Controller {
 
     // change scene
     scene.setRoot(categoryRoot);
-
-    // Activating text to speech
-    TextToSpeech.main(new String[] {"Select a difficulty"});
 
     // reset the page for the next log in
     resetPage();
