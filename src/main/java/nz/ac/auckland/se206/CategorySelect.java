@@ -94,7 +94,39 @@ public class CategorySelect {
   }
 
   public static String generateSetCategory() {
-    return (generateCategory(wordDifficulty));
+    int randomNum;
+
+    // determine which list to pull from
+    switch (wordDifficulty) {
+      case EASY:
+        generateCategory(Difficulty.EASY);
+        break;
+      case MEDIUM:
+        // choose randomly between easy/medium
+        randomNum = (int) Math.floor(Math.random() * 2);
+        if (randomNum == 1) {
+          generateCategory(Difficulty.EASY);
+        } else {
+          generateCategory(Difficulty.MEDIUM);
+        }
+        break;
+      case HARD:
+        // choose randomly between easy/medium
+        randomNum = (int) Math.floor(Math.random() * 3);
+        if (randomNum == 1) {
+          generateCategory(Difficulty.EASY);
+        } else if (randomNum == 2) {
+          generateCategory(Difficulty.MEDIUM);
+        } else {
+          generateCategory(Difficulty.HARD);
+        }
+        break;
+      case MASTER:
+        generateCategory(Difficulty.HARD);
+        break;
+    }
+
+    return category;
   }
 
   public static String getCategory() {
