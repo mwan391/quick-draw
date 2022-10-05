@@ -67,15 +67,20 @@ public class CategoryController implements Controller {
     resetPage();
   }
 
-  @FXML
-  private void onGenerateEasyCategory(ActionEvent event) {
+  private void generateCategory(CategorySelect.Difficulty wordDifficulty) {
+    // generate set word
     categoryMessage.setVisible(true);
-    CategorySelect.setWordDifficulty(Difficulty.EASY);
+    CategorySelect.setWordDifficulty(wordDifficulty);
     lblCategory.setText("\"" + CategorySelect.generateSetCategory() + "\"");
 
     // use tts on background thread to avoid lags
     TextToSpeech.main(new String[] {"Your word is " + CategorySelect.getCategory()});
     ;
+  }
+
+  @FXML
+  private void onGenerateEasyCategory(ActionEvent event) {
+    generateCategory(Difficulty.EASY);
 
     // disable the category button so users cannot reroll
     btnStartGame.setDisable(false);
