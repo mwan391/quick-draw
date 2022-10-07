@@ -11,6 +11,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.layout.VBox;
 import nz.ac.auckland.se206.CategorySelect;
 import nz.ac.auckland.se206.CategorySelect.Difficulty;
 import nz.ac.auckland.se206.SceneManager;
@@ -31,6 +32,7 @@ public class CategoryController implements Controller {
   @FXML private Button btnHard;
   @FXML private Button btnMaster;
   @FXML private ComboBox<String> dbxWordDifficulty;
+  @FXML private VBox vbxWordDifficulty;
   @FXML private Label lblCategory;
   @FXML private Label categoryMessage;
 
@@ -125,6 +127,9 @@ public class CategoryController implements Controller {
     // update game model
     userSetting.setWords("EASY");
 
+    // change box color to green
+    vbxWordDifficulty.setStyle("-fx-background-color: #35D461;");
+
     // disable the category button so users cannot reroll
     btnEasy.setDisable(true);
   }
@@ -136,6 +141,9 @@ public class CategoryController implements Controller {
 
     // update game model
     userSetting.setWords("MEDIUM");
+
+    // change box color to orange
+    vbxWordDifficulty.setStyle("-fx-background-color: #F99D07;");
 
     // disable the category button so users cannot reroll
     btnMedium.setDisable(true);
@@ -149,6 +157,9 @@ public class CategoryController implements Controller {
     // update game model
     userSetting.setWords("HARD");
 
+    // change box color to red
+    vbxWordDifficulty.setStyle("-fx-background-color: red;");
+
     // disable the category button so users cannot reroll
     btnHard.setDisable(true);
   }
@@ -160,6 +171,9 @@ public class CategoryController implements Controller {
 
     // update game model
     userSetting.setWords("MASTER");
+
+    // change box color to maroon
+    vbxWordDifficulty.setStyle("-fx-background-color: #8b0000;");
 
     // disable the category button so users cannot reroll
     btnMaster.setDisable(true);
