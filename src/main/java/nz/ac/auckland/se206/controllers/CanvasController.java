@@ -9,6 +9,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
+import java.util.stream.IntStream;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Platform;
@@ -215,7 +216,23 @@ public class CanvasController implements Controller {
   }
 
   private void computeCategoryPosition(List<Classification> allPred) {
-    return;
+    // compare each prediction to find the category's position within the list
+    IntStream.range(0, allPred.size())
+        .filter(i -> category.equals(allPred.get(i).getClassName().replace("_", " ")))
+        .forEach(pos -> printRanking(pos));
+  }
+
+  private void printRanking(int pos) {
+    // output current ranking of the category from predictions
+    if (pos < 10) {
+      System.out.println("=== Top 10 ===");
+    } else if (pos < 20) {
+      System.out.println(" === Top 20 ===");
+    } else if (pos < 50) {
+      System.out.println(" === Top 50 === ");
+    } else if (pos < 100) {
+      System.out.println(" === Top 100 === ");
+    }
   }
 
   private void endGame(Boolean wonGame) {
