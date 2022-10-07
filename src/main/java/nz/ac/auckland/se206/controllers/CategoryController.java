@@ -1,11 +1,15 @@
 package nz.ac.auckland.se206.controllers;
 
 import java.sql.SQLException;
+import java.util.Collections;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import nz.ac.auckland.se206.CategorySelect;
 import nz.ac.auckland.se206.CategorySelect.Difficulty;
@@ -26,10 +30,19 @@ public class CategoryController implements Controller {
   @FXML private Button btnMedium;
   @FXML private Button btnHard;
   @FXML private Button btnMaster;
+  @FXML private ComboBox<String> dbxWordDifficulty;
   @FXML private Label lblCategory;
   @FXML private Label categoryMessage;
 
   private GameSettingModel userSetting;
+
+  public void initialize() {
+    // add items to difficulty combo boxes
+    ObservableList<String> difficultiesAll = FXCollections.observableArrayList();
+    Collections.addAll(difficultiesAll, "Easy", "Medium", "Hard", "Master");
+    dbxWordDifficulty.setItems(difficultiesAll);
+    ;
+  }
 
   public void setUserSettings(int settingId) {
     GameSettingDao settingDao = new GameSettingDao();
