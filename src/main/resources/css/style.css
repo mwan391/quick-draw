@@ -11,3 +11,11 @@
 .combo-box {
   -fx-font: 18px "Comic Sans MS", "Comic Sans", sans-serif;
 }
+
+.list-view .list-cell:odd {
+  -fx-background-color: #c2e3ff;
+}
+
+.list-view .list-cell:even {
+  -fx-background-color: rgb(190, 199, 255);
+}

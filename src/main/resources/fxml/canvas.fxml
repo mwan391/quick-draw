@@ -128,7 +128,7 @@
                         <Insets bottom="10.0" />
                      </VBox.margin>
                   </Label>
-                  <ListView fx:id="lvwPredictions" prefHeight="249.0" prefWidth="225.0">
+                  <ListView fx:id="lvwPredictions" prefHeight="246.0" prefWidth="225.0">
                      <VBox.margin>
                         <Insets bottom="10.0" />
                      </VBox.margin>
