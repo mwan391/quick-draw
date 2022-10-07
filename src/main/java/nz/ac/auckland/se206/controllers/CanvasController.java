@@ -2,12 +2,12 @@ package nz.ac.auckland.se206.controllers;
 
 import ai.djl.ModelException;
 import ai.djl.modality.Classifications;
+import ai.djl.modality.Classifications.Classification;
 import ai.djl.translate.TranslateException;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.sql.SQLException;
 import java.util.List;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -141,7 +141,7 @@ public class CanvasController implements Controller {
     return imageBinary;
   }
 
-  public void startTimer() throws SQLException {
+  public void startTimer() {
     // set up the label and enable canvas
     isFinished = false;
     canvas.setDisable(false);
@@ -156,11 +156,7 @@ public class CanvasController implements Controller {
     timer.setCycleCount(60);
     timer.setOnFinished(
         e -> {
-          try {
-            endGame(false);
-          } catch (SQLException e1) {
-            e1.printStackTrace();
-          }
+          endGame(false);
         }); // if the timer runs to zero
     timer.play();
     runPredictionsInBkg();
@@ -170,7 +166,7 @@ public class CanvasController implements Controller {
     lblTimer.setText(String.valueOf(Integer.valueOf(lblTimer.getText()) - 1));
   }
 
-  private void triggerPredict() throws SQLException {
+  private void triggerPredict() {
 
     if (isFinished) {
       return;
@@ -178,15 +174,22 @@ public class CanvasController implements Controller {
 
     predictions.clear();
 
+    // top ten predictions
     List<Classifications.Classification> rawPredictions = null;
+    // all predictions
+    List<Classifications.Classification> allPred = null;
 
-    // get the predictions
     try {
-      rawPredictions = model.getPredictions(getCurrentSnapshot(), 10);
+      allPred = model.getPredictions(getCurrentSnapshot(), 345);
     } catch (TranslateException e) {
       System.out.println("Translate Exception when getting predictions");
       System.exit(-1);
     }
+
+    // find how close user's drawing is to the category
+    computeCategoryPosition(allPred);
+
+    rawPredictions = allPred.subList(0, 10);
 
     StringBuilder sb = new StringBuilder();
 
@@ -207,12 +210,15 @@ public class CanvasController implements Controller {
       if ((i < 4) && (category.equals(classification.getClassName().replace('_', ' ')))) {
         endGame(true);
       }
-
       i++;
     }
   }
 
-  private void endGame(Boolean wonGame) throws SQLException {
+  private void computeCategoryPosition(List<Classification> allPred) {
+    return;
+  }
+
+  private void endGame(Boolean wonGame) {
     // lock the drawing and stop timer
     canvas.setOnMouseDragged(e -> {});
     timer.pause();
@@ -303,7 +309,7 @@ public class CanvasController implements Controller {
   }
 
   @FXML
-  private void onNewGame() throws SQLException {
+  private void onNewGame() {
     if (btnNewGame.isSelected()) {
       // clear the canvas and timer
       resetGame();
@@ -388,11 +394,7 @@ public class CanvasController implements Controller {
             // run the prediction function as a 'run later' so that the page updates
             Platform.runLater(
                 () -> {
-                  try {
-                    triggerPredict();
-                  } catch (SQLException e) {
-                    e.printStackTrace();
-                  }
+                  triggerPredict();
                 });
           }
         };
