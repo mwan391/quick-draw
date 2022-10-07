@@ -5,5 +5,9 @@
 }
 
 .list-cell{
-  -fx-font: 12px "Comic Sans MS", "Comic Sans";
+  -fx-font: 11.4px "Comic Sans MS", "Comic Sans", sans-serif;
+}
+
+.combo-box {
+  -fx-font: 18px "Comic Sans MS", "Comic Sans", sans-serif;
 }
