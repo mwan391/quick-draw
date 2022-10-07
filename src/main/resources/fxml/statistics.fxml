@@ -20,7 +20,7 @@
             <Image url="@../images/doodlebg.jpg" />
          </image>
       </ImageView>
-      <ListView fx:id="lvwEasyHistory" layoutX="62.0" layoutY="176.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="275.0" prefWidth="275.0" />
+      <ListView fx:id="lvwEasyHistory" layoutX="62.0" layoutY="176.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="270.6" prefWidth="275.0" />
       <Label alignment="CENTER" layoutX="62.0" layoutY="145.0" prefHeight="25.0" prefWidth="275.0" style="-fx-background-color: #173ab5; -fx-background-radius: 5px;" text="Last Ten Games" textFill="WHITE">
          <font>
             <Font name="Arial Rounded MT Bold" size="15.0" />
@@ -38,7 +38,7 @@
             <Font name="Arial Rounded MT Bold" size="15.0" />
          </font>
       </Label>
-      <VBox alignment="TOP_CENTER" layoutX="361.0" layoutY="176.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="275.0" prefWidth="275.0" style="-fx-background-color: PURPLE; -fx-background-radius: 10px;">
+      <VBox alignment="TOP_CENTER" layoutX="361.0" layoutY="176.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="271.0" prefWidth="275.0" style="-fx-background-color: PURPLE; -fx-background-radius: 10px;">
          <children>
             <Label alignment="CENTER" prefHeight="22.0" prefWidth="134.0" style="-fx-background-color: white; -fx-background-radius: 10px;" text="Best Game">
                <font>
