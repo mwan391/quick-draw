@@ -200,7 +200,7 @@ public class CanvasController implements Controller {
           .append(" : ")
           .append(classification.getClassName().replace('_', ' '))
           .append(" : ")
-          .append(String.format("%.2f%%", 100 * classification.getProbability()));
+          .append(String.format("%d%%", Math.round(100 * classification.getProbability())));
       predictions.add(sb.toString());
 
       // check if player won (guess is correct within the top three)

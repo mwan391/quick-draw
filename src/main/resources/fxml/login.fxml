@@ -31,7 +31,7 @@
                         <Insets />
                      </opaqueInsets>
                   </Label>
-                  <ComboBox fx:id="fldUserName" editable="true" prefHeight="53.0" prefWidth="297.0" promptText="Enter your username:" style="-fx-background-color: #FFFFFF;">
+                  <ComboBox fx:id="fldUserName" editable="true" prefHeight="53.0" prefWidth="297.0" promptText="Enter your username:">
                      <cursor>
                         <Cursor fx:constant="TEXT" />
                      </cursor>
