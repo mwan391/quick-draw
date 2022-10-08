@@ -156,7 +156,7 @@
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </padding>
                      <children>
-                        <ComboBox fx:id="dbxWordDifficulty" prefWidth="150.0" promptText="Word Difficulty" visibleRowCount="4" />
+                        <ComboBox fx:id="dbxWordDifficulty" onAction="#onSetWordDifficulty" prefWidth="150.0" promptText="Word Difficulty" visibleRowCount="4" />
                      </children>
                   </VBox>
                </children>
