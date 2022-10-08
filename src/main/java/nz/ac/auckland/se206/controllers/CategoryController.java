@@ -56,6 +56,9 @@ public class CategoryController implements Controller {
     GameSettingDao settingDao = new GameSettingDao();
     userSetting = settingDao.get(settingId);
 
+    // Activating text to speech instructions
+    TextToSpeech.main(new String[] {"Choose a difficulty"});
+
     // word difficulty since it can be null
     dbxWordDifficulty.setValue("");
     vbxWordDifficulty.setId("null");
@@ -68,15 +71,7 @@ public class CategoryController implements Controller {
   private void loadWordDifficulty() {
     String wordDifficulty = userSetting.getWords().toLowerCase();
     wordDifficulty = wordDifficulty.substring(0, 1).toUpperCase() + wordDifficulty.substring(1);
-    if (wordDifficulty.equals("Null")) {
-      // Activating text to speech instructions
-      TextToSpeech.main(new String[] {"Select a difficulty"});
-      // disable start game button
-      btnStartGame.setDisable(true);
-
-      // hide message before it has been set
-      categoryMessage.setVisible(false);
-    } else {
+    if (!wordDifficulty.equals("Null")) {
       dbxWordDifficulty.setValue(wordDifficulty);
       onSetWordDifficulty();
     }
@@ -101,14 +96,6 @@ public class CategoryController implements Controller {
 
     // update box graphics
     vbxWordDifficulty.setId(wordDifficulty.toLowerCase());
-
-    // generate set word
-    categoryMessage.setVisible(true);
-    btnStartGame.setDisable(false);
-    lblCategory.setText("\"" + CategorySelect.generateSetCategory() + "\"");
-
-    // use tts on background thread to avoid lags
-    TextToSpeech.main(new String[] {"Your word is " + CategorySelect.getCategory()});
   }
 
   private void loadOtherDifficulty() {
@@ -178,14 +165,14 @@ public class CategoryController implements Controller {
     CanvasController canvasController = (CanvasController) SceneManager.getController(canvasRoot);
 
     // use tts on background thread to avoid lags
-    TextToSpeech.main(new String[] {"Let's draw!"});
+    TextToSpeech.main(new String[] {"Get Ready!"});
 
     // update settings in database
     GameSettingDao settingDao = new GameSettingDao();
     settingDao.update(userSetting);
 
     // change the scene and start the game
-    canvasController.startTimer();
+    canvasController.initializeGame();
     scene.setRoot(canvasRoot);
 
     // reset the page in case a new game gets started
@@ -233,7 +220,6 @@ public class CategoryController implements Controller {
   private void resetPage() {
     // return the page to its initial state.
     lblCategory.setText("Choose A Difficulty:");
-    btnStartGame.setDisable(true);
     categoryMessage.setVisible(false);
     dbxWordDifficulty.setValue("");
 

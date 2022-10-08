@@ -141,6 +141,12 @@ public class CanvasController implements Controller {
     return imageBinary;
   }
 
+  public void initializeGame() {
+    resetGame();
+    btnNewGame.setText("Get word!");
+    lblCategory.setText("Ready up!");
+  }
+
   public void startTimer() throws SQLException {
     // set up the label and enable canvas
     isFinished = false;
@@ -283,7 +289,10 @@ public class CanvasController implements Controller {
     btnToggleEraser.setSelected(false);
     lblTimer.setText("60");
     hbxGameEnd.setVisible(false);
+    hbxDrawTools.setVisible(false);
+    hbxNewGame.setVisible(true);
     predictions.clear();
+    canvas.setDisable(true);
     onClear();
   }
 
