@@ -144,35 +144,34 @@ public class UserStatsDao {
     return game;
   }
 
-  private Map<Difficulty, List<GameModel>> rsToMap(
-      ResultSet rs, Map<Difficulty, List<GameModel>> map) {
-    GameModel game = getGame(rs);
+  private Map<Difficulty, List<String>> rsToMap(ResultSet rs, Map<Difficulty, List<String>> map)
+      throws SQLException {
+    String word = rs.getString("word");
     // convert difficulty (string) to difficulty (enum)
-    Difficulty gDifficulty = Difficulty.valueOf(game.getDifficulty());
+    Difficulty gDifficulty = Difficulty.valueOf(rs.getString("difficulty"));
     // initiate list for each key
     map.computeIfAbsent(gDifficulty, d -> new ArrayList<>());
-    map.get(gDifficulty).add(game);
+    map.get(gDifficulty).add(word);
     return map;
   }
 
   /**
-   * Retrives all games played by a user by its difficulty
+   * Retrives all words played by a user by its difficulty
    *
    * @param userId of game user
-   * @return a map where each difficulty maps to a list of games of that difficulty
+   * @return a map where each difficulty maps to a list of words of same difficulty
    */
-  public Map<Difficulty, List<GameModel>> getHistoryMap(int userId) {
-    Map<Difficulty, List<GameModel>> map =
-        new EnumMap<Difficulty, List<GameModel>>(Difficulty.class);
+  public Map<Difficulty, List<String>> getHistoryMap(int userId) {
+    Map<Difficulty, List<String>> map = new EnumMap<Difficulty, List<String>>(Difficulty.class);
     Connection connection = SqliteConnection.openConnection();
     try {
       // query for all games player by user
-      String query = "SELECT * FROM games WHERE user_id=? ORDER BY id";
+      String query = "SELECT word, difficulty FROM games WHERE user_id=? ORDER BY id";
       PreparedStatement ps = connection.prepareStatement(query);
       // input specific user
       ps.setInt(1, userId);
       ResultSet rs = ps.executeQuery();
-      // map each difficulty to its games e.g. EASY -> [game1, game2, game3]
+      // map each difficulty to its words e.g. EASY -> [chandelier, banana, diamond]
       while (rs.next()) {
         map = rsToMap(rs, map);
       }
