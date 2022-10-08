@@ -119,6 +119,12 @@ public class UserStatsDao {
     return games;
   }
 
+  /**
+   * Helper function to convert a game in sql to a game instance
+   *
+   * @param rs sql table results
+   * @return an instance of that game with related fields
+   */
   private GameModel getGame(ResultSet rs) {
     // helper to convert to game instance
     GameModel game = null;
@@ -149,7 +155,13 @@ public class UserStatsDao {
     return map;
   }
 
-  public Map<Difficulty, List<GameModel>> getMapHistory(int userId) {
+  /**
+   * Retrives all games played by a user by its difficulty
+   *
+   * @param userId of game user
+   * @return a map where each difficulty maps to a list of games of that difficulty
+   */
+  public Map<Difficulty, List<GameModel>> getHistoryMap(int userId) {
     Map<Difficulty, List<GameModel>> map =
         new EnumMap<Difficulty, List<GameModel>>(Difficulty.class);
     Connection connection = SqliteConnection.openConnection();
