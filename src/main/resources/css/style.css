@@ -26,8 +26,9 @@
 
 .end-game {
   -fx-border-color: rgb(171, 71, 242);
-=======
-.list-cell{
+}
+
+.list-cell {
   -fx-font: 12px "Comic Sans MS", "Comic Sans", sans-serif;
 }
 
@@ -35,7 +36,7 @@
   -fx-font: 18px "Comic Sans MS", "Comic Sans", sans-serif;
 }
 
-.combo-box .text-field{
+.combo-box .text-field {
   -fx-background-color: rgb(190, 199, 255);
   -fx-prompt-text-fill: #856ea2;
 }
@@ -49,11 +50,11 @@
 }
 
 .combo-box .arrow {
-  -fx-background-color:  white;
+  -fx-background-color: white;
 }
 
 .combo-box .arrow-button {
-  -fx-background-color:  #882FF6;
+  -fx-background-color: #882FF6;
 }
 
 .list-view .list-cell:even {
