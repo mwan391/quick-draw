@@ -175,44 +175,42 @@ public class CanvasController implements Controller {
 
     predictions.clear();
 
-    // top ten predictions
-    List<Classifications.Classification> rawPredictions = null;
     // all predictions
-    List<Classifications.Classification> allPred = null;
+    List<Classifications.Classification> rawPredictions = null;
 
     try {
-      allPred = model.getPredictions(getCurrentSnapshot(), 345);
+      rawPredictions = model.getPredictions(getCurrentSnapshot(), 345);
     } catch (TranslateException e) {
       System.out.println("Translate Exception when getting predictions");
       System.exit(-1);
     }
 
-    // find how close user's drawing is to the category
-    computeCategoryPosition(allPred);
-
-    rawPredictions = allPred.subList(0, 10);
-
-    StringBuilder sb = new StringBuilder();
-
-    int i = 1;
+    int i = 0;
 
     // add the retrieved predictions to the observable list
     for (final Classifications.Classification classification : rawPredictions) {
-      sb.setLength(0);
-      // format the string and replace the underscores with a space
-      sb.append(i)
-          .append(" : ")
-          .append(classification.getClassName().replace('_', ' '))
-          .append(" : ")
-          .append(String.format("%.2f%%", 100 * classification.getProbability()));
-      predictions.add(sb.toString());
-
+      if (i < 10) {
+        String formattedPrediction = formatPrediction(classification, i);
+        // add the retrieved predictions to the observable list
+        predictions.add(formattedPrediction);
+      }
       // check if player won (guess is correct within the top three)
-      if ((i < 4) && (category.equals(classification.getClassName().replace('_', ' ')))) {
+      if ((i < 3) && (category.equals(classification.getClassName().replace('_', ' ')))) {
         endGame(true);
       }
       i++;
     }
+  }
+
+  private String formatPrediction(Classification classification, int index) {
+    StringBuilder sb = new StringBuilder();
+    // format the string and replace the underscores with a space
+    sb.append(index + 1)
+        .append(" : ")
+        .append(classification.getClassName().replace('_', ' '))
+        .append(" : ")
+        .append(String.format("%d%%", Math.round(100 * classification.getProbability())));
+    return sb.toString();
   }
 
   private void computeCategoryPosition(List<Classification> allPred) {
