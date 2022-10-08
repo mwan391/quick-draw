@@ -13,7 +13,6 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import nz.ac.auckland.se206.CategorySelect;
-import nz.ac.auckland.se206.CategorySelect.Difficulty;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.daos.GameSettingDao;
@@ -27,10 +26,6 @@ public class CategoryController implements Controller {
   @FXML private Button btnLogOut;
   @FXML private Button btnUserStatistics;
   @FXML private Button btnSettings;
-  @FXML private Button btnEasy;
-  @FXML private Button btnMedium;
-  @FXML private Button btnHard;
-  @FXML private Button btnMaster;
   @FXML private ComboBox<String> dbxWordDifficulty;
   @FXML private VBox vbxWordDifficulty;
   @FXML private Label lblCategory;
@@ -115,86 +110,6 @@ public class CategoryController implements Controller {
     // change the scene and start the game
     canvasController.startTimer();
     scene.setRoot(canvasRoot);
-
-    // reset the page in case a new game gets started
-    resetPage();
-  }
-
-  private void generateCategory(CategorySelect.Difficulty wordDifficulty) {
-    // re-enable all buttons
-    btnStartGame.setDisable(false);
-    btnEasy.setDisable(false);
-    btnMedium.setDisable(false);
-    btnHard.setDisable(false);
-    btnMaster.setDisable(false);
-
-    // generate set word
-    categoryMessage.setVisible(true);
-    CategorySelect.setWordDifficulty(wordDifficulty);
-    lblCategory.setText("\"" + CategorySelect.generateSetCategory() + "\"");
-
-    // use tts on background thread to avoid lags
-    TextToSpeech.main(new String[] {"Your word is " + CategorySelect.getCategory()});
-  }
-
-  @FXML
-  private void onGenerateEasyCategory() {
-    // set categories
-    generateCategory(Difficulty.EASY);
-
-    // update game model
-    userSetting.setWords("EASY");
-
-    // change box color to green
-    vbxWordDifficulty.setStyle("-fx-background-color: #35D461;");
-
-    // disable the category button so users cannot reroll
-    btnEasy.setDisable(true);
-  }
-
-  @FXML
-  private void onGenerateMediumCategory() {
-    // set categories
-    generateCategory(Difficulty.MEDIUM);
-
-    // update game model
-    userSetting.setWords("MEDIUM");
-
-    // change box color to orange
-    vbxWordDifficulty.setStyle("-fx-background-color: #F99D07;");
-
-    // disable the category button so users cannot reroll
-    btnMedium.setDisable(true);
-  }
-
-  @FXML
-  private void onGenerateHardCategory() {
-    // set categories
-    generateCategory(Difficulty.HARD);
-
-    // update game model
-    userSetting.setWords("HARD");
-
-    // change box color to red
-    vbxWordDifficulty.setStyle("-fx-background-color: red;");
-
-    // disable the category button so users cannot reroll
-    btnHard.setDisable(true);
-  }
-
-  @FXML
-  private void onGenerateMasterCategory() {
-    // set categories
-    generateCategory(Difficulty.MASTER);
-
-    // update game model
-    userSetting.setWords("MASTER");
-
-    // change box color to maroon
-    vbxWordDifficulty.setStyle("-fx-background-color: #8b0000;");
-
-    // disable the category button so users cannot reroll
-    btnMaster.setDisable(true);
   }
 
   @FXML
@@ -204,9 +119,6 @@ public class CategoryController implements Controller {
     Parent logInRoot = SceneManager.getUiRoot(AppUi.LOG_IN);
     scene.setRoot(logInRoot);
     UserModel.setActiveUser(null);
-
-    // reset the page in case a new game gets started
-    resetPage();
   }
 
   @FXML
@@ -233,13 +145,5 @@ public class CategoryController implements Controller {
     // load the necessary settings and change the scene
     settingsController.loadPage(userSetting);
     scene.setRoot(settingsRoot);
-  }
-
-  private void resetPage() {
-    // return the page to its initial state.
-    lblCategory.setText("Choose A Difficulty:");
-    btnStartGame.setDisable(true);
-    btnEasy.setDisable(false);
-    categoryMessage.setVisible(false);
   }
 }
