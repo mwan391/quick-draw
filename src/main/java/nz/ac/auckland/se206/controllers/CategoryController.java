@@ -49,8 +49,13 @@ public class CategoryController implements Controller {
 
     // clear everything
     dbxWordDifficulty.setValue("");
+    dbxAccuracyDifficulty.setValue("");
 
-    // set word difficulty
+    // set presets
+    loadWordDifficulty();
+  }
+
+  private void loadWordDifficulty() {
     String wordDifficulty = userSetting.getWords().toLowerCase();
     wordDifficulty = wordDifficulty.substring(0, 1).toUpperCase() + wordDifficulty.substring(1);
     if (wordDifficulty.equals("Null")) {
