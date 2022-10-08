@@ -48,8 +48,7 @@ public class CategoryController implements Controller {
     userSetting = settingDao.get(settingId);
 
     // clear everything
-    dbxWordDifficulty.setValue("");
-    dbxAccuracyDifficulty.setValue("");
+    resetPage();
 
     // set presets
     loadWordDifficulty();
@@ -63,8 +62,7 @@ public class CategoryController implements Controller {
       TextToSpeech.main(new String[] {"Select a difficulty"});
       // disable start game button
       btnStartGame.setDisable(true);
-      // change container colour to neutral
-      vbxWordDifficulty.setId("null");
+
       // hide message before it has been set
       categoryMessage.setVisible(false);
     } else {
@@ -171,5 +169,13 @@ public class CategoryController implements Controller {
     btnStartGame.setDisable(true);
     categoryMessage.setVisible(false);
     dbxWordDifficulty.setValue("");
+
+    // change container colours to neutral
+    vbxWordDifficulty.setId("null");
+    vbxAccuracyDifficulty.setId("null");
+
+    // clear inputs
+    dbxWordDifficulty.setValue("");
+    dbxAccuracyDifficulty.setValue("");
   }
 }
