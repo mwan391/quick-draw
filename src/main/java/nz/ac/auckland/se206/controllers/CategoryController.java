@@ -28,6 +28,8 @@ public class CategoryController implements Controller {
   @FXML private Button btnSettings;
   @FXML private ComboBox<String> dbxWordDifficulty;
   @FXML private VBox vbxWordDifficulty;
+  @FXML private ComboBox<String> dbxAccuracyDifficulty;
+  @FXML private VBox vbxAccuracyDifficulty;
   @FXML private Label lblCategory;
   @FXML private Label categoryMessage;
 
@@ -93,6 +95,9 @@ public class CategoryController implements Controller {
     // use tts on background thread to avoid lags
     TextToSpeech.main(new String[] {"Your word is " + CategorySelect.getCategory()});
   }
+
+  @FXML
+  private void onSetAccuracyDifficulty() {}
 
   @FXML
   private void onStartGame(ActionEvent event) throws SQLException {
