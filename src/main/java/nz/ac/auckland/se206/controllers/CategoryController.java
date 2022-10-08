@@ -37,7 +37,6 @@ public class CategoryController implements Controller {
   @FXML private Label categoryMessage;
 
   private GameSettingModel userSetting;
-  private String wordDifficulty;
 
   public void initialize() {
     // add items to difficulty combo boxes
@@ -65,32 +64,37 @@ public class CategoryController implements Controller {
 
   @FXML
   private void onSetWordDifficulty() {
-    wordDifficulty = dbxWordDifficulty.getValue().toUpperCase();
+    // get difficulty and check if it is valid
+    String wordDifficulty = dbxWordDifficulty.getValue().toUpperCase();
 
-    switch (wordDifficulty) {
-      case "EASY":
-        onGenerateEasyCategory();
-        break;
-      case "MEDIUM":
-        onGenerateMediumCategory();
-        break;
-      case "HARD":
-        onGenerateHardCategory();
-        break;
-      case "MASTER":
-        onGenerateMasterCategory();
-        break;
-      default:
-        // Activating text to speech instructions
-        TextToSpeech.main(new String[] {"Select a difficulty"});
-        // disable start game button
-        btnStartGame.setDisable(true);
-        // change container colour to neutral
-        vbxWordDifficulty.setStyle("-fx-background-color: transparent;");
-        // hide message before it has been set
-        categoryMessage.setVisible(false);
-        break;
+    if (wordDifficulty.equals("")) {
+      // Activating text to speech instructions
+      TextToSpeech.main(new String[] {"Select a difficulty"});
+      // disable start game button
+      btnStartGame.setDisable(true);
+      // change container colour to neutral
+      vbxWordDifficulty.setStyle("-fx-background-color: transparent;");
+      // hide message before it has been set
+      categoryMessage.setVisible(false);
+
+      return;
     }
+
+    // set difficulty in manager
+    CategorySelect.Difficulty wordDifficultyEnum =
+        CategorySelect.Difficulty.valueOf(wordDifficulty);
+    CategorySelect.setWordDifficulty(wordDifficultyEnum);
+
+    // update game model
+    userSetting.setWords(wordDifficulty);
+
+    // generate set word
+    categoryMessage.setVisible(true);
+    CategorySelect.setWordDifficulty(wordDifficultyEnum);
+    lblCategory.setText("\"" + CategorySelect.generateSetCategory() + "\"");
+
+    // use tts on background thread to avoid lags
+    TextToSpeech.main(new String[] {"Your word is " + CategorySelect.getCategory()});
   }
 
   @FXML
