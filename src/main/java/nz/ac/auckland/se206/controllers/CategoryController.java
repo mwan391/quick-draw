@@ -59,22 +59,8 @@ public class CategoryController implements Controller {
     // Activating text to speech instructions
     TextToSpeech.main(new String[] {"Choose a difficulty"});
 
-    // word difficulty since it can be null
-    dbxWordDifficulty.setValue("");
-    vbxWordDifficulty.setId("null");
-
     // set presets
-    loadWordDifficulty();
-    loadOtherDifficulty();
-  }
-
-  private void loadWordDifficulty() {
-    String wordDifficulty = userSetting.getWords().toLowerCase();
-    wordDifficulty = wordDifficulty.substring(0, 1).toUpperCase() + wordDifficulty.substring(1);
-    if (!wordDifficulty.equals("Null")) {
-      dbxWordDifficulty.setValue(wordDifficulty);
-      onSetWordDifficulty();
-    }
+    loadAllDifficulty();
   }
 
   @FXML
@@ -98,7 +84,13 @@ public class CategoryController implements Controller {
     vbxWordDifficulty.setId(wordDifficulty.toLowerCase());
   }
 
-  private void loadOtherDifficulty() {
+  private void loadAllDifficulty() {
+    // word
+    String wordDifficulty = userSetting.getWords().toLowerCase();
+    wordDifficulty = wordDifficulty.substring(0, 1).toUpperCase() + wordDifficulty.substring(1);
+    dbxWordDifficulty.setValue(wordDifficulty);
+    onSetWordDifficulty();
+
     // accuracy
     String accuracyDifficulty = userSetting.getAccuracy().toLowerCase();
     accuracyDifficulty =
@@ -176,7 +168,6 @@ public class CategoryController implements Controller {
     scene.setRoot(canvasRoot);
 
     // reset the page in case a new game gets started
-    resetPage();
   }
 
   @FXML
@@ -188,7 +179,6 @@ public class CategoryController implements Controller {
     UserModel.setActiveUser(null);
 
     // reset the page in case a new game gets started
-    resetPage();
   }
 
   @FXML
@@ -215,15 +205,5 @@ public class CategoryController implements Controller {
     // load the necessary settings and change the scene
     settingsController.loadPage(userSetting);
     scene.setRoot(settingsRoot);
-  }
-
-  private void resetPage() {
-    // return the page to its initial state.
-    lblCategory.setText("Choose A Difficulty:");
-    categoryMessage.setVisible(false);
-    dbxWordDifficulty.setValue("");
-
-    // change container colour to neutral
-    vbxWordDifficulty.setId("null");
   }
 }
