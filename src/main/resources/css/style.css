@@ -26,4 +26,40 @@
 
 .end-game {
   -fx-border-color: rgb(171, 71, 242);
+=======
+.list-cell{
+  -fx-font: 12px "Comic Sans MS", "Comic Sans", sans-serif;
+}
+
+.combo-box {
+  -fx-font: 18px "Comic Sans MS", "Comic Sans", sans-serif;
+}
+
+.combo-box .text-field{
+  -fx-background-color: rgb(190, 199, 255);
+  -fx-prompt-text-fill: #856ea2;
+}
+
+.list-view .list-cell:odd {
+  -fx-background-color: rgb(190, 199, 255);
+}
+
+.list-view .list-cell:odd:hover {
+  -fx-background-color: rgb(146, 106, 234);
+}
+
+.combo-box .arrow {
+  -fx-background-color:  white;
+}
+
+.combo-box .arrow-button {
+  -fx-background-color:  #882FF6;
+}
+
+.list-view .list-cell:even {
+  -fx-background-color: #c2e3ff;
+}
+
+.list-view .list-cell:even:hover {
+  -fx-background-color: #4e79ec;
 }

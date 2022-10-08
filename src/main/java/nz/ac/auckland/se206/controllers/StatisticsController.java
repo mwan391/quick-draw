@@ -78,22 +78,19 @@ public class StatisticsController implements Controller {
       // get won status
       String won;
       if (game.getWon()) {
-        won = ": Won \"";
+        won = "Won \"";
       } else {
-        won = ": Lost \"";
+        won = "Lost \"";
       }
 
       // build string
       stringBuilder.setLength(0);
       stringBuilder
-          .append(game.getId())
           .append(won)
           .append(game.getWord())
           .append("\" in ")
           .append(game.getTime())
-          .append(" seconds, from the ")
-          .append(category)
-          .append(" category");
+          .append(" seconds");
 
       // add to list
       gamesEasyHistory.add(stringBuilder.toString());

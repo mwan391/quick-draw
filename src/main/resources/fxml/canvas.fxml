@@ -22,12 +22,13 @@
             <Image url="@../images/doodlebg.jpg" />
          </image>
       </ImageView>
-      <Pane layoutX="485.0" layoutY="34.0" prefHeight="117.0" prefWidth="153.0" style="-fx-background-color: #173ab5; -fx-background-radius: 10px;" />
+      <Pane layoutX="451.0" layoutY="121.0" prefHeight="28.0" prefWidth="226.0" style="-fx-background-color: #173ab5; -fx-background-radius: 10px;" />
+      <Pane layoutX="485.0" layoutY="14.0" prefHeight="93.0" prefWidth="154.0" style="-fx-background-color: #173ab5; -fx-background-radius: 10px;" />
       <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="700.0">
          <children>
             <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" spacing="5.0">
                <children>
-                  <Label fx:id="lblCategory" alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="46.0" style="-fx-background-color: #173ab5; -fx-background-radius: 10px;" text="Draw a:" textAlignment="CENTER" textFill="WHITE">
+                  <Label fx:id="lblCategory" alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="58.0" style="-fx-background-color: #173ab5; -fx-background-radius: 10px;" text="Draw a:" textAlignment="CENTER" textFill="WHITE">
                      <font>
                         <Font name="Arial Rounded MT Bold" size="30.0" />
                      </font>
@@ -114,12 +115,12 @@
                         <Font name="Arial Rounded MT Bold" size="17.0" />
                      </font>
                   </Label>
-                  <Label fx:id="lblTimer" alignment="CENTER" text="60" textAlignment="CENTER" textFill="WHITE">
+                  <Label fx:id="lblTimer" alignment="CENTER" prefWidth="58.0" text="60" textAlignment="CENTER" textFill="WHITE">
                      <font>
                         <Font name="Arial Rounded MT Bold" size="49.0" />
                      </font>
                   </Label>
-                  <Label alignment="CENTER" minHeight="-Infinity" prefHeight="30.0" prefWidth="142.0" text="Top Predictions:" textAlignment="CENTER" textFill="WHITE">
+                  <Label alignment="BOTTOM_CENTER" minHeight="-Infinity" prefHeight="40.0" prefWidth="142.0" text="Top Predictions:" textAlignment="CENTER" textFill="WHITE">
                      <font>
                         <Font name="Arial Rounded MT Bold" size="17.0" />
                      </font>
@@ -127,10 +128,11 @@
                         <Insets bottom="10.0" />
                      </VBox.margin>
                   </Label>
-                  <ListView fx:id="lvwPredictions" prefHeight="232.0" prefWidth="225.0">
+                  <ListView fx:id="lvwPredictions" prefHeight="246.0" prefWidth="225.0">
                      <VBox.margin>
                         <Insets bottom="10.0" />
-                     </VBox.margin></ListView>
+                     </VBox.margin>
+                  </ListView>
                   <HBox fx:id="hbxNewGame" alignment="TOP_CENTER" spacing="5.0">
                      <children>
                         <ToggleButton fx:id="btnNewGame" mnemonicParsing="false" onAction="#onNewGame" prefHeight="44.0" prefWidth="217.0" style="-fx-background-color: #882FF6;" styleClass="button" text="Play Again?" textFill="WHITE">
