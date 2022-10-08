@@ -37,6 +37,7 @@ public class CategoryController implements Controller {
   @FXML private Label categoryMessage;
 
   private GameSettingModel userSetting;
+  private String wordDifficulty;
 
   public void initialize() {
     // add items to difficulty combo boxes
@@ -50,10 +51,22 @@ public class CategoryController implements Controller {
     GameSettingDao settingDao = new GameSettingDao();
     userSetting = settingDao.get(settingId);
 
-    // set presets
+    // clear everything
+    dbxWordDifficulty.setValue("");
 
     // set word difficulty
-    String wordDifficulty = userSetting.getWords();
+    String wordDifficulty = userSetting.getWords().toLowerCase();
+    wordDifficulty = wordDifficulty.substring(0, 1).toUpperCase() + wordDifficulty.substring(1);
+    if (!wordDifficulty.equals("Null")) {
+      dbxWordDifficulty.setValue(wordDifficulty);
+    }
+    onSetWordDifficulty();
+  }
+
+  @FXML
+  private void onSetWordDifficulty() {
+    wordDifficulty = dbxWordDifficulty.getValue().toUpperCase();
+
     switch (wordDifficulty) {
       case "EASY":
         onGenerateEasyCategory();
@@ -72,6 +85,8 @@ public class CategoryController implements Controller {
         TextToSpeech.main(new String[] {"Select a difficulty"});
         // disable start game button
         btnStartGame.setDisable(true);
+        // change container colour to neutral
+        vbxWordDifficulty.setStyle("-fx-background-color: transparent;");
         // hide message before it has been set
         categoryMessage.setVisible(false);
         break;
@@ -88,7 +103,6 @@ public class CategoryController implements Controller {
 
     // use tts on background thread to avoid lags
     TextToSpeech.main(new String[] {"Let's draw!"});
-    ;
 
     // update settings in database
     GameSettingDao settingDao = new GameSettingDao();
