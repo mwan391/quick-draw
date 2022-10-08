@@ -218,27 +218,24 @@ public class CanvasController implements Controller {
   }
 
   private void checkCategoryPosition(int position) {
-    // output current ranking of the category in list of predictions
+    // this determines which style class to use
     String pseudoClass = null;
+    // remove border color when cateogry is outside any ranking
     canvasPane.getStyleClass().removeAll("won", "ten", "twenty", "fifty", "hundred");
+    // change the border color depending on its ranking
     if (position < 4) {
       pseudoClass = "won";
-      // canvasPane.pseudoClassStateChanged(PseudoClass.getPseudoClass(pseudoClass), true);
       endGame(true);
     } else if (position < 10) {
-      System.out.println(" === Top 10 === ");
       pseudoClass = "ten";
     } else if (position < 20) {
-      System.out.println(" === Top 20 ===");
       pseudoClass = "twenty";
     } else if (position < 50) {
-      System.out.println(" === Top 50 === ");
       pseudoClass = "fifty";
     } else if (position < 100) {
-      System.out.println(" === Top 100 === ");
       pseudoClass = "hundred";
     }
-    System.out.println("index is " + position);
+    // set color to border
     canvasPane.getStyleClass().add(pseudoClass);
   }
 
@@ -315,6 +312,8 @@ public class CanvasController implements Controller {
     hbxGameEnd.setVisible(false);
     predictions.clear();
     onClear();
+    // reset conditional border color rendering
+    canvasPane.getStyleClass().clear();
   }
 
   @FXML
