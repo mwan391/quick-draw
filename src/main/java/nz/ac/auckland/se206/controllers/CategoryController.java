@@ -29,6 +29,10 @@ public class CategoryController implements Controller {
   @FXML private ComboBox<String> dbxWordDifficulty;
   @FXML private VBox vbxWordDifficulty;
   @FXML private ComboBox<String> dbxAccuracyDifficulty;
+  @FXML private VBox vbxTimeDifficulty;
+  @FXML private ComboBox<String> dbxTimeDifficulty;
+  @FXML private VBox vbxConfidenceDifficulty;
+  @FXML private ComboBox<String> dbxConfidenceDifficulty;
   @FXML private VBox vbxAccuracyDifficulty;
   @FXML private Label lblCategory;
   @FXML private Label categoryMessage;
@@ -40,6 +44,8 @@ public class CategoryController implements Controller {
     ObservableList<String> difficultiesAll = FXCollections.observableArrayList();
     Collections.addAll(difficultiesAll, "Easy", "Medium", "Hard", "Master");
     dbxWordDifficulty.setItems(difficultiesAll);
+    dbxTimeDifficulty.setItems(difficultiesAll);
+    dbxConfidenceDifficulty.setItems(difficultiesAll);
     ObservableList<String> difficultiesAccuracy = FXCollections.observableArrayList();
     Collections.addAll(difficultiesAccuracy, "Easy", "Medium", "Hard");
     dbxAccuracyDifficulty.setItems(difficultiesAccuracy);

@@ -42,14 +42,14 @@
             </Label>
             <HBox prefHeight="100.0" style="-fx-background-color: #173ab5;">
                <children>
-                  <VBox fx:id="vbxWordDifficulty" alignment="CENTER" spacing="2.0" style="-fx-border-color: white;">
+                  <VBox fx:id="vbxWordDifficulty" alignment="CENTER" prefHeight="181.0" spacing="2.0" style="-fx-border-color: white;">
                      <padding>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                        <Insets bottom="10.0" top="10.0" />
                      </padding>
                      <children>
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="5.0">
                            <children>
-                              <Label alignment="CENTER" prefHeight="30.0" prefWidth="128.0" style="-fx-background-color: PURPLE; -fx-background-radius: 20px;" text="Words" textAlignment="CENTER" textFill="WHITE">
+                              <Label alignment="CENTER" prefHeight="29.0" prefWidth="98.0" style="-fx-background-color: PURPLE; -fx-background-radius: 20px;" text="Words" textAlignment="CENTER" textFill="WHITE">
                                  <font>
                                     <Font name="Arial Rounded MT Bold" size="19.0" />
                                  </font>
@@ -79,12 +79,12 @@
                               </Label>
                            </children>
                         </HBox>
-                        <ImageView fx:id="imgWordDifficulty" fitHeight="99.0" fitWidth="104.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="99.0" fitWidth="104.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../images/buttonicons/blue.png" />
                            </image>
                         </ImageView>
-                        <ComboBox fx:id="dbxWordDifficulty" onAction="#onSetWordDifficulty" prefWidth="150.0" promptText="Word Difficulty" visibleRowCount="4" />
+                        <ComboBox fx:id="dbxWordDifficulty" onAction="#onSetWordDifficulty" prefHeight="26.0" prefWidth="100.0" promptText="Words" visibleRowCount="4" />
                      </children>
                   </VBox>
                   <VBox fx:id="vbxAccuracyDifficulty" alignment="CENTER" spacing="2.0" style="-fx-border-color: white;">
@@ -94,7 +94,7 @@
                      <children>
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="5.0">
                            <children>
-                              <Label alignment="CENTER" prefHeight="30.0" prefWidth="128.0" style="-fx-background-color: PURPLE; -fx-background-radius: 20px;" text="Accuracy" textAlignment="CENTER" textFill="WHITE">
+                              <Label alignment="CENTER" prefHeight="29.0" prefWidth="113.0" style="-fx-background-color: PURPLE; -fx-background-radius: 20px;" text="Accuracy" textAlignment="CENTER" textFill="WHITE">
                                  <font>
                                     <Font name="Arial Rounded MT Bold" size="19.0" />
                                  </font>
@@ -124,12 +124,102 @@
                               </Label>
                            </children>
                         </HBox>
-                        <ImageView fx:id="imgWordDifficulty1" fitHeight="99.0" fitWidth="104.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="99.0" fitWidth="104.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../images/buttonicons/blue.png" />
                            </image>
                         </ImageView>
-                        <ComboBox fx:id="dbxAccuracyDifficulty" onAction="#onSetAccuracyDifficulty" prefWidth="150.0" promptText="Accuracy" visibleRowCount="4" />
+                        <ComboBox fx:id="dbxAccuracyDifficulty" onAction="#onSetAccuracyDifficulty" prefWidth="100.0" promptText="Accuracy" visibleRowCount="4" />
+                     </children>
+                  </VBox>
+                  <VBox fx:id="vbxTimeDifficulty" alignment="CENTER" spacing="2.0" style="-fx-border-color: white;">
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </padding>
+                     <children>
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="5.0">
+                           <children>
+                              <Label alignment="CENTER" prefHeight="29.0" prefWidth="66.0" style="-fx-background-color: PURPLE; -fx-background-radius: 20px;" text="Time" textAlignment="CENTER" textFill="WHITE">
+                                 <font>
+                                    <Font name="Arial Rounded MT Bold" size="19.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER" prefHeight="29.0" prefWidth="30.0" style="-fx-background-color: PURPLE; -fx-background-radius: 20px;" textAlignment="CENTER" textFill="WHITE">
+                                 <font>
+                                    <Font name="Arial Rounded MT Bold" size="19.0" />
+                                 </font>
+                                 <tooltip>
+                                    <Tooltip text="How hard your word to draw will be!">
+                                       <graphic>
+                                          <ImageView fitHeight="56.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../images/buttonicons/purple.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                    </Tooltip>
+                                 </tooltip>
+                                 <graphic>
+                                    <ImageView fitHeight="75.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../images/buttonicons/purple.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <ImageView fitHeight="99.0" fitWidth="104.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/buttonicons/blue.png" />
+                           </image>
+                        </ImageView>
+                        <ComboBox fx:id="dbxTimeDifficulty" onAction="#onSetAccuracyDifficulty" prefWidth="100.0" promptText="Time" visibleRowCount="4" />
+                     </children>
+                  </VBox>
+                  <VBox fx:id="vbxConfidenceDifficulty" alignment="CENTER" spacing="2.0" style="-fx-border-color: white;">
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </padding>
+                     <children>
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="5.0">
+                           <children>
+                              <Label alignment="CENTER" prefHeight="29.0" prefWidth="66.0" style="-fx-background-color: PURPLE; -fx-background-radius: 20px;" text="Confidence" textAlignment="CENTER" textFill="WHITE">
+                                 <font>
+                                    <Font name="Arial Rounded MT Bold" size="19.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER" prefHeight="29.0" prefWidth="30.0" style="-fx-background-color: PURPLE; -fx-background-radius: 20px;" textAlignment="CENTER" textFill="WHITE">
+                                 <font>
+                                    <Font name="Arial Rounded MT Bold" size="19.0" />
+                                 </font>
+                                 <tooltip>
+                                    <Tooltip text="How hard your word to draw will be!">
+                                       <graphic>
+                                          <ImageView fitHeight="56.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../images/buttonicons/purple.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                    </Tooltip>
+                                 </tooltip>
+                                 <graphic>
+                                    <ImageView fitHeight="75.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../images/buttonicons/purple.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <ImageView fitHeight="99.0" fitWidth="104.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/buttonicons/blue.png" />
+                           </image>
+                        </ImageView>
+                        <ComboBox fx:id="dbxConfidenceDifficulty" onAction="#onSetAccuracyDifficulty" prefWidth="100.0" promptText="Confidence" visibleRowCount="4" />
                      </children>
                   </VBox>
                </children>
