@@ -50,3 +50,23 @@
 .list-view .list-cell:even:selected {
   -fx-background-color: #4e79ec;
 }
+
+#null {
+  -fx-background-color: transparent;
+}
+
+#easy {
+  -fx-background-color: #35D461;
+}
+
+#medium {
+  -fx-background-color: #F99D07;
+}
+
+#hard {
+  -fx-background-color: red;
+}
+
+#master {
+  -fx-background-color: #8b0000;
+}

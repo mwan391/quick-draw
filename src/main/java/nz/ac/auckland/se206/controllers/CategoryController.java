@@ -70,6 +70,10 @@ public class CategoryController implements Controller {
     // get difficulty and check if it is valid
     String wordDifficulty = dbxWordDifficulty.getValue().toUpperCase();
 
+    if (wordDifficulty.equals("")) {
+      return;
+    }
+
     // set difficulty in manager
     CategorySelect.Difficulty wordDifficultyEnum =
         CategorySelect.Difficulty.valueOf(wordDifficulty);
@@ -80,6 +84,7 @@ public class CategoryController implements Controller {
 
     // generate set word
     categoryMessage.setVisible(true);
+    btnStartGame.setDisable(false);
     lblCategory.setText("\"" + CategorySelect.generateSetCategory() + "\"");
 
     // use tts on background thread to avoid lags
