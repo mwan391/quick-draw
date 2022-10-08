@@ -221,19 +221,20 @@ public class CanvasController implements Controller {
     // this determines which style class to use
     String pseudoClass = null;
     // remove border color when cateogry is outside any ranking
-    canvasPane.getStyleClass().removeAll("won", "ten", "twenty", "fifty", "hundred");
+    canvasPane.getStyleClass().clear();
+    ;
     // change the border color depending on its ranking
     if (position < 4) {
-      pseudoClass = "won";
+      pseudoClass = "end-game";
       endGame(true);
     } else if (position < 10) {
-      pseudoClass = "ten";
+      pseudoClass = "top10";
     } else if (position < 20) {
-      pseudoClass = "twenty";
+      pseudoClass = "top20";
     } else if (position < 50) {
-      pseudoClass = "fifty";
+      pseudoClass = "top50";
     } else if (position < 100) {
-      pseudoClass = "hundred";
+      pseudoClass = "top100";
     }
     // set color to border
     canvasPane.getStyleClass().add(pseudoClass);
