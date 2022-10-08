@@ -57,7 +57,7 @@ public class CategoryController implements Controller {
       // disable start game button
       btnStartGame.setDisable(true);
       // change container colour to neutral
-      vbxWordDifficulty.setStyle("-fx-background-color: transparent;");
+      vbxWordDifficulty.setId("null");
       // hide message before it has been set
       categoryMessage.setVisible(false);
     } else {
@@ -81,6 +81,9 @@ public class CategoryController implements Controller {
 
     // update game model
     userSetting.setWords(wordDifficulty);
+
+    // update box graphics
+    vbxWordDifficulty.setId(wordDifficulty.toLowerCase());
 
     // generate set word
     categoryMessage.setVisible(true);
@@ -157,5 +160,6 @@ public class CategoryController implements Controller {
     lblCategory.setText("Choose A Difficulty:");
     btnStartGame.setDisable(true);
     categoryMessage.setVisible(false);
+    dbxWordDifficulty.setValue("");
   }
 }
