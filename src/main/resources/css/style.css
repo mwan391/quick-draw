@@ -10,6 +10,8 @@
 
 .combo-box {
   -fx-font: 18px "Comic Sans MS", "Comic Sans", sans-serif;
+  -fx-background-color: rgb(190, 199, 255);
+  -fx-prompt-text-fill: #411a72;
 }
 
 .combo-box .text-field{
@@ -22,6 +24,10 @@
 }
 
 .list-view .list-cell:odd:hover {
+  -fx-background-color: rgb(146, 106, 234);
+}
+
+.list-view .list-cell:odd:selected {
   -fx-background-color: rgb(146, 106, 234);
 }
 
@@ -38,5 +44,9 @@
 }
 
 .list-view .list-cell:even:hover {
+  -fx-background-color: #4e79ec;
+}
+
+.list-view .list-cell:even:selected {
   -fx-background-color: #4e79ec;
 }
