@@ -65,14 +65,19 @@ public class CategorySelect {
     categories.put(Difficulty.HARD, tempCategories.get("H"));
   }
 
-  private static String generateCategory(Difficulty wordDifficulty) {
+  private static void generateCategory(Difficulty wordDifficulty) {
 
     // get words in category
     ArrayList<String> words = new ArrayList<>(categories.get(wordDifficulty));
-    // get user's history of words
+    // get user's history of words in the difficulty
     UserStatsDao userStatsDao = new UserStatsDao();
     int activeUserId = UserModel.getActiveUser().getId();
-    List<String> completeHistory = userStatsDao.getWordHistory(activeUserId);
+    List<String> completeHistory = userStatsDao.getHistoryMap(activeUserId).get(wordDifficulty);
+
+    // if history is empty, just create an empty list
+    if (completeHistory == null) {
+      completeHistory = new ArrayList<>();
+    }
 
     // create relevant history list (ignoring repeats)
     int completeSize = (completeHistory.size());
@@ -90,12 +95,12 @@ public class CategorySelect {
       // remove from potential pool of words
       words.remove(category);
     }
-    return category;
   }
 
-  public static String generateSetCategory() {
+  public static Difficulty generateSetCategory() {
     int randomNum;
 
+    Difficulty actualDifficulty = Difficulty.EASY;
     // determine which list to pull from
     switch (wordDifficulty) {
       case EASY:
@@ -108,6 +113,7 @@ public class CategorySelect {
           generateCategory(Difficulty.EASY);
         } else {
           generateCategory(Difficulty.MEDIUM);
+          actualDifficulty = Difficulty.MEDIUM;
         }
         break;
       case HARD:
@@ -117,16 +123,19 @@ public class CategorySelect {
           generateCategory(Difficulty.EASY);
         } else if (randomNum == 2) {
           generateCategory(Difficulty.MEDIUM);
+          actualDifficulty = Difficulty.MEDIUM;
         } else {
           generateCategory(Difficulty.HARD);
+          actualDifficulty = Difficulty.HARD;
         }
         break;
       case MASTER:
         generateCategory(Difficulty.HARD);
+        actualDifficulty = Difficulty.HARD;
         break;
     }
 
-    return category;
+    return actualDifficulty;
   }
 
   public static String getCategory() {

@@ -83,6 +83,7 @@ public class CanvasController implements Controller {
   private GameDao gameDao = new GameDao();
   private int activeUserId;
   private int activeGameId;
+  private CategorySelect.Difficulty actualDifficulty;
 
   /**
    * JavaFX calls this method once the GUI elements are loaded. In our case we create a listener for
@@ -156,7 +157,7 @@ public class CanvasController implements Controller {
     lblCategory.setText("Draw: " + category);
     // create new game database object
     activeUserId = UserModel.getActiveUser().getId();
-    activeGameId = gameDao.addNewGame(activeUserId, CategorySelect.getWordDifficulty(), category);
+    activeGameId = gameDao.addNewGame(activeUserId, actualDifficulty, category);
     // set up what to do every second
     timer = new Timeline(new KeyFrame(Duration.seconds(1), e -> changeTime()));
     timer.setCycleCount(60);
@@ -318,7 +319,8 @@ public class CanvasController implements Controller {
       resetGame();
       btnNewGame.setText("Start Game");
       // generate a new word
-      category = CategorySelect.generateSetCategory();
+      actualDifficulty = CategorySelect.generateSetCategory();
+      category = CategorySelect.getCategory();
       lblCategory.setText("Draw: " + category);
       TextToSpeech.main(new String[] {"Your word is:" + category});
 
