@@ -40,6 +40,9 @@ public class CategoryController implements Controller {
     ObservableList<String> difficultiesAll = FXCollections.observableArrayList();
     Collections.addAll(difficultiesAll, "Easy", "Medium", "Hard", "Master");
     dbxWordDifficulty.setItems(difficultiesAll);
+    ObservableList<String> difficultiesAccuracy = FXCollections.observableArrayList();
+    Collections.addAll(difficultiesAccuracy, "Easy", "Medium", "Hard");
+    dbxAccuracyDifficulty.setItems(difficultiesAccuracy);
     ;
   }
 
@@ -47,11 +50,13 @@ public class CategoryController implements Controller {
     GameSettingDao settingDao = new GameSettingDao();
     userSetting = settingDao.get(settingId);
 
-    // clear everything
-    resetPage();
+    // word difficulty since it can be null
+    dbxWordDifficulty.setValue("");
+    vbxWordDifficulty.setId("null");
 
     // set presets
     loadWordDifficulty();
+    loadAccuracyDifficulty();
   }
 
   private void loadWordDifficulty() {
@@ -67,6 +72,7 @@ public class CategoryController implements Controller {
       categoryMessage.setVisible(false);
     } else {
       dbxWordDifficulty.setValue(wordDifficulty);
+      onSetWordDifficulty();
     }
   }
 
@@ -99,8 +105,30 @@ public class CategoryController implements Controller {
     TextToSpeech.main(new String[] {"Your word is " + CategorySelect.getCategory()});
   }
 
+  private void loadAccuracyDifficulty() {
+    String accuracyDifficulty = userSetting.getAccuracy().toLowerCase();
+    accuracyDifficulty =
+        accuracyDifficulty.substring(0, 1).toUpperCase() + accuracyDifficulty.substring(1);
+    dbxAccuracyDifficulty.setValue(accuracyDifficulty);
+    onSetAccuracyDifficulty();
+  }
+
   @FXML
-  private void onSetAccuracyDifficulty() {}
+  private void onSetAccuracyDifficulty() {
+    // get difficulty and check if it is valid
+    String accuracyDifficulty = dbxAccuracyDifficulty.getValue().toUpperCase();
+
+    // set difficulty in manager
+    CategorySelect.Difficulty accuracyDifficultyEnum =
+        CategorySelect.Difficulty.valueOf(accuracyDifficulty);
+    CategorySelect.setWordDifficulty(accuracyDifficultyEnum);
+
+    // update game model
+    userSetting.setAccuracy(accuracyDifficulty);
+
+    // update box graphics
+    vbxAccuracyDifficulty.setId(accuracyDifficulty.toLowerCase());
+  }
 
   @FXML
   private void onStartGame(ActionEvent event) throws SQLException {
@@ -170,12 +198,7 @@ public class CategoryController implements Controller {
     categoryMessage.setVisible(false);
     dbxWordDifficulty.setValue("");
 
-    // change container colours to neutral
+    // change container colour to neutral
     vbxWordDifficulty.setId("null");
-    vbxAccuracyDifficulty.setId("null");
-
-    // clear inputs
-    dbxWordDifficulty.setValue("");
-    dbxAccuracyDifficulty.setValue("");
   }
 }
