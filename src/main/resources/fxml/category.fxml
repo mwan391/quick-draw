@@ -4,6 +4,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
@@ -41,15 +42,55 @@
             </Label>
             <HBox prefHeight="100.0" style="-fx-background-color: #173ab5;">
                <children>
-                  <VBox fx:id="vbxWordDifficulty" spacing="10.0" style="-fx-border-color: white;">
+                  <VBox fx:id="vbxWordDifficulty" alignment="CENTER" spacing="2.0" style="-fx-border-color: white;">
                      <padding>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </padding>
                      <children>
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="5.0">
+                           <children>
+                              <Label alignment="CENTER" prefHeight="30.0" prefWidth="128.0" style="-fx-background-color: PURPLE; -fx-background-radius: 20px;" text="Words" textAlignment="CENTER" textFill="WHITE">
+                                 <font>
+                                    <Font name="Arial Rounded MT Bold" size="19.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER" prefHeight="29.0" prefWidth="30.0" style="-fx-background-color: PURPLE; -fx-background-radius: 20px;" textAlignment="CENTER" textFill="WHITE">
+                                 <font>
+                                    <Font name="Arial Rounded MT Bold" size="19.0" />
+                                 </font>
+                                 <tooltip>
+                                    <Tooltip text="How hard your word to draw will be!">
+                                       <graphic>
+                                          <ImageView fitHeight="56.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../images/buttonicons/purple.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                    </Tooltip>
+                                 </tooltip>
+                                 <graphic>
+                                    <ImageView fitHeight="75.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../images/buttonicons/purple.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <ImageView fx:id="imgWordDifficulty" fitHeight="99.0" fitWidth="104.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/buttonicons/blue.png" />
+                           </image>
+                        </ImageView>
                         <ComboBox fx:id="dbxWordDifficulty" onAction="#onSetWordDifficulty" prefWidth="150.0" promptText="Word Difficulty" visibleRowCount="4" />
                      </children>
                   </VBox>
                </children>
+               <padding>
+                  <Insets left="20.0" right="20.0" />
+               </padding>
             </HBox>
             <Button fx:id="btnStartGame" mnemonicParsing="false" onAction="#onStartGame" prefHeight="50.0" prefWidth="300.0" style="-fx-background-color: #882FF6;" text="Start Game" textFill="WHITE">
                <font>
