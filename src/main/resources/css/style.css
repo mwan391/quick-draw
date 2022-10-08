@@ -3,3 +3,27 @@
   -fx-scale-x: 1.1;
   -fx-border-color: BLACK;
 }
+
+#canvasPane {
+  -fx-border-width: 15px;
+}
+
+.ten {
+  -fx-border-color: rgb(251, 60, 60);
+}
+
+.hundred {
+  -fx-border-color: rgb(252, 207, 129);
+}
+
+.fifty {
+  -fx-border-color: rgb(248, 169, 73);
+}
+
+.twenty {
+  -fx-border-color: rgb(243, 98, 7);
+}
+
+.won {
+  -fx-border-color: rgb(171, 71, 242);
+}

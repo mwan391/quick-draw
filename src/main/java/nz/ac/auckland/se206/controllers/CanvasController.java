@@ -9,7 +9,6 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
-import java.util.stream.IntStream;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Platform;
@@ -28,6 +27,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.image.Image;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 import javafx.util.Duration;
@@ -56,6 +56,7 @@ public class CanvasController implements Controller {
 
   @FXML private ListView<String> lvwPredictions;
   @FXML private Canvas canvas;
+  @FXML private Pane canvasPane;
   @FXML private Label lblTimer;
   @FXML private Label lblCategory;
   @FXML private Label eraserMessage;
@@ -194,9 +195,12 @@ public class CanvasController implements Controller {
         // add the retrieved predictions to the observable list
         predictions.add(formattedPrediction);
       }
-      // check if player won (guess is correct within the top three)
-      if ((i < 3) && (category.equals(classification.getClassName().replace('_', ' ')))) {
-        endGame(true);
+
+      // format the string and replace the underscores with a space
+      String categoryClass = classification.getClassName().replace('_', ' ');
+      if (category.equals(categoryClass)) {
+        // check if player won (guess is correct within the top three)
+        checkCategoryPosition(i);
       }
       i++;
     }
@@ -213,24 +217,29 @@ public class CanvasController implements Controller {
     return sb.toString();
   }
 
-  private void computeCategoryPosition(List<Classification> allPred) {
-    // compare each prediction to find the category's position within the list
-    IntStream.range(0, allPred.size())
-        .filter(i -> category.equals(allPred.get(i).getClassName().replace("_", " ")))
-        .forEach(pos -> printRanking(pos));
-  }
-
-  private void printRanking(int pos) {
-    // output current ranking of the category from predictions
-    if (pos < 10) {
-      System.out.println("=== Top 10 ===");
-    } else if (pos < 20) {
+  private void checkCategoryPosition(int position) {
+    // output current ranking of the category in list of predictions
+    String pseudoClass = null;
+    canvasPane.getStyleClass().removeAll("won", "ten", "twenty", "fifty", "hundred");
+    if (position < 4) {
+      pseudoClass = "won";
+      // canvasPane.pseudoClassStateChanged(PseudoClass.getPseudoClass(pseudoClass), true);
+      endGame(true);
+    } else if (position < 10) {
+      System.out.println(" === Top 10 === ");
+      pseudoClass = "ten";
+    } else if (position < 20) {
       System.out.println(" === Top 20 ===");
-    } else if (pos < 50) {
+      pseudoClass = "twenty";
+    } else if (position < 50) {
       System.out.println(" === Top 50 === ");
-    } else if (pos < 100) {
+      pseudoClass = "fifty";
+    } else if (position < 100) {
       System.out.println(" === Top 100 === ");
+      pseudoClass = "hundred";
     }
+    System.out.println("index is " + position);
+    canvasPane.getStyleClass().add(pseudoClass);
   }
 
   private void endGame(Boolean wonGame) {
