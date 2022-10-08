@@ -62,7 +62,7 @@ public class CategoryController implements Controller {
 
     // set presets
     loadWordDifficulty();
-    loadAccuracyDifficulty();
+    loadOtherDifficulty();
   }
 
   private void loadWordDifficulty() {
@@ -111,12 +111,26 @@ public class CategoryController implements Controller {
     TextToSpeech.main(new String[] {"Your word is " + CategorySelect.getCategory()});
   }
 
-  private void loadAccuracyDifficulty() {
+  private void loadOtherDifficulty() {
+    // accuracy
     String accuracyDifficulty = userSetting.getAccuracy().toLowerCase();
     accuracyDifficulty =
         accuracyDifficulty.substring(0, 1).toUpperCase() + accuracyDifficulty.substring(1);
     dbxAccuracyDifficulty.setValue(accuracyDifficulty);
     onSetAccuracyDifficulty();
+
+    // time
+    String timeDifficulty = userSetting.getTime().toLowerCase();
+    timeDifficulty = timeDifficulty.substring(0, 1).toUpperCase() + timeDifficulty.substring(1);
+    dbxTimeDifficulty.setValue(timeDifficulty);
+    onSetTimeDifficulty();
+
+    // confidence
+    String confidenceDifficulty = userSetting.getConfidence().toLowerCase();
+    confidenceDifficulty =
+        confidenceDifficulty.substring(0, 1).toUpperCase() + confidenceDifficulty.substring(1);
+    dbxConfidenceDifficulty.setValue(confidenceDifficulty);
+    onSetConfidenceDifficulty();
   }
 
   @FXML
@@ -124,16 +138,35 @@ public class CategoryController implements Controller {
     // get difficulty and check if it is valid
     String accuracyDifficulty = dbxAccuracyDifficulty.getValue().toUpperCase();
 
-    // set difficulty in manager
-    CategorySelect.Difficulty accuracyDifficultyEnum =
-        CategorySelect.Difficulty.valueOf(accuracyDifficulty);
-    CategorySelect.setWordDifficulty(accuracyDifficultyEnum);
-
     // update game model
     userSetting.setAccuracy(accuracyDifficulty);
 
     // update box graphics
     vbxAccuracyDifficulty.setId(accuracyDifficulty.toLowerCase());
+  }
+
+  @FXML
+  private void onSetTimeDifficulty() {
+    // get difficulty and check if it is valid
+    String difficulty = dbxTimeDifficulty.getValue().toUpperCase();
+
+    // update game model
+    userSetting.setTime(difficulty);
+
+    // update box graphics
+    vbxTimeDifficulty.setId(difficulty.toLowerCase());
+  }
+
+  @FXML
+  private void onSetConfidenceDifficulty() {
+    // get difficulty and check if it is valid
+    String difficulty = dbxConfidenceDifficulty.getValue().toUpperCase();
+
+    // update game model
+    userSetting.setConfidence(difficulty);
+
+    // update box graphics
+    vbxConfidenceDifficulty.setId(difficulty.toLowerCase());
   }
 
   @FXML

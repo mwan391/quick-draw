@@ -174,7 +174,7 @@
                               <Image url="@../images/buttonicons/blue.png" />
                            </image>
                         </ImageView>
-                        <ComboBox fx:id="dbxTimeDifficulty" onAction="#onSetAccuracyDifficulty" prefWidth="100.0" promptText="Time" visibleRowCount="4" />
+                        <ComboBox fx:id="dbxTimeDifficulty" onAction="#onSetTimeDifficulty" prefWidth="100.0" promptText="Time" visibleRowCount="4" />
                      </children>
                   </VBox>
                   <VBox fx:id="vbxConfidenceDifficulty" alignment="CENTER" spacing="2.0" style="-fx-border-color: white;">
@@ -219,7 +219,7 @@
                               <Image url="@../images/buttonicons/blue.png" />
                            </image>
                         </ImageView>
-                        <ComboBox fx:id="dbxConfidenceDifficulty" onAction="#onSetAccuracyDifficulty" prefWidth="100.0" promptText="Confidence" visibleRowCount="4" />
+                        <ComboBox fx:id="dbxConfidenceDifficulty" onAction="#onSetConfidenceDifficulty" prefWidth="100.0" promptText="Confidence" visibleRowCount="4" />
                      </children>
                   </VBox>
                </children>
