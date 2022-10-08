@@ -51,18 +51,7 @@ public class CategoryController implements Controller {
     // set word difficulty
     String wordDifficulty = userSetting.getWords().toLowerCase();
     wordDifficulty = wordDifficulty.substring(0, 1).toUpperCase() + wordDifficulty.substring(1);
-    if (!wordDifficulty.equals("Null")) {
-      dbxWordDifficulty.setValue(wordDifficulty);
-    }
-    onSetWordDifficulty();
-  }
-
-  @FXML
-  private void onSetWordDifficulty() {
-    // get difficulty and check if it is valid
-    String wordDifficulty = dbxWordDifficulty.getValue().toUpperCase();
-
-    if (wordDifficulty.equals("")) {
+    if (wordDifficulty.equals("Null")) {
       // Activating text to speech instructions
       TextToSpeech.main(new String[] {"Select a difficulty"});
       // disable start game button
@@ -71,9 +60,15 @@ public class CategoryController implements Controller {
       vbxWordDifficulty.setStyle("-fx-background-color: transparent;");
       // hide message before it has been set
       categoryMessage.setVisible(false);
-
-      return;
+    } else {
+      dbxWordDifficulty.setValue(wordDifficulty);
     }
+  }
+
+  @FXML
+  private void onSetWordDifficulty() {
+    // get difficulty and check if it is valid
+    String wordDifficulty = dbxWordDifficulty.getValue().toUpperCase();
 
     // set difficulty in manager
     CategorySelect.Difficulty wordDifficultyEnum =
@@ -85,7 +80,6 @@ public class CategoryController implements Controller {
 
     // generate set word
     categoryMessage.setVisible(true);
-    CategorySelect.setWordDifficulty(wordDifficultyEnum);
     lblCategory.setText("\"" + CategorySelect.generateSetCategory() + "\"");
 
     // use tts on background thread to avoid lags
@@ -110,6 +104,9 @@ public class CategoryController implements Controller {
     // change the scene and start the game
     canvasController.startTimer();
     scene.setRoot(canvasRoot);
+
+    // reset the page in case a new game gets started
+    resetPage();
   }
 
   @FXML
@@ -119,6 +116,9 @@ public class CategoryController implements Controller {
     Parent logInRoot = SceneManager.getUiRoot(AppUi.LOG_IN);
     scene.setRoot(logInRoot);
     UserModel.setActiveUser(null);
+
+    // reset the page in case a new game gets started
+    resetPage();
   }
 
   @FXML
@@ -145,5 +145,12 @@ public class CategoryController implements Controller {
     // load the necessary settings and change the scene
     settingsController.loadPage(userSetting);
     scene.setRoot(settingsRoot);
+  }
+
+  private void resetPage() {
+    // return the page to its initial state.
+    lblCategory.setText("Choose A Difficulty:");
+    btnStartGame.setDisable(true);
+    categoryMessage.setVisible(false);
   }
 }
