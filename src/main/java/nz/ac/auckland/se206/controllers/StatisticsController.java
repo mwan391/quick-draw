@@ -63,7 +63,7 @@ public class StatisticsController implements Controller {
 
   private void setEasyHistory() {
     // get relevant statistics
-    List<GameModel> latestGames = userStatsDao.getTen(activeUser.getId());
+    List<GameModel> latestGames = userStatsDao.getTen(activeUser.getUsername());
 
     // refresh history
     gamesEasyHistory.clear();
@@ -100,8 +100,8 @@ public class StatisticsController implements Controller {
   private void setWinRate() {
     // get relevant statistics
     // initialise counts to avoid breakage
-    int winCount = userStatsDao.countWins(activeUser.getId());
-    int gameCount = userStatsDao.countGames(activeUser.getId());
+    int winCount = userStatsDao.countWins(activeUser.getUsername());
+    int gameCount = userStatsDao.countGames(activeUser.getUsername());
 
     // build and update the win rate text
     StringBuilder stringBuilder = new StringBuilder();
@@ -129,7 +129,7 @@ public class StatisticsController implements Controller {
 
   private void setBestGame() {
     // get relevant statistics
-    GameModel bestGame = userStatsDao.getBestGame(activeUser.getId());
+    GameModel bestGame = userStatsDao.getBestGame(activeUser.getUsername());
 
     // check if user has played any games
     if (bestGame.getId() == 0) {
@@ -154,7 +154,7 @@ public class StatisticsController implements Controller {
 
   private void setLastGame() {
     // get relevant statistics
-    List<GameModel> lastGames = userStatsDao.getTen(activeUser.getId());
+    List<GameModel> lastGames = userStatsDao.getTen(activeUser.getUsername());
 
     // check if user has played any games
     if (lastGames.size() == 0) {

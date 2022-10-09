@@ -149,7 +149,7 @@ public class CanvasController implements Controller {
     category = CategorySelect.getCategory();
     lblCategory.setText("Draw: " + category);
     // create new game database object
-    activeUserId = UserModel.getActiveUser().getId();
+    activeUserId = UserModel.getActiveUser().getUsername();
     activeGameId = gameDao.addNewGame(activeUserId, CategorySelect.getWordDifficulty(), category);
     // set up what to do every second
     timer = new Timeline(new KeyFrame(Duration.seconds(1), e -> changeTime()));
