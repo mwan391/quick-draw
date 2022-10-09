@@ -1,8 +1,8 @@
 package nz.ac.auckland.se206.models;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 public class UserModel {
 
@@ -21,7 +21,7 @@ public class UserModel {
   private List<BadgeModel> badges;
 
   public UserModel(String username) {
-    this.id = LocalDateTime.now().toString();
+    this.id = UUID.randomUUID().toString();
     this.username = username;
     this.badges = new ArrayList<>();
   }
