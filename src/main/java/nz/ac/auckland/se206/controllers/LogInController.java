@@ -11,7 +11,8 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
-import nz.ac.auckland.se206.daos.UserDao;
+import nz.ac.auckland.se206.daos.UserDaoJson;
+import nz.ac.auckland.se206.models.BadgeModel;
 import nz.ac.auckland.se206.models.UserModel;
 import nz.ac.auckland.se206.speech.TextToSpeech;
 
@@ -21,7 +22,7 @@ public class LogInController implements Controller {
   @FXML private Button btnLogIn;
   @FXML private Label lblWarning;
   @FXML private ComboBox<String> fldUserName;
-  private UserDao userDao = new UserDao();
+  private UserDaoJson userDao = new UserDaoJson();
   private ObservableList<String> existingUsers;
 
   public void initialize() {
@@ -30,13 +31,15 @@ public class LogInController implements Controller {
     // create the observable list of existing user names for the drop down menu
     existingUsers = FXCollections.observableArrayList();
 
-    List<UserModel> tempUsers = userDao.getUsers();
+    List<UserModel> tempUsers = userDao.getAll();
 
     for (UserModel user : tempUsers) {
-      existingUsers.add(user.toString());
+      existingUsers.add(user.getUsername());
     }
 
     fldUserName.setItems(existingUsers);
+    userDao.addBadge(
+        new BadgeModel(1, "First Win", "Won your very first Quick Draw Game !"), "Michelle");
   }
 
   @FXML
@@ -61,8 +64,12 @@ public class LogInController implements Controller {
       return;
     }
 
+    // add new user to database
+    UserModel user = new UserModel(userName);
+    userDao.add(user);
+
     // set the newly made user as the active user and add to the drop down list
-    UserModel.setActiveUser(userDao.getUserById(userDao.addNewUser(userName)));
+    UserModel.setActiveUser(user);
     existingUsers.add(userName);
 
     // go to the next screen
@@ -75,14 +82,13 @@ public class LogInController implements Controller {
     String userName = fldUserName.getValue();
 
     // check if the un is in the system
-    int userId = userDao.getId(userName);
-    if (userId == -1) {
+    if (!userDao.checkExists(userName)) {
       lblWarning.setText("Invalid login attempt.");
       return;
     }
 
     // set the user as the active user
-    UserModel.setActiveUser(userDao.getUserById(userId));
+    UserModel.setActiveUser(userDao.get(userName));
 
     // go to the next screen
     nextScreen(event);

@@ -81,7 +81,7 @@ public class CanvasController implements Controller {
 
   // database tools
   private GameDao gameDao = new GameDao();
-  private int activeUserId;
+  private String activeUserId;
   private int activeGameId;
 
   /**
