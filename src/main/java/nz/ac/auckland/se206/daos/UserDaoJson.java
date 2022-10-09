@@ -48,26 +48,6 @@ public class UserDaoJson {
   }
 
   /**
-   * Retrieve a username from file and returns the id, returns -1 (String) if no user is found
-   *
-   * @param username of user
-   * @return id of found user or -1
-   */
-  public String getId(String username) {
-    List<UserModel> users = getAll();
-    // Use streams to find a matching username
-    UserModel foundUser =
-        users.stream()
-            .filter(u -> Objects.equals(username, u.getUsername()))
-            .findFirst()
-            .orElse(null);
-    if (foundUser == null) {
-      return "-1";
-    }
-    return foundUser.getId();
-  }
-
-  /**
    * check if a username has already been add to file and returns the result
    *
    * @param username to check for
