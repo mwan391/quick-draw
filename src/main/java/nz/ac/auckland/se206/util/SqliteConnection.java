@@ -62,7 +62,6 @@ public class SqliteConnection {
       connection = openConnection();
       Statement statement = connection.createStatement();
       // initialise tables if they do not exist
-      createUsersTable(statement);
       createGamesTable(statement);
       createSettingsTable(statement);
     } catch (SQLException e) {
@@ -70,22 +69,6 @@ public class SqliteConnection {
     } finally {
       closeConnection(connection);
     }
-  }
-
-  /**
-   * initialises a table to tracks users if it does not already exist
-   *
-   * @param statement to allow sql command to be executed
-   * @return whether or not command was successful
-   * @throws SQLException
-   */
-  private boolean createUsersTable(Statement statement) throws SQLException {
-    // create users table with following fields
-    StringBuilder sb = new StringBuilder("CREATE TABLE IF NOT EXISTS users ");
-    sb.append("(id INTEGER PRIMARY KEY AUTOINCREMENT, ");
-    sb.append("username TEXT NOT NULL, ");
-    sb.append("game_id INTEGER);");
-    return statement.execute(sb.toString());
   }
 
   /**
