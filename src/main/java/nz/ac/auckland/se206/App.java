@@ -12,6 +12,7 @@ import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.util.SqliteConnection;
+import nz.ac.auckland.se206.util.UserLoader;
 
 /**
  * This is the entry point of the JavaFX application, while you can change this class, it should
@@ -50,6 +51,7 @@ public class App extends Application {
   public void start(final Stage stage) throws IOException {
 
     SqliteConnection.start();
+    UserLoader.start();
 
     SceneManager.addUi(AppUi.MAIN_MENU, loadFxml("menu"));
     SceneManager.addUi(AppUi.LOG_IN, loadFxml("login"));

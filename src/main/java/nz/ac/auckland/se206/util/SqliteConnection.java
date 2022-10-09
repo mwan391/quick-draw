@@ -54,7 +54,7 @@ public class SqliteConnection {
     }
   }
 
-  /** initialises all the tables that will store the users and game's info */
+  /** initialises all the tables that will store the game's info */
   private void createTables() {
     Connection connection = null;
     try {
