@@ -50,17 +50,22 @@ public class App extends Application {
   @Override
   public void start(final Stage stage) throws IOException {
 
+    // load necessary things
     SqliteConnection.start();
     UserLoader.start();
+    BadgeManager.initializeBadges();
 
+    // load scenes
     SceneManager.addUi(AppUi.MAIN_MENU, loadFxml("menu"));
     SceneManager.addUi(AppUi.LOG_IN, loadFxml("login"));
     SceneManager.addUi(AppUi.CATEGORY_SELECT, loadFxml("category"));
     SceneManager.addUi(AppUi.USER_STATS, loadFxml("statistics"));
     SceneManager.addUi(AppUi.CANVAS, loadFxml("canvas"));
 
+    // set first scene
     Scene scene = new Scene(SceneManager.getUiRoot(AppUi.MAIN_MENU));
 
+    // set top bar of app
     stage.setScene(scene);
     stage.show();
     stage.setTitle("Quick Draw Beta");
