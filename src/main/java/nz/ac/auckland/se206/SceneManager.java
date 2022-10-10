@@ -10,7 +10,6 @@ public class SceneManager {
     MAIN_MENU,
     LOG_IN,
     CATEGORY_SELECT,
-    SETTINGS,
     USER_STATS,
     CANVAS
   }

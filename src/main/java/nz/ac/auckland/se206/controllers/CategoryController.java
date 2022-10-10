@@ -25,7 +25,6 @@ public class CategoryController implements Controller {
   @FXML private Button btnStartGame;
   @FXML private Button btnLogOut;
   @FXML private Button btnUserStatistics;
-  @FXML private Button btnSettings;
   @FXML private ComboBox<String> dbxWordDifficulty;
   @FXML private VBox vbxWordDifficulty;
   @FXML private ComboBox<String> dbxAccuracyDifficulty;
@@ -192,18 +191,5 @@ public class CategoryController implements Controller {
     // load the necessary stats and change the scene
     statisticsController.loadPage();
     scene.setRoot(statsRoot);
-  }
-
-  @FXML
-  private void onSeeSettings(ActionEvent event) {
-    // get root and controller for settings page
-    Scene scene = ((Button) event.getSource()).getScene();
-    Parent settingsRoot = SceneManager.getUiRoot(AppUi.SETTINGS);
-    SettingsController settingsController =
-        (SettingsController) SceneManager.getController(settingsRoot);
-
-    // load the necessary settings and change the scene
-    settingsController.loadPage(userSetting);
-    scene.setRoot(settingsRoot);
   }
 }
