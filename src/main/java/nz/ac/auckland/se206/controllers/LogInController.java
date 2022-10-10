@@ -12,7 +12,6 @@ import javafx.scene.control.Label;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.daos.UserDaoJson;
-import nz.ac.auckland.se206.models.BadgeModel;
 import nz.ac.auckland.se206.models.UserModel;
 import nz.ac.auckland.se206.speech.TextToSpeech;
 
@@ -38,8 +37,6 @@ public class LogInController implements Controller {
     }
 
     fldUserName.setItems(existingUsers);
-    userDao.addBadge(
-        new BadgeModel(1, "First Win", "Won your very first Quick Draw Game !"), "Michelle");
   }
 
   @FXML
