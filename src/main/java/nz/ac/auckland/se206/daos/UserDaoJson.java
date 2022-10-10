@@ -103,6 +103,18 @@ public class UserDaoJson {
   }
 
   /**
+   * Check if a user has already a particular badge
+   *
+   * @param badge to find match for
+   * @param user user to check its badges
+   * @return whether or not badge was found in the user
+   */
+  public boolean checkExists(BadgeModel badge, UserModel user) {
+    boolean foundMatch = user.getBadges().stream().anyMatch(nextBadge -> nextBadge.equals(badge));
+    return foundMatch;
+  }
+
+  /**
    * Writes all users and its details to file
    *
    * @param users list of updated users to save to file
