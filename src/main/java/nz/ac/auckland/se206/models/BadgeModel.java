@@ -5,11 +5,13 @@ public class BadgeModel {
   private int id;
   private String name;
   private String description;
+  private String imageUrl;
 
-  public BadgeModel(int id, String name, String description) {
+  public BadgeModel(int id, String name, String description, String imageUrl) {
     this.id = id;
     this.name = name;
     this.description = description;
+    this.imageUrl = imageUrl;
   }
 
   public int getId() {
@@ -28,12 +30,20 @@ public class BadgeModel {
     this.name = name;
   }
 
-  public String getDescrip() {
+  public String getDescription() {
     return description;
   }
 
-  public void setDescrip(String descrip) {
-    this.description = descrip;
+  public void setDescription(String description) {
+    this.description = description;
+  }
+
+  public String getImageUrl() {
+    return imageUrl;
+  }
+
+  public void setImageUrl(String imageUrl) {
+    this.imageUrl = imageUrl;
   }
 
   public String toString() {
