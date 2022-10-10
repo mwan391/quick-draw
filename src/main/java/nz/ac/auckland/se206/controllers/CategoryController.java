@@ -10,7 +10,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import nz.ac.auckland.se206.CategorySelect;
 import nz.ac.auckland.se206.SceneManager;
@@ -33,8 +32,6 @@ public class CategoryController implements Controller {
   @FXML private VBox vbxConfidenceDifficulty;
   @FXML private ComboBox<String> dbxConfidenceDifficulty;
   @FXML private VBox vbxAccuracyDifficulty;
-  @FXML private Label lblCategory;
-  @FXML private Label categoryMessage;
 
   private GameSettingModel userSetting;
 

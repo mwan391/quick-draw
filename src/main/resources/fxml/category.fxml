@@ -21,18 +21,7 @@
       </ImageView>
       <VBox alignment="CENTER" prefHeight="600.0" prefWidth="700.0">
          <children>
-            <Label fx:id="categoryMessage" alignment="CENTER" prefHeight="32.0" prefWidth="198.0" style="-fx-background-color: #173ab5; -fx-background-radius: 10px;" text="Your Word Is:" textAlignment="CENTER" textFill="WHITE">
-               <font>
-                  <Font name="Arial Rounded MT Bold" size="27.0" />
-               </font>
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
-               <VBox.margin>
-                  <Insets bottom="10.0" />
-               </VBox.margin>
-            </Label>
-            <Label fx:id="lblCategory" alignment="CENTER" prefHeight="58.0" prefWidth="400.0" style="-fx-background-color: PURPLE; -fx-background-radius: 20px;" text="Choose A Difficulty:" textAlignment="CENTER" textFill="WHITE">
+            <Label alignment="CENTER" prefHeight="58.0" prefWidth="400.0" style="-fx-background-color: #173ab5; -fx-background-radius: 20px;" text="Choose A Difficulty" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font name="Arial Rounded MT Bold" size="40.0" />
                </font>
