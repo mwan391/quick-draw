@@ -40,192 +40,134 @@
                   <Insets bottom="10.0" />
                </VBox.margin>
             </Label>
-            <HBox prefHeight="100.0" style="-fx-background-color: #173ab5;">
+            <HBox alignment="CENTER" prefHeight="100.0">
                <children>
-                  <VBox fx:id="vbxWordDifficulty" alignment="CENTER" prefHeight="181.0" spacing="2.0" style="-fx-border-color: white;">
+                  <VBox fx:id="vbxWordDifficulty" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="140.0" spacing="2.0" style="-fx-background-color: #173ab5; -fx-background-radius: 20px;">
                      <padding>
                         <Insets bottom="10.0" top="10.0" />
                      </padding>
                      <children>
-                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="5.0">
-                           <children>
-                              <Label alignment="CENTER" prefHeight="29.0" prefWidth="98.0" style="-fx-background-color: PURPLE; -fx-background-radius: 20px;" text="Words" textAlignment="CENTER" textFill="WHITE">
-                                 <font>
-                                    <Font name="Arial Rounded MT Bold" size="19.0" />
-                                 </font>
-                              </Label>
-                              <Label alignment="CENTER" prefHeight="29.0" prefWidth="30.0" style="-fx-background-color: PURPLE; -fx-background-radius: 20px;" textAlignment="CENTER" textFill="WHITE">
-                                 <font>
-                                    <Font name="Arial Rounded MT Bold" size="19.0" />
-                                 </font>
-                                 <tooltip>
-                                    <Tooltip text="How hard your word to draw will be!">
-                                       <graphic>
-                                          <ImageView fitHeight="56.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@../images/buttonicons/purple.png" />
-                                             </image>
-                                          </ImageView>
-                                       </graphic>
-                                    </Tooltip>
-                                 </tooltip>
+                        <Label alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="29.0" style="-fx-background-color: #173ab5; -fx-background-radius: 10px;" text="Words" textAlignment="CENTER" textFill="WHITE">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="19.0" />
+                           </font>
+                           <tooltip>
+                              <Tooltip text="How hard your word to draw will be!">
                                  <graphic>
-                                    <ImageView fitHeight="75.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
+                                    <ImageView fitHeight="56.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
                                           <Image url="@../images/buttonicons/purple.png" />
                                        </image>
                                     </ImageView>
                                  </graphic>
-                              </Label>
-                           </children>
-                        </HBox>
-                        <ImageView fitHeight="99.0" fitWidth="104.0" pickOnBounds="true" preserveRatio="true">
+                              </Tooltip>
+                           </tooltip>
+                           <padding>
+                              <Insets left="10.0" right="10.0" />
+                           </padding>
+                        </Label>
+                        <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../images/buttonicons/blue.png" />
+                              <Image url="@../images/buttonicons/abc.png" />
                            </image>
+                           <VBox.margin>
+                              <Insets bottom="10.0" top="10.0" />
+                           </VBox.margin>
                         </ImageView>
                         <ComboBox fx:id="dbxWordDifficulty" onAction="#onSetWordDifficulty" prefHeight="26.0" prefWidth="100.0" promptText="Words" visibleRowCount="4" />
                      </children>
+                     <HBox.margin>
+                        <Insets right="5.0" />
+                     </HBox.margin>
                   </VBox>
-                  <VBox fx:id="vbxAccuracyDifficulty" alignment="CENTER" spacing="2.0" style="-fx-border-color: white;">
+                  <VBox fx:id="vbxAccuracyDifficulty" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="140.0" spacing="2.0" style="-fx-background-color: #173ab5; -fx-background-radius: 20px;">
                      <padding>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </padding>
                      <children>
-                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="5.0">
-                           <children>
-                              <Label alignment="CENTER" prefHeight="29.0" prefWidth="113.0" style="-fx-background-color: PURPLE; -fx-background-radius: 20px;" text="Accuracy" textAlignment="CENTER" textFill="WHITE">
-                                 <font>
-                                    <Font name="Arial Rounded MT Bold" size="19.0" />
-                                 </font>
-                              </Label>
-                              <Label alignment="CENTER" prefHeight="29.0" prefWidth="30.0" style="-fx-background-color: PURPLE; -fx-background-radius: 20px;" textAlignment="CENTER" textFill="WHITE">
-                                 <font>
-                                    <Font name="Arial Rounded MT Bold" size="19.0" />
-                                 </font>
-                                 <tooltip>
-                                    <Tooltip text="How hard your word to draw will be!">
-                                       <graphic>
-                                          <ImageView fitHeight="56.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@../images/buttonicons/purple.png" />
-                                             </image>
-                                          </ImageView>
-                                       </graphic>
-                                    </Tooltip>
-                                 </tooltip>
-                                 <graphic>
-                                    <ImageView fitHeight="75.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@../images/buttonicons/purple.png" />
-                                       </image>
-                                    </ImageView>
-                                 </graphic>
-                              </Label>
-                           </children>
-                        </HBox>
-                        <ImageView fitHeight="99.0" fitWidth="104.0" pickOnBounds="true" preserveRatio="true">
+                        <Label alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="29.0" style="-fx-background-color: #173ab5; -fx-background-radius: 10px;" text="Accuracy" textAlignment="CENTER" textFill="WHITE">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="19.0" />
+                           </font>
+                           <padding>
+                              <Insets left="10.0" right="10.0" />
+                           </padding>
+                        </Label>
+                        <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../images/buttonicons/blue.png" />
+                              <Image url="@../images/buttonicons/accuracy.png" />
                            </image>
+                           <VBox.margin>
+                              <Insets bottom="10.0" top="10.0" />
+                           </VBox.margin>
                         </ImageView>
                         <ComboBox fx:id="dbxAccuracyDifficulty" onAction="#onSetAccuracyDifficulty" prefWidth="100.0" promptText="Accuracy" visibleRowCount="4" />
                      </children>
+                     <HBox.margin>
+                        <Insets left="5.0" right="5.0" />
+                     </HBox.margin>
                   </VBox>
-                  <VBox fx:id="vbxTimeDifficulty" alignment="CENTER" spacing="2.0" style="-fx-border-color: white;">
+                  <VBox fx:id="vbxTimeDifficulty" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="140.0" spacing="2.0" style="-fx-background-color: #173ab5; -fx-background-radius: 20px;">
                      <padding>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </padding>
                      <children>
-                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="5.0">
-                           <children>
-                              <Label alignment="CENTER" prefHeight="29.0" prefWidth="66.0" style="-fx-background-color: PURPLE; -fx-background-radius: 20px;" text="Time" textAlignment="CENTER" textFill="WHITE">
-                                 <font>
-                                    <Font name="Arial Rounded MT Bold" size="19.0" />
-                                 </font>
-                              </Label>
-                              <Label alignment="CENTER" prefHeight="29.0" prefWidth="30.0" style="-fx-background-color: PURPLE; -fx-background-radius: 20px;" textAlignment="CENTER" textFill="WHITE">
-                                 <font>
-                                    <Font name="Arial Rounded MT Bold" size="19.0" />
-                                 </font>
-                                 <tooltip>
-                                    <Tooltip text="How hard your word to draw will be!">
-                                       <graphic>
-                                          <ImageView fitHeight="56.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@../images/buttonicons/purple.png" />
-                                             </image>
-                                          </ImageView>
-                                       </graphic>
-                                    </Tooltip>
-                                 </tooltip>
-                                 <graphic>
-                                    <ImageView fitHeight="75.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@../images/buttonicons/purple.png" />
-                                       </image>
-                                    </ImageView>
-                                 </graphic>
-                              </Label>
-                           </children>
-                        </HBox>
-                        <ImageView fitHeight="99.0" fitWidth="104.0" pickOnBounds="true" preserveRatio="true">
+                        <Label alignment="CENTER" prefHeight="29.0" style="-fx-background-color: #173ab5; -fx-background-radius: 10px;" text="Time" textAlignment="CENTER" textFill="WHITE">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="19.0" />
+                           </font>
+                           <padding>
+                              <Insets left="10.0" right="10.0" />
+                           </padding>
+                        </Label>
+                        <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../images/buttonicons/blue.png" />
+                              <Image url="@../images/buttonicons/hourglass.png" />
                            </image>
+                           <VBox.margin>
+                              <Insets bottom="10.0" top="10.0" />
+                           </VBox.margin>
                         </ImageView>
                         <ComboBox fx:id="dbxTimeDifficulty" onAction="#onSetTimeDifficulty" prefWidth="100.0" promptText="Time" visibleRowCount="4" />
                      </children>
+                     <HBox.margin>
+                        <Insets left="5.0" right="5.0" />
+                     </HBox.margin>
                   </VBox>
-                  <VBox fx:id="vbxConfidenceDifficulty" alignment="CENTER" spacing="2.0" style="-fx-border-color: white;">
+                  <VBox fx:id="vbxConfidenceDifficulty" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="140.0" spacing="2.0" style="-fx-background-color: #173ab5; -fx-background-radius: 20px;">
                      <padding>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </padding>
                      <children>
-                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="5.0">
-                           <children>
-                              <Label alignment="CENTER" prefHeight="29.0" prefWidth="66.0" style="-fx-background-color: PURPLE; -fx-background-radius: 20px;" text="Confidence" textAlignment="CENTER" textFill="WHITE">
-                                 <font>
-                                    <Font name="Arial Rounded MT Bold" size="19.0" />
-                                 </font>
-                              </Label>
-                              <Label alignment="CENTER" prefHeight="29.0" prefWidth="30.0" style="-fx-background-color: PURPLE; -fx-background-radius: 20px;" textAlignment="CENTER" textFill="WHITE">
-                                 <font>
-                                    <Font name="Arial Rounded MT Bold" size="19.0" />
-                                 </font>
-                                 <tooltip>
-                                    <Tooltip text="How hard your word to draw will be!">
-                                       <graphic>
-                                          <ImageView fitHeight="56.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@../images/buttonicons/purple.png" />
-                                             </image>
-                                          </ImageView>
-                                       </graphic>
-                                    </Tooltip>
-                                 </tooltip>
-                                 <graphic>
-                                    <ImageView fitHeight="75.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@../images/buttonicons/purple.png" />
-                                       </image>
-                                    </ImageView>
-                                 </graphic>
-                              </Label>
-                           </children>
-                        </HBox>
-                        <ImageView fitHeight="99.0" fitWidth="104.0" pickOnBounds="true" preserveRatio="true">
+                        <Label alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="29.0" style="-fx-background-color: #173ab5; -fx-background-radius: 10px;" text="Confidence" textAlignment="CENTER" textFill="WHITE">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="19.0" />
+                           </font>
+                           <padding>
+                              <Insets left="10.0" right="10.0" />
+                           </padding>
+                        </Label>
+                        <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../images/buttonicons/blue.png" />
+                              <Image url="@../images/buttonicons/shrug.png" />
                            </image>
+                           <VBox.margin>
+                              <Insets bottom="10.0" top="10.0" />
+                           </VBox.margin>
                         </ImageView>
                         <ComboBox fx:id="dbxConfidenceDifficulty" onAction="#onSetConfidenceDifficulty" prefWidth="100.0" promptText="Confidence" visibleRowCount="4" />
                      </children>
+                     <HBox.margin>
+                        <Insets left="5.0" />
+                     </HBox.margin>
                   </VBox>
                </children>
                <padding>
                   <Insets left="20.0" right="20.0" />
                </padding>
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
             </HBox>
             <Button fx:id="btnStartGame" mnemonicParsing="false" onAction="#onStartGame" prefHeight="50.0" prefWidth="300.0" style="-fx-background-color: #882FF6;" text="Start Game" textFill="WHITE">
                <font>
