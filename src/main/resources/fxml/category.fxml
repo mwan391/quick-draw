@@ -42,13 +42,9 @@
                            </font>
                            <tooltip>
                               <Tooltip text="How hard your word to draw will be!">
-                                 <graphic>
-                                    <ImageView fitHeight="56.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@../images/buttonicons/purple.png" />
-                                       </image>
-                                    </ImageView>
-                                 </graphic>
+                                 <font>
+                                    <Font name="Arial Rounded MT Bold" size="20.0" />
+                                 </font>
                               </Tooltip>
                            </tooltip>
                            <padding>
@@ -81,6 +77,13 @@
                            <padding>
                               <Insets left="10.0" right="10.0" />
                            </padding>
+                           <tooltip>
+                              <Tooltip text="How close to the top guess your drawing has to be!">
+                                 <font>
+                                    <Font name="Arial Rounded MT Bold" size="20.0" />
+                                 </font>
+                              </Tooltip>
+                           </tooltip>
                         </Label>
                         <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -108,6 +111,13 @@
                            <padding>
                               <Insets left="10.0" right="10.0" />
                            </padding>
+                           <tooltip>
+                              <Tooltip text="How much time you get to draw!">
+                                 <font>
+                                    <Font name="Arial Rounded MT Bold" size="20.0" />
+                                 </font>
+                              </Tooltip>
+                           </tooltip>
                         </Label>
                         <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -135,6 +145,13 @@
                            <padding>
                               <Insets left="10.0" right="10.0" />
                            </padding>
+                           <tooltip>
+                              <Tooltip text="How close to perfect your drawing has to be!">
+                                 <font>
+                                    <Font name="Arial Rounded MT Bold" size="20.0" />
+                                 </font>
+                              </Tooltip>
+                           </tooltip>
                         </Label>
                         <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
                            <image>
