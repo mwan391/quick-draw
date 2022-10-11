@@ -22,6 +22,7 @@ public class BadgeManager {
   private static HashMap<String, Integer> settingsIds = new HashMap<>();
   private static HashMap<Difficulty, Integer> wordsCount = new HashMap<>();
   private static HashMap<Difficulty, BadgeModel> wordsBadge = new HashMap<>();
+  private static HashMap<Integer, BadgeModel> gameCountThreshold = new HashMap<>();
 
   /**
    * Initialize the array of existing badges and related hashmaps. Current badge count: 20 badges
@@ -138,17 +139,22 @@ public class BadgeManager {
    */
   private static void initializeBadgesCount() {
     BadgeModel badge;
-    // create game count badges
+    // create game count badges and add to hashmap
     badge = new BadgeModel(15, "Newbie!", "You've played 5 games!", "");
     availBadges.add(badge);
+    gameCountThreshold.put(5, badge);
     badge = new BadgeModel(16, "Amateur!", "You've played 10 games!", "");
     availBadges.add(badge);
+    gameCountThreshold.put(10, badge);
     badge = new BadgeModel(17, "Competent!", "You've played 25 games!", "");
     availBadges.add(badge);
+    gameCountThreshold.put(25, badge);
     badge = new BadgeModel(18, "Proficient!", "You've played 50 games!", "");
     availBadges.add(badge);
+    gameCountThreshold.put(50, badge);
     badge = new BadgeModel(19, "Expert!", "You've played 100 games! That's a lot!", "");
     availBadges.add(badge);
+    gameCountThreshold.put(100, badge);
   }
 
   /**
@@ -194,6 +200,7 @@ public class BadgeManager {
 
     // check grouped badges not needing a win
     newBadgeCount += checkNewBadgesWords(actualDifficulty);
+    newBadgeCount += checkNewBadgesCount();
 
     return newBadgeCount;
   }
@@ -230,7 +237,6 @@ public class BadgeManager {
    * Checks whether the user is eligible for a new settings-based badge where badge id ranges from 7
    * to 10 inclusive
    *
-   * @param id of the user's account
    * @return number of new badges awarded
    */
   private static int checkNewBadgesSettings() {
@@ -270,7 +276,7 @@ public class BadgeManager {
    * Checks whether the user is eligible for a new settings-based badge where badge id ranges from
    * 11 to 14 inclusive
    *
-   * @param id of the user's account
+   * @param actualDifficulty of the word in the last game played
    * @return number of new badges awarded
    */
   private static int checkNewBadgesWords(Difficulty actualDifficulty) {
@@ -306,5 +312,32 @@ public class BadgeManager {
     }
 
     return newBadgeCount;
+  }
+
+  /**
+   * Checks whether the user is eligible for a new number of games playedbased badge where badge id
+   * ranges from 15 to 19 inclusive
+   *
+   * @return number of new badges awarded
+   */
+  private static int checkNewBadgesCount() {
+
+    int newBadgeCount = 0;
+    UserDaoJson userDao = new UserDaoJson();
+
+    // get number of games played
+    UserStatsDao userStatsDao = new UserStatsDao();
+    int gameCount = userStatsDao.countGames(user.getId());
+
+    // calculate which badges can be received
+    for (int countThreshold : gameCountThreshold.keySet()) {
+      if ((gameCount == countThreshold)) {
+        BadgeModel badge = gameCountThreshold.get(countThreshold);
+        userDao.addBadge(badge, user.getUsername());
+        return 1;
+      }
+    }
+
+    return 0;
   }
 }
