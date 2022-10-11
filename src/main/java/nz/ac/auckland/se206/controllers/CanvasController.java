@@ -8,6 +8,7 @@ import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.List;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -348,7 +349,7 @@ public class CanvasController implements Controller {
   }
 
   @FXML
-  private void onNewGame() {
+  private void onNewGame() throws SQLException {
     if (btnNewGame.isSelected()) {
       // clear the canvas and timer
       resetGame();
