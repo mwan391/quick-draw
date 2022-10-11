@@ -5,7 +5,8 @@
 }
 
 #canvasPane {
-  -fx-border-width: 15px;
+  -fx-border-width: 10px;
+  -fx-border-insets: -10px;
 }
 
 .top10 {
