@@ -112,6 +112,9 @@ public class CanvasController implements Controller {
     switchToPen();
 
     model = new DoodlePrediction();
+
+    // set default canvas border color
+    canvasPane.getStyleClass().add("end-game");
   }
 
   /** This method is called when the "Clear" button is pressed. */
@@ -225,7 +228,7 @@ public class CanvasController implements Controller {
     ;
     // change the border color depending on its ranking
     if (position < 3) {
-      pseudoClass = "end-game";
+      pseudoClass = "top3";
       endGame(true);
     } else if (position < 10) {
       pseudoClass = "top10";
@@ -235,6 +238,8 @@ public class CanvasController implements Controller {
       pseudoClass = "top50";
     } else if (position < 100) {
       pseudoClass = "top100";
+    } else {
+      pseudoClass = "end-game";
     }
     // set color to border
     canvasPane.getStyleClass().add(pseudoClass);
@@ -314,7 +319,7 @@ public class CanvasController implements Controller {
     predictions.clear();
     onClear();
     // reset conditional border color rendering
-    canvasPane.getStyleClass().clear();
+    canvasPane.getStyleClass().add("end-game");
   }
 
   @FXML

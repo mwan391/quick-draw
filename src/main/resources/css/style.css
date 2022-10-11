@@ -4,9 +4,8 @@
   -fx-border-color: BLACK;
 }
 
-#canvasPane {
-  -fx-border-width: 10px;
-  -fx-border-insets: -10px;
+.top3 {
+  -fx-border-color: rgb(3, 240, 3);
 }
 
 .top10 {
@@ -26,7 +25,7 @@
 }
 
 .end-game {
-  -fx-border-color: rgb(171, 71, 242);
+  -fx-border-color: #173ab5;
 }
 
 .list-cell {
@@ -55,7 +54,7 @@
 }
 
 .combo-box .arrow-button {
-  -fx-background-color: #882FF6;
+  -fx-background-color: #882ff6;
 }
 
 .list-view .list-cell:even {
