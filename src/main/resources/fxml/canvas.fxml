@@ -36,6 +36,17 @@
                         <Insets left="10.0" right="10.0" />
                      </padding>
                   </Label>
+                  <Label fx:id="lblCategory1" alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="34.0" prefWidth="400.0" style="-fx-background-color: #173ab5; -fx-border-width: 5px; -fx-border-color: #173ab5; -fx-border-insets: -5px; -fx-border-radius: 2px;" text="Start Drawing!" textAlignment="CENTER" textFill="WHITE">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="22.0" />
+                     </font>
+                     <padding>
+                        <Insets left="10.0" right="10.0" />
+                     </padding>
+                     <VBox.margin>
+                        <Insets top="5.0" />
+                     </VBox.margin>
+                  </Label>
                   <Pane fx:id="canvasPane" prefHeight="243.0" prefWidth="400.0" style="-fx-background-color: white; -fx-border-width: 5px; -fx-border-insets: -5px;">
                      <children>
                         <Canvas fx:id="canvas" height="243.0" width="400.0">
@@ -45,7 +56,7 @@
                         </Canvas>
                      </children>
                      <VBox.margin>
-                        <Insets bottom="5.0" top="5.0" />
+                        <Insets bottom="5.0" />
                      </VBox.margin>
                   </Pane>
                   <HBox fx:id="hbxDrawTools" alignment="TOP_CENTER" spacing="5.0">
@@ -99,12 +110,18 @@
                                        <font>
                                           <Font name="Arial Rounded MT Bold" size="20.0" />
                                        </font>
+                                       <VBox.margin>
+                                          <Insets />
+                                       </VBox.margin>
                                     </Label>
                                  </children>
                               </VBox>
                            </graphic>
                         </ToggleButton>
                      </children>
+                     <VBox.margin>
+                        <Insets bottom="30.0" />
+                     </VBox.margin>
                   </HBox>
                </children>
                <padding>
