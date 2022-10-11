@@ -3,9 +3,11 @@ package nz.ac.auckland.se206;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import nz.ac.auckland.se206.daos.GameSettingDao;
 import nz.ac.auckland.se206.daos.UserDaoJson;
 import nz.ac.auckland.se206.models.BadgeModel;
 import nz.ac.auckland.se206.models.GameModel;
+import nz.ac.auckland.se206.models.GameSettingModel;
 import nz.ac.auckland.se206.models.UserModel;
 
 public class BadgeManager {
@@ -15,8 +17,11 @@ public class BadgeManager {
 
   // hash maps of grouped badges
   private static HashMap<Integer, Integer> timeThreshold = new HashMap<>();
+  private static HashMap<String, Integer> settingsIds = new HashMap<>();
 
-  /** Initialize the array of existing badges and related hashmaps Current badge count: 20 badges */
+  /**
+   * Initialize the array of existing badges and related hashmaps. Current badge count: 20 badges
+   */
   public static void initializeBadges() {
 
     BadgeModel badge;
@@ -43,7 +48,7 @@ public class BadgeManager {
   }
 
   /**
-   * Initializes all time-related badge array entries and hashmap Current Badge count: 4 Badge ID
+   * Initializes all time-related badge array entries and hashmap. Current Badge count: 4. Badge ID
    * range: 3 to 6
    */
   private static void initializeBadgesTime() {
@@ -66,8 +71,8 @@ public class BadgeManager {
   }
 
   /**
-   * Initializes all settings-related badge array entries Current Badge count: 4 Badge ID range: 7
-   * to 10
+   * Initializes all settings-related badge array entries and hashmap. Current Badge count: 4. Badge
+   * ID range: 7 to 10
    */
   private static void initializeBadgesSettings() {
     BadgeModel badge;
@@ -85,10 +90,15 @@ public class BadgeManager {
             "You won a game with the hardest possible settings! You're a master!",
             "");
     availBadges.add(badge);
+
+    settingsIds.put("EASY", 7);
+    settingsIds.put("MEDIUM", 8);
+    settingsIds.put("HARD", 9);
+    settingsIds.put("MASTER", 10);
   }
 
   /**
-   * Initializes all word-related badge array entries Current Badge count: 4 Badge ID range: 11 to
+   * Initializes all word-related badge array entries. Current Badge count: 4. Badge ID range: 11 to
    * 14
    */
   private static void initializeBadgesWords() {
@@ -110,7 +120,7 @@ public class BadgeManager {
   }
 
   /**
-   * Initializes all time-related badge array entries Current Badge count: 5 Badge ID range: 15 to
+   * Initializes all time-related badge array entries. Current Badge count: 5. Badge ID range: 15 to
    * 19
    */
   private static void initializeBadgesCount() {
@@ -165,6 +175,7 @@ public class BadgeManager {
     // check grouped badges needing wins
     if (won) {
       newBadgeCount += checkNewBadgesTime(game.getTime()); // 3-6
+      newBadgeCount += checkNewBadgesSettings(user.getId()); // 7-10
     }
 
     return newBadgeCount;
@@ -175,7 +186,7 @@ public class BadgeManager {
    * 6 inclusive
    *
    * @param time in seconds taken to complete drawing
-   * @return true if a new badge was found
+   * @return number of new badges awarded
    */
   private static int checkNewBadgesTime(int time) {
 
@@ -196,5 +207,50 @@ public class BadgeManager {
       }
     }
     return newBadgeCount;
+  }
+
+  /**
+   * Checks whether the user is eligible for a new settings-based badge where badge id ranges from 7
+   * to 10 6 inclusive
+   *
+   * @param id of the user's account
+   * @return number of new badges awarded
+   */
+  private static int checkNewBadgesSettings(String id) {
+    // initialise necessary helper variables
+    UserDaoJson userDao = new UserDaoJson();
+    GameSettingDao settingDao = new GameSettingDao();
+    GameSettingModel userSettings = settingDao.get(id);
+
+    // check if all the settings are the same
+    String words = userSettings.getWords();
+    String accuracy = userSettings.getAccuracy();
+    String time = userSettings.getTime();
+    String confidence = userSettings.getConfidence();
+
+    Boolean isTheSameGeneral =
+        words.equals(accuracy) && words.equals(time) && words.equals(confidence);
+    Boolean isTheSameMaster =
+        accuracy.equals("HARD")
+            && words.equals("MASTER")
+            && words.equals(time)
+            && words.equals(confidence);
+
+    System.out.println(words);
+    System.out.println(time);
+    System.out.println(isTheSameGeneral.toString());
+    System.out.println(isTheSameMaster.toString());
+
+    // give badge if necessary
+    if (isTheSameGeneral || isTheSameMaster) {
+      // identify badge and whether the user already has it
+      BadgeModel badge = availBadges.get(settingsIds.get(words));
+      if (!userDao.checkExists(badge, user)) {
+        userDao.addBadge(badge, user.getUsername());
+        return 1;
+      }
+    }
+
+    return 0;
   }
 }
