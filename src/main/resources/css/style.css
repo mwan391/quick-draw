@@ -4,7 +4,31 @@
   -fx-border-color: BLACK;
 }
 
-.list-cell{
+.top3 {
+  -fx-border-color: rgb(3, 240, 3);
+}
+
+.top10 {
+  -fx-border-color: rgb(251, 60, 60);
+}
+
+.top20 {
+  -fx-border-color: rgb(243, 98, 7);
+}
+
+.top50 {
+  -fx-border-color: rgb(248, 169, 73);
+}
+
+.top100 {
+  -fx-border-color: rgb(252, 207, 129);
+}
+
+.end-game {
+  -fx-border-color: #173ab5;
+}
+
+.list-cell {
   -fx-font: 12px "Comic Sans MS", "Comic Sans", sans-serif;
 }
 
@@ -14,7 +38,7 @@
   -fx-prompt-text-fill: #411a72;
 }
 
-.combo-box .text-field{
+.combo-box .text-field {
   -fx-background-color: rgb(190, 199, 255);
   -fx-prompt-text-fill: #856ea2;
 }
@@ -32,11 +56,11 @@
 }
 
 .combo-box .arrow {
-  -fx-background-color:  white;
+  -fx-background-color: white;
 }
 
 .combo-box .arrow-button {
-  -fx-background-color:  #882FF6;
+  -fx-background-color: #882ff6;
 }
 
 .list-view .list-cell:even {

@@ -2,12 +2,12 @@ package nz.ac.auckland.se206.controllers;
 
 import ai.djl.ModelException;
 import ai.djl.modality.Classifications;
+import ai.djl.modality.Classifications.Classification;
 import ai.djl.translate.TranslateException;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.sql.SQLException;
 import java.util.List;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -27,6 +27,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.image.Image;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 import javafx.util.Duration;
@@ -55,6 +56,7 @@ public class CanvasController implements Controller {
 
   @FXML private ListView<String> lvwPredictions;
   @FXML private Canvas canvas;
+  @FXML private Pane canvasPane;
   @FXML private Label lblTimer;
   @FXML private Label lblCategory;
   @FXML private Label eraserMessage;
@@ -111,6 +113,9 @@ public class CanvasController implements Controller {
     switchToPen();
 
     model = new DoodlePrediction();
+
+    // set default canvas border color
+    canvasPane.getStyleClass().add("end-game");
   }
 
   /** This method is called when the "Clear" button is pressed. */
@@ -163,11 +168,7 @@ public class CanvasController implements Controller {
     timer.setCycleCount(60);
     timer.setOnFinished(
         e -> {
-          try {
-            endGame(false);
-          } catch (SQLException e1) {
-            e1.printStackTrace();
-          }
+          endGame(false);
         }); // if the timer runs to zero
     timer.play();
     runPredictionsInBkg();
@@ -177,7 +178,7 @@ public class CanvasController implements Controller {
     lblTimer.setText(String.valueOf(Integer.valueOf(lblTimer.getText()) - 1));
   }
 
-  private void triggerPredict() throws SQLException {
+  private void triggerPredict() {
 
     if (isFinished) {
       return;
@@ -185,41 +186,73 @@ public class CanvasController implements Controller {
 
     predictions.clear();
 
+    // all predictions
     List<Classifications.Classification> rawPredictions = null;
 
-    // get the predictions
     try {
-      rawPredictions = model.getPredictions(getCurrentSnapshot(), 10);
+      rawPredictions = model.getPredictions(getCurrentSnapshot(), 345);
     } catch (TranslateException e) {
       System.out.println("Translate Exception when getting predictions");
       System.exit(-1);
     }
 
-    StringBuilder sb = new StringBuilder();
-
-    int i = 1;
+    int i = 0;
 
     // add the retrieved predictions to the observable list
     for (final Classifications.Classification classification : rawPredictions) {
-      sb.setLength(0);
-      // format the string and replace the underscores with a space
-      sb.append(i)
-          .append(" : ")
-          .append(classification.getClassName().replace('_', ' '))
-          .append(" : ")
-          .append(String.format("%d%%", Math.round(100 * classification.getProbability())));
-      predictions.add(sb.toString());
-
-      // check if player won (guess is correct within the top three)
-      if ((i < 4) && (category.equals(classification.getClassName().replace('_', ' ')))) {
-        endGame(true);
+      if (i < 10) {
+        String formattedPrediction = formatPrediction(classification, i);
+        // add the retrieved predictions to the observable list
+        predictions.add(formattedPrediction);
       }
 
+      // format the string and replace the underscores with a space
+      String categoryClass = classification.getClassName().replace('_', ' ');
+      if (category.equals(categoryClass)) {
+        // check if player won (guess is correct within the top three)
+        checkCategoryPosition(i);
+      }
       i++;
     }
   }
 
-  private void endGame(Boolean wonGame) throws SQLException {
+  private String formatPrediction(Classification classification, int index) {
+    StringBuilder sb = new StringBuilder();
+    // format the string and replace the underscores with a space
+    sb.append(index + 1)
+        .append(" : ")
+        .append(classification.getClassName().replace('_', ' '))
+        .append(" : ")
+        .append(String.format("%d%%", Math.round(100 * classification.getProbability())));
+    return sb.toString();
+  }
+
+  private void checkCategoryPosition(int position) {
+    // this determines which style class to use
+    String pseudoClass = null;
+    // remove border color when cateogry is outside any ranking
+    canvasPane.getStyleClass().clear();
+    ;
+    // change the border color depending on its ranking
+    if (position < 3) {
+      pseudoClass = "top3";
+      endGame(true);
+    } else if (position < 10) {
+      pseudoClass = "top10";
+    } else if (position < 20) {
+      pseudoClass = "top20";
+    } else if (position < 50) {
+      pseudoClass = "top50";
+    } else if (position < 100) {
+      pseudoClass = "top100";
+    } else {
+      pseudoClass = "end-game";
+    }
+    // set color to border
+    canvasPane.getStyleClass().add(pseudoClass);
+  }
+
+  private void endGame(Boolean wonGame) {
     // lock the drawing and stop timer
     canvas.setOnMouseDragged(e -> {});
     timer.pause();
@@ -295,6 +328,8 @@ public class CanvasController implements Controller {
     predictions.clear();
     canvas.setDisable(true);
     onClear();
+    // reset conditional border color rendering
+    canvasPane.getStyleClass().add("end-game");
   }
 
   @FXML
@@ -313,7 +348,7 @@ public class CanvasController implements Controller {
   }
 
   @FXML
-  private void onNewGame() throws SQLException {
+  private void onNewGame() {
     if (btnNewGame.isSelected()) {
       // clear the canvas and timer
       resetGame();
@@ -399,11 +434,7 @@ public class CanvasController implements Controller {
             // run the prediction function as a 'run later' so that the page updates
             Platform.runLater(
                 () -> {
-                  try {
-                    triggerPredict();
-                  } catch (SQLException e) {
-                    e.printStackTrace();
-                  }
+                  triggerPredict();
                 });
           }
         };
