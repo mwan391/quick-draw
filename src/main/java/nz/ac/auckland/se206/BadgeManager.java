@@ -136,9 +136,9 @@ public class BadgeManager {
    * @param game that may trigger a new badge
    * @return the number of new badges that was given
    */
-  public static boolean checkNewBadges(String username, GameModel game) {
+  public static int checkNewBadges(String username, GameModel game) {
     // initialise return
-    boolean hasNewBadge = false;
+    int newBadgeCount = 0;
     // get necessary info
     UserDaoJson userDao = new UserDaoJson();
     user = userDao.get(username);
@@ -147,27 +147,27 @@ public class BadgeManager {
     // check for first game
     if (!(userDao.checkExists(availBadges.get(0), user))) {
       userDao.addBadge(availBadges.get(0), username);
-      hasNewBadge = true;
+      newBadgeCount++;
     }
 
     // check for first win badge
     if (won && !(userDao.checkExists(availBadges.get(1), user))) {
       userDao.addBadge(availBadges.get(1), username);
-      hasNewBadge = true;
+      newBadgeCount++;
     }
 
     // check for first lose badge
     if (!(won) && !(userDao.checkExists(availBadges.get(2), user))) {
       userDao.addBadge(availBadges.get(2), username);
-      hasNewBadge = true;
+      newBadgeCount++;
     }
 
     // check grouped badges needing wins
     if (won) {
-      hasNewBadge |= checkNewBadgesTime(game.getTime()); // 3-6
+      newBadgeCount += checkNewBadgesTime(game.getTime()); // 3-6
     }
 
-    return hasNewBadge;
+    return newBadgeCount;
   }
 
   /**
@@ -177,10 +177,10 @@ public class BadgeManager {
    * @param time in seconds taken to complete drawing
    * @return true if a new badge was found
    */
-  private static boolean checkNewBadgesTime(int time) {
+  private static int checkNewBadgesTime(int time) {
 
     // initialise necessary helper variables
-    boolean hasNewBadge = false;
+    int newBadgeCount = 0;
     UserDaoJson userDao = new UserDaoJson();
 
     // check from slowest to fastest time if the user is eligible for a new badge
@@ -192,9 +192,9 @@ public class BadgeManager {
       if (!(hasBadgeAlready) && isWithinTime) {
         // add to database and set the boolean
         userDao.addBadge(badge, user.getUsername());
-        hasNewBadge = true;
+        newBadgeCount++;
       }
     }
-    return hasNewBadge;
+    return newBadgeCount;
   }
 }
