@@ -24,7 +24,6 @@ public class LogInController implements Controller {
   @FXML private ComboBox<String> fldUserName;
   private UserDaoJson userDao = new UserDaoJson();
   private ObservableList<String> existingUsers;
-  private String userId = "-1";
 
   public void initialize() {
     fldUserName.setEditable(true);
@@ -73,7 +72,7 @@ public class LogInController implements Controller {
 
     // create a blank settings entry for the new user
     GameSettingDao settingDao = new GameSettingDao();
-    settingDao.add(userId);
+    settingDao.add(user.getId());
 
     // go to the next screen
     nextScreen(event);
@@ -106,7 +105,8 @@ public class LogInController implements Controller {
         (CategoryController) SceneManager.getController(categoryRoot);
 
     // set the setting model
-    categoryController.setUserSettings(userId);
+    String id = UserModel.getActiveUser().getId();
+    categoryController.setUserSettings(id);
 
     // change scene
     scene.setRoot(categoryRoot);
