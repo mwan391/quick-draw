@@ -83,6 +83,7 @@ public class CanvasController implements Controller {
   private GameDao gameDao = new GameDao();
   private int activeUserId;
   private int activeGameId;
+  private CategorySelect.Difficulty actualDifficulty;
 
   /**
    * JavaFX calls this method once the GUI elements are loaded. In our case we create a listener for
@@ -141,6 +142,12 @@ public class CanvasController implements Controller {
     return imageBinary;
   }
 
+  public void initializeGame() {
+    resetGame();
+    btnNewGame.setText("Get word!");
+    lblCategory.setText("Ready up!");
+  }
+
   public void startTimer() throws SQLException {
     // set up the label and enable canvas
     isFinished = false;
@@ -150,7 +157,7 @@ public class CanvasController implements Controller {
     lblCategory.setText("Draw: " + category);
     // create new game database object
     activeUserId = UserModel.getActiveUser().getId();
-    activeGameId = gameDao.addNewGame(activeUserId, CategorySelect.getWordDifficulty(), category);
+    activeGameId = gameDao.addNewGame(activeUserId, actualDifficulty, category);
     // set up what to do every second
     timer = new Timeline(new KeyFrame(Duration.seconds(1), e -> changeTime()));
     timer.setCycleCount(60);
@@ -283,7 +290,10 @@ public class CanvasController implements Controller {
     btnToggleEraser.setSelected(false);
     lblTimer.setText("60");
     hbxGameEnd.setVisible(false);
+    hbxDrawTools.setVisible(false);
+    hbxNewGame.setVisible(true);
     predictions.clear();
+    canvas.setDisable(true);
     onClear();
   }
 
@@ -309,7 +319,8 @@ public class CanvasController implements Controller {
       resetGame();
       btnNewGame.setText("Start Game");
       // generate a new word
-      category = CategorySelect.generateSetCategory();
+      actualDifficulty = CategorySelect.generateSetCategory();
+      category = CategorySelect.getCategory();
       lblCategory.setText("Draw: " + category);
       TextToSpeech.main(new String[] {"Your word is:" + category});
 
