@@ -224,7 +224,7 @@ public class CanvasController implements Controller {
     canvasPane.getStyleClass().clear();
     ;
     // change the border color depending on its ranking
-    if (position < 4) {
+    if (position < 3) {
       pseudoClass = "end-game";
       endGame(true);
     } else if (position < 10) {
