@@ -33,6 +33,16 @@ public class BadgeManager {
     availBadges.add(badge);
     badge = new BadgeModel(2, "Lose a Game!", "Tough luck! Try again, and you'll get it!", "");
     availBadges.add(badge);
+
+    // create other badges
+    initializeBadgesTime();
+    initializeBadgesDifficulty();
+    initializeBadgesWords();
+    initializeBadgesCount();
+  }
+
+  private static void initializeBadgesTime() {
+    BadgeModel badge;
     // create time based badges
     badge = new BadgeModel(3, "Fast!", "You finished a game under 30 seconds!", "");
     availBadges.add(badge);
@@ -48,6 +58,10 @@ public class BadgeManager {
     timeThreshold.put(4, 15);
     timeThreshold.put(5, 10);
     timeThreshold.put(6, 5);
+  }
+
+  private static void initializeBadgesDifficulty() {
+    BadgeModel badge;
     // create difficulty based badges
     badge = new BadgeModel(7, "Easy-Peasy!", "You won a game with all 'easy' settings!", "");
     availBadges.add(badge);
@@ -62,6 +76,10 @@ public class BadgeManager {
             "You won a game with the hardest possible settings! You're a master!",
             "");
     availBadges.add(badge);
+  }
+
+  private static void initializeBadgesWords() {
+    BadgeModel badge;
     // create word based badges
     badge = new BadgeModel(11, "Easy Ace!", "You've played all of the words on easy!", "");
     availBadges.add(badge);
@@ -76,6 +94,10 @@ public class BadgeManager {
             "You've played all of the words in the game! Did you learn some new words?",
             "");
     availBadges.add(badge);
+  }
+
+  private static void initializeBadgesCount() {
+    BadgeModel badge;
     // create game count badges
     badge = new BadgeModel(15, "Newbie!", "You've played 5 games!", "");
     availBadges.add(badge);
