@@ -2,6 +2,7 @@ package nz.ac.auckland.se206;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import nz.ac.auckland.se206.CategorySelect.Difficulty;
 import nz.ac.auckland.se206.daos.GameSettingDao;
@@ -18,11 +19,11 @@ public class BadgeManager {
   private static UserModel user;
 
   // hash maps of grouped badges
-  private static HashMap<Integer, BadgeModel> timeThreshold = new HashMap<>();
+  private static LinkedHashMap<Integer, BadgeModel> timeThreshold = new LinkedHashMap<>();
   private static HashMap<String, BadgeModel> settingsBadges = new HashMap<>();
   private static HashMap<Difficulty, Integer> wordsCount = new HashMap<>();
-  private static HashMap<Difficulty, BadgeModel> wordsBadges = new HashMap<>();
-  private static HashMap<Integer, BadgeModel> gameCountThreshold = new HashMap<>();
+  private static LinkedHashMap<Difficulty, BadgeModel> wordsBadges = new LinkedHashMap<>();
+  private static LinkedHashMap<Integer, BadgeModel> gameCountThreshold = new LinkedHashMap<>();
 
   /**
    * Initialize the array of existing badges and related hashmaps. Current badge count: 20 badges
