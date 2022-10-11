@@ -3,8 +3,10 @@ package nz.ac.auckland.se206;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import nz.ac.auckland.se206.CategorySelect.Difficulty;
 import nz.ac.auckland.se206.daos.GameSettingDao;
 import nz.ac.auckland.se206.daos.UserDaoJson;
+import nz.ac.auckland.se206.daos.UserStatsDao;
 import nz.ac.auckland.se206.models.BadgeModel;
 import nz.ac.auckland.se206.models.GameModel;
 import nz.ac.auckland.se206.models.GameSettingModel;
@@ -18,6 +20,8 @@ public class BadgeManager {
   // hash maps of grouped badges
   private static HashMap<Integer, Integer> timeThreshold = new HashMap<>();
   private static HashMap<String, Integer> settingsIds = new HashMap<>();
+  private static HashMap<Difficulty, Integer> wordsCount = new HashMap<>();
+  private static HashMap<Difficulty, BadgeModel> wordsBadge = new HashMap<>();
 
   /**
    * Initialize the array of existing badges and related hashmaps. Current badge count: 20 badges
@@ -90,7 +94,7 @@ public class BadgeManager {
             "You won a game with the hardest possible settings! You're a master!",
             "");
     availBadges.add(badge);
-
+    // populate hashmap
     settingsIds.put("EASY", 7);
     settingsIds.put("MEDIUM", 8);
     settingsIds.put("HARD", 9);
@@ -98,18 +102,21 @@ public class BadgeManager {
   }
 
   /**
-   * Initializes all word-related badge array entries. Current Badge count: 4. Badge ID range: 11 to
-   * 14
+   * Initializes all word-related badge array entries and hashmap. Current Badge count: 4. Badge ID
+   * range: 11 to 14
    */
   private static void initializeBadgesWords() {
     BadgeModel badge;
-    // create word based badges
+    // create word based badges and add to hashmap
     badge = new BadgeModel(11, "Easy Ace!", "You've played all of the words on easy!", "");
     availBadges.add(badge);
+    wordsBadge.put(Difficulty.EASY, badge);
     badge = new BadgeModel(12, "Medium Maestro!", "You've played all of the words on medium!", "");
     availBadges.add(badge);
+    wordsBadge.put(Difficulty.MEDIUM, badge);
     badge = new BadgeModel(13, "Hard Professional!", "You've played all of the words on hard!", "");
     availBadges.add(badge);
+    wordsBadge.put(Difficulty.HARD, badge);
     badge =
         new BadgeModel(
             14,
@@ -117,11 +124,17 @@ public class BadgeManager {
             "You've played all of the words in the game! Did you learn some new words?",
             "");
     availBadges.add(badge);
+    wordsBadge.put(Difficulty.MASTER, badge);
+
+    // populate hashmap
+    wordsCount.put(Difficulty.EASY, 144);
+    wordsCount.put(Difficulty.MEDIUM, 132);
+    wordsCount.put(Difficulty.HARD, 69);
   }
 
   /**
-   * Initializes all time-related badge array entries. Current Badge count: 5. Badge ID range: 15 to
-   * 19
+   * Initializes all number of games related badge array entries. Current Badge count: 5. Badge ID
+   * range: 15 to 19
    */
   private static void initializeBadgesCount() {
     BadgeModel badge;
@@ -144,9 +157,10 @@ public class BadgeManager {
    *
    * @param username of the user to check the badges of
    * @param game that may trigger a new badge
+   * @param actualDifficulty
    * @return the number of new badges that was given
    */
-  public static int checkNewBadges(String username, GameModel game) {
+  public static int checkNewBadges(String username, GameModel game, Difficulty actualDifficulty) {
     // initialise return
     int newBadgeCount = 0;
     // get necessary info
@@ -175,8 +189,11 @@ public class BadgeManager {
     // check grouped badges needing wins
     if (won) {
       newBadgeCount += checkNewBadgesTime(game.getTime()); // 3-6
-      newBadgeCount += checkNewBadgesSettings(user.getId()); // 7-10
+      newBadgeCount += checkNewBadgesSettings(); // 7-10
     }
+
+    // check grouped badges not needing a win
+    newBadgeCount += checkNewBadgesWords(actualDifficulty);
 
     return newBadgeCount;
   }
@@ -211,23 +228,24 @@ public class BadgeManager {
 
   /**
    * Checks whether the user is eligible for a new settings-based badge where badge id ranges from 7
-   * to 10 6 inclusive
+   * to 10 inclusive
    *
    * @param id of the user's account
    * @return number of new badges awarded
    */
-  private static int checkNewBadgesSettings(String id) {
+  private static int checkNewBadgesSettings() {
     // initialise necessary helper variables
     UserDaoJson userDao = new UserDaoJson();
     GameSettingDao settingDao = new GameSettingDao();
-    GameSettingModel userSettings = settingDao.get(id);
+    GameSettingModel userSettings = settingDao.get(user.getId());
 
-    // check if all the settings are the same
+    // get difficulties
     String words = userSettings.getWords();
     String accuracy = userSettings.getAccuracy();
     String time = userSettings.getTime();
     String confidence = userSettings.getConfidence();
 
+    // check if all the settings are the same
     Boolean isTheSameGeneral =
         words.equals(accuracy) && words.equals(time) && words.equals(confidence);
     Boolean isTheSameMaster =
@@ -235,11 +253,6 @@ public class BadgeManager {
             && words.equals("MASTER")
             && words.equals(time)
             && words.equals(confidence);
-
-    System.out.println(words);
-    System.out.println(time);
-    System.out.println(isTheSameGeneral.toString());
-    System.out.println(isTheSameMaster.toString());
 
     // give badge if necessary
     if (isTheSameGeneral || isTheSameMaster) {
@@ -250,7 +263,48 @@ public class BadgeManager {
         return 1;
       }
     }
-
     return 0;
+  }
+
+  /**
+   * Checks whether the user is eligible for a new settings-based badge where badge id ranges from
+   * 11 to 14 inclusive
+   *
+   * @param id of the user's account
+   * @return number of new badges awarded
+   */
+  private static int checkNewBadgesWords(Difficulty actualDifficulty) {
+    int newBadgeCount = 0;
+    // get history of words
+    UserStatsDao userStatsDao = new UserStatsDao();
+    UserDaoJson userDao = new UserDaoJson();
+    List<String> wordHistory = userStatsDao.getHistoryMap(user.getId()).get(actualDifficulty);
+
+    // calculate if the user has played all of the words at least once AND they
+    // don't already have the badge
+    BadgeModel badge = wordsBadge.get(actualDifficulty);
+    int categorySize = wordsCount.get(actualDifficulty);
+    int historySize = wordHistory.size();
+
+    if ((historySize == categorySize)) {
+      userDao.addBadge(badge, user.getUsername());
+      newBadgeCount++;
+
+      // calculate how much word badges they have
+      int wordBadgeCount = 0;
+      for (Difficulty diff : wordsBadge.keySet()) {
+        if (userDao.checkExists(wordsBadge.get(diff), user)) {
+          wordBadgeCount++;
+        }
+      }
+      // check if they have exactly two word badges (the two previous, plus the one we
+      // just received)
+      if ((wordBadgeCount == 2)) {
+        userDao.addBadge(availBadges.get(14), user.getUsername());
+        newBadgeCount++;
+      }
+    }
+
+    return newBadgeCount;
   }
 }
