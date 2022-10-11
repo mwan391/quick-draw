@@ -236,7 +236,7 @@ public class CanvasController implements Controller {
 
     // check for badges
     UserModel activeUser = UserModel.getActiveUser();
-    BadgeManager.checkNewBadges(activeUser.getUsername(), wonGame);
+    BadgeManager.checkNewBadges(activeUser.getUsername(), gameDao.getGameById(activeGameId));
 
     // set the label to win/lose event and use the tts
     if (wonGame) {

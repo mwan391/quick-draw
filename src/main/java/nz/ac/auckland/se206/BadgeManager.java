@@ -1,14 +1,20 @@
 package nz.ac.auckland.se206;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import nz.ac.auckland.se206.daos.UserDaoJson;
 import nz.ac.auckland.se206.models.BadgeModel;
+import nz.ac.auckland.se206.models.GameModel;
 import nz.ac.auckland.se206.models.UserModel;
 
 public class BadgeManager {
 
   private static List<BadgeModel> availBadges;
+  private static UserModel user;
+
+  // hash maps of grouped badges
+  private static HashMap<Integer, Integer> timeThreshold = new HashMap<>();
 
   public static void initializeBadges() {
 
@@ -37,6 +43,11 @@ public class BadgeManager {
     badge =
         new BadgeModel(6, "Lightning!", "You finished a game under 5 seconds! You're cracked!", "");
     availBadges.add(badge);
+    // create maps in hash map for time thresholds
+    timeThreshold.put(3, 30);
+    timeThreshold.put(4, 15);
+    timeThreshold.put(5, 10);
+    timeThreshold.put(6, 5);
     // create difficulty based badges
     badge = new BadgeModel(7, "Easy-Peasy!", "You won a game with all 'easy' settings!", "");
     availBadges.add(badge);
@@ -78,10 +89,13 @@ public class BadgeManager {
     availBadges.add(badge);
   }
 
-  public static boolean checkNewBadges(String username, boolean won) {
+  public static boolean checkNewBadges(String username, GameModel game) {
+    // initialise return
     boolean hasNewBadge = false;
+    // get necessary info
     UserDaoJson userDao = new UserDaoJson();
-    UserModel user = userDao.get(username);
+    user = userDao.get(username);
+    boolean won = game.getWon();
 
     // check for first game
     if (!(userDao.checkExists(availBadges.get(0), user))) {
@@ -101,6 +115,39 @@ public class BadgeManager {
       hasNewBadge = true;
     }
 
+    // check grouped badges needing wins
+    if (won) {
+      hasNewBadge |= checkNewBadgesTime(game.getTime()); // 3-6
+    }
+
+    return hasNewBadge;
+  }
+
+  /**
+   * Checks whether the user is eligible for a new time-based badge where badge id ranges from 3 to
+   * 6 inclusive
+   *
+   * @param time in seconds taken to complete drawing
+   * @return true if a new badge was found
+   */
+  private static boolean checkNewBadgesTime(int time) {
+
+    // initialise necessary helper variables
+    boolean hasNewBadge = false;
+    UserDaoJson userDao = new UserDaoJson();
+
+    // check from slowest to fastest time if the user is eligible for a new badge
+    for (int i = 3; i < 7; i++) {
+      // check requirements
+      BadgeModel badge = availBadges.get(i);
+      Boolean hasBadgeAlready = userDao.checkExists(badge, user);
+      Boolean isWithinTime = (time <= timeThreshold.get(i));
+      if (!(hasBadgeAlready) && isWithinTime) {
+        // add to database and set the boolean
+        userDao.addBadge(badge, user.getUsername());
+        hasNewBadge = true;
+      }
+    }
     return hasNewBadge;
   }
 }
