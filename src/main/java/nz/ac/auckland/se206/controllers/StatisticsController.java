@@ -146,9 +146,7 @@ public class StatisticsController implements Controller {
         .append(bestGame.getWord())
         .append("\" in ")
         .append(bestGame.getTime())
-        .append(" seconds, from the ")
-        .append(category)
-        .append(" category");
+        .append(" seconds");
     txtBestGame.setText(stringBuilder.toString());
   }
 
@@ -172,9 +170,7 @@ public class StatisticsController implements Controller {
         .append(lastGame.getWord())
         .append("\" in ")
         .append(lastGame.getTime())
-        .append(" seconds, from the ")
-        .append(category)
-        .append(" category");
+        .append(" seconds");
     txtLastGame.setText(stringBuilder.toString());
   }
 }

@@ -5,15 +5,16 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
+import nz.ac.auckland.se206.daos.GameSettingDao;
 import nz.ac.auckland.se206.daos.UserDao;
 import nz.ac.auckland.se206.models.UserModel;
-import nz.ac.auckland.se206.speech.TextToSpeech;
 
 public class LogInController implements Controller {
 
@@ -23,6 +24,7 @@ public class LogInController implements Controller {
   @FXML private ComboBox<String> fldUserName;
   private UserDao userDao = new UserDao();
   private ObservableList<String> existingUsers;
+  private int userId = -1;
 
   public void initialize() {
     fldUserName.setEditable(true);
@@ -62,8 +64,13 @@ public class LogInController implements Controller {
     }
 
     // set the newly made user as the active user and add to the drop down list
-    UserModel.setActiveUser(userDao.getUserById(userDao.addNewUser(userName)));
+    userId = userDao.addNewUser(userName);
+    UserModel.setActiveUser(userDao.getUserById(userId));
     existingUsers.add(userName);
+
+    // create a blank settings entry for the new user
+    GameSettingDao settingDao = new GameSettingDao();
+    settingDao.add(userId);
 
     // go to the next screen
     nextScreen(event);
@@ -75,7 +82,7 @@ public class LogInController implements Controller {
     String userName = fldUserName.getValue();
 
     // check if the un is in the system
-    int userId = userDao.getId(userName);
+    userId = userDao.getId(userName);
     if (userId == -1) {
       lblWarning.setText("Invalid login attempt.");
       return;
@@ -90,12 +97,17 @@ public class LogInController implements Controller {
 
   private void nextScreen(ActionEvent event) {
 
-    // change the scene
+    // get root and controller
     Scene scene = ((Button) event.getSource()).getScene();
-    scene.setRoot(SceneManager.getUiRoot(AppUi.CATEGORY_SELECT));
+    Parent categoryRoot = SceneManager.getUiRoot(AppUi.CATEGORY_SELECT);
+    CategoryController categoryController =
+        (CategoryController) SceneManager.getController(categoryRoot);
 
-    // Activating text to speech
-    TextToSpeech.main(new String[] {"Select a difficulty"});
+    // set the setting model
+    categoryController.setUserSettings(userId);
+
+    // change scene
+    scene.setRoot(categoryRoot);
 
     // reset the page for the next log in
     resetPage();

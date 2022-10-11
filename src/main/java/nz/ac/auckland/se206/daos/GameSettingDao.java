@@ -20,9 +20,9 @@ public class GameSettingDao {
     Connection connection = SqliteConnection.openConnection();
     int id = 0;
     try {
-      // add new row with all settings initialised to null
+      // add new row with all settings initialised to "EASY"
       String query =
-          "INSERT INTO settings (user_id, words, time, accuracy, confidence) VALUES (?,NULL,NULL,NULL,NULL)";
+          "INSERT INTO settings (user_id, words, time, accuracy, confidence) VALUES (?,\"EASY\",\"EASY\",\"EASY\",\"EASY\")";
       PreparedStatement ps = connection.prepareStatement(query);
       // set paramaters (column values) to into the table
       ps.setInt(1, userId);
