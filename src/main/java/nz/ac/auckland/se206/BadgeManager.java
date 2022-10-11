@@ -16,6 +16,7 @@ public class BadgeManager {
   // hash maps of grouped badges
   private static HashMap<Integer, Integer> timeThreshold = new HashMap<>();
 
+  /** Initialize the array of existing badges and related hashmaps Current badge count: 20 badges */
   public static void initializeBadges() {
 
     BadgeModel badge;
@@ -36,11 +37,15 @@ public class BadgeManager {
 
     // create other badges
     initializeBadgesTime();
-    initializeBadgesDifficulty();
+    initializeBadgesSettings();
     initializeBadgesWords();
     initializeBadgesCount();
   }
 
+  /**
+   * Initializes all time-related badge array entries and hashmap Current Badge count: 4 Badge ID
+   * range: 3 to 6
+   */
   private static void initializeBadgesTime() {
     BadgeModel badge;
     // create time based badges
@@ -60,7 +65,11 @@ public class BadgeManager {
     timeThreshold.put(6, 5);
   }
 
-  private static void initializeBadgesDifficulty() {
+  /**
+   * Initializes all settings-related badge array entries Current Badge count: 4 Badge ID range: 7
+   * to 10
+   */
+  private static void initializeBadgesSettings() {
     BadgeModel badge;
     // create difficulty based badges
     badge = new BadgeModel(7, "Easy-Peasy!", "You won a game with all 'easy' settings!", "");
@@ -78,6 +87,10 @@ public class BadgeManager {
     availBadges.add(badge);
   }
 
+  /**
+   * Initializes all word-related badge array entries Current Badge count: 4 Badge ID range: 11 to
+   * 14
+   */
   private static void initializeBadgesWords() {
     BadgeModel badge;
     // create word based badges
@@ -96,6 +109,10 @@ public class BadgeManager {
     availBadges.add(badge);
   }
 
+  /**
+   * Initializes all time-related badge array entries Current Badge count: 5 Badge ID range: 15 to
+   * 19
+   */
   private static void initializeBadgesCount() {
     BadgeModel badge;
     // create game count badges
@@ -111,6 +128,14 @@ public class BadgeManager {
     availBadges.add(badge);
   }
 
+  /**
+   * Checks whether a given completed game will result in a new badge for a given user, and gives
+   * said badge to user. Checks every badge.
+   *
+   * @param username of the user to check the badges of
+   * @param game that may trigger a new badge
+   * @return the number of new badges that was given
+   */
   public static boolean checkNewBadges(String username, GameModel game) {
     // initialise return
     boolean hasNewBadge = false;
