@@ -18,10 +18,10 @@ public class BadgeManager {
   private static UserModel user;
 
   // hash maps of grouped badges
-  private static HashMap<Integer, Integer> timeThreshold = new HashMap<>();
-  private static HashMap<String, Integer> settingsIds = new HashMap<>();
+  private static HashMap<Integer, BadgeModel> timeThreshold = new HashMap<>();
+  private static HashMap<String, BadgeModel> settingsBadges = new HashMap<>();
   private static HashMap<Difficulty, Integer> wordsCount = new HashMap<>();
-  private static HashMap<Difficulty, BadgeModel> wordsBadge = new HashMap<>();
+  private static HashMap<Difficulty, BadgeModel> wordsBadges = new HashMap<>();
   private static HashMap<Integer, BadgeModel> gameCountThreshold = new HashMap<>();
 
   /**
@@ -58,21 +58,20 @@ public class BadgeManager {
    */
   private static void initializeBadgesTime() {
     BadgeModel badge;
-    // create time based badges
+    // create time based badges and populate hashmap
     badge = new BadgeModel(3, "Fast!", "You finished a game under 30 seconds!", "");
     availBadges.add(badge);
+    timeThreshold.put(30, badge);
     badge = new BadgeModel(4, "Speedy!", "You finished a game under 15 seconds!", "");
     availBadges.add(badge);
+    timeThreshold.put(15, badge);
     badge = new BadgeModel(5, "Turbo!", "You finished a game under 10 seconds!", "");
     availBadges.add(badge);
+    timeThreshold.put(10, badge);
     badge =
         new BadgeModel(6, "Lightning!", "You finished a game under 5 seconds! You're cracked!", "");
     availBadges.add(badge);
-    // create maps in hash map for time thresholds
-    timeThreshold.put(3, 30);
-    timeThreshold.put(4, 15);
-    timeThreshold.put(5, 10);
-    timeThreshold.put(6, 5);
+    timeThreshold.put(5, badge);
   }
 
   /**
@@ -81,13 +80,16 @@ public class BadgeManager {
    */
   private static void initializeBadgesSettings() {
     BadgeModel badge;
-    // create difficulty based badges
+    // create difficulty based badges and populate hashmap
     badge = new BadgeModel(7, "Easy-Peasy!", "You won a game with all 'easy' settings!", "");
     availBadges.add(badge);
+    settingsBadges.put("EASY", badge);
     badge = new BadgeModel(8, "Medium Rare!", "You won a game with all 'medium' settings!", "");
     availBadges.add(badge);
+    settingsBadges.put("MEDIUM", badge);
     badge = new BadgeModel(9, "Hardcore!", "You won a game with all 'hard' settings!", "");
     availBadges.add(badge);
+    settingsBadges.put("HARD", badge);
     badge =
         new BadgeModel(
             10,
@@ -95,11 +97,7 @@ public class BadgeManager {
             "You won a game with the hardest possible settings! You're a master!",
             "");
     availBadges.add(badge);
-    // populate hashmap
-    settingsIds.put("EASY", 7);
-    settingsIds.put("MEDIUM", 8);
-    settingsIds.put("HARD", 9);
-    settingsIds.put("MASTER", 10);
+    settingsBadges.put("MASTER", badge);
   }
 
   /**
@@ -111,13 +109,13 @@ public class BadgeManager {
     // create word based badges and add to hashmap
     badge = new BadgeModel(11, "Easy Ace!", "You've played all of the words on easy!", "");
     availBadges.add(badge);
-    wordsBadge.put(Difficulty.EASY, badge);
+    wordsBadges.put(Difficulty.EASY, badge);
     badge = new BadgeModel(12, "Medium Maestro!", "You've played all of the words on medium!", "");
     availBadges.add(badge);
-    wordsBadge.put(Difficulty.MEDIUM, badge);
+    wordsBadges.put(Difficulty.MEDIUM, badge);
     badge = new BadgeModel(13, "Hard Professional!", "You've played all of the words on hard!", "");
     availBadges.add(badge);
-    wordsBadge.put(Difficulty.HARD, badge);
+    wordsBadges.put(Difficulty.HARD, badge);
     badge =
         new BadgeModel(
             14,
@@ -125,7 +123,7 @@ public class BadgeManager {
             "You've played all of the words in the game! Did you learn some new words?",
             "");
     availBadges.add(badge);
-    wordsBadge.put(Difficulty.MASTER, badge);
+    wordsBadges.put(Difficulty.MASTER, badge);
 
     // populate hashmap
     wordsCount.put(Difficulty.EASY, 144);
@@ -209,21 +207,21 @@ public class BadgeManager {
    * Checks whether the user is eligible for a new time-based badge where badge id ranges from 3 to
    * 6 inclusive
    *
-   * @param time in seconds taken to complete drawing
+   * @param userTime in seconds taken to complete drawing
    * @return number of new badges awarded
    */
-  private static int checkNewBadgesTime(int time) {
+  private static int checkNewBadgesTime(int userTime) {
 
     // initialise necessary helper variables
     int newBadgeCount = 0;
     UserDaoJson userDao = new UserDaoJson();
 
     // check from slowest to fastest time if the user is eligible for a new badge
-    for (int i = 3; i < 7; i++) {
+    for (int time : timeThreshold.keySet()) {
       // check requirements
-      BadgeModel badge = availBadges.get(i);
+      BadgeModel badge = timeThreshold.get(time);
       Boolean hasBadgeAlready = userDao.checkExists(badge, user);
-      Boolean isWithinTime = (time <= timeThreshold.get(i));
+      Boolean isWithinTime = (userTime <= time);
       if (!(hasBadgeAlready) && isWithinTime) {
         // add to database and set the boolean
         userDao.addBadge(badge, user.getUsername());
@@ -263,7 +261,7 @@ public class BadgeManager {
     // give badge if necessary
     if (isTheSameGeneral || isTheSameMaster) {
       // identify badge and whether the user already has it
-      BadgeModel badge = availBadges.get(settingsIds.get(words));
+      BadgeModel badge = settingsBadges.get(words);
       if (!userDao.checkExists(badge, user)) {
         userDao.addBadge(badge, user.getUsername());
         return 1;
@@ -288,7 +286,7 @@ public class BadgeManager {
 
     // calculate if the user has played all of the words at least once AND they
     // don't already have the badge
-    BadgeModel badge = wordsBadge.get(actualDifficulty);
+    BadgeModel badge = wordsBadges.get(actualDifficulty);
     int categorySize = wordsCount.get(actualDifficulty);
     int historySize = wordHistory.size();
 
@@ -298,8 +296,8 @@ public class BadgeManager {
 
       // calculate how much word badges they have
       int wordBadgeCount = 0;
-      for (Difficulty diff : wordsBadge.keySet()) {
-        if (userDao.checkExists(wordsBadge.get(diff), user)) {
+      for (Difficulty diff : wordsBadges.keySet()) {
+        if (userDao.checkExists(wordsBadges.get(diff), user)) {
           wordBadgeCount++;
         }
       }
@@ -321,8 +319,6 @@ public class BadgeManager {
    * @return number of new badges awarded
    */
   private static int checkNewBadgesCount() {
-
-    int newBadgeCount = 0;
     UserDaoJson userDao = new UserDaoJson();
 
     // get number of games played
