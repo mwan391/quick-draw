@@ -152,8 +152,7 @@ public class CanvasController implements Controller {
 
   public void initializeGame() {
     resetGame();
-    btnNewGame.setText("Get word!");
-    progressMessage.setText("...");
+    btnNewGame.fire();
   }
 
   public void startTimer() throws SQLException {

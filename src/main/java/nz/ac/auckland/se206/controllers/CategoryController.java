@@ -152,9 +152,6 @@ public class CategoryController implements Controller {
     Parent canvasRoot = SceneManager.getUiRoot(AppUi.CANVAS);
     CanvasController canvasController = (CanvasController) SceneManager.getController(canvasRoot);
 
-    // use tts on background thread to avoid lags
-    TextToSpeech.main(new String[] {"Get Ready!"});
-
     // update settings in database
     GameSettingDao settingDao = new GameSettingDao();
     settingDao.update(userSetting);
