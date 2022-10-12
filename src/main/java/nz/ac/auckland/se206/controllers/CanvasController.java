@@ -10,6 +10,7 @@ import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Optional;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Platform;
@@ -22,7 +23,10 @@ import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.ToggleButton;
@@ -283,24 +287,54 @@ public class CanvasController implements Controller {
 
     // check for badges
     UserModel activeUser = UserModel.getActiveUser();
-    BadgeManager.checkNewBadges(
-        activeUser.getUsername(), gameDao.getGameById(activeGameId), actualDifficulty);
+    int newBadgeCount =
+        BadgeManager.checkNewBadges(
+            activeUser.getUsername(), gameDao.getGameById(activeGameId), actualDifficulty);
 
+    // clear styles
+    canvasPane.getStyleClass().clear();
+    progressMessage.getStyleClass().clear();
     // set the label to win/lose event and use the tts
     if (wonGame) {
       progressMessage.setText("You Win!");
       TextToSpeech.main(new String[] {"You Win!"});
-      progressMessage.getStyleClass().clear();
       progressMessage.getStyleClass().add("winMessage");
-      canvasPane.getStyleClass().clear();
       canvasPane.getStyleClass().add("top3");
     } else {
       progressMessage.setText("You Lose!");
       TextToSpeech.main(new String[] {"You Lose!"});
-      progressMessage.getStyleClass().clear();
       progressMessage.getStyleClass().add("lossMessage");
-      canvasPane.getStyleClass().clear();
       canvasPane.getStyleClass().add("loss");
+    }
+
+    // show pop up to display any new badge notifications
+    if (newBadgeCount > 0) {
+      showNewBadgePopup(newBadgeCount);
+    }
+  }
+
+  private void showNewBadgePopup(int newBadgeCount) {
+    Alert badgePopup = new Alert(AlertType.CONFIRMATION);
+    badgePopup.setTitle("Congratulations!");
+    // identify whether 'badge' or 'badges' should be used
+    String correctNoun = "";
+    if (newBadgeCount > 1) {
+      correctNoun = "s";
+    }
+    // build string and add to the alert box
+    String str =
+        "You have unlocked "
+            + newBadgeCount
+            + " new badge"
+            + correctNoun
+            + "!\nCheck it out in the Statistics Page!";
+    badgePopup.setContentText(str);
+
+    // show the alert
+    Optional<ButtonType> result = badgePopup.showAndWait();
+    // take screen to statistics page if the user clicks yes
+    if ((result.isPresent()) && (result.get() == ButtonType.OK)) {
+      // TODO take screen to statistics page
     }
   }
 
@@ -353,6 +387,7 @@ public class CanvasController implements Controller {
     hbxGameEnd.setVisible(false);
     hbxDrawTools.setVisible(false);
     hbxNewGame.setVisible(true);
+    // clear predictions and canvas for new game
     predictions.clear();
     canvas.setDisable(true);
     onClear();
