@@ -134,6 +134,14 @@ public class StatisticsController implements Controller {
 
   private void setBadges() {
     List<BadgeModel> userBadges = activeUser.getBadges();
+
+    for (BadgeModel badge : badgeToButtonMap.keySet()) {
+      if (userBadges.contains(badge)) {
+        badgeToButtonMap.get(badge).setDisable(false);
+      } else {
+        badgeToButtonMap.get(badge).setDisable(true);
+      }
+    }
   }
 
   private void setEasyHistory() {
