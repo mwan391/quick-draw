@@ -19,6 +19,7 @@ import javafx.scene.text.Text;
 import nz.ac.auckland.se206.BadgeManager;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
+import nz.ac.auckland.se206.daos.UserDaoJson;
 import nz.ac.auckland.se206.daos.UserStatsDao;
 import nz.ac.auckland.se206.models.BadgeModel;
 import nz.ac.auckland.se206.models.GameModel;
@@ -133,7 +134,10 @@ public class StatisticsController implements Controller {
   }
 
   private void setBadges() {
-    List<BadgeModel> userBadges = activeUser.getBadges();
+    // update json file model
+    UserDaoJson userDao = new UserDaoJson();
+    UserModel updatedUser = userDao.get(activeUser.getUsername());
+    List<BadgeModel> userBadges = updatedUser.getBadges();
 
     for (BadgeModel badge : badgeToButtonMap.keySet()) {
       if (userBadges.contains(badge)) {
