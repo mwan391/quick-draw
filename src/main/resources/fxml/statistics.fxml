@@ -7,6 +7,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
@@ -122,20 +123,448 @@
       </HBox>
       <ScrollPane fx:id="spnBadgeView" layoutX="74.0" layoutY="402.0" prefHeight="100.0" prefWidth="574.0">
          <content>
-            <HBox prefHeight="94.0" spacing="10.0">
+            <HBox spacing="10.0">
                <children>
-                  <Button mnemonicParsing="false">
+                  <Label fx:id="badgeDescription0">
                      <graphic>
-                        <ImageView fx:id="badge0" fitHeight="60.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../images/badges/placeholder.png" />
-                           </image>
-                           <viewport>
-                              <Rectangle2D />
-                           </viewport>
-                        </ImageView>
+                        <Button fx:id="badge0" mnemonicParsing="false" onAction="#onPressBadge">
+                           <graphic>
+                              <ImageView fitHeight="65.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/badges/placeholder.png" />
+                                 </image>
+                                 <viewport>
+                                    <Rectangle2D />
+                                 </viewport>
+                              </ImageView>
+                           </graphic>
+                           <tooltip>
+                              <Tooltip text="Play First Game!&#10;&#10;You have played your first Quick Draw game!&#10;Welcome to the party!" />
+                           </tooltip>
+                        </Button>
                      </graphic>
-                  </Button>
+                     <tooltip>
+                        <Tooltip text="Play First Game!&#10;&#10;Keep playing to unlock this badge!" />
+                     </tooltip>
+                  </Label>
+                  <Label>
+                     <graphic>
+                        <Button fx:id="badge1" mnemonicParsing="false" onAction="#onPressBadge">
+                           <graphic>
+                              <ImageView fitHeight="65.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/badges/placeholder.png" />
+                                 </image>
+                                 <viewport>
+                                    <Rectangle2D />
+                                 </viewport>
+                              </ImageView>
+                           </graphic>
+                           <tooltip>
+                              <Tooltip text="Win a Game!&#10;&#10;Congrats on your first win!&#10;Let's keep going!" />
+                           </tooltip>
+                        </Button>
+                     </graphic>
+                     <tooltip>
+                        <Tooltip text="Win a Game!&#10;&#10;Keep playing to unlock this badge!" />
+                     </tooltip>
+                  </Label>
+                  <Label>
+                     <graphic>
+                        <Button fx:id="badge2" mnemonicParsing="false" onAction="#onPressBadge">
+                           <graphic>
+                              <ImageView fitHeight="65.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/badges/placeholder.png" />
+                                 </image>
+                                 <viewport>
+                                    <Rectangle2D />
+                                 </viewport>
+                              </ImageView>
+                           </graphic>
+                           <tooltip>
+                              <Tooltip text="Lose a Game!&#10;&#10;Tough luck! &#10;Try again, and you'll get it!" />
+                           </tooltip>
+                        </Button>
+                     </graphic>
+                     <tooltip>
+                        <Tooltip text="Lose a Game!&#10;&#10;Keep playing to unlock this badge!" />
+                     </tooltip>
+                  </Label>
+                  <Label>
+                     <graphic>
+                        <Button fx:id="badge3" mnemonicParsing="false" onAction="#onPressBadge">
+                           <graphic>
+                              <ImageView fitHeight="65.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/badges/placeholder.png" />
+                                 </image>
+                                 <viewport>
+                                    <Rectangle2D />
+                                 </viewport>
+                              </ImageView>
+                           </graphic>
+                           <tooltip>
+                              <Tooltip text="Fast!&#10;&#10;You finished a game under 30 seconds!" />
+                           </tooltip>
+                        </Button>
+                     </graphic>
+                     <tooltip>
+                        <Tooltip fx:id="badgeDescription3" text="Fast!&#10;&#10;Keep playing to unlock this badge!" />
+                     </tooltip>
+                  </Label>
+                  <Label>
+                     <graphic>
+                        <Button fx:id="badge4" mnemonicParsing="false" onAction="#onPressBadge">
+                           <graphic>
+                              <ImageView fitHeight="65.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/badges/placeholder.png" />
+                                 </image>
+                                 <viewport>
+                                    <Rectangle2D />
+                                 </viewport>
+                              </ImageView>
+                           </graphic>
+                           <tooltip>
+                              <Tooltip text="Speedy!&#10;&#10;You finished a game under 15 seconds!" />
+                           </tooltip>
+                        </Button>
+                     </graphic>
+                     <tooltip>
+                        <Tooltip fx:id="badgeDescription31" text="Speedy!&#10;&#10;Keep playing to unlock this badge!" />
+                     </tooltip>
+                  </Label>
+                  <Label>
+                     <graphic>
+                        <Button fx:id="badge5" mnemonicParsing="false" onAction="#onPressBadge">
+                           <graphic>
+                              <ImageView fitHeight="65.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/badges/placeholder.png" />
+                                 </image>
+                                 <viewport>
+                                    <Rectangle2D />
+                                 </viewport>
+                              </ImageView>
+                           </graphic>
+                           <tooltip>
+                              <Tooltip text="Turbo!&#10;&#10;You finished a game under 10 seconds!" />
+                           </tooltip>
+                        </Button>
+                     </graphic>
+                     <tooltip>
+                        <Tooltip fx:id="badgeDescription311" text="Turbo!&#10;&#10;Keep playing to unlock this badge!" />
+                     </tooltip>
+                  </Label>
+                  <Label>
+                     <graphic>
+                        <Button fx:id="badge6" mnemonicParsing="false" onAction="#onPressBadge">
+                           <graphic>
+                              <ImageView fitHeight="65.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/badges/placeholder.png" />
+                                 </image>
+                                 <viewport>
+                                    <Rectangle2D />
+                                 </viewport>
+                              </ImageView>
+                           </graphic>
+                           <tooltip>
+                              <Tooltip text="Lightning!&#10;&#10;You finished a game under 5 seconds! &#10;You're cracked!" />
+                           </tooltip>
+                        </Button>
+                     </graphic>
+                     <tooltip>
+                        <Tooltip fx:id="badgeDescription3111" text="Lightning!&#10;&#10;Keep playing to unlock this badge!" />
+                     </tooltip>
+                  </Label>
+                  <Label>
+                     <graphic>
+                        <Button fx:id="badge7" mnemonicParsing="false" onAction="#onPressBadge">
+                           <graphic>
+                              <ImageView fitHeight="65.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/badges/placeholder.png" />
+                                 </image>
+                                 <viewport>
+                                    <Rectangle2D />
+                                 </viewport>
+                              </ImageView>
+                           </graphic>
+                           <tooltip>
+                              <Tooltip fx:id="badgeDescription311111" text="Easy-Peasy!&#10;&#10;You won a game with all 'easy' settings!" />
+                           </tooltip>
+                        </Button>
+                     </graphic>
+                     <tooltip>
+                        <Tooltip fx:id="badgeDescription31111" text="Easy-Peasy!&#10;&#10;Keep playing to unlock this badge!" />
+                     </tooltip>
+                  </Label>
+                  <Label>
+                     <graphic>
+                        <Button fx:id="badge8" mnemonicParsing="false" onAction="#onPressBadge">
+                           <graphic>
+                              <ImageView fitHeight="65.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/badges/placeholder.png" />
+                                 </image>
+                                 <viewport>
+                                    <Rectangle2D />
+                                 </viewport>
+                              </ImageView>
+                           </graphic>
+                           <tooltip>
+                              <Tooltip fx:id="badgeDescription3111111" text="Medium-Rare!&#10;&#10;You won a game with all 'medium' settings!" />
+                           </tooltip>
+                        </Button>
+                     </graphic>
+                     <tooltip>
+                        <Tooltip fx:id="badgeDescription8" text="Medium-Rare!&#10;&#10;Keep playing to unlock this badge!" />
+                     </tooltip>
+                  </Label>
+                  <Label>
+                     <graphic>
+                        <Button fx:id="badge9" mnemonicParsing="false" onAction="#onPressBadge">
+                           <graphic>
+                              <ImageView fitHeight="65.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/badges/placeholder.png" />
+                                 </image>
+                                 <viewport>
+                                    <Rectangle2D />
+                                 </viewport>
+                              </ImageView>
+                           </graphic>
+                           <tooltip>
+                              <Tooltip fx:id="badgeDescription91" text="Hard-Core!&#10;&#10;You won a game with all 'hard' settings!" />
+                           </tooltip>
+                        </Button>
+                     </graphic>
+                     <tooltip>
+                        <Tooltip fx:id="badgeDescription9" text="Hard-Core!&#10;&#10;Keep playing to unlock this badge!" />
+                     </tooltip>
+                  </Label>
+                  <Label>
+                     <graphic>
+                        <Button fx:id="badge10" mnemonicParsing="false" onAction="#onPressBadge">
+                           <graphic>
+                              <ImageView fitHeight="65.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/badges/placeholder.png" />
+                                 </image>
+                                 <viewport>
+                                    <Rectangle2D />
+                                 </viewport>
+                              </ImageView>
+                           </graphic>
+                           <tooltip>
+                              <Tooltip fx:id="badgeDescription911" text="Master-mind!&#10;&#10;You won a game with the hardest possible settings!&#10;You're a master!" />
+                           </tooltip>
+                        </Button>
+                     </graphic>
+                     <tooltip>
+                        <Tooltip fx:id="badgeDescription10" text="Master-Mind!&#10;&#10;Keep playing to unlock this badge!" />
+                     </tooltip>
+                  </Label>
+                  <Label>
+                     <graphic>
+                        <Button fx:id="badge11" mnemonicParsing="false" onAction="#onPressBadge">
+                           <graphic>
+                              <ImageView fitHeight="65.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/badges/placeholder.png" />
+                                 </image>
+                                 <viewport>
+                                    <Rectangle2D />
+                                 </viewport>
+                              </ImageView>
+                           </graphic>
+                           <tooltip>
+                              <Tooltip fx:id="badgeDescription101" text="Easy Ace!&#10;&#10;You've played all of the words on easy!" />
+                           </tooltip>
+                        </Button>
+                     </graphic>
+                     <tooltip>
+                        <Tooltip fx:id="badgeDescription102" text="Easy Ace!&#10;&#10;Keep playing to unlock this badge!" />
+                     </tooltip>
+                  </Label>
+                  <Label>
+                     <graphic>
+                        <Button fx:id="badge12" mnemonicParsing="false" onAction="#onPressBadge">
+                           <graphic>
+                              <ImageView fitHeight="65.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/badges/placeholder.png" />
+                                 </image>
+                                 <viewport>
+                                    <Rectangle2D />
+                                 </viewport>
+                              </ImageView>
+                           </graphic>
+                           <tooltip>
+                              <Tooltip fx:id="badgeDescription1011" text="Medium Maestro!&#10;&#10;You've played all of the words on easy!" />
+                           </tooltip>
+                        </Button>
+                     </graphic>
+                     <tooltip>
+                        <Tooltip fx:id="badgeDescription12" text="Medium Maestro!&#10;&#10;Keep playing to unlock this badge!" />
+                     </tooltip>
+                  </Label>
+                  <Label>
+                     <graphic>
+                        <Button fx:id="badge13" mnemonicParsing="false" onAction="#onPressBadge">
+                           <graphic>
+                              <ImageView fitHeight="65.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/badges/placeholder.png" />
+                                 </image>
+                                 <viewport>
+                                    <Rectangle2D />
+                                 </viewport>
+                              </ImageView>
+                           </graphic>
+                           <tooltip>
+                              <Tooltip fx:id="badgeDescription10111" text="Hard Professional!&#10;&#10;You've played all of the words on Hard!" />
+                           </tooltip>
+                        </Button>
+                     </graphic>
+                     <tooltip>
+                        <Tooltip fx:id="badgeDescription121" text="Hard Professional!&#10;&#10;Keep playing to unlock this badge!" />
+                     </tooltip>
+                  </Label>
+                  <Label>
+                     <graphic>
+                        <Button fx:id="badge14" mnemonicParsing="false" onAction="#onPressBadge">
+                           <graphic>
+                              <ImageView fitHeight="65.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/badges/placeholder.png" />
+                                 </image>
+                                 <viewport>
+                                    <Rectangle2D />
+                                 </viewport>
+                              </ImageView>
+                           </graphic>
+                           <tooltip>
+                              <Tooltip fx:id="badgeDescription10112" text="Word Wizard!&#10;&#10;You've played all of the words in the game! &#10;Did you learn some new words?" />
+                           </tooltip>
+                        </Button>
+                     </graphic>
+                     <tooltip>
+                        <Tooltip fx:id="badgeDescription1211" text="Word Wizard!&#10;&#10;Keep playing to unlock this badge!" />
+                     </tooltip>
+                  </Label>
+                  <Label>
+                     <graphic>
+                        <Button fx:id="badge15" mnemonicParsing="false" onAction="#onPressBadge">
+                           <graphic>
+                              <ImageView fitHeight="65.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/badges/placeholder.png" />
+                                 </image>
+                                 <viewport>
+                                    <Rectangle2D />
+                                 </viewport>
+                              </ImageView>
+                           </graphic>
+                           <tooltip>
+                              <Tooltip fx:id="badgeDescription101121" text="Newbie!&#10;&#10;You've played 5 games!" />
+                           </tooltip>
+                        </Button>
+                     </graphic>
+                     <tooltip>
+                        <Tooltip fx:id="badgeDescription12111" text="Newbie!&#10;&#10;Keep playing to unlock this badge!" />
+                     </tooltip>
+                  </Label>
+                  <Label>
+                     <graphic>
+                        <Button fx:id="badge16" mnemonicParsing="false" onAction="#onPressBadge">
+                           <graphic>
+                              <ImageView fitHeight="65.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/badges/placeholder.png" />
+                                 </image>
+                                 <viewport>
+                                    <Rectangle2D />
+                                 </viewport>
+                              </ImageView>
+                           </graphic>
+                           <tooltip>
+                              <Tooltip fx:id="badgeDescription1011211" text="Amateur!&#10;&#10;You've played 10 games!" />
+                           </tooltip>
+                        </Button>
+                     </graphic>
+                     <tooltip>
+                        <Tooltip fx:id="badgeDescription121111" text="Amateur!&#10;&#10;Keep playing to unlock this badge!" />
+                     </tooltip>
+                  </Label>
+                  <Label>
+                     <graphic>
+                        <Button fx:id="badge17" mnemonicParsing="false" onAction="#onPressBadge">
+                           <graphic>
+                              <ImageView fitHeight="65.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/badges/placeholder.png" />
+                                 </image>
+                                 <viewport>
+                                    <Rectangle2D />
+                                 </viewport>
+                              </ImageView>
+                           </graphic>
+                           <tooltip>
+                              <Tooltip fx:id="badgeDescription10112111" text="Competent!&#10;&#10;You've played 25 games!" />
+                           </tooltip>
+                        </Button>
+                     </graphic>
+                     <tooltip>
+                        <Tooltip fx:id="badgeDescription1211111" text="Competent!&#10;&#10;Keep playing to unlock this badge!" />
+                     </tooltip>
+                  </Label>
+                  <Label>
+                     <graphic>
+                        <Button fx:id="badge18" mnemonicParsing="false" onAction="#onPressBadge">
+                           <graphic>
+                              <ImageView fitHeight="65.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/badges/placeholder.png" />
+                                 </image>
+                                 <viewport>
+                                    <Rectangle2D />
+                                 </viewport>
+                              </ImageView>
+                           </graphic>
+                           <tooltip>
+                              <Tooltip fx:id="badgeDescription101121111" text="Proficient!&#10;&#10;You've played 25 games!" />
+                           </tooltip>
+                        </Button>
+                     </graphic>
+                     <tooltip>
+                        <Tooltip fx:id="badgeDescription12111111" text="Proficient!&#10;&#10;Keep playing to unlock this badge!" />
+                     </tooltip>
+                  </Label>
+                  <Label>
+                     <graphic>
+                        <Button fx:id="badge19" mnemonicParsing="false" onAction="#onPressBadge">
+                           <graphic>
+                              <ImageView fitHeight="65.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/badges/placeholder.png" />
+                                 </image>
+                                 <viewport>
+                                    <Rectangle2D />
+                                 </viewport>
+                              </ImageView>
+                           </graphic>
+                           <tooltip>
+                              <Tooltip fx:id="badgeDescription1011211111" text="Expert!&#10;&#10;You've played 100 games!&#10;That's a lot!" />
+                           </tooltip>
+                        </Button>
+                     </graphic>
+                     <tooltip>
+                        <Tooltip fx:id="badgeDescription121111111" text="Expert!&#10;&#10;Keep playing to unlock this badge!" />
+                     </tooltip>
+                  </Label>
                </children>
                <padding>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />

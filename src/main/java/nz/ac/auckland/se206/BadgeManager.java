@@ -41,7 +41,7 @@ public class BadgeManager {
             "");
     availBadges.add(badge);
     // create get first win and lose game badges
-    badge = new BadgeModel(1, "Win a Game!", "Congrats on your first win!", "");
+    badge = new BadgeModel(1, "Win a Game!", "Congrats on your first win! Let's Keep Going!", "");
     availBadges.add(badge);
     badge = new BadgeModel(2, "Lose a Game!", "Tough luck! Try again, and you'll get it!", "");
     availBadges.add(badge);
@@ -94,7 +94,7 @@ public class BadgeManager {
     badge =
         new BadgeModel(
             10,
-            "Quick Draw Master!",
+            "Master-mind!",
             "You won a game with the hardest possible settings! You're a master!",
             "");
     availBadges.add(badge);

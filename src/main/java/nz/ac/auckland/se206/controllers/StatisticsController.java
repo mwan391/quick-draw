@@ -1,5 +1,7 @@
 package nz.ac.auckland.se206.controllers;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -31,9 +33,32 @@ public class StatisticsController implements Controller {
   @FXML private Button btnBackToMenu;
   @FXML private ScrollPane spnBadgeView;
 
+  // badges
+  @FXML private Button badge0;
+  @FXML private Button badge1;
+  @FXML private Button badge2;
+  @FXML private Button badge3;
+  @FXML private Button badge4;
+  @FXML private Button badge5;
+  @FXML private Button badge6;
+  @FXML private Button badge7;
+  @FXML private Button badge8;
+  @FXML private Button badge9;
+  @FXML private Button badge10;
+  @FXML private Button badge11;
+  @FXML private Button badge12;
+  @FXML private Button badge13;
+  @FXML private Button badge14;
+  @FXML private Button badge15;
+  @FXML private Button badge16;
+  @FXML private Button badge17;
+  @FXML private Button badge18;
+  @FXML private Button badge19;
+
   private UserModel activeUser;
   private UserStatsDao userStatsDao = new UserStatsDao();
   private ObservableList<String> gamesEasyHistory;
+  private ArrayList<Button> allBadges = new ArrayList<>();
 
   public void initialize() {
     // ready the games history back end
@@ -42,6 +67,11 @@ public class StatisticsController implements Controller {
     // set up badges scrollbar
     spnBadgeView.setVbarPolicy(ScrollBarPolicy.NEVER);
     spnBadgeView.setHbarPolicy(ScrollBarPolicy.ALWAYS);
+    spnBadgeView.setFitToHeight(true);
+    // set up list of badges
+    Collections.addAll(
+        allBadges, badge0, badge1, badge2, badge3, badge4, badge5, badge6, badge7, badge8, badge9,
+        badge10, badge11, badge12, badge13, badge14, badge15, badge16, badge17, badge18, badge19);
   }
 
   @FXML
@@ -179,4 +209,7 @@ public class StatisticsController implements Controller {
         .append(" seconds");
     txtLastGame.setText(stringBuilder.toString());
   }
+
+  @FXML
+  private void onPressBadge() {}
 }
