@@ -4,8 +4,12 @@
   -fx-border-color: BLACK;
 }
 
+.loss {
+  -fx-border-color: RED;
+}
+
 .top3 {
-  -fx-border-color: rgb(3, 240, 3);
+  -fx-border-color: GREEN;
 }
 
 .top10 {
@@ -21,6 +25,41 @@
 }
 
 .top100 {
+  -fx-border-color: rgb(252, 207, 129);
+}
+
+.defaultMessage {
+  -fx-background-color: #173ab5;
+  -fx-border-color: #173ab5;
+}
+
+.winMessage {
+  -fx-background-color: GREEN;
+  -fx-border-color: GREEN;
+}
+
+.lossMessage {
+  -fx-background-color: RED;
+  -fx-border-color: RED;
+}
+
+.message10 {
+  -fx-background-color: rgb(251, 60, 60);
+  -fx-border-color: rgb(251, 60, 60);
+}
+
+.message20 {
+  -fx-background-color: rgb(243, 98, 7);
+  -fx-border-color: rgb(243, 98, 7);
+}
+
+.message50 {
+  -fx-background-color: rgb(248, 169, 73);
+  -fx-border-color: rgb(248, 169, 73);
+}
+
+.message100 {
+  -fx-background-color: rgb(252, 207, 129);
   -fx-border-color: rgb(252, 207, 129);
 }
 
@@ -80,11 +119,11 @@
 }
 
 #easy {
-  -fx-background-color: #35D461;
+  -fx-background-color: #35d461;
 }
 
 #medium {
-  -fx-background-color: #F99D07;
+  -fx-background-color: #f99d07;
 }
 
 #hard {

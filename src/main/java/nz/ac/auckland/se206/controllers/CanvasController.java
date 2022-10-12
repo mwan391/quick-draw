@@ -61,6 +61,7 @@ public class CanvasController implements Controller {
   @FXML private Label lblTimer;
   @FXML private Label lblCategory;
   @FXML private Label eraserMessage;
+  @FXML private Label progressMessage;
   @FXML private Button clearButton;
   @FXML private Button btnSave;
   @FXML private Button btnReturnToMenu;
@@ -117,6 +118,7 @@ public class CanvasController implements Controller {
 
     // set default canvas border color
     canvasPane.getStyleClass().add("end-game");
+    progressMessage.getStyleClass().add("defaultMessage");
   }
 
   /** This method is called when the "Clear" button is pressed. */
@@ -151,7 +153,7 @@ public class CanvasController implements Controller {
   public void initializeGame() {
     resetGame();
     btnNewGame.setText("Get word!");
-    lblCategory.setText("Ready up!");
+    progressMessage.setText("...");
   }
 
   public void startTimer() throws SQLException {
@@ -231,26 +233,38 @@ public class CanvasController implements Controller {
   private void checkCategoryPosition(int position) {
     // this determines which style class to use
     String pseudoClass = null;
+    String messageClass = null;
     // remove border color when cateogry is outside any ranking
     canvasPane.getStyleClass().clear();
+    progressMessage.getStyleClass().clear();
     ;
     // change the border color depending on its ranking
     if (position < 3) {
-      pseudoClass = "top3";
       endGame(true);
     } else if (position < 10) {
       pseudoClass = "top10";
+      messageClass = "message10";
+      progressMessage.setText("You're almost there!");
     } else if (position < 20) {
       pseudoClass = "top20";
+      messageClass = "message20";
+      progressMessage.setText("Getting closer!");
     } else if (position < 50) {
       pseudoClass = "top50";
+      messageClass = "message50";
+      progressMessage.setText("You're getting close!");
     } else if (position < 100) {
       pseudoClass = "top100";
+      messageClass = "message100";
+      progressMessage.setText("Looking good!");
     } else {
       pseudoClass = "end-game";
+      messageClass = "defaultMessage";
+      progressMessage.setText("Keep drawing!");
     }
     // set color to border
     canvasPane.getStyleClass().add(pseudoClass);
+    progressMessage.getStyleClass().add(messageClass);
   }
 
   private void endGame(Boolean wonGame) {
@@ -269,11 +283,15 @@ public class CanvasController implements Controller {
 
     // set the label to win/lose event and use the tts
     if (wonGame) {
-      lblCategory.setText("You Win!");
+      progressMessage.setText("You Win!");
       TextToSpeech.main(new String[] {"You Win!"});
+      progressMessage.getStyleClass().add("winMessage");
+      canvasPane.getStyleClass().add("top3");
     } else {
-      lblCategory.setText("You Lose!");
+      progressMessage.setText("You Lose!");
       TextToSpeech.main(new String[] {"You Lose!"});
+      progressMessage.getStyleClass().add("lossMessage");
+      canvasPane.getStyleClass().add("loss");
     }
   }
 
@@ -331,6 +349,8 @@ public class CanvasController implements Controller {
     onClear();
     // reset conditional border color rendering
     canvasPane.getStyleClass().add("end-game");
+    progressMessage.getStyleClass().clear();
+    progressMessage.getStyleClass().add("defaultMessage");
   }
 
   @FXML
@@ -354,6 +374,7 @@ public class CanvasController implements Controller {
       // clear the canvas and timer
       resetGame();
       btnNewGame.setText("Start Game");
+      progressMessage.setText("Get ready to start!");
       // generate a new word
       actualDifficulty = CategorySelect.generateSetCategory();
       category = CategorySelect.getCategory();
