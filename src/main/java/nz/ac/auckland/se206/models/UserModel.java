@@ -1,5 +1,9 @@
 package nz.ac.auckland.se206.models;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
+
 public class UserModel {
 
   private static UserModel activeUser = null;
@@ -12,17 +16,17 @@ public class UserModel {
     UserModel.activeUser = activeUser;
   }
 
-  private int id;
+  private String id;
   private String username;
-  private int gameId;
+  private List<BadgeModel> badges;
 
-  public UserModel(int id, String username, int gameId) {
-    this.id = id;
+  public UserModel(String username) {
+    this.id = UUID.randomUUID().toString();
     this.username = username;
-    this.gameId = gameId;
+    this.badges = new ArrayList<>();
   }
 
-  public int getId() {
+  public String getId() {
     return id;
   }
 
@@ -30,13 +34,23 @@ public class UserModel {
     return username;
   }
 
-  public int getGameId() {
-    return gameId;
+  public void setUsername(String username) {
+    this.username = username;
   }
 
-  @Override
+  public List<BadgeModel> getBadges() {
+    return badges;
+  }
+
+  public void setBadges(List<BadgeModel> badges) {
+    this.badges = badges;
+  }
+
   public String toString() {
-    StringBuilder sb = new StringBuilder(username);
+    StringBuilder sb = new StringBuilder("Username: ");
+    sb.append(username);
+    sb.append(" Badges: ");
+    sb.append(badges.toString());
     return sb.toString();
   }
 }

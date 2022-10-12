@@ -5,15 +5,16 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
-import nz.ac.auckland.se206.daos.UserDao;
+import nz.ac.auckland.se206.daos.GameSettingDao;
+import nz.ac.auckland.se206.daos.UserDaoJson;
 import nz.ac.auckland.se206.models.UserModel;
-import nz.ac.auckland.se206.speech.TextToSpeech;
 
 public class LogInController implements Controller {
 
@@ -21,7 +22,7 @@ public class LogInController implements Controller {
   @FXML private Button btnLogIn;
   @FXML private Label lblWarning;
   @FXML private ComboBox<String> fldUserName;
-  private UserDao userDao = new UserDao();
+  private UserDaoJson userDao = new UserDaoJson();
   private ObservableList<String> existingUsers;
 
   public void initialize() {
@@ -30,10 +31,10 @@ public class LogInController implements Controller {
     // create the observable list of existing user names for the drop down menu
     existingUsers = FXCollections.observableArrayList();
 
-    List<UserModel> tempUsers = userDao.getUsers();
+    List<UserModel> tempUsers = userDao.getAll();
 
     for (UserModel user : tempUsers) {
-      existingUsers.add(user.toString());
+      existingUsers.add(user.getUsername());
     }
 
     fldUserName.setItems(existingUsers);
@@ -61,9 +62,17 @@ public class LogInController implements Controller {
       return;
     }
 
+    // add new user to database
+    UserModel user = new UserModel(userName);
+    userDao.add(user);
+
     // set the newly made user as the active user and add to the drop down list
-    UserModel.setActiveUser(userDao.getUserById(userDao.addNewUser(userName)));
+    UserModel.setActiveUser(user);
     existingUsers.add(userName);
+
+    // create a blank settings entry for the new user
+    GameSettingDao settingDao = new GameSettingDao();
+    settingDao.add(user.getId());
 
     // go to the next screen
     nextScreen(event);
@@ -75,14 +84,13 @@ public class LogInController implements Controller {
     String userName = fldUserName.getValue();
 
     // check if the un is in the system
-    int userId = userDao.getId(userName);
-    if (userId == -1) {
+    if (!userDao.checkExists(userName)) {
       lblWarning.setText("Invalid login attempt.");
       return;
     }
 
     // set the user as the active user
-    UserModel.setActiveUser(userDao.getUserById(userId));
+    UserModel.setActiveUser(userDao.get(userName));
 
     // go to the next screen
     nextScreen(event);
@@ -90,12 +98,18 @@ public class LogInController implements Controller {
 
   private void nextScreen(ActionEvent event) {
 
-    // change the scene
+    // get root and controller
     Scene scene = ((Button) event.getSource()).getScene();
-    scene.setRoot(SceneManager.getUiRoot(AppUi.CATEGORY_SELECT));
+    Parent categoryRoot = SceneManager.getUiRoot(AppUi.CATEGORY_SELECT);
+    CategoryController categoryController =
+        (CategoryController) SceneManager.getController(categoryRoot);
 
-    // Activating text to speech
-    TextToSpeech.main(new String[] {"Select a difficulty"});
+    // set the setting model
+    String id = UserModel.getActiveUser().getId();
+    categoryController.setUserSettings(id);
+
+    // change scene
+    scene.setRoot(categoryRoot);
 
     // reset the page for the next log in
     resetPage();

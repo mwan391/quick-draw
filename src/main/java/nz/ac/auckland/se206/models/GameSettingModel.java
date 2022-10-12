@@ -3,27 +3,27 @@ package nz.ac.auckland.se206.models;
 public class GameSettingModel {
 
   private int id;
-  private int userId;
+  private String userId;
   private String words;
   private String time;
   private String accuracy;
   private String confidence;
 
   public GameSettingModel(
-      int id, int userId, String words, String time, String accuracy, String confidence) {
+      int id, String userId, String words, String time, String accuracy, String confidence) {
     this.id = id;
     this.userId = userId;
-    this.words = words;
-    this.time = time;
-    this.accuracy = accuracy;
-    this.confidence = confidence;
+    this.setWords(words);
+    this.setTime(time);
+    this.setAccuracy(accuracy);
+    this.setConfidence(confidence);
   }
 
   public int getId() {
     return id;
   }
 
-  public int getUser() {
+  public String getUser() {
     return userId;
   }
 
@@ -31,15 +31,31 @@ public class GameSettingModel {
     return words;
   }
 
+  public void setWords(String words) {
+    this.words = words;
+  }
+
   public String getTime() {
     return time;
+  }
+
+  public void setTime(String time) {
+    this.time = time;
   }
 
   public String getAccuracy() {
     return accuracy;
   }
 
+  public void setAccuracy(String accuracy) {
+    this.accuracy = accuracy;
+  }
+
   public String getConfidence() {
     return confidence;
+  }
+
+  public void setConfidence(String confidence) {
+    this.confidence = confidence;
   }
 }

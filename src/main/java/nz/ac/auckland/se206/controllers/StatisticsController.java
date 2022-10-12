@@ -10,6 +10,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.control.ScrollPane.ScrollBarPolicy;
 import javafx.scene.text.Text;
 import nz.ac.auckland.se206.CategorySelect.Difficulty;
 import nz.ac.auckland.se206.SceneManager;
@@ -27,6 +29,7 @@ public class StatisticsController implements Controller {
   @FXML private Text txtBestGame;
   @FXML private Text txtLastGame;
   @FXML private Button btnBackToMenu;
+  @FXML private ScrollPane spnBadgeView;
 
   private UserModel activeUser;
   private UserStatsDao userStatsDao = new UserStatsDao();
@@ -36,6 +39,9 @@ public class StatisticsController implements Controller {
     // ready the games history back end
     gamesEasyHistory = FXCollections.observableArrayList();
     lvwEasyHistory.setItems(gamesEasyHistory);
+    // set up badges scrollbar
+    spnBadgeView.setVbarPolicy(ScrollBarPolicy.NEVER);
+    spnBadgeView.setHbarPolicy(ScrollBarPolicy.ALWAYS);
   }
 
   @FXML
@@ -146,9 +152,7 @@ public class StatisticsController implements Controller {
         .append(bestGame.getWord())
         .append("\" in ")
         .append(bestGame.getTime())
-        .append(" seconds, from the ")
-        .append(category)
-        .append(" category");
+        .append(" seconds");
     txtBestGame.setText(stringBuilder.toString());
   }
 
@@ -172,9 +176,7 @@ public class StatisticsController implements Controller {
         .append(lastGame.getWord())
         .append("\" in ")
         .append(lastGame.getTime())
-        .append(" seconds, from the ")
-        .append(category)
-        .append(" category");
+        .append(" seconds");
     txtLastGame.setText(stringBuilder.toString());
   }
 }

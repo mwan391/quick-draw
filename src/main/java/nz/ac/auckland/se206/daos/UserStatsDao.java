@@ -15,14 +15,14 @@ import nz.ac.auckland.se206.util.SqliteConnection;
 
 public class UserStatsDao {
 
-  public int countGames(int userId) {
+  public int countGames(String userId) {
     Connection connection = SqliteConnection.openConnection();
     int count = -1;
     try {
       // count the number of rows with matching user id
       String query = "SELECT COUNT(*) AS count FROM games WHERE user_id=?";
       PreparedStatement ps = connection.prepareStatement(query);
-      ps.setInt(1, userId);
+      ps.setString(1, userId);
       ResultSet rs = ps.executeQuery();
       // number of played games, if none return 0
       count = rs.next() ? rs.getInt("count") : 0;
@@ -34,14 +34,14 @@ public class UserStatsDao {
     return count;
   }
 
-  public int countWins(int userId) {
+  public int countWins(String userId) {
     Connection connection = SqliteConnection.openConnection();
     int count = -1;
     try {
       // count the number of rows with matching user id
       String query = "SELECT COUNT(*) AS count FROM games WHERE user_id=? AND won=1";
       PreparedStatement ps = connection.prepareStatement(query);
-      ps.setInt(1, userId);
+      ps.setString(1, userId);
       ResultSet rs = ps.executeQuery();
       // number of winning games else return 0
       count = rs.next() ? rs.getInt("count") : 0;
@@ -53,7 +53,7 @@ public class UserStatsDao {
     return count;
   }
 
-  public GameModel getBestGame(int userId) {
+  public GameModel getBestGame(String userId) {
     Connection connection = SqliteConnection.openConnection();
     GameModel game = null;
     try {
@@ -64,7 +64,7 @@ public class UserStatsDao {
       String query = sb.toString();
       PreparedStatement ps = connection.prepareStatement(query);
       // filter for given user
-      ps.setInt(1, userId);
+      ps.setString(1, userId);
       ResultSet rs = ps.executeQuery();
       // convert results to a game instance
       game = rs.next() ? getGame(rs) : null;
@@ -76,7 +76,7 @@ public class UserStatsDao {
     return game;
   }
 
-  public List<String> getWordHistory(int userId) {
+  public List<String> getWordHistory(String userId) {
     Connection connection = SqliteConnection.openConnection();
     // words from games user has played
     List<String> words = new ArrayList<>();
@@ -84,7 +84,7 @@ public class UserStatsDao {
       // get word history from oldest to recent
       String query = "SELECT word FROM games WHERE user_id=? ORDER BY id";
       PreparedStatement ps = connection.prepareStatement(query);
-      ps.setInt(1, userId);
+      ps.setString(1, userId);
       ResultSet rs = ps.executeQuery();
       while (rs.next()) {
         words.add(rs.getString("word"));
@@ -97,7 +97,7 @@ public class UserStatsDao {
     return words;
   }
 
-  public List<GameModel> getTen(int userId) {
+  public List<GameModel> getTen(String userId) {
     Connection connection = SqliteConnection.openConnection();
     List<GameModel> games = new ArrayList<>();
     try {
@@ -105,7 +105,7 @@ public class UserStatsDao {
       String query = "SELECT * FROM games WHERE user_id=? ORDER BY id DESC LIMIT 10";
       PreparedStatement ps = connection.prepareStatement(query);
       // filter results under user
-      ps.setInt(1, userId);
+      ps.setString(1, userId);
       ResultSet rs = ps.executeQuery();
       // convert results to a game instance to list
       while (rs.next()) {
@@ -133,7 +133,7 @@ public class UserStatsDao {
       game =
           new GameModel(
               rs.getInt("id"),
-              rs.getInt("user_id"),
+              rs.getString("user_id"),
               rs.getString("difficulty"),
               rs.getString("word"),
               rs.getBoolean("won"),
@@ -161,7 +161,7 @@ public class UserStatsDao {
    * @param userId of game user
    * @return a map where each difficulty maps to a list of words of same difficulty
    */
-  public Map<Difficulty, List<String>> getHistoryMap(int userId) {
+  public Map<Difficulty, List<String>> getHistoryMap(String userId) {
     Map<Difficulty, List<String>> map = new EnumMap<Difficulty, List<String>>(Difficulty.class);
     Connection connection = SqliteConnection.openConnection();
     try {
@@ -169,7 +169,7 @@ public class UserStatsDao {
       String query = "SELECT word, difficulty FROM games WHERE user_id=? ORDER BY id";
       PreparedStatement ps = connection.prepareStatement(query);
       // input specific user
-      ps.setInt(1, userId);
+      ps.setString(1, userId);
       ResultSet rs = ps.executeQuery();
       // map each difficulty to its words e.g. EASY -> [chandelier, banana, diamond]
       while (rs.next()) {

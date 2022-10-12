@@ -16,16 +16,16 @@ public class GameSettingDao {
    * @param userId of current user
    * @return id of new setting
    */
-  public int add(int userId) {
+  public int add(String userId) {
     Connection connection = SqliteConnection.openConnection();
     int id = 0;
     try {
-      // add new row with all settings initialised to null
+      // add new row with all settings initialised to "EASY"
       String query =
-          "INSERT INTO settings (user_id, words, time, accuracy, confidence) VALUES (?,NULL,NULL,NULL,NULL)";
+          "INSERT INTO settings (user_id, words, time, accuracy, confidence) VALUES (?,\"EASY\",\"EASY\",\"EASY\",\"EASY\")";
       PreparedStatement ps = connection.prepareStatement(query);
       // set paramaters (column values) to into the table
-      ps.setInt(1, userId);
+      ps.setString(1, userId);
       ps.executeUpdate();
       // get next unique id for setting
       ResultSet rs = ps.getGeneratedKeys();
@@ -46,14 +46,14 @@ public class GameSettingDao {
    * @param userId of current user
    * @return the settings for the user
    */
-  public GameSettingModel get(int userId) {
+  public GameSettingModel get(String userId) {
     Connection connection = SqliteConnection.openConnection();
     GameSettingModel user = null;
     try {
       // find the matching settings for user
       String query = "SELECT * FROM settings WHERE user_id=?";
       PreparedStatement ps = connection.prepareStatement(query);
-      ps.setInt(1, userId);
+      ps.setString(1, userId);
       ResultSet rs = ps.executeQuery();
       // convert result to an instance of game settings
       if (rs.next()) {
@@ -87,7 +87,7 @@ public class GameSettingDao {
       ps.setString(3, settings.getAccuracy());
       ps.setString(4, settings.getConfidence());
       // settings for this user
-      ps.setInt(5, settings.getUser());
+      ps.setString(5, settings.getUser());
       ps.execute();
       updated = true;
     } catch (SQLException e) {
@@ -109,7 +109,7 @@ public class GameSettingDao {
     // helper to convert a game setting in sql to game setting in java
     return new GameSettingModel(
         rs.getInt("id"),
-        rs.getInt("user_id"),
+        rs.getString("user_id"),
         rs.getString("words"),
         rs.getString("time"),
         rs.getString("accuracy"),
