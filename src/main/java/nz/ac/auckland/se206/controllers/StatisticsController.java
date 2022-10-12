@@ -2,6 +2,7 @@ package nz.ac.auckland.se206.controllers;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -15,9 +16,11 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.ScrollPane.ScrollBarPolicy;
 import javafx.scene.text.Text;
+import nz.ac.auckland.se206.BadgeManager;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.daos.UserStatsDao;
+import nz.ac.auckland.se206.models.BadgeModel;
 import nz.ac.auckland.se206.models.GameModel;
 import nz.ac.auckland.se206.models.UserModel;
 
@@ -57,7 +60,8 @@ public class StatisticsController implements Controller {
   private UserModel activeUser;
   private UserStatsDao userStatsDao = new UserStatsDao();
   private ObservableList<String> gamesEasyHistory;
-  private ArrayList<Button> allBadges = new ArrayList<>();
+
+  private HashMap<BadgeModel, Button> badgeToButtonMap = new HashMap<>();
 
   public void initialize() {
     // ready the games history back end
@@ -67,10 +71,41 @@ public class StatisticsController implements Controller {
     spnBadgeView.setVbarPolicy(ScrollBarPolicy.NEVER);
     spnBadgeView.setHbarPolicy(ScrollBarPolicy.ALWAYS);
     spnBadgeView.setFitToHeight(true);
-    // set up list of badges
+    // set up badges preset
+    initializeBadgeBackend();
+  }
+
+  private void initializeBadgeBackend() {
+    // set up lists of buttons for ease
+    ArrayList<Button> allBadgeButtons = new ArrayList<>();
     Collections.addAll(
-        allBadges, badge0, badge1, badge2, badge3, badge4, badge5, badge6, badge7, badge8, badge9,
-        badge10, badge11, badge12, badge13, badge14, badge15, badge16, badge17, badge18, badge19);
+        allBadgeButtons,
+        badge0,
+        badge1,
+        badge2,
+        badge3,
+        badge4,
+        badge5,
+        badge6,
+        badge7,
+        badge8,
+        badge9,
+        badge10,
+        badge11,
+        badge12,
+        badge13,
+        badge14,
+        badge15,
+        badge16,
+        badge17,
+        badge18,
+        badge19);
+    // link each badge to the corresponding button in hashmap
+    int i = 0;
+    for (BadgeModel badge : BadgeManager.getAllBadges()) {
+      badgeToButtonMap.put(badge, allBadgeButtons.get(i));
+      i++;
+    }
   }
 
   @FXML
@@ -97,7 +132,9 @@ public class StatisticsController implements Controller {
     setEasyHistory();
   }
 
-  private void setBadges() {}
+  private void setBadges() {
+    List<BadgeModel> userBadges = activeUser.getBadges();
+  }
 
   private void setEasyHistory() {
     // get relevant statistics

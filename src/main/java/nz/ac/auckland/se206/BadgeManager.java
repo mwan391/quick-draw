@@ -54,6 +54,64 @@ public class BadgeManager {
   }
 
   /**
+   * Checks whether a given completed game will result in a new badge for a given user, and gives
+   * said badge to user. Checks every badge.
+   *
+   * @param username of the user to check the badges of
+   * @param game that may trigger a new badge
+   * @param actualDifficulty
+   * @return the number of new badges that was given
+   */
+  public static int checkNewBadges(String username, GameModel game, Difficulty actualDifficulty) {
+    // initialise return
+    int newBadgeCount = 0;
+    // get necessary info
+    UserDaoJson userDao = new UserDaoJson();
+    user = userDao.get(username);
+    boolean won = game.getWon();
+
+    // check for first game
+    if (!(userDao.checkExists(availBadges.get(0), user))) {
+      userDao.addBadge(availBadges.get(0), username);
+      newBadgeCount++;
+    }
+
+    // check for first win badge
+    if (won && !(userDao.checkExists(availBadges.get(1), user))) {
+      userDao.addBadge(availBadges.get(1), username);
+      newBadgeCount++;
+    }
+
+    // check for first lose badge
+    if (!(won) && !(userDao.checkExists(availBadges.get(2), user))) {
+      userDao.addBadge(availBadges.get(2), username);
+      newBadgeCount++;
+    }
+
+    // check grouped badges needing wins
+    if (won) {
+      newBadgeCount += checkNewBadgesTime(game.getTime()); // 3-6
+      newBadgeCount += checkNewBadgesSettings(); // 7-10
+    }
+
+    // check grouped badges not needing a win
+    newBadgeCount += checkNewBadgesWords(actualDifficulty);
+    newBadgeCount += checkNewBadgesCount();
+
+    return newBadgeCount;
+  }
+
+  /**
+   * Returns all of the initialized badges in the game, or a null object if nothing has been
+   * initialized.
+   *
+   * @return List<BadgeModel> representation of badges
+   */
+  public static List<BadgeModel> getAllBadges() {
+    return availBadges;
+  }
+
+  /**
    * Initializes all time-related badge array entries and hashmap. Current Badge count: 4. Badge ID
    * range: 3 to 6
    */
@@ -154,54 +212,6 @@ public class BadgeManager {
     badge = new BadgeModel(19, "Expert!", "You've played 100 games! That's a lot!", "");
     availBadges.add(badge);
     gameCountThreshold.put(100, badge);
-  }
-
-  /**
-   * Checks whether a given completed game will result in a new badge for a given user, and gives
-   * said badge to user. Checks every badge.
-   *
-   * @param username of the user to check the badges of
-   * @param game that may trigger a new badge
-   * @param actualDifficulty
-   * @return the number of new badges that was given
-   */
-  public static int checkNewBadges(String username, GameModel game, Difficulty actualDifficulty) {
-    // initialise return
-    int newBadgeCount = 0;
-    // get necessary info
-    UserDaoJson userDao = new UserDaoJson();
-    user = userDao.get(username);
-    boolean won = game.getWon();
-
-    // check for first game
-    if (!(userDao.checkExists(availBadges.get(0), user))) {
-      userDao.addBadge(availBadges.get(0), username);
-      newBadgeCount++;
-    }
-
-    // check for first win badge
-    if (won && !(userDao.checkExists(availBadges.get(1), user))) {
-      userDao.addBadge(availBadges.get(1), username);
-      newBadgeCount++;
-    }
-
-    // check for first lose badge
-    if (!(won) && !(userDao.checkExists(availBadges.get(2), user))) {
-      userDao.addBadge(availBadges.get(2), username);
-      newBadgeCount++;
-    }
-
-    // check grouped badges needing wins
-    if (won) {
-      newBadgeCount += checkNewBadgesTime(game.getTime()); // 3-6
-      newBadgeCount += checkNewBadgesSettings(); // 7-10
-    }
-
-    // check grouped badges not needing a win
-    newBadgeCount += checkNewBadgesWords(actualDifficulty);
-    newBadgeCount += checkNewBadgesCount();
-
-    return newBadgeCount;
   }
 
   /**
