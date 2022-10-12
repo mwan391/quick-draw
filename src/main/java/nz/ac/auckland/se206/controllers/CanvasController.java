@@ -291,6 +291,7 @@ public class CanvasController implements Controller {
       progressMessage.setText("You Lose!");
       TextToSpeech.main(new String[] {"You Lose!"});
       progressMessage.getStyleClass().add("lossMessage");
+      canvasPane.getStyleClass().clear();
       canvasPane.getStyleClass().add("loss");
     }
   }
