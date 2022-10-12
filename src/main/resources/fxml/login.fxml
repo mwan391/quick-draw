@@ -50,7 +50,7 @@
                                           <Insets right="10.0" />
                                        </HBox.margin>
                                     </ImageView>
-                                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="New User">
+                                    <Text fx:id="userTextOne" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="New User">
                                        <font>
                                           <Font name="Arial Rounded MT Bold" size="26.0" />
                                        </font>
