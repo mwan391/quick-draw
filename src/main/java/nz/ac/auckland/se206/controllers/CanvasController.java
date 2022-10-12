@@ -285,11 +285,14 @@ public class CanvasController implements Controller {
     if (wonGame) {
       progressMessage.setText("You Win!");
       TextToSpeech.main(new String[] {"You Win!"});
+      progressMessage.getStyleClass().clear();
       progressMessage.getStyleClass().add("winMessage");
+      canvasPane.getStyleClass().clear();
       canvasPane.getStyleClass().add("top3");
     } else {
       progressMessage.setText("You Lose!");
       TextToSpeech.main(new String[] {"You Lose!"});
+      progressMessage.getStyleClass().clear();
       progressMessage.getStyleClass().add("lossMessage");
       canvasPane.getStyleClass().clear();
       canvasPane.getStyleClass().add("loss");
