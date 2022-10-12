@@ -48,9 +48,9 @@ public class CategoryController implements Controller {
     ;
   }
 
-  public void setUserSettings(int settingId) {
+  public void setUserSettings(String userId) {
     GameSettingDao settingDao = new GameSettingDao();
-    userSetting = settingDao.get(settingId);
+    userSetting = settingDao.get(userId);
 
     // Activating text to speech instructions
     TextToSpeech.main(new String[] {"Choose a difficulty"});

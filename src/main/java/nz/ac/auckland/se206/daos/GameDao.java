@@ -21,7 +21,7 @@ public class GameDao {
    * @param word of chosen category
    * @return id of new game
    */
-  public int addNewGame(int userId, Difficulty difficulty, String word) {
+  public int addNewGame(String userId, Difficulty difficulty, String word) {
     Connection connection = SqliteConnection.openConnection();
     int id = 0;
     try {
@@ -29,7 +29,7 @@ public class GameDao {
       String query = "INSERT INTO games (user_id, difficulty, word, won, time) VALUES (?,?,?,0,60)";
       PreparedStatement ps = connection.prepareStatement(query);
       // set paramaters (column titles) to add into the table
-      ps.setInt(1, userId);
+      ps.setString(1, userId);
       ps.setString(2, difficulty.toString());
       ps.setString(3, word);
       ps.executeUpdate();
@@ -123,7 +123,7 @@ public class GameDao {
    * @param userId of given user
    * @return list of game session
    */
-  public List<GameModel> getGames(int userId) {
+  public List<GameModel> getGames(String userId) {
     Connection connection = SqliteConnection.openConnection();
     List<GameModel> games = new ArrayList<>();
     try {
@@ -131,7 +131,7 @@ public class GameDao {
       String query = "SELECT * FROM games WHERE user_id=? ORDER by id";
       PreparedStatement ps = connection.prepareStatement(query);
       // input query paramter
-      ps.setInt(userId, 1);
+      ps.setString(1, userId);
       ResultSet rs = ps.executeQuery();
       // convert the results to game instances
       while (rs.next()) {
@@ -157,7 +157,7 @@ public class GameDao {
     // helper to convert a game row in table to game instance
     return new GameModel(
         rs.getInt("id"),
-        rs.getInt("user_id"),
+        rs.getString("user_id"),
         rs.getString("difficulty"),
         rs.getString("word"),
         rs.getBoolean("won"),

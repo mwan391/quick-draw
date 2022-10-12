@@ -71,7 +71,7 @@ public class CategorySelect {
     ArrayList<String> words = new ArrayList<>(categories.get(wordDifficulty));
     // get user's history of words in the difficulty
     UserStatsDao userStatsDao = new UserStatsDao();
-    int activeUserId = UserModel.getActiveUser().getId();
+    String activeUserId = UserModel.getActiveUser().getId();
     List<String> completeHistory = userStatsDao.getHistoryMap(activeUserId).get(wordDifficulty);
 
     // if history is empty, just create an empty list

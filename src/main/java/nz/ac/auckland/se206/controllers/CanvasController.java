@@ -31,6 +31,7 @@ import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 import javafx.util.Duration;
 import javax.imageio.ImageIO;
+import nz.ac.auckland.se206.BadgeManager;
 import nz.ac.auckland.se206.CategorySelect;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
@@ -81,7 +82,7 @@ public class CanvasController implements Controller {
 
   // database tools
   private GameDao gameDao = new GameDao();
-  private int activeUserId;
+  private String activeUserId;
   private int activeGameId;
   private CategorySelect.Difficulty actualDifficulty;
 
@@ -232,6 +233,11 @@ public class CanvasController implements Controller {
     // update current game stats
     gameDao.setWon(wonGame, activeGameId);
     gameDao.setTime((60 - Integer.valueOf(lblTimer.getText())), activeGameId);
+
+    // check for badges
+    UserModel activeUser = UserModel.getActiveUser();
+    BadgeManager.checkNewBadges(
+        activeUser.getUsername(), gameDao.getGameById(activeGameId), actualDifficulty);
 
     // set the label to win/lose event and use the tts
     if (wonGame) {
