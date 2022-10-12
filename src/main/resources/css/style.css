@@ -9,23 +9,23 @@
 }
 
 .top3 {
-  -fx-border-color: GREEN;
+  -fx-border-color: rgb(5, 66, 5);
 }
 
 .top10 {
-  -fx-border-color: rgb(251, 60, 60);
+  -fx-border-color: #016102;
 }
 
 .top20 {
-  -fx-border-color: rgb(243, 98, 7);
+  -fx-border-color: #007040;
 }
 
 .top50 {
-  -fx-border-color: rgb(248, 169, 73);
+  -fx-border-color: #007980;
 }
 
 .top100 {
-  -fx-border-color: rgb(252, 207, 129);
+  -fx-border-color: #003a8c;
 }
 
 .defaultMessage {
@@ -34,8 +34,8 @@
 }
 
 .winMessage {
-  -fx-background-color: GREEN;
-  -fx-border-color: GREEN;
+  -fx-background-color: rgb(5, 66, 5);
+  -fx-border-color: rgb(5, 66, 5);
 }
 
 .lossMessage {
@@ -44,23 +44,23 @@
 }
 
 .message10 {
-  -fx-background-color: rgb(251, 60, 60);
-  -fx-border-color: rgb(251, 60, 60);
+  -fx-background-color: #016102;
+  -fx-border-color: #016102;
 }
 
 .message20 {
-  -fx-background-color: rgb(243, 98, 7);
-  -fx-border-color: rgb(243, 98, 7);
+  -fx-background-color: #007040;
+  -fx-border-color: #007040;
 }
 
 .message50 {
-  -fx-background-color: rgb(248, 169, 73);
-  -fx-border-color: rgb(248, 169, 73);
+  -fx-background-color: #007980;
+  -fx-border-color: #007980;
 }
 
 .message100 {
-  -fx-background-color: rgb(252, 207, 129);
-  -fx-border-color: rgb(252, 207, 129);
+  -fx-background-color: #003a8c;
+  -fx-border-color: #003a8c;
 }
 
 .end-game {
