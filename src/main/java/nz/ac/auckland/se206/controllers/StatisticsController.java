@@ -15,7 +15,6 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.ScrollPane.ScrollBarPolicy;
 import javafx.scene.text.Text;
-import nz.ac.auckland.se206.CategorySelect.Difficulty;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.daos.UserStatsDao;
@@ -88,14 +87,17 @@ public class StatisticsController implements Controller {
     // set header label
     header.setText(activeUser.getUsername() + "'s Statistics");
 
-    // set game statistics
+    // set game statistics and badges
     setWinRate();
     setBestGame();
     setLastGame();
+    setBadges();
 
     // set word histories
     setEasyHistory();
   }
+
+  private void setBadges() {}
 
   private void setEasyHistory() {
     // get relevant statistics
@@ -107,9 +109,6 @@ public class StatisticsController implements Controller {
 
     // build strings and add to list view
     for (GameModel game : latestGames) {
-
-      // get category name
-      String category = Difficulty.valueOf(game.getDifficulty()).toString();
 
       // get won status
       String won;
@@ -173,8 +172,6 @@ public class StatisticsController implements Controller {
       return;
     }
 
-    String category = Difficulty.valueOf(bestGame.getDifficulty()).toString();
-
     // build and update the best game text
     StringBuilder stringBuilder = new StringBuilder();
     stringBuilder
@@ -197,7 +194,6 @@ public class StatisticsController implements Controller {
     }
 
     GameModel lastGame = lastGames.get(0);
-    String category = Difficulty.valueOf(lastGame.getDifficulty()).toString();
 
     // build and update the best game text
     StringBuilder stringBuilder = new StringBuilder();
