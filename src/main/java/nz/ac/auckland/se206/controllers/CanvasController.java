@@ -20,6 +20,7 @@ import javafx.concurrent.Task;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -334,7 +335,16 @@ public class CanvasController implements Controller {
     Optional<ButtonType> result = badgePopup.showAndWait();
     // take screen to statistics page if the user clicks yes
     if ((result.isPresent()) && (result.get() == ButtonType.OK)) {
-      // TODO take screen to statistics page
+      // get scene source from an arbitrary button on scene
+      // get root and controller for statistics page
+      Scene scene = btnSave.getScene();
+      Parent statsRoot = SceneManager.getUiRoot(AppUi.USER_STATS);
+      StatisticsController statisticsController =
+          (StatisticsController) SceneManager.getController(statsRoot);
+
+      // load the necessary stats and change the scene
+      statisticsController.loadPage();
+      scene.setRoot(statsRoot);
     }
   }
 
