@@ -64,6 +64,10 @@ public class StatisticsController implements Controller {
 
   private HashMap<BadgeModel, Button> badgeToButtonMap = new HashMap<>();
 
+  /**
+   * initializes all the dependencies, variables and scene settings when the controller is first
+   * loaded.
+   */
   public void initialize() {
     // ready the games history back end
     gamesEasyHistory = FXCollections.observableArrayList();
@@ -76,6 +80,9 @@ public class StatisticsController implements Controller {
     initializeBadgeBackend();
   }
 
+  /**
+   * sets up all of the badges into a hash map that maps a badge instance to the respective button
+   */
   private void initializeBadgeBackend() {
     // set up lists of buttons for ease
     ArrayList<Button> allBadgeButtons = new ArrayList<>();
@@ -109,6 +116,11 @@ public class StatisticsController implements Controller {
     }
   }
 
+  /**
+   * returns scene to the category select menu from the statistics page
+   *
+   * @param event that triggers the method
+   */
   @FXML
   private void onBackToMenu(ActionEvent event) {
     Scene scene = ((Button) event.getSource()).getScene();
@@ -116,6 +128,7 @@ public class StatisticsController implements Controller {
     scene.setRoot(logInRoot);
   }
 
+  /** retrieves and formats the necessary statistics of the user onto the page */
   public void loadPage() {
     // get relevant statistics
     activeUser = UserModel.getActiveUser();
@@ -133,6 +146,10 @@ public class StatisticsController implements Controller {
     setEasyHistory();
   }
 
+  /**
+   * enables and disables the badges in the badge view on the page depending on whether the user has
+   * unlocked the badge
+   */
   private void setBadges() {
     // update json file model
     UserDaoJson userDao = new UserDaoJson();
@@ -148,6 +165,7 @@ public class StatisticsController implements Controller {
     }
   }
 
+  /** retrieves, formats, and displays the user's last ten words played */
   private void setEasyHistory() {
     // get relevant statistics
     List<GameModel> latestGames = userStatsDao.getTen(activeUser.getId());
@@ -181,6 +199,7 @@ public class StatisticsController implements Controller {
     }
   }
 
+  /** retrieves, formats, and displays the user's overall win rate of games */
   private void setWinRate() {
     // get relevant statistics
     // initialise counts to avoid breakage
@@ -211,6 +230,7 @@ public class StatisticsController implements Controller {
     txtWinRatePercent.setText(stringBuilder.toString());
   }
 
+  /** retrieves, formats, and displays the user's best game according to the quickest won word */
   private void setBestGame() {
     // get relevant statistics
     GameModel bestGame = userStatsDao.getBestGame(activeUser.getId());
@@ -232,6 +252,7 @@ public class StatisticsController implements Controller {
     txtBestGame.setText(stringBuilder.toString());
   }
 
+  /** retrieves, formats, and displays the user's latest game played */
   private void setLastGame() {
     // get relevant statistics
     List<GameModel> lastGames = userStatsDao.getTen(activeUser.getId());
@@ -255,6 +276,7 @@ public class StatisticsController implements Controller {
     txtLastGame.setText(stringBuilder.toString());
   }
 
+  /** plays a sound whenever an unlocked badge is pressed inside the badge view area */
   @FXML
   private void onPressBadge() {}
 }
