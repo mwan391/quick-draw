@@ -58,6 +58,7 @@ public class App extends Application {
     // load scenes
     SceneManager.addUi(AppUi.MAIN_MENU, loadFxml("menu"));
     SceneManager.addUi(AppUi.LOG_IN, loadFxml("login"));
+    SceneManager.addUi(AppUi.SIGN_UP, loadFxml("signup"));
     SceneManager.addUi(AppUi.CATEGORY_SELECT, loadFxml("category"));
     SceneManager.addUi(AppUi.USER_STATS, loadFxml("statistics"));
     SceneManager.addUi(AppUi.CANVAS, loadFxml("canvas"));

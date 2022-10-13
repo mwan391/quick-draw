@@ -49,7 +49,24 @@ public class LogInController implements Controller {
 
   @FXML
   private void onLogOne(ActionEvent event) {
-    logIn(event, userTextOne.getText());
+    String username = userTextOne.getText();
+    // Logging in the user if the profile has been created
+    if (username.equals("New User")) {
+      signUp(event);
+    } else {
+      logIn(event, username);
+    }
+  }
+
+  @FXML
+  private void onLogTwo(ActionEvent event) {
+    String username = userTextTwo.getText();
+    // Logging in the user if the profile has been created
+    if (username.equals("New User")) {
+      signUp(event);
+    } else {
+      logIn(event, username);
+    }
   }
 
   private void logIn(ActionEvent event, String username) {
@@ -57,10 +74,19 @@ public class LogInController implements Controller {
     UserModel.setActiveUser(userDao.get(username));
 
     // go to the next screen
-    nextScreen(event);
+    nextCategory(event);
   }
 
-  private void nextScreen(ActionEvent event) {
+  private void signUp(ActionEvent event) {
+    // get root and signup
+    Scene scene = ((Button) event.getSource()).getScene();
+    Parent signUpRoot = SceneManager.getUiRoot(AppUi.SIGN_UP);
+
+    // change scene
+    scene.setRoot(signUpRoot);
+  }
+
+  private void nextCategory(ActionEvent event) {
 
     // get root and controller
     Scene scene = ((Button) event.getSource()).getScene();
