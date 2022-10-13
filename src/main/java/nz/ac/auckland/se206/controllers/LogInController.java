@@ -24,27 +24,7 @@ public class LogInController implements Controller {
   private UserDaoJson userDao = new UserDaoJson();
 
   public void initialize() {
-    List<UserModel> tempUsers = userDao.getAll();
-
-    // Putting info onto usercards
-    if (tempUsers.size() >= 1) {
-      userTextOne.setText(tempUsers.get(0).getUsername());
-      if (tempUsers.size() >= 2) {
-        userTextTwo.setText(tempUsers.get(1).getUsername());
-        if (tempUsers.size() >= 3) {
-          userTextTwo.setText(tempUsers.get(2).getUsername());
-          if (tempUsers.size() >= 4) {
-            userTextTwo.setText(tempUsers.get(3).getUsername());
-            if (tempUsers.size() >= 5) {
-              userTextTwo.setText(tempUsers.get(4).getUsername());
-              if (tempUsers.size() == 6) {
-                userTextTwo.setText(tempUsers.get(5).getUsername());
-              }
-            }
-          }
-        }
-      }
-    }
+    loadUsernames();
   }
 
   @FXML
@@ -110,6 +90,29 @@ public class LogInController implements Controller {
       signUp(event);
     } else {
       logIn(event, username);
+    }
+  }
+
+  public void loadUsernames() {
+    List<UserModel> tempUsers = userDao.getAll();
+    // Putting info onto usercards
+    if (tempUsers.size() >= 1) {
+      userTextOne.setText(tempUsers.get(0).getUsername());
+      if (tempUsers.size() >= 2) {
+        userTextTwo.setText(tempUsers.get(1).getUsername());
+        if (tempUsers.size() >= 3) {
+          userTextThree.setText(tempUsers.get(2).getUsername());
+          if (tempUsers.size() >= 4) {
+            userTextFour.setText(tempUsers.get(3).getUsername());
+            if (tempUsers.size() >= 5) {
+              userTextFive.setText(tempUsers.get(4).getUsername());
+              if (tempUsers.size() == 6) {
+                userTextSix.setText(tempUsers.get(5).getUsername());
+              }
+            }
+          }
+        }
+      }
     }
   }
 
