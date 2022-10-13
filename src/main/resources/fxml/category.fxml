@@ -207,6 +207,9 @@
                <VBox.margin>
                   <Insets top="30.0" />
                </VBox.margin>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </Button>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
@@ -230,6 +233,9 @@
                            </children>
                         </VBox>
                      </graphic>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                   </Button>
                   <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onSeeUserStatistics" prefHeight="70.0" prefWidth="110.0" style="-fx-background-color: #882FF6;" textFill="WHITE">
                      <font>
@@ -257,6 +263,9 @@
                            </children>
                         </VBox>
                      </graphic>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                   </Button>
                </children>
             </HBox>

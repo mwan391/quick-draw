@@ -24,9 +24,11 @@ import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonBar.ButtonData;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Dialog;
+import javafx.scene.control.DialogPane;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.ToggleButton;
@@ -328,7 +330,7 @@ public class CanvasController implements Controller {
             + newBadgeCount
             + " new badge"
             + correctNoun
-            + ".\nCheck it out in the Statistics Page!\n\nTIP: Hover over the badges to find out more about them";
+            + ". Check it out in the Statistics Page!\n\n\nTIP: Hover over the badges to find out more about them!";
     badgePopup.setContentText(str);
     // add buttons
     ButtonType btnViewBadges = new ButtonType("View Badges", ButtonData.OK_DONE);
@@ -336,15 +338,25 @@ public class CanvasController implements Controller {
     ButtonType btnKeepDrawing = new ButtonType("Keep Drawing", ButtonData.CANCEL_CLOSE);
     badgePopup.getDialogPane().getButtonTypes().add(btnKeepDrawing);
 
-    // change the design
+    // change the top title
     badgePopup.setTitle("New Badge" + correctNoun + "!");
+    // set size of dialog and buttons
+    DialogPane popupPane = badgePopup.getDialogPane();
+    popupPane.setPrefSize(550, 200);
+    popupPane.getButtonTypes().stream()
+        .map(popupPane::lookupButton)
+        .forEach(btn -> ButtonBar.setButtonUniformSize(btn, false));
+    // set css formatting for pane and buttons
+    popupPane.getStylesheets().add("/css/style.css");
 
+    // trigger view badges method if the view badges button is pressed
     badgePopup.setResultConverter(
         (Callback<ButtonType, Void>)
             new Callback<ButtonType, Void>() {
               @Override
               public Void call(ButtonType b) {
 
+                // trigger event if it is this button
                 if (b == btnViewBadges) {
                   onViewBadges();
                 }
