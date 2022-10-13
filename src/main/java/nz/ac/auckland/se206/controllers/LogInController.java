@@ -29,62 +29,35 @@ public class LogInController implements Controller {
 
   @FXML
   private void onLogOne(ActionEvent event) {
-    String username = userTextOne.getText();
-    // Logging in the user if the profile has been created
-    if (username.equals("New User")) {
-      signUp(event);
-    } else {
-      logIn(event, username);
-    }
+    logX(event, userTextOne.getText());
   }
 
   @FXML
   private void onLogTwo(ActionEvent event) {
-    String username = userTextTwo.getText();
-    // Logging in the user if the profile has been created
-    if (username.equals("New User")) {
-      signUp(event);
-    } else {
-      logIn(event, username);
-    }
+    logX(event, userTextTwo.getText());
   }
 
   @FXML
   private void onLogThree(ActionEvent event) {
-    String username = userTextThree.getText();
-    // Logging in the user if the profile has been created
-    if (username.equals("New User")) {
-      signUp(event);
-    } else {
-      logIn(event, username);
-    }
+    logX(event, userTextThree.getText());
   }
 
   @FXML
   private void onLogFour(ActionEvent event) {
-    String username = userTextFour.getText();
-    // Logging in the user if the profile has been created
-    if (username.equals("New User")) {
-      signUp(event);
-    } else {
-      logIn(event, username);
-    }
+    logX(event, userTextFour.getText());
   }
 
   @FXML
   private void onLogFive(ActionEvent event) {
-    String username = userTextFive.getText();
-    // Logging in the user if the profile has been created
-    if (username.equals("New User")) {
-      signUp(event);
-    } else {
-      logIn(event, username);
-    }
+    logX(event, userTextFive.getText());
   }
 
   @FXML
   private void onLogSix(ActionEvent event) {
-    String username = userTextSix.getText();
+    logX(event, userTextSix.getText());
+  }
+
+  public void logX(ActionEvent event, String username) {
     // Logging in the user if the profile has been created
     if (username.equals("New User")) {
       signUp(event);
