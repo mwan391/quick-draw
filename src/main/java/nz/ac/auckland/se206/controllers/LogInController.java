@@ -6,6 +6,8 @@ import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
@@ -20,11 +22,17 @@ public class LogInController implements Controller {
   @FXML private Text userTextFour;
   @FXML private Text userTextFive;
   @FXML private Text userTextSix;
+  @FXML private ImageView iconOne;
+  @FXML private ImageView iconTwo;
+  @FXML private ImageView iconThree;
+  @FXML private ImageView iconFour;
+  @FXML private ImageView iconFive;
+  @FXML private ImageView iconSix;
 
   private UserDaoJson userDao = new UserDaoJson();
 
   public void initialize() {
-    loadUsernames();
+    loadUserData();
   }
 
   @FXML
@@ -66,27 +74,44 @@ public class LogInController implements Controller {
     }
   }
 
-  public void loadUsernames() {
+  public void loadUserData() {
     List<UserModel> tempUsers = userDao.getAll();
     // Putting info onto usercards
     if (tempUsers.size() >= 1) {
+      // Updating usercard one
       userTextOne.setText(tempUsers.get(0).getUsername());
+      iconOne.setImage(loadImage(tempUsers.get(0).getIcon()));
       if (tempUsers.size() >= 2) {
+        // Updating usercard two
         userTextTwo.setText(tempUsers.get(1).getUsername());
+        iconTwo.setImage(loadImage(tempUsers.get(1).getIcon()));
         if (tempUsers.size() >= 3) {
+          // Updating usercard three
           userTextThree.setText(tempUsers.get(2).getUsername());
+          iconThree.setImage(loadImage(tempUsers.get(2).getIcon()));
           if (tempUsers.size() >= 4) {
+            // Updating usercard four
             userTextFour.setText(tempUsers.get(3).getUsername());
+            iconFour.setImage(loadImage(tempUsers.get(3).getIcon()));
             if (tempUsers.size() >= 5) {
+              // Updating usercard five
               userTextFive.setText(tempUsers.get(4).getUsername());
+              iconFive.setImage(loadImage(tempUsers.get(4).getIcon()));
               if (tempUsers.size() == 6) {
+                // Updating usercard six
                 userTextSix.setText(tempUsers.get(5).getUsername());
+                iconSix.setImage(loadImage(tempUsers.get(5).getIcon()));
               }
             }
           }
         }
       }
     }
+  }
+
+  private Image loadImage(String name) {
+    Image icon = new Image(getClass().getResourceAsStream("/images/profileicons/" + name + ".png"));
+    return icon;
   }
 
   private void logIn(ActionEvent event, String username) {

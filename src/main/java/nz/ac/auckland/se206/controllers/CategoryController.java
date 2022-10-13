@@ -173,7 +173,7 @@ public class CategoryController implements Controller {
 
     // updating the userlist
     LogInController controller = (LogInController) SceneManager.getController(logInRoot);
-    controller.loadUsernames();
+    controller.loadUserData();
   }
 
   @FXML

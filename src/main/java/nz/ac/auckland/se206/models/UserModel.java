@@ -18,11 +18,13 @@ public class UserModel {
 
   private String id;
   private String username;
+  private String icon;
   private List<BadgeModel> badges;
 
-  public UserModel(String username) {
+  public UserModel(String username, String icon) {
     this.id = UUID.randomUUID().toString();
     this.username = username;
+    this.icon = icon;
     this.badges = new ArrayList<>();
   }
 
@@ -36,6 +38,14 @@ public class UserModel {
 
   public void setUsername(String username) {
     this.username = username;
+  }
+
+  public String getIcon() {
+    return icon;
+  }
+
+  public void setIcon(String icon) {
+    this.icon = icon;
   }
 
   public List<BadgeModel> getBadges() {

@@ -44,6 +44,7 @@ public class SignUpController implements Controller {
                   getClass()
                       .getResourceAsStream(
                           "/images/profileicons/" + picChooser.getValue() + ".png"));
+          // Changing the preview to the new selection
           picPreview.setImage(preview);
         });
   }
@@ -72,7 +73,7 @@ public class SignUpController implements Controller {
     }
 
     // add new user to database
-    UserModel user = new UserModel(userName);
+    UserModel user = new UserModel(userName, picChooser.getValue());
     userDao.add(user);
 
     // set the user as the active user
@@ -91,6 +92,10 @@ public class SignUpController implements Controller {
     // set the setting model
     String id = UserModel.getActiveUser().getId();
     categoryController.setUserSettings(id);
+
+    // reset the page
+    userEntry.setText("");
+    lblWarning.setText("");
 
     // change scene
     scene.setRoot(categoryRoot);

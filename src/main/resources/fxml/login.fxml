@@ -42,9 +42,9 @@
                            <graphic>
                               <HBox alignment="CENTER_LEFT" prefHeight="92.0" prefWidth="339.0">
                                  <children>
-                                    <ImageView fitHeight="66.0" fitWidth="64.0" pickOnBounds="true" preserveRatio="true">
+                                    <ImageView fx:id="iconOne" fitHeight="66.0" fitWidth="64.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@../images/buttonicons/shrug.png" />
+                                          <Image url="@../images/profileicons/new.png" />
                                        </image>
                                        <HBox.margin>
                                           <Insets right="10.0" />
@@ -66,9 +66,9 @@
                            <graphic>
                               <HBox alignment="CENTER_LEFT" prefHeight="92.0" prefWidth="339.0">
                                  <children>
-                                    <ImageView fitHeight="66.0" fitWidth="64.0" pickOnBounds="true" preserveRatio="true">
+                                    <ImageView fx:id="iconTwo" fitHeight="66.0" fitWidth="64.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@../images/buttonicons/shrug.png" />
+                                          <Image url="@../images/profileicons/new.png" />
                                        </image>
                                        <HBox.margin>
                                           <Insets right="10.0" />
@@ -93,9 +93,9 @@
                            <graphic>
                               <HBox alignment="CENTER_LEFT" prefHeight="92.0" prefWidth="339.0">
                                  <children>
-                                    <ImageView fitHeight="66.0" fitWidth="64.0" pickOnBounds="true" preserveRatio="true">
+                                    <ImageView fx:id="iconThree" fitHeight="66.0" fitWidth="64.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@../images/buttonicons/shrug.png" />
+                                          <Image url="@../images/profileicons/new.png" />
                                        </image>
                                        <HBox.margin>
                                           <Insets right="10.0" />
@@ -124,9 +124,9 @@
                            <graphic>
                               <HBox alignment="CENTER_LEFT" prefHeight="92.0" prefWidth="339.0">
                                  <children>
-                                    <ImageView fitHeight="66.0" fitWidth="64.0" pickOnBounds="true" preserveRatio="true">
+                                    <ImageView fx:id="iconFour" fitHeight="66.0" fitWidth="64.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@../images/buttonicons/shrug.png" />
+                                          <Image url="@../images/profileicons/new.png" />
                                        </image>
                                        <HBox.margin>
                                           <Insets right="10.0" />
@@ -148,9 +148,9 @@
                            <graphic>
                               <HBox alignment="CENTER_LEFT" prefHeight="92.0" prefWidth="339.0">
                                  <children>
-                                    <ImageView fitHeight="66.0" fitWidth="64.0" pickOnBounds="true" preserveRatio="true">
+                                    <ImageView fx:id="iconFive" fitHeight="66.0" fitWidth="64.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@../images/buttonicons/shrug.png" />
+                                          <Image url="@../images/profileicons/new.png" />
                                        </image>
                                        <HBox.margin>
                                           <Insets right="10.0" />
@@ -175,9 +175,9 @@
                            <graphic>
                               <HBox alignment="CENTER_LEFT" prefHeight="92.0" prefWidth="339.0">
                                  <children>
-                                    <ImageView fitHeight="66.0" fitWidth="64.0" pickOnBounds="true" preserveRatio="true">
+                                    <ImageView fx:id="iconSix" fitHeight="66.0" fitWidth="64.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@../images/buttonicons/shrug.png" />
+                                          <Image url="@../images/profileicons/new.png" />
                                        </image>
                                        <HBox.margin>
                                           <Insets right="10.0" />

@@ -27,6 +27,28 @@
                <children>
                   <VBox alignment="CENTER" prefHeight="451.0" prefWidth="344.0">
                      <children>
+                        <Label alignment="CENTER" prefHeight="40.0" prefWidth="276.0" style="-fx-background-color: #173ab5; -fx-background-radius: 10px; -fx-border-width: 2px; -fx-border-color: BLACK; -fx-border-radius: 10px;" text="Select a Picture" textFill="WHITE">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="29.0" />
+                           </font>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                        </Label>
+                        <ImageView fx:id="picPreview" fitHeight="200.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                           <VBox.margin>
+                              <Insets top="20.0" />
+                           </VBox.margin>
+                        </ImageView>
+                        <ChoiceBox fx:id="picChooser" prefHeight="41.0" prefWidth="261.0" style="-fx-background-color: #4e79ec; -fx-border-color: BLACK; -fx-border-width: 2px; -fx-border-radius: 2px; -fx-font: 18px &quot;Comic Sans MS&quot;, &quot;Comic Sans&quot;, sans-serif;;">
+                           <VBox.margin>
+                              <Insets bottom="35.0" top="20.0" />
+                           </VBox.margin>
+                        </ChoiceBox>
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" prefHeight="451.0" prefWidth="344.0">
+                     <children>
                         <Label alignment="CENTER" prefHeight="40.0" prefWidth="276.0" style="-fx-background-color: #173ab5; -fx-background-radius: 10px; -fx-border-width: 2px; -fx-border-color: BLACK; -fx-border-radius: 10px;" text="Enter a Username" textFill="WHITE">
                            <font>
                               <Font name="Arial Rounded MT Bold" size="29.0" />
@@ -48,28 +70,6 @@
                               <Insets top="20.0" />
                            </VBox.margin>
                         </Label>
-                     </children>
-                  </VBox>
-                  <VBox alignment="CENTER" prefHeight="451.0" prefWidth="344.0">
-                     <children>
-                        <Label alignment="CENTER" prefHeight="40.0" prefWidth="276.0" style="-fx-background-color: #173ab5; -fx-background-radius: 10px; -fx-border-width: 2px; -fx-border-color: BLACK; -fx-border-radius: 10px;" text="Select a Picture" textFill="WHITE">
-                           <font>
-                              <Font name="Arial Rounded MT Bold" size="29.0" />
-                           </font>
-                           <opaqueInsets>
-                              <Insets />
-                           </opaqueInsets>
-                        </Label>
-                        <ImageView fx:id="picPreview" fitHeight="154.0" fitWidth="181.0" pickOnBounds="true" preserveRatio="true">
-                           <VBox.margin>
-                              <Insets top="20.0" />
-                           </VBox.margin>
-                        </ImageView>
-                        <ChoiceBox fx:id="picChooser" prefHeight="41.0" prefWidth="261.0" style="-fx-background-color: #4e79ec; -fx-border-color: BLACK; -fx-border-width: 2px; -fx-border-radius: 2px; -fx-font: 18px &quot;Comic Sans MS&quot;, &quot;Comic Sans&quot;, sans-serif;;">
-                           <VBox.margin>
-                              <Insets bottom="35.0" top="20.0" />
-                           </VBox.margin>
-                        </ChoiceBox>
                      </children>
                   </VBox>
                </children>
