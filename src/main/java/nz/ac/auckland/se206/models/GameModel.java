@@ -10,9 +10,9 @@ public class GameModel {
   private int time;
 
   /**
-   * This models what how a 'game' is structured in SQLite, each field is a column title
+   * This models what how a 'game' is structured in SQLite, each field is a table column name
    *
-   * @param id unique id of game session
+   * @param id auto-incremented id of game session
    * @param userId user that played this game
    * @param difficulty difficulty of words of this game
    * @param word that was played in this game
