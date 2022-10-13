@@ -20,6 +20,12 @@ public class UserModel {
   private String username;
   private List<BadgeModel> badges;
 
+  /**
+   * Structure for a user in JSON, when users creates a new account, a random ID (UUID) will be
+   * assigned to it, and a badges list initated
+   *
+   * @param username of user signed in to game
+   */
   public UserModel(String username) {
     this.id = UUID.randomUUID().toString();
     this.username = username;
