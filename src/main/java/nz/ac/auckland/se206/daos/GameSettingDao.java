@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import nz.ac.auckland.se206.models.GameSettingModel;
+import nz.ac.auckland.se206.models.UserModel;
 import nz.ac.auckland.se206.util.Logger;
 import nz.ac.auckland.se206.util.SqliteConnection;
 
@@ -96,6 +97,29 @@ public class GameSettingDao {
       SqliteConnection.closeConnection(connection);
     }
     return updated;
+  }
+
+  /**
+   * Remove settings linked to a given user from Sqlite database
+   *
+   * @param user user to remove settings from
+   * @return whether or not removal was successful
+   */
+  public boolean removeSettingsFromUser(UserModel user) {
+    Connection connection = SqliteConnection.openConnection();
+    boolean isRemoved = false;
+    try {
+      String query = "DELETE from settings WHERE user_id=?";
+      PreparedStatement ps = connection.prepareStatement(query);
+      ps.setString(1, user.getId());
+      ps.executeUpdate();
+      isRemoved = true;
+    } catch (SQLException e) {
+      Logger.printSqlError(e);
+    } finally {
+      SqliteConnection.closeConnection(connection);
+    }
+    return isRemoved;
   }
 
   /**
