@@ -69,6 +69,50 @@ public class LogInController implements Controller {
     }
   }
 
+  @FXML
+  private void onLogThree(ActionEvent event) {
+    String username = userTextThree.getText();
+    // Logging in the user if the profile has been created
+    if (username.equals("New User")) {
+      signUp(event);
+    } else {
+      logIn(event, username);
+    }
+  }
+
+  @FXML
+  private void onLogFour(ActionEvent event) {
+    String username = userTextFour.getText();
+    // Logging in the user if the profile has been created
+    if (username.equals("New User")) {
+      signUp(event);
+    } else {
+      logIn(event, username);
+    }
+  }
+
+  @FXML
+  private void onLogFive(ActionEvent event) {
+    String username = userTextFive.getText();
+    // Logging in the user if the profile has been created
+    if (username.equals("New User")) {
+      signUp(event);
+    } else {
+      logIn(event, username);
+    }
+  }
+
+  @FXML
+  private void onLogSix(ActionEvent event) {
+    String username = userTextSix.getText();
+    // Logging in the user if the profile has been created
+    if (username.equals("New User")) {
+      signUp(event);
+    } else {
+      logIn(event, username);
+    }
+  }
+
   private void logIn(ActionEvent event, String username) {
     // set the user as the active user
     UserModel.setActiveUser(userDao.get(username));

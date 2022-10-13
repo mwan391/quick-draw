@@ -86,7 +86,7 @@
                               <Insets bottom="20.0" />
                            </VBox.margin>
                         </Button>
-                        <Button mnemonicParsing="false" prefHeight="134.0" prefWidth="246.0" style="-fx-background-color: #882FF6; -fx-background-radius: 20px; -fx-border-width: 2px; -fx-border-color: BLACK; -fx-border-radius: 20px;" textFill="WHITE">
+                        <Button mnemonicParsing="false" onAction="#onLogThree" prefHeight="134.0" prefWidth="246.0" style="-fx-background-color: #882FF6; -fx-background-radius: 20px; -fx-border-width: 2px; -fx-border-color: BLACK; -fx-border-radius: 20px;" textFill="WHITE">
                            <font>
                               <Font name="Arial Rounded MT Bold" size="27.0" />
                            </font>
@@ -114,7 +114,7 @@
                   </VBox>
                   <VBox alignment="CENTER" prefHeight="371.0" prefWidth="300.0">
                      <children>
-                        <Button mnemonicParsing="false" prefHeight="134.0" prefWidth="246.0" style="-fx-background-color: #882FF6; -fx-background-radius: 20px; -fx-border-width: 2px; -fx-border-color: BLACK; -fx-border-radius: 20px;" textFill="WHITE">
+                        <Button mnemonicParsing="false" onAction="#onLogFour" prefHeight="134.0" prefWidth="246.0" style="-fx-background-color: #882FF6; -fx-background-radius: 20px; -fx-border-width: 2px; -fx-border-color: BLACK; -fx-border-radius: 20px;" textFill="WHITE">
                            <VBox.margin>
                               <Insets bottom="20.0" />
                            </VBox.margin>
@@ -141,7 +141,7 @@
                               </HBox>
                            </graphic>
                         </Button>
-                        <Button mnemonicParsing="false" prefHeight="134.0" prefWidth="246.0" style="-fx-background-color: #882FF6; -fx-background-radius: 20px; -fx-border-width: 2px; -fx-border-color: BLACK; -fx-border-radius: 20px;" textFill="WHITE">
+                        <Button mnemonicParsing="false" onAction="#onLogFive" prefHeight="134.0" prefWidth="246.0" style="-fx-background-color: #882FF6; -fx-background-radius: 20px; -fx-border-width: 2px; -fx-border-color: BLACK; -fx-border-radius: 20px;" textFill="WHITE">
                            <font>
                               <Font name="Arial Rounded MT Bold" size="27.0" />
                            </font>
@@ -168,7 +168,7 @@
                               <Insets bottom="20.0" />
                            </VBox.margin>
                         </Button>
-                        <Button mnemonicParsing="false" prefHeight="134.0" prefWidth="246.0" style="-fx-background-color: #882FF6; -fx-background-radius: 20px; -fx-border-width: 2px; -fx-border-color: BLACK; -fx-border-radius: 20px;" textFill="WHITE">
+                        <Button mnemonicParsing="false" onAction="#onLogSix" prefHeight="134.0" prefWidth="246.0" style="-fx-background-color: #882FF6; -fx-background-radius: 20px; -fx-border-width: 2px; -fx-border-color: BLACK; -fx-border-radius: 20px;" textFill="WHITE">
                            <font>
                               <Font name="Arial Rounded MT Bold" size="27.0" />
                            </font>
