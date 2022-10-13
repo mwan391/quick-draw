@@ -48,12 +48,13 @@ public class LogInController implements Controller {
   }
 
   @FXML
-  private void onLogIn(ActionEvent event) {
+  private void onLogOne(ActionEvent event) {
+    logIn(event, userTextOne.getText());
+  }
 
-    String userName = "placeholder";
-
+  private void logIn(ActionEvent event, String username) {
     // set the user as the active user
-    UserModel.setActiveUser(userDao.get(userName));
+    UserModel.setActiveUser(userDao.get(username));
 
     // go to the next screen
     nextScreen(event);
