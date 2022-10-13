@@ -9,6 +9,7 @@ public class UserLoader {
 
   private static final String FILE_NAME = "./users.json";
 
+  /** On initialisation of game, checks for users json file or creates a new one */
   public static void start() {
     UserLoader loader = new UserLoader();
     if (!loader.existingFileExists()) {
@@ -16,6 +17,11 @@ public class UserLoader {
     }
   }
 
+  /**
+   * Check if 'users.json' has been created
+   *
+   * @return whether or not file was found
+   */
   private boolean existingFileExists() {
     System.out.println("Checking for existing JSON file");
     Path path = Paths.get(FILE_NAME);
@@ -28,6 +34,7 @@ public class UserLoader {
     }
   }
 
+  /** Create the JSON files to store users */
   private void createFile() {
     try {
       File saveFile = new File(FILE_NAME);
