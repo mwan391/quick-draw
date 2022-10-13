@@ -4,8 +4,67 @@
   -fx-border-color: BLACK;
 }
 
-.list-cell{
-  -fx-font: 12px "Comic Sans MS", "Comic Sans", sans-serif;
+.loss {
+  -fx-border-color: RED;
+}
+
+.top3 {
+  -fx-border-color: rgb(6, 150, 6);
+}
+
+.top10 {
+  -fx-border-color: #016102;
+}
+
+.top20 {
+  -fx-border-color: #007040;
+}
+
+.top50 {
+  -fx-border-color: #007980;
+}
+
+.top100 {
+  -fx-border-color: #045155;
+}
+
+.defaultMessage {
+  -fx-background-color: #173ab5;
+  -fx-border-color: #173ab5;
+}
+
+.winMessage {
+  -fx-background-color: rgb(6, 150, 6);
+  -fx-border-color: rgb(6, 150, 6);
+}
+
+.lossMessage {
+  -fx-background-color: RED;
+  -fx-border-color: RED;
+}
+
+.message10 {
+  -fx-background-color: #016102;
+  -fx-border-color: #016102;
+}
+
+.message20 {
+  -fx-background-color: #007040;
+  -fx-border-color: #007040;
+}
+
+.message50 {
+  -fx-background-color: #007980;
+  -fx-border-color: #007980;
+}
+
+.message100 {
+  -fx-background-color: #045155;
+  -fx-border-color: #045155;
+}
+
+.end-game {
+  -fx-border-color: #173ab5;
 }
 
 .combo-box {
@@ -14,9 +73,13 @@
   -fx-prompt-text-fill: #411a72;
 }
 
-.combo-box .text-field{
+.combo-box .text-field {
   -fx-background-color: rgb(190, 199, 255);
   -fx-prompt-text-fill: #856ea2;
+}
+
+.list-cell {
+  -fx-font: 12px "Comic Sans MS", "Comic Sans", sans-serif;
 }
 
 .list-view .list-cell:odd {
@@ -32,11 +95,11 @@
 }
 
 .combo-box .arrow {
-  -fx-background-color:  white;
+  -fx-background-color: white;
 }
 
 .combo-box .arrow-button {
-  -fx-background-color:  #882FF6;
+  -fx-background-color: #882ff6;
 }
 
 .list-view .list-cell:even {
@@ -56,11 +119,11 @@
 }
 
 #easy {
-  -fx-background-color: #35D461;
+  -fx-background-color: #35d461;
 }
 
 #medium {
-  -fx-background-color: #F99D07;
+  -fx-background-color: #f99d07;
 }
 
 #hard {

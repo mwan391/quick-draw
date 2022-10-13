@@ -30,7 +30,6 @@ public class SqliteConnection {
     try {
       // connect to jdbc .db file
       connection = DriverManager.getConnection(URL);
-      System.out.println("Opened database successfully");
     } catch (SQLException e) {
       Logger.printSqlError(e);
     }
@@ -47,7 +46,6 @@ public class SqliteConnection {
       // close jdbc connection
       if (connection != null) {
         connection.close();
-        System.out.println("Closed connection");
       }
     } catch (SQLException e) {
       Logger.printSqlError(e);
@@ -76,7 +74,7 @@ public class SqliteConnection {
    *
    * @param statement to allow sql command to be executed
    * @return whether or not command was successful
-   * @throws SQLException
+   * @throws SQLException when SQL query is invalid
    */
   private boolean createGamesTable(Statement statement) throws SQLException {
     // create games table with following fields
@@ -93,7 +91,7 @@ public class SqliteConnection {
    *
    * @param statement to allow sql command to be executed
    * @return whether or not command was successful
-   * @throws SQLException
+   * @throws SQLException when SQL query is invalid
    */
   private boolean createSettingsTable(Statement statement) throws SQLException {
     // create settings table, integers correspond to a difficulty (0=Easy 1=Medium

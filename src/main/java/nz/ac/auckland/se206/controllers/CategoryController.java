@@ -152,9 +152,6 @@ public class CategoryController implements Controller {
     Parent canvasRoot = SceneManager.getUiRoot(AppUi.CANVAS);
     CanvasController canvasController = (CanvasController) SceneManager.getController(canvasRoot);
 
-    // use tts on background thread to avoid lags
-    TextToSpeech.main(new String[] {"Get Ready!"});
-
     // update settings in database
     GameSettingDao settingDao = new GameSettingDao();
     settingDao.update(userSetting);
@@ -168,13 +165,15 @@ public class CategoryController implements Controller {
 
   @FXML
   private void onLogOut(ActionEvent event) {
-    // change the scene
+    // finding the scene
     Scene scene = ((Button) event.getSource()).getScene();
     Parent logInRoot = SceneManager.getUiRoot(AppUi.LOG_IN);
     scene.setRoot(logInRoot);
     UserModel.setActiveUser(null);
 
-    // reset the page in case a new game gets started
+    // updating the userlist
+    LogInController controller = (LogInController) SceneManager.getController(logInRoot);
+    controller.loadUserData();
   }
 
   @FXML

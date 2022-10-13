@@ -1,102 +1,197 @@
 package nz.ac.auckland.se206.controllers;
 
 import java.util.List;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.text.Text;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
-import nz.ac.auckland.se206.daos.GameSettingDao;
 import nz.ac.auckland.se206.daos.UserDaoJson;
 import nz.ac.auckland.se206.models.UserModel;
 
 public class LogInController implements Controller {
 
-  @FXML private Button btnSignUp;
-  @FXML private Button btnLogIn;
-  @FXML private Label lblWarning;
-  @FXML private ComboBox<String> fldUserName;
+  @FXML private Text userTextOne;
+  @FXML private Text userTextTwo;
+  @FXML private Text userTextThree;
+  @FXML private Text userTextFour;
+  @FXML private Text userTextFive;
+  @FXML private Text userTextSix;
+  @FXML private ImageView iconOne;
+  @FXML private ImageView iconTwo;
+  @FXML private ImageView iconThree;
+  @FXML private ImageView iconFour;
+  @FXML private ImageView iconFive;
+  @FXML private ImageView iconSix;
+
   private UserDaoJson userDao = new UserDaoJson();
-  private ObservableList<String> existingUsers;
 
+  /** Initialise method loads up and refreshes user data when the scene is loaded */
   public void initialize() {
-    fldUserName.setEditable(true);
+    loadUserData();
+  }
 
-    // create the observable list of existing user names for the drop down menu
-    existingUsers = FXCollections.observableArrayList();
+  /**
+   * onLogOne logs in the first user or sends them to the signup page
+   *
+   * @param the pressed button
+   */
+  @FXML
+  private void onLogOne(ActionEvent event) {
+    logX(event, userTextOne.getText());
+  }
 
+  /**
+   * onLogTwo logs in the second user or sends them to the signup page
+   *
+   * @param the pressed button
+   */
+  @FXML
+  private void onLogTwo(ActionEvent event) {
+    logX(event, userTextTwo.getText());
+  }
+
+  /**
+   * onLogThree logs in the third user or sends them to the signup page
+   *
+   * @param the pressed button
+   */
+  @FXML
+  private void onLogThree(ActionEvent event) {
+    logX(event, userTextThree.getText());
+  }
+
+  /**
+   * onLogFour logs in the fourth user or sends them to the signup page
+   *
+   * @param the pressed button
+   */
+  @FXML
+  private void onLogFour(ActionEvent event) {
+    logX(event, userTextFour.getText());
+  }
+
+  /**
+   * onLogFive logs in the fifth user or sends them to the signup page
+   *
+   * @param the pressed button
+   */
+  @FXML
+  private void onLogFive(ActionEvent event) {
+    logX(event, userTextFive.getText());
+  }
+
+  /**
+   * onLogSix logs in the sixth user or sends them to the signup page
+   *
+   * @param the pressed button
+   */
+  @FXML
+  private void onLogSix(ActionEvent event) {
+    logX(event, userTextSix.getText());
+  }
+
+  /**
+   * Logs in the user using their username or sends to signup
+   *
+   * @param the pressed button
+   * @param the name of the account being logged in
+   */
+  public void logX(ActionEvent event, String username) {
+    // Logging in the user if the profile has been created
+    if (username.equals("New User")) {
+      signUp(event);
+    } else {
+      logIn(event, username);
+    }
+  }
+
+  /** loads userdata by displaying the username and icon for each user */
+  public void loadUserData() {
     List<UserModel> tempUsers = userDao.getAll();
-
-    for (UserModel user : tempUsers) {
-      existingUsers.add(user.getUsername());
+    // Putting info onto usercards
+    if (tempUsers.size() >= 1) {
+      // Updating usercard one
+      userTextOne.setText(tempUsers.get(0).getUsername());
+      iconOne.setImage(loadImage(tempUsers.get(0).getIcon()));
+      if (tempUsers.size() >= 2) {
+        // Updating usercard two
+        userTextTwo.setText(tempUsers.get(1).getUsername());
+        iconTwo.setImage(loadImage(tempUsers.get(1).getIcon()));
+        if (tempUsers.size() >= 3) {
+          // Updating usercard three
+          userTextThree.setText(tempUsers.get(2).getUsername());
+          iconThree.setImage(loadImage(tempUsers.get(2).getIcon()));
+          if (tempUsers.size() >= 4) {
+            // Updating usercard four
+            userTextFour.setText(tempUsers.get(3).getUsername());
+            iconFour.setImage(loadImage(tempUsers.get(3).getIcon()));
+            if (tempUsers.size() >= 5) {
+              // Updating usercard five
+              userTextFive.setText(tempUsers.get(4).getUsername());
+              iconFive.setImage(loadImage(tempUsers.get(4).getIcon()));
+              if (tempUsers.size() == 6) {
+                // Updating usercard six
+                userTextSix.setText(tempUsers.get(5).getUsername());
+                iconSix.setImage(loadImage(tempUsers.get(5).getIcon()));
+              }
+            }
+          }
+        }
+      }
     }
-
-    fldUserName.setItems(existingUsers);
   }
 
-  @FXML
-  private void onSignUp(ActionEvent event) {
-    String userName = fldUserName.getValue();
-
-    // check if the user name is taken
-    if (userDao.checkExists(userName)) {
-      lblWarning.setText("This username is already taken.");
-      return;
-    }
-
-    // check if the field is left blank
-    if (userName.equals("")) {
-      lblWarning.setText("Please select a valid username.");
-      return;
-    }
-
-    // check if either the user name or password is too long
-    if (userName.length() > 15) {
-      lblWarning.setText("Max length is 15.");
-      return;
-    }
-
-    // add new user to database
-    UserModel user = new UserModel(userName);
-    userDao.add(user);
-
-    // set the newly made user as the active user and add to the drop down list
-    UserModel.setActiveUser(user);
-    existingUsers.add(userName);
-
-    // create a blank settings entry for the new user
-    GameSettingDao settingDao = new GameSettingDao();
-    settingDao.add(user.getId());
-
-    // go to the next screen
-    nextScreen(event);
+  /**
+   * Creates an image by finding its source file using its filename
+   *
+   * @param name, the name of the image file being loaded
+   * @return icon, the loaded image
+   */
+  private Image loadImage(String name) {
+    Image icon = new Image(getClass().getResourceAsStream("/images/profileicons/" + name + ".png"));
+    return icon;
   }
 
-  @FXML
-  private void onLogIn(ActionEvent event) {
-
-    String userName = fldUserName.getValue();
-
-    // check if the un is in the system
-    if (!userDao.checkExists(userName)) {
-      lblWarning.setText("Invalid login attempt.");
-      return;
-    }
-
+  /**
+   * logs the user in by setting them as the active user
+   *
+   * @param event, the button press
+   * @param username, the name of the active user
+   */
+  private void logIn(ActionEvent event, String username) {
     // set the user as the active user
-    UserModel.setActiveUser(userDao.get(userName));
+    UserModel.setActiveUser(userDao.get(username));
 
     // go to the next screen
-    nextScreen(event);
+    nextCategory(event);
   }
 
-  private void nextScreen(ActionEvent event) {
+  /**
+   * sends the user to the sign up page
+   *
+   * @param event, the button press
+   */
+  private void signUp(ActionEvent event) {
+    // get root and signup
+    Scene scene = ((Button) event.getSource()).getScene();
+    Parent signUpRoot = SceneManager.getUiRoot(AppUi.SIGN_UP);
+
+    // change scene
+    scene.setRoot(signUpRoot);
+  }
+
+  /**
+   * sends the logged in user to the category screen and gives them a setting model
+   *
+   * @param event, the button press
+   */
+  private void nextCategory(ActionEvent event) {
 
     // get root and controller
     Scene scene = ((Button) event.getSource()).getScene();
@@ -110,13 +205,5 @@ public class LogInController implements Controller {
 
     // change scene
     scene.setRoot(categoryRoot);
-
-    // reset the page for the next log in
-    resetPage();
-  }
-
-  private void resetPage() {
-    fldUserName.setValue("");
-    lblWarning.setText("");
   }
 }
