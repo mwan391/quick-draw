@@ -1,6 +1,5 @@
 package nz.ac.auckland.se206.controllers;
 
-import java.util.ArrayList;
 import java.util.List;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -16,17 +15,36 @@ import nz.ac.auckland.se206.models.UserModel;
 public class LogInController implements Controller {
 
   @FXML private Text userTextOne;
+  @FXML private Text userTextTwo;
+  @FXML private Text userTextThree;
+  @FXML private Text userTextFour;
+  @FXML private Text userTextFive;
+  @FXML private Text userTextSix;
+
   private UserDaoJson userDao = new UserDaoJson();
-  private ArrayList<String> existingUsers = new ArrayList<String>();
 
   public void initialize() {
     List<UserModel> tempUsers = userDao.getAll();
 
-    for (UserModel user : tempUsers) {
-      existingUsers.add(user.getUsername());
+    // Putting info onto usercards
+    if (tempUsers.size() >= 1) {
+      userTextOne.setText(tempUsers.get(0).getUsername());
+      if (tempUsers.size() >= 2) {
+        userTextTwo.setText(tempUsers.get(1).getUsername());
+        if (tempUsers.size() >= 3) {
+          userTextTwo.setText(tempUsers.get(2).getUsername());
+          if (tempUsers.size() >= 4) {
+            userTextTwo.setText(tempUsers.get(3).getUsername());
+            if (tempUsers.size() >= 5) {
+              userTextTwo.setText(tempUsers.get(4).getUsername());
+              if (tempUsers.size() == 6) {
+                userTextTwo.setText(tempUsers.get(5).getUsername());
+              }
+            }
+          }
+        }
+      }
     }
-
-    userTextOne.setText(existingUsers.get(0));
   }
 
   @FXML

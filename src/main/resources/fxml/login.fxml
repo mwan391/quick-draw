@@ -74,7 +74,7 @@
                                           <Insets right="10.0" />
                                        </HBox.margin>
                                     </ImageView>
-                                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="New User">
+                                    <Text fx:id="userTextTwo" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="New User">
                                        <font>
                                           <Font name="Arial Rounded MT Bold" size="26.0" />
                                        </font>
@@ -101,7 +101,7 @@
                                           <Insets right="10.0" />
                                        </HBox.margin>
                                     </ImageView>
-                                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="New User">
+                                    <Text fx:id="userTextThree" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="New User">
                                        <font>
                                           <Font name="Arial Rounded MT Bold" size="26.0" />
                                        </font>
@@ -132,7 +132,7 @@
                                           <Insets right="10.0" />
                                        </HBox.margin>
                                     </ImageView>
-                                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="New User">
+                                    <Text fx:id="userTextFour" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="New User">
                                        <font>
                                           <Font name="Arial Rounded MT Bold" size="26.0" />
                                        </font>
@@ -156,7 +156,7 @@
                                           <Insets right="10.0" />
                                        </HBox.margin>
                                     </ImageView>
-                                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="New User">
+                                    <Text fx:id="userTextFive" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="New User">
                                        <font>
                                           <Font name="Arial Rounded MT Bold" size="26.0" />
                                        </font>
@@ -183,7 +183,7 @@
                                           <Insets right="10.0" />
                                        </HBox.margin>
                                     </ImageView>
-                                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="New User">
+                                    <Text fx:id="userTextSix" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="New User">
                                        <font>
                                           <Font name="Arial Rounded MT Bold" size="26.0" />
                                        </font>
