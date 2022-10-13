@@ -65,8 +65,14 @@ public class CategorySelect {
     categories.put(Difficulty.HARD, tempCategories.get("H"));
   }
 
+  /**
+   * Generates a word from the given category. It will not return an already played word unless all
+   * the words from that category has been played already. Uses actual difficulty, not settings
+   * difficulty.
+   *
+   * @param wordDifficulty to be generated. Actual difficulty.
+   */
   private static void generateCategory(Difficulty wordDifficulty) {
-
     // get words in category
     ArrayList<String> words = new ArrayList<>(categories.get(wordDifficulty));
     // get user's history of words in the difficulty
@@ -97,13 +103,20 @@ public class CategorySelect {
     }
   }
 
+  /**
+   * Generates a word from the settings difficulty. Picks a random word difficulty depending on the
+   * setting.
+   *
+   * @return actual difficulty of word
+   */
   public static Difficulty generateSetCategory() {
     int randomNum;
-
-    Difficulty actualDifficulty = Difficulty.EASY;
     // determine which list to pull from
+    Difficulty actualDifficulty = Difficulty.EASY;
+    // also return the actual difficulty of word as opposed to settings difficulty
     switch (wordDifficulty) {
       case EASY:
+        // easy settings only give easy words
         generateCategory(Difficulty.EASY);
         break;
       case MEDIUM:
@@ -117,7 +130,7 @@ public class CategorySelect {
         }
         break;
       case HARD:
-        // choose randomly between easy/medium
+        // choose randomly between easy/medium/hard
         randomNum = (int) Math.floor(Math.random() * 3);
         if (randomNum == 1) {
           generateCategory(Difficulty.EASY);
@@ -130,6 +143,7 @@ public class CategorySelect {
         }
         break;
       case MASTER:
+        // master returns only hard words
         generateCategory(Difficulty.HARD);
         actualDifficulty = Difficulty.HARD;
         break;
