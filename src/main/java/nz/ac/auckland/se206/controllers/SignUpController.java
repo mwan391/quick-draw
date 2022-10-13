@@ -25,6 +25,7 @@ public class SignUpController implements Controller {
   @FXML private ChoiceBox<String> picChooser;
   @FXML private ImageView picPreview;
 
+  /** Loads default values and images upon scene load */
   public void initialize() {
     // Loading options for profile picture
     String picStrings[] = {"boy", "dad", "girl", "mother", "woman"};
@@ -49,6 +50,11 @@ public class SignUpController implements Controller {
         });
   }
 
+  /**
+   * creates a new user with the specified fields and logs them into the game
+   *
+   * @param event, the button press
+   */
   @FXML
   private void onLogIn(ActionEvent event) {
     UserDaoJson userDao = new UserDaoJson();
