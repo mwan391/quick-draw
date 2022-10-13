@@ -31,40 +31,77 @@ public class LogInController implements Controller {
 
   private UserDaoJson userDao = new UserDaoJson();
 
+  /** Initialise method loads up and refreshes user data when the scene is loaded */
   public void initialize() {
     loadUserData();
   }
 
+  /**
+   * onLogOne logs in the first user or sends them to the signup page
+   *
+   * @param the pressed button
+   */
   @FXML
   private void onLogOne(ActionEvent event) {
     logX(event, userTextOne.getText());
   }
 
+  /**
+   * onLogTwo logs in the second user or sends them to the signup page
+   *
+   * @param the pressed button
+   */
   @FXML
   private void onLogTwo(ActionEvent event) {
     logX(event, userTextTwo.getText());
   }
 
+  /**
+   * onLogThree logs in the third user or sends them to the signup page
+   *
+   * @param the pressed button
+   */
   @FXML
   private void onLogThree(ActionEvent event) {
     logX(event, userTextThree.getText());
   }
 
+  /**
+   * onLogFour logs in the fourth user or sends them to the signup page
+   *
+   * @param the pressed button
+   */
   @FXML
   private void onLogFour(ActionEvent event) {
     logX(event, userTextFour.getText());
   }
 
+  /**
+   * onLogFive logs in the fifth user or sends them to the signup page
+   *
+   * @param the pressed button
+   */
   @FXML
   private void onLogFive(ActionEvent event) {
     logX(event, userTextFive.getText());
   }
 
+  /**
+   * onLogSix logs in the sixth user or sends them to the signup page
+   *
+   * @param the pressed button
+   */
   @FXML
   private void onLogSix(ActionEvent event) {
     logX(event, userTextSix.getText());
   }
 
+  /**
+   * Logs in the user using their username or sends to signup
+   *
+   * @param the pressed button
+   * @param the name of the account being logged in
+   */
   public void logX(ActionEvent event, String username) {
     // Logging in the user if the profile has been created
     if (username.equals("New User")) {
@@ -74,6 +111,7 @@ public class LogInController implements Controller {
     }
   }
 
+  /** loads userdata by displaying the username and icon for each user */
   public void loadUserData() {
     List<UserModel> tempUsers = userDao.getAll();
     // Putting info onto usercards
@@ -109,11 +147,23 @@ public class LogInController implements Controller {
     }
   }
 
+  /**
+   * Creates an image by finding its source file using its filename
+   *
+   * @param name, the name of the image file being loaded
+   * @return icon, the loaded image
+   */
   private Image loadImage(String name) {
     Image icon = new Image(getClass().getResourceAsStream("/images/profileicons/" + name + ".png"));
     return icon;
   }
 
+  /**
+   * logs the user in by setting them as the active user
+   *
+   * @param event, the button press
+   * @param username, the name of the active user
+   */
   private void logIn(ActionEvent event, String username) {
     // set the user as the active user
     UserModel.setActiveUser(userDao.get(username));
@@ -122,6 +172,11 @@ public class LogInController implements Controller {
     nextCategory(event);
   }
 
+  /**
+   * sends the user to the sign up page
+   *
+   * @param event, the button press
+   */
   private void signUp(ActionEvent event) {
     // get root and signup
     Scene scene = ((Button) event.getSource()).getScene();
@@ -131,6 +186,11 @@ public class LogInController implements Controller {
     scene.setRoot(signUpRoot);
   }
 
+  /**
+   * sends the logged in user to the category screen and gives them a setting model
+   *
+   * @param event, the button press
+   */
   private void nextCategory(ActionEvent event) {
 
     // get root and controller
