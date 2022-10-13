@@ -44,7 +44,7 @@
   {
     "word": "ant",
     "meaning": {
-      "definition": "Any of various insects in the family Formicidae in the order Hymenoptera, typically living in large colonies composed almost entirely of flightless females."
+      "definition": "A very small black insect that lives in large, organized groups called colonies."
     },
     "difficulty": "EASY"
   },
@@ -58,7 +58,7 @@
   {
     "word": "apple",
     "meaning": {
-      "definition": "A common, round fruit produced by the tree Malus domestica, cultivated in temperate climates."
+      "definition": "A common round red fruit."
     },
     "difficulty": "EASY"
   },
@@ -121,7 +121,7 @@
   {
     "word": "baseball bat",
     "meaning": {
-      "definition": ""
+      "definition": "A smooth wooden or metal club used to hit a ball"
     },
     "difficulty": "MEDIUM"
   },
@@ -163,7 +163,7 @@
   {
     "word": "bear",
     "meaning": {
-      "definition": "A large omnivorous mammal, related to the dog and raccoon, having shaggy hair, a very small tail, and flat feet; a member of family Ursidae."
+      "definition": "A large furry mammal that can eat plants, honey, fish and other small mammals."
     },
     "difficulty": "MEDIUM"
   },
@@ -184,7 +184,7 @@
   {
     "word": "bee",
     "meaning": {
-      "definition": "A flying insect, of the clade Anthophila within the hymenopteran superfamily Apoidea, known for its organised societies (though only a minority have them), for collecting pollen and (in some species) producing wax and honey."
+      "definition": "A flying insect found on flowers, able to make honey."
     },
     "difficulty": "EASY"
   },
@@ -226,42 +226,42 @@
   {
     "word": "birthday cake",
     "meaning": {
-      "definition": ""
+      "definition": "You eat this to celebrate someone's special day which happens once a year"
     },
     "difficulty": "EASY"
   },
   {
     "word": "blackberry",
     "meaning": {
-      "definition": "A fruit-bearing shrub of the species Rubus fruticosus and some hybrids."
+      "definition": "A dark purple or black berry that is made up of many large seeds."
     },
     "difficulty": "HARD"
   },
   {
     "word": "blueberry",
     "meaning": {
-      "definition": "An edible round berry, belonging to the cowberry group (Vaccinium sect. Cyanococcus), with flared crowns at the end, that turns blue on ripening."
+      "definition": "An small round berry, that turns blue on ripening."
     },
     "difficulty": "HARD"
   },
   {
     "word": "book",
     "meaning": {
-      "definition": "A collection of sheets of paper bound together to hinge at one edge, containing printed or written material, pictures, etc."
+      "definition": "Sheets of paper bound together between two covers. These pages can be blank or can have writing, printing, or pictures on them."
     },
     "difficulty": "EASY"
   },
   {
     "word": "boomerang",
     "meaning": {
-      "definition": "A flat curved airfoil, that spins about an axis perpendicular to the direction of flight, that was originally used in various parts of the world as hunting weapons or, in returnable types, for sports or training."
+      "definition": "A curved wooden stick that can be thrown so that it will return to the thrower."
     },
     "difficulty": "EASY"
   },
   {
     "word": "bottlecap",
     "meaning": {
-      "definition": ""
+      "definition": "A circular device used to close bottles"
     },
     "difficulty": "EASY"
   },
@@ -303,7 +303,7 @@
   {
     "word": "broccoli",
     "meaning": {
-      "definition": "A plant, Brassica oleracea var. italica, of the cabbage family, Brassicaceae; especially, the tree-shaped flower and stalk that are eaten as a vegetable."
+      "definition": "A plant whose green flower buds and stalk are used for food."
     },
     "difficulty": "MEDIUM"
   },
@@ -352,7 +352,7 @@
   {
     "word": "cactus",
     "meaning": {
-      "definition": "Any member of the family Cactaceae, a family of flowering New World succulent plants suited to a hot, semi-desert climate."
+      "definition": "A prickly plant that grows in the hot desert."
     },
     "difficulty": "EASY"
   },
@@ -436,7 +436,7 @@
   {
     "word": "carrot",
     "meaning": {
-      "definition": "A vegetable with a nutritious, juicy, sweet root that is often orange in colour, Daucus carota, especially the subspecies sativus in the family Apiaceae."
+      "definition": "A vegetable with a nutritious, juicy, sweet root that is often orange in colour."
     },
     "difficulty": "EASY"
   },
@@ -450,21 +450,21 @@
   {
     "word": "cat",
     "meaning": {
-      "definition": "An animal of the family Felidae:"
+      "definition": "An animal that meows."
     },
     "difficulty": "EASY"
   },
   {
     "word": "ceiling fan",
     "meaning": {
-      "definition": ""
+      "definition": "Something that's mounted to the ceiling that circulates air"
     },
     "difficulty": "MEDIUM"
   },
   {
     "word": "cello",
     "meaning": {
-      "definition": "A large stringed instrument of the violin family with four strings, tuned from lowest to highest C-G-D-A, and played with a bow, also possessing an endpin to support the instrument's weight."
+      "definition": "A large musical instrument with four strings"
     },
     "difficulty": "HARD"
   },
@@ -478,7 +478,7 @@
   {
     "word": "chair",
     "meaning": {
-      "definition": "An item of furniture used to sit on or in, comprising a seat, legs, back, and sometimes arm rests, for use by one person. Compare stool, couch, sofa, settee, loveseat and bench."
+      "definition": "An item of furniture used to sit on or in, comprising a seat, legs, back, and sometimes arm rests, for use by one person."
     },
     "difficulty": "EASY"
   },
@@ -520,7 +520,7 @@
   {
     "word": "cloud",
     "meaning": {
-      "definition": "A rock; boulder; a hill."
+      "definition": "White fluffy thing seen in the sky."
     },
     "difficulty": "EASY"
   },
@@ -534,14 +534,14 @@
   {
     "word": "compass",
     "meaning": {
-      "definition": "A magnetic or electronic device used to determine the cardinal directions (usually magnetic or true north)."
+      "definition": "A magnetic or electronic device used to determine the cardinal directions."
     },
     "difficulty": "MEDIUM"
   },
   {
     "word": "computer",
     "meaning": {
-      "definition": "A person employed to perform computations; one who computes."
+      "definition": "You are using this device right now to play this game."
     },
     "difficulty": "MEDIUM"
   },
@@ -562,14 +562,14 @@
   {
     "word": "couch",
     "meaning": {
-      "definition": "Couch grass, a species of persistent grass, Elymus repens, usually considered a weed."
+      "definition": "You often sit on this to watch TV."
     },
     "difficulty": "MEDIUM"
   },
   {
     "word": "cow",
     "meaning": {
-      "definition": "(properly) An adult female of the species Bos taurus, especially one that has calved."
+      "definition": "An animal that that makes the sound 'moo'."
     },
     "difficulty": "MEDIUM"
   },
@@ -590,14 +590,14 @@
   {
     "word": "crocodile",
     "meaning": {
-      "definition": "Any of the predatory amphibious reptiles of the family Crocodylidae; a crocodilian, any species of the order Crocodilia, which also includes the alligators, caimans and gavials."
+      "definition": "A large reptile that is found in tropical swamps. It has a thick, tough skin, a long tail, and a long, pointed snout.."
     },
     "difficulty": "MEDIUM"
   },
   {
     "word": "crown",
     "meaning": {
-      "definition": "A royal, imperial or princely headdress; a diadem."
+      "definition": "Kings and queens wear this on their head."
     },
     "difficulty": "EASY"
   },
@@ -611,14 +611,14 @@
   {
     "word": "cup",
     "meaning": {
-      "definition": "A concave vessel for drinking from, usually made of opaque material (as opposed to a glass) and with a handle."
+      "definition": "You use this to drink out of."
     },
     "difficulty": "MEDIUM"
   },
   {
     "word": "diamond",
     "meaning": {
-      "definition": "A glimmering glass-like mineral that is an allotrope of carbon in which each atom is surrounded by four others in the form of a tetrahedron."
+      "definition": "A glimmering glass-like mineral that is in the crystal form of carbon."
     },
     "difficulty": "EASY"
   },
@@ -639,35 +639,35 @@
   {
     "word": "dog",
     "meaning": {
-      "definition": "A mammal, Canis familiaris or Canis lupus familiaris, that has been domesticated for thousands of years, of highly variable appearance due to human breeding."
+      "definition": "An animal that barks."
     },
     "difficulty": "MEDIUM"
   },
   {
     "word": "dolphin",
     "meaning": {
-      "definition": "A carnivorous aquatic mammal in one of several families of order Cetacea, famed for its intelligence and occasional willingness to approach humans."
+      "definition": "A carnivorous aquatic mammal, known for its intelligence and occasional willingness to approach humans."
     },
     "difficulty": "MEDIUM"
   },
   {
     "word": "donut",
     "meaning": {
-      "definition": "A deep-fried piece of dough or batter, commonly made in a toroidal or ellipsoidal shape, and mixed with various sweeteners and flavors, sometimes filled with jelly, custard or cream."
+      "definition": "A deep-fried piece of dough, sometimes filled with jelly, custard or cream."
     },
     "difficulty": "EASY"
   },
   {
     "word": "door",
     "meaning": {
-      "definition": "A portal of entry into a building, room, or vehicle, consisting of a rigid plane movable on a hinge. Doors are frequently made of wood or metal. May have a handle to help open and close, a latch to hold the door closed and a lock that ensures the door cannot be opened without the key."
+      "definition": "A portal of entry into a building, room, or vehicle, can be open and closed."
     },
     "difficulty": "EASY"
   },
   {
     "word": "dragon",
     "meaning": {
-      "definition": "A legendary serpentine or reptilian creature."
+      "definition": "An imaginary monster that looks like a giant lizard with wings and can breathe fire."
     },
     "difficulty": "MEDIUM"
   },
@@ -695,63 +695,63 @@
   {
     "word": "duck",
     "meaning": {
-      "definition": "An aquatic bird of the family Anatidae, having a flat bill and webbed feet."
+      "definition": "An aquatic bird, having a flat bill and webbed feet for swimming."
     },
     "difficulty": "EASY"
   },
   {
     "word": "dumbbell",
     "meaning": {
-      "definition": "A weight training implement consisting of a short bar with weight counterpoised on each end."
+      "definition": "A short bar with a heavy weight at each end."
     },
     "difficulty": "EASY"
   },
   {
     "word": "ear",
     "meaning": {
-      "definition": "The organ of hearing, consisting of the pinna, auditory canal, eardrum, malleus, incus, stapes and cochlea."
+      "definition": "The organ of hearing in people and some other animals."
     },
     "difficulty": "EASY"
   },
   {
     "word": "elbow",
     "meaning": {
-      "definition": "The joint between the upper arm and the forearm."
+      "definition": "The joint between the upper arm and the lower arm."
     },
     "difficulty": "MEDIUM"
   },
   {
     "word": "elephant",
     "meaning": {
-      "definition": "A mammal of the order Proboscidea, having a trunk, and two large ivory tusks jutting from the upper jaw."
+      "definition": "A very large mammal with a very long nose called a trunk."
     },
     "difficulty": "MEDIUM"
   },
   {
     "word": "envelope",
     "meaning": {
-      "definition": "A paper or cardboard wrapper used to enclose small, flat items, especially letters, for mailing."
+      "definition": "A folded paper covering or container usually used to mail letters."
     },
     "difficulty": "MEDIUM"
   },
   {
     "word": "eraser",
     "meaning": {
-      "definition": "One who erases."
+      "definition": "An object used to rub out writing or marks."
     },
     "difficulty": "MEDIUM"
   },
   {
     "word": "eye",
     "meaning": {
-      "definition": "An organ through which animals see (perceive surroundings via light)."
+      "definition": "An organ through which animals and humans see."
     },
     "difficulty": "EASY"
   },
   {
     "word": "eyeglasses",
     "meaning": {
-      "definition": "An artificial lens, especially one of a pair."
+      "definition": "These are worn to help a person see better."
     },
     "difficulty": "MEDIUM"
   },
@@ -765,14 +765,14 @@
   {
     "word": "fan",
     "meaning": {
-      "definition": "A hand-held device consisting of concertinaed material, or slats of material, gathered together at one end, that may be opened out into the shape of a sector of a circle and waved back and forth in order to move air towards oneself and cool oneself."
+      "definition": "A device that is waved back and forth with the hand to cool the face or body."
     },
     "difficulty": "EASY"
   },
   {
     "word": "feather",
     "meaning": {
-      "definition": "A branching, hair-like structure that grows on the bodies of birds, used for flight, swimming, protection and display."
+      "definition": "A soft, hair-like structure that grows on the bodies of birds, used for flight, swimming, protection and display."
     },
     "difficulty": "EASY"
   },
@@ -786,7 +786,7 @@
   {
     "word": "finger",
     "meaning": {
-      "definition": "A slender jointed extremity of the human hand, exclusive of the thumb."
+      "definition": "Ane of the five jointed parts at the end of the hand."
     },
     "difficulty": "EASY"
   },
@@ -821,7 +821,7 @@
   {
     "word": "flamingo",
     "meaning": {
-      "definition": "A wading bird of the family Phoenicopteridae."
+      "definition": "A large pink bird found wading in shallow water."
     },
     "difficulty": "HARD"
   },
@@ -835,7 +835,7 @@
   {
     "word": "flip flops",
     "meaning": {
-      "definition": ""
+      "definition": "A type of sandal worn often at the beach"
     },
     "difficulty": "HARD"
   },
@@ -849,7 +849,7 @@
   {
     "word": "flower",
     "meaning": {
-      "definition": "A colorful, conspicuous structure associated with angiosperms, frequently scented and attracting various insects, and which may or may not be used for sexual reproduction."
+      "definition": "A plant that blossoms and is grown for its beauty and pleasant smell."
     },
     "difficulty": "EASY"
   },
@@ -863,7 +863,7 @@
   {
     "word": "foot",
     "meaning": {
-      "definition": "A biological structure found in many animals that is used for locomotion and that is frequently a separate organ at the terminal part of the leg."
+      "definition": "The end part of the leg of humans and other animals, on which the body stands and walks."
     },
     "difficulty": "EASY"
   },
@@ -898,14 +898,14 @@
   {
     "word": "garden hose",
     "meaning": {
-      "definition": ""
+      "definition": "A long tube that carries water."
     },
     "difficulty": "HARD"
   },
   {
     "word": "giraffe",
     "meaning": {
-      "definition": "A ruminant, of the genus Giraffa, of the African savannah with long legs and highly elongated neck, which make it the tallest living animal; yellow fur patterned with dark spots, often in the form of a network; and two or more short, skin-covered horns, so-called; strictly speaking the horn-like projections are ossicones."
+      "definition": "The tallest living animal."
     },
     "difficulty": "EASY"
   },
@@ -926,21 +926,21 @@
   {
     "word": "grapes",
     "meaning": {
-      "definition": "A small, round, smooth-skinned edible fruit, usually purple, red, or green, that grows in bunches on vines of genus Vitis."
+      "definition": "A small, juicy fruit, that is either green, red, or purple. They grows in bunches on vines."
     },
     "difficulty": "EASY"
   },
   {
     "word": "grass",
     "meaning": {
-      "definition": "Any plant of the family Poaceae, characterized by leaves that arise from nodes in the stem and leaf bases that wrap around the stem, especially those grown as ground cover rather than for grain."
+      "definition": "A green plant that grows everywhere."
     },
     "difficulty": "EASY"
   },
   {
     "word": "guitar",
     "meaning": {
-      "definition": "A stringed musical instrument, of European origin, usually with a fretted fingerboard and six strings, played with the fingers or a plectrum (guitar pick)."
+      "definition": "A stringed instrument with a long neck and strings that are strummed or plucked."
     },
     "difficulty": "EASY"
   },
@@ -989,7 +989,7 @@
   {
     "word": "hedgehog",
     "meaning": {
-      "definition": "A small mammal, of the family Erinaceidae or subfamily Erinaceinae (spiny hedgehog, the latter characterized by their spiny back and often by the habit of rolling up into a ball when attacked.)"
+      "definition": "A small mammal with spines that stick out"
     },
     "difficulty": "MEDIUM"
   },
@@ -1017,7 +1017,7 @@
   {
     "word": "hockey puck",
     "meaning": {
-      "definition": ""
+      "definition": "A small disc that is used instead of a ball in a sport"
     },
     "difficulty": "HARD"
   },
@@ -1038,21 +1038,21 @@
   {
     "word": "hospital",
     "meaning": {
-      "definition": "A large medical facility, usually in a building with multiple floors, where seriously ill or injured patients are given extensive medical and/or surgical treatment."
+      "definition": "A place where sick or hurt people go to find care or help."
     },
     "difficulty": "HARD"
   },
   {
     "word": "hot air balloon",
     "meaning": {
-      "definition": ""
+      "definition": "A bag made of thin material that is inflated with hot air, causing it to rise and float up into the sky."
     },
     "difficulty": "EASY"
   },
   {
     "word": "hot dog",
     "meaning": {
-      "definition": "A sandwich consisting of a frankfurter, or wiener, in a bread roll, usually served with ketchup, mustard, relish, etc."
+      "definition": "A sandwich consisting of a frankfurter, or wiener, in a bread roll, usually served with ketchup, mustard, relish."
     },
     "difficulty": "EASY"
   },
@@ -1108,28 +1108,28 @@
   {
     "word": "jail",
     "meaning": {
-      "definition": "A place or institution for the confinement of persons held in lawful custody or detention, especially for minor offenses or with reference to some future judicial proceeding."
+      "definition": "A building in which a government keeps people who are waiting for a trial or who have been found guilty of breaking the law."
     },
     "difficulty": "HARD"
   },
   {
     "word": "kangaroo",
     "meaning": {
-      "definition": "A member of the Macropodidae family of large marsupials with strong hind legs for hopping, native to Australia."
+      "definition": "A mammal with strong back legs for hopping, native to Australia."
     },
     "difficulty": "MEDIUM"
   },
   {
     "word": "key",
     "meaning": {
-      "definition": "An object designed to open and close a lock."
+      "definition": "A metal object used to open or close locks."
     },
     "difficulty": "EASY"
   },
   {
     "word": "keyboard",
     "meaning": {
-      "definition": "(etc.) A set of keys used to operate a typewriter, computer etc."
+      "definition": "A set of keys used to operate a computer."
     },
     "difficulty": "EASY"
   },
@@ -1213,14 +1213,14 @@
   {
     "word": "line",
     "meaning": {
-      "definition": "A path through two or more points (compare ‘segment’); a continuous mark, including as made by a pen; any path, curved or straight."
+      "definition": "A curved or straight path through two or more points."
     },
     "difficulty": "EASY"
   },
   {
     "word": "lion",
     "meaning": {
-      "definition": "A big cat, Panthera leo, native to Africa, India and formerly much of Europe."
+      "definition": "An animal native to Africa, known as The King of the Jungle."
     },
     "difficulty": "MEDIUM"
   },
@@ -1234,7 +1234,7 @@
   {
     "word": "lobster",
     "meaning": {
-      "definition": "A crustacean of the Nephropidae family, dark green or blue-black in colour turning bright red when cooked, with a hard shell and claws, which is used as a seafood."
+      "definition": "An animal with a hard blue-black shell and turns bright red when cooked."
     },
     "difficulty": "MEDIUM"
   },
@@ -1318,28 +1318,28 @@
   {
     "word": "mosquito",
     "meaning": {
-      "definition": "A small flying insect of the family Culicidae, the females of which bite humans and animals and suck blood, leaving an itching bump on the skin, and sometimes carrying diseases like malaria and yellow fever."
+      "definition": "A small insect. The females bite and suck the blood of humans and animals leaving them itchy."
     },
     "difficulty": "MEDIUM"
   },
   {
     "word": "motorbike",
     "meaning": {
-      "definition": "A motorcycle."
+      "definition": "A small motorcycle."
     },
     "difficulty": "MEDIUM"
   },
   {
     "word": "mountain",
     "meaning": {
-      "definition": "An elevation of land of considerable dimensions rising more or less abruptly, forming a conspicuous figure in the landscape, usually having a small extent of surface at its summit."
+      "definition": "A land mass with great height and steep sides."
     },
     "difficulty": "MEDIUM"
   },
   {
     "word": "mouse",
     "meaning": {
-      "definition": "Any small rodent of the genus Mus."
+      "definition": "A very small gray mammal that enjoys eating cheese"
     },
     "difficulty": "MEDIUM"
   },
@@ -1409,14 +1409,14 @@
   {
     "word": "octopus",
     "meaning": {
-      "definition": "Any of several marine molluscs of the family Octopodidae, having no internal or external protective shell or bone (unlike the nautilus, squid and cuttlefish) and eight arms each covered with suckers."
+      "definition": "A sea animal with eight tentacles"
     },
     "difficulty": "MEDIUM"
   },
   {
     "word": "onion",
     "meaning": {
-      "definition": "A monocotyledonous plant (Allium cepa), allied to garlic, used as vegetable and spice."
+      "definition": "A vegetable that makes you cry when you chop them."
     },
     "difficulty": "MEDIUM"
   },
@@ -1430,7 +1430,7 @@
   {
     "word": "owl",
     "meaning": {
-      "definition": "Any of various birds of prey of the order Strigiformes that are primarily nocturnal and have forward-looking, binocular vision, limited eye movement, and good hearing."
+      "definition": "A bird that is nocturnal (hunts for food at night)."
     },
     "difficulty": "HARD"
   },
@@ -1444,28 +1444,28 @@
   {
     "word": "paint can",
     "meaning": {
-      "definition": ""
+      "definition": "You store paint in this."
     },
     "difficulty": "MEDIUM"
   },
   {
     "word": "palm tree",
     "meaning": {
-      "definition": "A tree of the family Arecaceae usually characterised by having a single stem or trunk, directly from which sprout several leaves or fronds giving a shape like an outstretched hand."
+      "definition": "A type of tree with several leaves giving a shape like an outstretched hand."
     },
     "difficulty": "EASY"
   },
   {
     "word": "panda",
     "meaning": {
-      "definition": "The red panda (Ailurus fulgens), a small raccoon-like animal of northeast Asia with reddish fur and a long, ringed tail."
+      "definition": "A bearlike mammal with black and white markings."
     },
     "difficulty": "MEDIUM"
   },
   {
     "word": "pants",
     "meaning": {
-      "definition": "(Manchester) An outer garment that covers the body from the waist downwards, covering each leg separately, usually as far as the ankles; trousers."
+      "definition": "You wear this to cover your legs."
     },
     "difficulty": "MEDIUM"
   },
@@ -1486,7 +1486,7 @@
   {
     "word": "parrot",
     "meaning": {
-      "definition": "A kind of bird, many species of which are colourful and able to mimic human speech, of the order Psittaciformes or (narrowly) of the family Psittacidae."
+      "definition": "A kind of bird that is often brightly coloured. They are able to repeat spoken words from a human."
     },
     "difficulty": "MEDIUM"
   },
@@ -1514,14 +1514,14 @@
   {
     "word": "peas",
     "meaning": {
-      "definition": "A plant, Pisum sativum, member of the legume (Fabaceae) family."
+      "definition": "A small, round, green seed grown in a pod on a climbing plant."
     },
     "difficulty": "EASY"
   },
   {
     "word": "pencil",
     "meaning": {
-      "definition": "A paintbrush."
+      "definition": "A long, thin tool used for writing or drawing"
     },
     "difficulty": "EASY"
   },
@@ -1535,28 +1535,28 @@
   {
     "word": "piano",
     "meaning": {
-      "definition": "A percussive keyboard musical instrument, usually ranging over seven octaves, with white and black colored keys, played by pressing these keys, causing hammers to strike strings"
+      "definition": "A musical instrument, with white and black colored keys"
     },
     "difficulty": "MEDIUM"
   },
   {
     "word": "pickup truck",
     "meaning": {
-      "definition": "A light truck with an open cargo bed."
+      "definition": "A light truck with an open area to carry things."
     },
     "difficulty": "HARD"
   },
   {
     "word": "picture frame",
     "meaning": {
-      "definition": ""
+      "definition": "Used to decorate the border of a painting."
     },
     "difficulty": "MEDIUM"
   },
   {
     "word": "pig",
     "meaning": {
-      "definition": "Any of several intelligent mammalian species of the genus Sus, having cloven hooves, bristles and a nose adapted for digging; especially the domesticated animal Sus scrofa."
+      "definition": "A pink mammal that likes to roll in mud."
     },
     "difficulty": "EASY"
   },
@@ -1570,14 +1570,14 @@
   {
     "word": "pineapple",
     "meaning": {
-      "definition": "A tropical plant, Ananas comosus, native to South America, having thirty or more long, spined and pointed leaves surrounding a thick stem."
+      "definition": "A tropical fruit, sour, and having long and pointed leaves surrounding a thick stem."
     },
     "difficulty": "EASY"
   },
   {
     "word": "pizza",
     "meaning": {
-      "definition": "A baked Italian dish of a thinly rolled bread dough crust typically topped before baking with tomato sauce, cheese and other ingredients such as meat, vegetables or fruit"
+      "definition": "An Italian food made from bread dough covered with tomatoes and cheese and then baked"
     },
     "difficulty": "EASY"
   },
@@ -1591,7 +1591,7 @@
   {
     "word": "police car",
     "meaning": {
-      "definition": ""
+      "definition": "A vehicle with red and blue siren lights"
     },
     "difficulty": "HARD"
   },
@@ -1633,7 +1633,7 @@
   {
     "word": "power outlet",
     "meaning": {
-      "definition": ""
+      "definition": "A device to which a piece of electrical equipment can be connected to"
     },
     "difficulty": "MEDIUM"
   },
@@ -1647,7 +1647,7 @@
   {
     "word": "rabbit",
     "meaning": {
-      "definition": "A mammal of the family Leporidae, with long ears, long hind legs and a short, fluffy tail."
+      "definition": "A small mammal with long ears and long back legs for jumping."
     },
     "difficulty": "EASY"
   },
@@ -1696,28 +1696,28 @@
   {
     "word": "rhinoceros",
     "meaning": {
-      "definition": "Any of several large herbivorous pachyderms native to Africa and Asia of the five extant species in the three extant genera in the family Rhinocerotidae, with thick, gray skin and one or two horns on their snouts."
+      "definition": "A mammal with thick, gray skin and one or two horns on their noses."
     },
     "difficulty": "MEDIUM"
   },
   {
     "word": "rifle",
     "meaning": {
-      "definition": "A shouldered firearm with a long, rifled barrel to improve range and accuracy."
+      "definition": "A gun that has a long barrel and that is shot from the shoulder."
     },
     "difficulty": "MEDIUM"
   },
   {
     "word": "river",
     "meaning": {
-      "definition": "A large and often winding stream which drains a land mass, carrying water down from higher areas to a lower point, oftentimes ending in another body of water, such as an ocean or in an inland sea."
+      "definition": "A large natural stream of water flowing in a particular course toward a lake, ocean, or other body of water."
     },
     "difficulty": "MEDIUM"
   },
   {
     "word": "roller coaster",
     "meaning": {
-      "definition": "An amusement ride consisting of a buggy on a track that rises, falls, twists and turns."
+      "definition": "An amusement park ride in which a train of open cars rides up and down track."
     },
     "difficulty": "MEDIUM"
   },
@@ -1752,14 +1752,14 @@
   {
     "word": "saxophone",
     "meaning": {
-      "definition": "A single-reed instrument musical instrument of the woodwind family, usually made of brass and with a distinctive loop bringing the bell upwards."
+      "definition": "A wind instrument with a curved metal body and a mouthpiece with a single reed."
     },
     "difficulty": "MEDIUM"
   },
   {
     "word": "school bus",
     "meaning": {
-      "definition": ""
+      "definition": "A vehicle used to take students from and to school"
     },
     "difficulty": "HARD"
   },
@@ -1773,7 +1773,7 @@
   {
     "word": "scorpion",
     "meaning": {
-      "definition": "Any of various arachnids of the order Scorpiones, related to the spiders, characterised by two large front pincers and a curved tail with a venomous sting in the end."
+      "definition": "A small animal related to the spider. It has a tail with a poisonous tip."
     },
     "difficulty": "EASY"
   },
@@ -1794,7 +1794,7 @@
   {
     "word": "see saw",
     "meaning": {
-      "definition": ""
+      "definition": "Something thats found at a playground that moves up and down"
     },
     "difficulty": "HARD"
   },
@@ -1808,7 +1808,7 @@
   {
     "word": "sheep",
     "meaning": {
-      "definition": "A woolly ruminant of the genus Ovis."
+      "definition": "A woolly animal"
     },
     "difficulty": "EASY"
   },
@@ -1913,7 +1913,7 @@
   {
     "word": "soccer ball",
     "meaning": {
-      "definition": ""
+      "definition": "Something that you kick in a particular sport"
     },
     "difficulty": "MEDIUM"
   },
@@ -1969,7 +1969,7 @@
   {
     "word": "squirrel",
     "meaning": {
-      "definition": "Any of the rodents of the family Sciuridae distinguished by their large bushy tail."
+      "definition": "A rodents with a large bushy tail and known to eat acorns."
     },
     "difficulty": "HARD"
   },
@@ -2018,7 +2018,7 @@
   {
     "word": "stop sign",
     "meaning": {
-      "definition": ""
+      "definition": "It's red and seen on roads"
     },
     "difficulty": "HARD"
   },
@@ -2074,7 +2074,7 @@
   {
     "word": "swan",
     "meaning": {
-      "definition": "Any of various species of large, long-necked waterfowl, of genus Cygnus (bird family: Anatidae), most of which have white plumage."
+      "definition": "A large water bird, usually white, with a very long neck and webbed feet."
     },
     "difficulty": "EASY"
   },
@@ -2088,7 +2088,7 @@
   {
     "word": "swing set",
     "meaning": {
-      "definition": ""
+      "definition": "A playground equipment that oscillates"
     },
     "difficulty": "HARD"
   },
@@ -2144,7 +2144,7 @@
   {
     "word": "tennis racquet",
     "meaning": {
-      "definition": ""
+      "definition": "Used to hit a tennis ball"
     },
     "difficulty": "EASY"
   },
@@ -2158,14 +2158,14 @@
   {
     "word": "The Eiffel Tower",
     "meaning": {
-      "definition": ""
+      "definition": "A very famous building in Paris, France"
     },
     "difficulty": "MEDIUM"
   },
   {
     "word": "The Great Wall of China",
     "meaning": {
-      "definition": ""
+      "definition": "An ancient fortification that extends over 20,000 km"
     },
     "difficulty": "HARD"
   },
@@ -2179,7 +2179,7 @@
   {
     "word": "tiger",
     "meaning": {
-      "definition": "Panthera tigris, a large predatory mammal of the cat family, indigenous to Asia."
+      "definition": "An orange wildcat with a strong roar"
     },
     "difficulty": "MEDIUM"
   },
@@ -2270,7 +2270,7 @@
   {
     "word": "trombone",
     "meaning": {
-      "definition": "A musical instrument in the brass family, having a cylindrical bore, and usually a sliding tube (but sometimes piston valves, and rarely both). Most often refers to the tenor trombone, which is the most common type of trombone and has a fundamental tone of B♭ˌ (contra B♭)."
+      "definition": "A brass wind instrument with a part that can slide in and out to make different sounds."
     },
     "difficulty": "MEDIUM"
   },
@@ -2284,7 +2284,7 @@
   {
     "word": "trumpet",
     "meaning": {
-      "definition": "A musical instrument of the brass family, generally tuned to the key of B-flat; by extension, any type of lip-vibrated aerophone, most often valveless and not chromatic."
+      "definition": "A bell shaped wind instrument that makes a bright and strong sound."
     },
     "difficulty": "MEDIUM"
   },
@@ -2326,21 +2326,21 @@
   {
     "word": "violin",
     "meaning": {
-      "definition": "A musical four-string instrument, generally played with a bow or by plucking the string, with the pitch set by pressing the strings at the appropriate place with the fingers; also any instrument of the violin family."
+      "definition": "A musical instrument that is held between the chin and shoulder and played with a bow."
     },
     "difficulty": "MEDIUM"
   },
   {
     "word": "washing machine",
     "meaning": {
-      "definition": "A machine, usually automatic, which washes clothes, etc."
+      "definition": "A machine, usually automatic, which washes clothes."
     },
     "difficulty": "HARD"
   },
   {
     "word": "watermelon",
     "meaning": {
-      "definition": "A plant of the species Citrullus lanatus, bearing a melon-like fruit."
+      "definition": "A fruit often eaten in the summer, with green skin and red juicy flesh inside."
     },
     "difficulty": "MEDIUM"
   },
@@ -2354,7 +2354,7 @@
   {
     "word": "whale",
     "meaning": {
-      "definition": "Any of several species of large sea mammals of the infraorder Cetacea."
+      "definition": "A very large sea mammal."
     },
     "difficulty": "MEDIUM"
   },
@@ -2389,7 +2389,7 @@
   {
     "word": "wristwatch",
     "meaning": {
-      "definition": "A watch that is worn on a strap or band fastened around the wrist"
+      "definition": "Something that's worn on the wrist to tell the time."
     },
     "difficulty": "HARD"
   },
@@ -2403,7 +2403,7 @@
   {
     "word": "zebra",
     "meaning": {
-      "definition": "Any of three species of genus Equus: E. grevyi, E. quagga, or E. zebra, all with black and white stripes and native to Africa."
+      "definition": "A black and white striped animal, native to Africa."
     },
     "difficulty": "MEDIUM"
   },
