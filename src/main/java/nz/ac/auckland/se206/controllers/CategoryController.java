@@ -45,7 +45,6 @@ public class CategoryController implements Controller {
     ObservableList<String> difficultiesAccuracy = FXCollections.observableArrayList();
     Collections.addAll(difficultiesAccuracy, "Easy", "Medium", "Hard");
     dbxAccuracyDifficulty.setItems(difficultiesAccuracy);
-    ;
   }
 
   public void setUserSettings(String userId) {
