@@ -60,10 +60,7 @@
                               <Insets />
                            </opaqueInsets>
                         </Label>
-                        <ImageView fitHeight="154.0" fitWidth="181.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../images/buttonicons/shrug.png" />
-                           </image>
+                        <ImageView fx:id="picPreview" fitHeight="154.0" fitWidth="181.0" pickOnBounds="true" preserveRatio="true">
                            <VBox.margin>
                               <Insets top="20.0" />
                            </VBox.margin>

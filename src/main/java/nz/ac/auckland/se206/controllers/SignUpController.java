@@ -10,6 +10,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.daos.GameSettingDao;
@@ -21,19 +23,34 @@ public class SignUpController implements Controller {
   @FXML private TextField userEntry;
   @FXML private Label lblWarning;
   @FXML private ChoiceBox<String> picChooser;
-
-  private UserDaoJson userDao = new UserDaoJson();
+  @FXML private ImageView picPreview;
 
   public void initialize() {
     // Loading options for profile picture
     String picStrings[] = {"boy", "dad", "girl", "mother", "woman"};
     ObservableList<String> picNames = FXCollections.observableArrayList(picStrings);
     picChooser.setItems(picNames);
+
+    // Loading default option
     picChooser.setValue("boy");
+    Image boyImage = new Image(getClass().getResourceAsStream("/images/profileicons/boy.png"));
+    picPreview.setImage(boyImage);
+
+    // Adding a listener to change the picture preview
+    picChooser.setOnAction(
+        event -> {
+          Image preview =
+              new Image(
+                  getClass()
+                      .getResourceAsStream(
+                          "/images/profileicons/" + picChooser.getValue() + ".png"));
+          picPreview.setImage(preview);
+        });
   }
 
   @FXML
   private void onLogIn(ActionEvent event) {
+    UserDaoJson userDao = new UserDaoJson();
     String userName = userEntry.getText();
 
     // check if the user name is taken
