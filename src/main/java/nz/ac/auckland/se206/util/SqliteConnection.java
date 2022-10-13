@@ -74,7 +74,7 @@ public class SqliteConnection {
    *
    * @param statement to allow sql command to be executed
    * @return whether or not command was successful
-   * @throws SQLException
+   * @throws SQLException when SQL query is invalid
    */
   private boolean createGamesTable(Statement statement) throws SQLException {
     // create games table with following fields
@@ -91,7 +91,7 @@ public class SqliteConnection {
    *
    * @param statement to allow sql command to be executed
    * @return whether or not command was successful
-   * @throws SQLException
+   * @throws SQLException when SQL query is invalid
    */
   private boolean createSettingsTable(Statement statement) throws SQLException {
     // create settings table, integers correspond to a difficulty (0=Easy 1=Medium

@@ -68,10 +68,6 @@
   -fx-border-color: #173ab5;
 }
 
-.list-cell {
-  -fx-font: 12px "Comic Sans MS", "Comic Sans", sans-serif;
-}
-
 .combo-box {
   -fx-font: 18px "Comic Sans MS", "Comic Sans", sans-serif;
   -fx-background-color: rgb(190, 199, 255);
@@ -81,6 +77,10 @@
 .combo-box .text-field {
   -fx-background-color: rgb(190, 199, 255);
   -fx-prompt-text-fill: #856ea2;
+}
+
+.list-cell {
+  -fx-font: 12px "Comic Sans MS", "Comic Sans", sans-serif;
 }
 
 .list-view .list-cell:odd {

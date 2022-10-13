@@ -15,6 +15,12 @@ import nz.ac.auckland.se206.util.SqliteConnection;
 
 public class UserStatsDao {
 
+  /**
+   * Returns the number of games in SQLite for a user
+   *
+   * @param userId of given user
+   * @return how many games were found
+   */
   public int countGames(String userId) {
     Connection connection = SqliteConnection.openConnection();
     int count = -1;
@@ -34,6 +40,12 @@ public class UserStatsDao {
     return count;
   }
 
+  /**
+   * Returns the number of winning games from SQlite for a user
+   *
+   * @param userId of given user
+   * @return how many winning games were found
+   */
   public int countWins(String userId) {
     Connection connection = SqliteConnection.openConnection();
     int count = -1;
@@ -53,6 +65,12 @@ public class UserStatsDao {
     return count;
   }
 
+  /**
+   * Return the fastest played game (win result) for a user
+   *
+   * @param userId of given user
+   * @return the game instance
+   */
   public GameModel getBestGame(String userId) {
     Connection connection = SqliteConnection.openConnection();
     GameModel game = null;
@@ -76,6 +94,12 @@ public class UserStatsDao {
     return game;
   }
 
+  /**
+   * Returns all the words played by a user
+   *
+   * @param userId of user
+   * @return list of words
+   */
   public List<String> getWordHistory(String userId) {
     Connection connection = SqliteConnection.openConnection();
     // words from games user has played
@@ -84,6 +108,7 @@ public class UserStatsDao {
       // get word history from oldest to recent
       String query = "SELECT word FROM games WHERE user_id=? ORDER BY id";
       PreparedStatement ps = connection.prepareStatement(query);
+      // input the user you want the history for
       ps.setString(1, userId);
       ResultSet rs = ps.executeQuery();
       while (rs.next()) {
@@ -97,6 +122,12 @@ public class UserStatsDao {
     return words;
   }
 
+  /**
+   * Returns the ten most recently played games for a user
+   *
+   * @param userId of user
+   * @return list of games
+   */
   public List<GameModel> getTen(String userId) {
     Connection connection = SqliteConnection.openConnection();
     List<GameModel> games = new ArrayList<>();
@@ -120,16 +151,15 @@ public class UserStatsDao {
   }
 
   /**
-   * Helper function to convert a game in sql to a game instance
+   * Helper to convert a row (game details) to a game instance
    *
    * @param rs sql table results
    * @return an instance of that game with related fields
    */
   private GameModel getGame(ResultSet rs) {
-    // helper to convert to game instance
     GameModel game = null;
     try {
-      // translate each column to its game field
+      // translate each game detail (id, time, result) to its game field
       game =
           new GameModel(
               rs.getInt("id"),
@@ -144,14 +174,22 @@ public class UserStatsDao {
     return game;
   }
 
+  /**
+   * Helper to convert SQL rows to map
+   *
+   * @param rs a set of SQL rows as a result of a query
+   * @param map where each difficulty contains a list of words of that difficulty
+   * @return the map of difficulty -> words
+   * @throws SQLException if SQL results are invalid
+   */
   private Map<Difficulty, List<String>> rsToMap(ResultSet rs, Map<Difficulty, List<String>> map)
       throws SQLException {
     String word = rs.getString("word");
     // convert difficulty (string) to difficulty (enum)
-    Difficulty gDifficulty = Difficulty.valueOf(rs.getString("difficulty"));
+    Difficulty difficulty = Difficulty.valueOf(rs.getString("difficulty"));
     // initiate list for each key
-    map.computeIfAbsent(gDifficulty, d -> new ArrayList<>());
-    map.get(gDifficulty).add(word);
+    map.computeIfAbsent(difficulty, d -> new ArrayList<>());
+    map.get(difficulty).add(word);
     return map;
   }
 

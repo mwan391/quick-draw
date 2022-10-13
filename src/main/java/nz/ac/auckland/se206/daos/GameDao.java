@@ -147,20 +147,26 @@ public class GameDao {
   }
 
   /**
-   * getter for game session instance
+   * Helper to convert a row (game details) to a game instance
    *
    * @param rs a table of data from a sql query
    * @return instance of game session
-   * @throws SQLException
    */
-  private GameModel getGame(ResultSet rs) throws SQLException {
-    // helper to convert a game row in table to game instance
-    return new GameModel(
-        rs.getInt("id"),
-        rs.getString("user_id"),
-        rs.getString("difficulty"),
-        rs.getString("word"),
-        rs.getBoolean("won"),
-        rs.getInt("time"));
+  private GameModel getGame(ResultSet rs) {
+    GameModel game = null;
+    try {
+      // translate each game detail (id, time, result) to its game field
+      game =
+          new GameModel(
+              rs.getInt("id"),
+              rs.getString("user_id"),
+              rs.getString("difficulty"),
+              rs.getString("word"),
+              rs.getBoolean("won"),
+              rs.getInt("time"));
+    } catch (SQLException e) {
+      Logger.printSqlError(e);
+    }
+    return game;
   }
 }

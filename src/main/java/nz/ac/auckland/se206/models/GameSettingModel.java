@@ -9,6 +9,17 @@ public class GameSettingModel {
   private String accuracy;
   private String confidence;
 
+  /**
+   * This models what how a 'Game Setting' is structured in SQLite, each field is a table column
+   * name title
+   *
+   * @param id auto-incremented id for the setting
+   * @param userId setting for this user
+   * @param words difficulty setting for this
+   * @param time difficulty setting for this
+   * @param accuracy difficulty setting for this
+   * @param confidence difficulty setting for this
+   */
   public GameSettingModel(
       int id, String userId, String words, String time, String accuracy, String confidence) {
     this.id = id;
