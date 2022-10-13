@@ -71,17 +71,6 @@
   -fx-font: 12px "Comic Sans MS", "Comic Sans", sans-serif;
 }
 
-.combo-box {
-  -fx-font: 18px "Comic Sans MS", "Comic Sans", sans-serif;
-  -fx-background-color: rgb(190, 199, 255);
-  -fx-prompt-text-fill: #411a72;
-}
-
-.combo-box .text-field {
-  -fx-background-color: rgb(190, 199, 255);
-  -fx-prompt-text-fill: #856ea2;
-}
-
 .list-view .list-cell:odd {
   -fx-background-color: rgb(190, 199, 255);
 }
@@ -92,14 +81,6 @@
 
 .list-view .list-cell:odd:selected {
   -fx-background-color: rgb(146, 106, 234);
-}
-
-.combo-box .arrow {
-  -fx-background-color: white;
-}
-
-.combo-box .arrow-button {
-  -fx-background-color: #882ff6;
 }
 
 .list-view .list-cell:even {

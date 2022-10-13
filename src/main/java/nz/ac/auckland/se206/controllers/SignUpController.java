@@ -1,10 +1,13 @@
 package nz.ac.auckland.se206.controllers;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import nz.ac.auckland.se206.SceneManager;
@@ -17,8 +20,17 @@ public class SignUpController implements Controller {
 
   @FXML private TextField userEntry;
   @FXML private Label lblWarning;
+  @FXML private ChoiceBox<String> picChooser;
 
   private UserDaoJson userDao = new UserDaoJson();
+
+  public void initialize() {
+    // Loading options for profile picture
+    String picStrings[] = {"boy", "dad", "girl", "mother", "woman"};
+    ObservableList<String> picNames = FXCollections.observableArrayList(picStrings);
+    picChooser.setItems(picNames);
+    picChooser.setValue("boy");
+  }
 
   @FXML
   private void onLogIn(ActionEvent event) {
