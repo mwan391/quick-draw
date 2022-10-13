@@ -10,7 +10,6 @@ import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
-import java.util.Optional;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Platform;
@@ -24,10 +23,10 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonBar.ButtonData;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.Dialog;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.ToggleButton;
@@ -36,6 +35,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
+import javafx.util.Callback;
 import javafx.util.Duration;
 import javax.imageio.ImageIO;
 import nz.ac.auckland.se206.BadgeManager;
@@ -315,7 +315,7 @@ public class CanvasController implements Controller {
   }
 
   private void showNewBadgePopup(int newBadgeCount) {
-    Alert badgePopup = new Alert(AlertType.CONFIRMATION);
+    Dialog<Void> badgePopup = new Dialog<>();
     badgePopup.setTitle("Congratulations!");
     // identify whether 'badge' or 'badges' should be used
     String correctNoun = "";
@@ -328,24 +328,45 @@ public class CanvasController implements Controller {
             + newBadgeCount
             + " new badge"
             + correctNoun
-            + "!\nCheck it out in the Statistics Page!";
+            + ".\nCheck it out in the Statistics Page!\n\nTIP: Hover over the badges to find out more about them";
     badgePopup.setContentText(str);
+    // add buttons
+    ButtonType btnViewBadges = new ButtonType("View Badges", ButtonData.OK_DONE);
+    badgePopup.getDialogPane().getButtonTypes().add(btnViewBadges);
+    ButtonType btnKeepDrawing = new ButtonType("Keep Drawing", ButtonData.CANCEL_CLOSE);
+    badgePopup.getDialogPane().getButtonTypes().add(btnKeepDrawing);
 
-    // show the alert
-    Optional<ButtonType> result = badgePopup.showAndWait();
-    // take screen to statistics page if the user clicks yes
-    if ((result.isPresent()) && (result.get() == ButtonType.OK)) {
-      // get scene source from an arbitrary button on scene
-      // get root and controller for statistics page
-      Scene scene = btnSave.getScene();
-      Parent statsRoot = SceneManager.getUiRoot(AppUi.USER_STATS);
-      StatisticsController statisticsController =
-          (StatisticsController) SceneManager.getController(statsRoot);
+    // change the design
+    badgePopup.setTitle("New Badge" + correctNoun + "!");
 
-      // load the necessary stats and change the scene
-      statisticsController.loadPage();
-      scene.setRoot(statsRoot);
-    }
+    badgePopup.setResultConverter(
+        (Callback<ButtonType, Void>)
+            new Callback<ButtonType, Void>() {
+              @Override
+              public Void call(ButtonType b) {
+
+                if (b == btnViewBadges) {
+                  onViewBadges();
+                }
+
+                return null;
+              }
+            });
+
+    badgePopup.show();
+  }
+
+  private void onViewBadges() {
+    // get scene source from an arbitrary button on scene
+    // get root and controller for statistics page
+    Scene scene = btnSave.getScene();
+    Parent statsRoot = SceneManager.getUiRoot(AppUi.USER_STATS);
+    StatisticsController statisticsController =
+        (StatisticsController) SceneManager.getController(statsRoot);
+
+    // load the necessary stats and change the scene
+    statisticsController.loadPage();
+    scene.setRoot(statsRoot);
   }
 
   /**
