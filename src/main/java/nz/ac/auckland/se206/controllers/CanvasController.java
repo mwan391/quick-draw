@@ -101,6 +101,7 @@ public class CanvasController implements Controller {
 
   // settings
   private int time;
+  private int accuracy;
 
   /**
    * JavaFX calls this method once the GUI elements are loaded. In our case we create a listener for
@@ -189,6 +190,22 @@ public class CanvasController implements Controller {
         break;
       default:
         time = 15;
+        break;
+    }
+
+    // set accuracy settings
+    CategorySelect.Difficulty accuracyDifficulty =
+        CategorySelect.Difficulty.valueOf(userSettings.getAccuracy());
+    // set accuracy according to the setting
+    switch (accuracyDifficulty) {
+      case EASY:
+        accuracy = 3;
+        break;
+      case MEDIUM:
+        accuracy = 2;
+        break;
+      default:
+        accuracy = 1;
         break;
     }
 
@@ -300,7 +317,7 @@ public class CanvasController implements Controller {
     progressMessage.getStyleClass().clear();
     ;
     // change the border color depending on its ranking
-    if (position < 3) {
+    if (position < accuracy) {
       endGame(true);
     } else if (position < 10) {
       pseudoClass = "top10";
