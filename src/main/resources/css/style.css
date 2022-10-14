@@ -154,3 +154,8 @@
   -fx-background-color: transparent;
   -fx-padding: -7;
 }
+
+.tooltip {
+  -fx-font: 16px "Comic Sans MS", "Comic Sans", sans-serif;
+  -fx-background-color: #1739b5bc;
+}
