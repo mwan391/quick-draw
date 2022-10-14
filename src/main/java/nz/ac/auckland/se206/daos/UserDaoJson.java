@@ -109,7 +109,7 @@ public class UserDaoJson {
    * Deletes a user from the JSON file and returns if it was successful
    *
    * @param username of user to remove
-   * @return whether or not deletion was succesful
+   * @return true if deletion was succesful
    */
   public boolean remove(UserModel user) {
     List<UserModel> users = getAll();

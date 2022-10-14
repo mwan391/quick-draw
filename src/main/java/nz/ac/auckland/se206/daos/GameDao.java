@@ -94,19 +94,22 @@ public class GameDao {
   }
 
   /**
-   * Removes any games linked to a given user from SQlite database
+   * Removes any games linked to a given user from Sqlite games database
    *
    * @param user to remove games for
-   * @return whether or not removal was successful
+   * @return true if removal is successful
    */
   public boolean removeGamesFromUser(UserModel user) {
     Connection connection = SqliteConnection.openConnection();
     boolean isRemoved = false;
     try {
+      // Remove the games under user
       String query = "DELETE from games WHERE user_id=?";
       PreparedStatement ps = connection.prepareStatement(query);
+      // Input the user
       ps.setString(1, user.getId());
       ps.executeUpdate();
+      // Removal is succesful
       isRemoved = true;
     } catch (SQLException e) {
       Logger.printSqlError(e);

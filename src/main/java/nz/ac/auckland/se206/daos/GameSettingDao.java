@@ -109,10 +109,13 @@ public class GameSettingDao {
     Connection connection = SqliteConnection.openConnection();
     boolean isRemoved = false;
     try {
+      // Remove any settings under user
       String query = "DELETE from settings WHERE user_id=?";
       PreparedStatement ps = connection.prepareStatement(query);
+      // Input the user
       ps.setString(1, user.getId());
       ps.executeUpdate();
+      // Removal is succesful
       isRemoved = true;
     } catch (SQLException e) {
       Logger.printSqlError(e);
@@ -123,7 +126,6 @@ public class GameSettingDao {
   }
 
   /**
-   * 
    * Helper to convert a game setting (in SQL) to setting instance
    *
    * @param rs rows of settings from a sql query
