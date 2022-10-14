@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import nz.ac.auckland.se206.CategorySelect.Difficulty;
 import nz.ac.auckland.se206.models.GameModel;
+import nz.ac.auckland.se206.models.UserModel;
 import nz.ac.auckland.se206.util.Logger;
 import nz.ac.auckland.se206.util.SqliteConnection;
 
@@ -90,6 +91,32 @@ public class GameDao {
     } finally {
       SqliteConnection.closeConnection(connection);
     }
+  }
+
+  /**
+   * Removes any games linked to a given user from Sqlite games database
+   *
+   * @param user to remove games for
+   * @return true if removal is successful
+   */
+  public boolean removeGamesFromUser(UserModel user) {
+    Connection connection = SqliteConnection.openConnection();
+    boolean isRemoved = false;
+    try {
+      // Remove the games under user
+      String query = "DELETE from games WHERE user_id=?";
+      PreparedStatement ps = connection.prepareStatement(query);
+      // Input the user
+      ps.setString(1, user.getId());
+      ps.executeUpdate();
+      // Removal is succesful
+      isRemoved = true;
+    } catch (SQLException e) {
+      Logger.printSqlError(e);
+    } finally {
+      SqliteConnection.closeConnection(connection);
+    }
+    return isRemoved;
   }
 
   /**

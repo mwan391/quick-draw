@@ -14,6 +14,7 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 import nz.ac.auckland.se206.models.BadgeModel;
 import nz.ac.auckland.se206.models.UserModel;
 
@@ -101,6 +102,40 @@ public class UserDaoJson {
     }
     foundUser.getBadges().add(badge);
     // Save updated user to JSON
+    return saveToFile(users);
+  }
+
+  /**
+   * Deletes a user from the JSON file and returns if it was successful
+   *
+   * @param username of user to remove
+   * @return true if deletion was succesful
+   */
+  public boolean remove(UserModel user) {
+    List<UserModel> users = getAll();
+    int originalSize = users.size();
+    // Filter all users except for the one specified
+    List<UserModel> updatedUsers =
+        users.stream()
+            .filter(u -> !Objects.equals(user.getUsername(), u.getUsername()))
+            .collect(Collectors.toCollection(ArrayList::new));
+    // If username could not be found
+    if (updatedUsers.size() == originalSize) {
+      return false;
+    }
+    // Update new users to JSON
+    return saveToFile(updatedUsers);
+  }
+
+  /**
+   * Removes all saved users from JSON file
+   *
+   * @return whether or not removal was successful
+   */
+  public boolean removeAll() {
+    // Create an empty list
+    List<UserModel> users = new ArrayList<>();
+    // Update file to be empty
     return saveToFile(users);
   }
 

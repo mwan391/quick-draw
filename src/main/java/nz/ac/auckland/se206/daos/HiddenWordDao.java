@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import nz.ac.auckland.se206.models.UserModel;
 import nz.ac.auckland.se206.util.Logger;
 import nz.ac.auckland.se206.util.SqliteConnection;
 
@@ -68,5 +69,31 @@ public class HiddenWordDao {
       SqliteConnection.closeConnection(connection);
     }
     return words;
+  }
+
+  /**
+   * Removes hidden word entries linked to a user in hidden_words Sqlite databse
+   *
+   * @param user of removed user
+   * @return true if removal of settings was succesful
+   */
+  public boolean removeHiddenWordsFromUser(UserModel user) {
+    Connection connection = SqliteConnection.openConnection();
+    boolean isRemoved = false;
+    try {
+      // Remove hidden words under user
+      String query = "DELETE from hidden_words WHERE user_id=?";
+      PreparedStatement ps = connection.prepareStatement(query);
+      // Input the user
+      ps.setString(1, user.getId());
+      ps.executeUpdate();
+      // Removal is succesful
+      isRemoved = true;
+    } catch (SQLException e) {
+      Logger.printSqlError(e);
+    } finally {
+      SqliteConnection.closeConnection(connection);
+    }
+    return isRemoved;
   }
 }

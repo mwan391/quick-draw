@@ -8,16 +8,11 @@ import java.sql.Statement;
 public class SqliteConnection {
 
   private static final String URL = "jdbc:sqlite:database.db";
-  private static SqliteConnection instance = new SqliteConnection();
 
   /** connect game to backend to access all locally stored data */
   public static void start() {
     SqliteConnection connectionToDb = new SqliteConnection();
     connectionToDb.createTables();
-  }
-
-  public static SqliteConnection getInstance() throws SQLException {
-    return instance;
   }
 
   /**
@@ -64,6 +59,51 @@ public class SqliteConnection {
       createSettingsTable(statement);
       // storing words for Hidden Game Mode
       createWordsTable(statement);
+    } catch (SQLException e) {
+      Logger.printSqlError(e);
+    } finally {
+      closeConnection(connection);
+    }
+  }
+
+  /**
+   * Removes all rows (data) for a database table
+   *
+   * @param tableName of given table
+   * @return the given SQL query command
+   */
+  private static String removeAllEntities(String tableName) {
+    StringBuilder sb = new StringBuilder("DELETE FROM ");
+    return sb.append(tableName).toString();
+  }
+
+  /**
+   * Resets autoincrement for SQLite databases so that the column ID start from 1 again
+   *
+   * @param tableName of given table
+   * @return the given SQL query command
+   */
+  private static String resetAutoIncrement(String tableName) {
+    StringBuilder sb = new StringBuilder("DELETE FROM sqlite_sequence WHERE name='");
+    return sb.append(tableName).append("'").toString();
+  }
+
+  /**
+   * Deletes all data from a given database
+   *
+   * @param tableName of table to remove
+   */
+  public static void clearTable(String tableName) {
+    Connection connection = null;
+    try {
+      connection = openConnection();
+      Statement statement = connection.createStatement();
+      // delete all data under the table
+      statement.addBatch(removeAllEntities(tableName));
+      // reset the auto increment for id to start from 1
+      statement.addBatch(resetAutoIncrement(tableName));
+      // run both commands
+      statement.executeBatch();
     } catch (SQLException e) {
       Logger.printSqlError(e);
     } finally {
