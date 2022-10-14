@@ -131,7 +131,7 @@
                            <graphic>
                               <ImageView fitHeight="80.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../images/badges/badge0.png" />
+                                    <Image url="@../images/badges/placeholder.png" />
                                  </image>
                                  <viewport>
                                     <Rectangle2D />
@@ -263,7 +263,7 @@
                            <graphic>
                               <ImageView fitHeight="80.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../images/badges/placeholder.png" />
+                                    <Image url="@../images/badges/badge6.png" />
                                  </image>
                                  <viewport>
                                     <Rectangle2D />
@@ -285,7 +285,7 @@
                            <graphic>
                               <ImageView fitHeight="80.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../images/badges/placeholder.png" />
+                                    <Image url="@../images/badges/badge7.png" />
                                  </image>
                                  <viewport>
                                     <Rectangle2D />
@@ -307,7 +307,7 @@
                            <graphic>
                               <ImageView fitHeight="80.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../images/badges/placeholder.png" />
+                                    <Image url="@../images/badges/badge8.png" />
                                  </image>
                                  <viewport>
                                     <Rectangle2D />
@@ -329,7 +329,7 @@
                            <graphic>
                               <ImageView fitHeight="80.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../images/badges/placeholder.png" />
+                                    <Image url="@../images/badges/badge9.png" />
                                  </image>
                                  <viewport>
                                     <Rectangle2D />
@@ -351,7 +351,7 @@
                            <graphic>
                               <ImageView fitHeight="80.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../images/badges/placeholder.png" />
+                                    <Image url="@../images/badges/badge10.png" />
                                  </image>
                                  <viewport>
                                     <Rectangle2D />
@@ -373,7 +373,7 @@
                            <graphic>
                               <ImageView fitHeight="80.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../images/badges/placeholder.png" />
+                                    <Image url="@../images/badges/badge11.png" />
                                  </image>
                                  <viewport>
                                     <Rectangle2D />
@@ -395,7 +395,7 @@
                            <graphic>
                               <ImageView fitHeight="80.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../images/badges/placeholder.png" />
+                                    <Image url="@../images/badges/badge12.png" />
                                  </image>
                                  <viewport>
                                     <Rectangle2D />
@@ -417,7 +417,7 @@
                            <graphic>
                               <ImageView fitHeight="80.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../images/badges/placeholder.png" />
+                                    <Image url="@../images/badges/badge13.png" />
                                  </image>
                                  <viewport>
                                     <Rectangle2D />
@@ -439,7 +439,7 @@
                            <graphic>
                               <ImageView fitHeight="80.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../images/badges/placeholder.png" />
+                                    <Image url="@../images/badges/badge14.png" />
                                  </image>
                                  <viewport>
                                     <Rectangle2D />
