@@ -45,7 +45,9 @@ import nz.ac.auckland.se206.CategorySelect;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.daos.GameDao;
+import nz.ac.auckland.se206.daos.GameSettingDao;
 import nz.ac.auckland.se206.ml.DoodlePrediction;
+import nz.ac.auckland.se206.models.GameSettingModel;
 import nz.ac.auckland.se206.models.UserModel;
 import nz.ac.auckland.se206.speech.TextToSpeech;
 
@@ -96,6 +98,9 @@ public class CanvasController implements Controller {
   private String activeUserId;
   private int activeGameId;
   private CategorySelect.Difficulty actualDifficulty;
+
+  // settings
+  private int time;
 
   /**
    * JavaFX calls this method once the GUI elements are loaded. In our case we create a listener for
@@ -160,8 +165,34 @@ public class CanvasController implements Controller {
 
   /**
    * This method clears the scene and presses the new game button once to simulate a new game screen
+   * and applies the selected user settings
    */
   public void initializeGame() {
+    // get settings
+    activeUserId = UserModel.getActiveUser().getId();
+    GameSettingDao settingDao = new GameSettingDao();
+    GameSettingModel userSettings = settingDao.get(activeUserId);
+
+    // set time settings
+    CategorySelect.Difficulty timeDifficulty =
+        CategorySelect.Difficulty.valueOf(userSettings.getTime());
+    // set time according to the setting
+    switch (timeDifficulty) {
+      case EASY:
+        time = 60;
+        break;
+      case MEDIUM:
+        time = 45;
+        break;
+      case HARD:
+        time = 30;
+        break;
+      default:
+        time = 15;
+        break;
+    }
+
+    // set the page as it should look like and generate the word
     resetGame();
     btnNewGame.fire();
   }
@@ -178,11 +209,10 @@ public class CanvasController implements Controller {
     category = CategorySelect.getCategory();
     lblCategory.setText("Draw: " + category);
     // create new game database object
-    activeUserId = UserModel.getActiveUser().getId();
     activeGameId = gameDao.addNewGame(activeUserId, actualDifficulty, category);
     // set up what to do every second
     timer = new Timeline(new KeyFrame(Duration.seconds(1), e -> changeTime()));
-    timer.setCycleCount(60);
+    timer.setCycleCount(time);
     timer.setOnFinished(
         e -> {
           endGame(false);
@@ -317,7 +347,7 @@ public class CanvasController implements Controller {
 
     // update current game stats
     gameDao.setWon(wonGame, activeGameId);
-    gameDao.setTime((60 - Integer.valueOf(lblTimer.getText())), activeGameId);
+    gameDao.setTime((time - Integer.valueOf(lblTimer.getText())), activeGameId);
 
     // check for badges
     UserModel activeUser = UserModel.getActiveUser();
@@ -471,7 +501,7 @@ public class CanvasController implements Controller {
     switchToPen();
     eraserMessage.setText("Eraser OFF");
     btnToggleEraser.setSelected(false);
-    lblTimer.setText("60");
+    lblTimer.setText(String.valueOf(time));
     hbxGameEnd.setVisible(false);
     hbxDrawTools.setVisible(false);
     hbxNewGame.setVisible(true);
