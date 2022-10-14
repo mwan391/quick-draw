@@ -75,7 +75,7 @@
 }
 
 .combo-box .text-field {
-  -fx-background-color: rgb(190, 199, 255);
+  -fx-background-color: #bec7ff;
   -fx-prompt-text-fill: #856ea2;
 }
 
@@ -84,7 +84,7 @@
 }
 
 .list-view .list-cell:odd {
-  -fx-background-color: rgb(190, 199, 255);
+  -fx-background-color: #bec7ff;
 }
 
 .list-view .list-cell:odd:hover {
@@ -158,4 +158,37 @@
 .tooltip {
   -fx-font: 16px "Comic Sans MS", "Comic Sans", sans-serif;
   -fx-background-color: #1739b5bc;
+}
+
+.scroll-bar:horizontal {
+  -fx-background-color:  #882FF6;
+}
+
+.increment-button, .decrement-button {
+  -fx-background-color: transparent;
+  -fx-border-color: white;
+  -fx-border-width: 0px,3px,0px,0px;
+}
+
+.increment-arrow, .decrement-arrow {
+  -fx-background-color: white;
+}
+
+.scroll-bar:horizontal .thumb {
+    -fx-background-color: white;
+    -fx-background-radius: 20px;
+}
+
+#badge-box{
+  -fx-background-color: transparent;
+}
+
+.scroll-pane > .viewport  { 
+  -fx-background-color: #bec7ff;
+  -fx-background-image: url("/images/badgeviewbg.jpg");
+}
+
+.scroll-pane  { 
+  -fx-background-color: transparent;
+  -fx-border-color: transparent;
 }
