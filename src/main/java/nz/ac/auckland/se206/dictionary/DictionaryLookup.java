@@ -40,7 +40,7 @@ public class DictionaryLookup {
    * @param difficulty the word setting difficulty
    * @return the Word object (includes the word and its definition)
    */
-  public WordInfo getDefinitionOfLevel(Difficulty difficulty) {
+  public WordInfo generateWordInLevel(Difficulty difficulty) {
     // Return a WordInfo object of specified difficulty
     switch (difficulty) {
       case EASY:
