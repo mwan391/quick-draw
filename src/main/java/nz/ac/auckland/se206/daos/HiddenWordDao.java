@@ -18,7 +18,7 @@ public class HiddenWordDao {
    * @param word to be added
    * @return unique id for the word
    */
-  public int add(String userId, String word) {
+  public int add(String word, String userId) {
     Connection connection = SqliteConnection.openConnection();
     int id = 0;
     try {
@@ -50,7 +50,7 @@ public class HiddenWordDao {
    */
   public List<String> getWordHistory(String userId) {
     Connection connection = SqliteConnection.openConnection();
-    // words from games user has played
+    // words from hidden-mode games
     List<String> words = new ArrayList<>();
     try {
       // get word history from oldest to recent
