@@ -102,6 +102,7 @@ public class CanvasController implements Controller {
   // settings
   private int time;
   private int accuracy;
+  private int confidence;
 
   /**
    * JavaFX calls this method once the GUI elements are loaded. In our case we create a listener for
@@ -209,6 +210,25 @@ public class CanvasController implements Controller {
         break;
     }
 
+    // set confidence settings
+    CategorySelect.Difficulty confidenceDifficulty =
+        CategorySelect.Difficulty.valueOf(userSettings.getConfidence());
+    // set confidence according to the setting
+    switch (confidenceDifficulty) {
+      case EASY:
+        confidence = 1;
+        break;
+      case MEDIUM:
+        confidence = 10;
+        break;
+      case HARD:
+        confidence = 25;
+        break;
+      default:
+        confidence = 50;
+        break;
+    }
+
     // set the page as it should look like and generate the word
     resetGame();
     btnNewGame.fire();
@@ -277,8 +297,9 @@ public class CanvasController implements Controller {
       // format the string and replace the underscores with a space
       String categoryClass = classification.getClassName().replace('_', ' ');
       if (category.equals(categoryClass)) {
-        // check if player won (guess is correct within the top three)
-        checkCategoryPosition(i);
+        // check if player won (guess is correct within the top three and within
+        // confidence range)
+        checkCategoryPosition(i, classification.getProbability());
       }
       i++;
     }
@@ -307,17 +328,21 @@ public class CanvasController implements Controller {
    * reflect that
    *
    * @param position of the category word
+   * @param confidenceDecimal percent of guess in decimal form
    */
-  private void checkCategoryPosition(int position) {
+  private void checkCategoryPosition(int position, double confidenceDecimal) {
     // this determines which style class to use
     String pseudoClass = null;
     String messageClass = null;
     // remove border color when cateogry is outside any ranking
     canvasPane.getStyleClass().clear();
     progressMessage.getStyleClass().clear();
-    ;
+    // update confidence to 0dp and in percentage form
+    int confidencePercent = (int) Math.round(100 * confidenceDecimal);
     // change the border color depending on its ranking
-    if (position < accuracy) {
+    if ((position < accuracy) && (confidencePercent >= confidence)) {
+      // finish the game if and only if the guess is within the accuracy range and the
+      // confidence range
       endGame(true);
     } else if (position < 10) {
       pseudoClass = "top10";
