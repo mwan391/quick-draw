@@ -118,7 +118,7 @@ public class SqliteConnection {
     StringBuilder sb = new StringBuilder("CREATE TABLE IF NOT EXISTS hidden_words ");
     sb.append("(id INTEGER PRIMARY KEY AUTOINCREMENT, ");
     sb.append("user_id STRING, ");
-    sb.append("words TEXT);");
+    sb.append("word TEXT);");
     return statement.execute(sb.toString());
   }
 }

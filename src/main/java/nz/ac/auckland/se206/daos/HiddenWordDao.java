@@ -23,7 +23,7 @@ public class HiddenWordDao {
     int id = 0;
     try {
       // add new row to table
-      String query = "INSERT INTO words (user_id, word) VALUES (?,?)";
+      String query = "INSERT INTO hidden_words (user_id, word) VALUES (?,?)";
       PreparedStatement ps = connection.prepareStatement(query);
       // set paramaters (column titles) to add into the table
       ps.setString(1, userId);
@@ -54,7 +54,7 @@ public class HiddenWordDao {
     List<String> words = new ArrayList<>();
     try {
       // get word history from oldest to recent
-      String query = "SELECT word FROM words WHERE user_id=? ORDER BY id";
+      String query = "SELECT word FROM hidden_words WHERE user_id=? ORDER BY id";
       PreparedStatement ps = connection.prepareStatement(query);
       // input the user you want the history for
       ps.setString(1, userId);
