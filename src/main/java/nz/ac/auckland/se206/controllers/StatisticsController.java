@@ -88,21 +88,26 @@ public class StatisticsController implements Controller {
     ArrayList<Button> allBadgeButtons = new ArrayList<>();
     Collections.addAll(
         allBadgeButtons,
+        // beginner badges
         badge0,
         badge1,
         badge2,
+        // speed badges
         badge3,
         badge4,
         badge5,
         badge6,
+        // settings badges
         badge7,
         badge8,
         badge9,
         badge10,
+        // words badges
         badge11,
         badge12,
         badge13,
         badge14,
+        // quantity of games
         badge15,
         badge16,
         badge17,
@@ -151,11 +156,12 @@ public class StatisticsController implements Controller {
    * unlocked the badge
    */
   private void setBadges() {
-    // update json file model
+    // update to the latest json file model
     UserDaoJson userDao = new UserDaoJson();
     UserModel updatedUser = userDao.get(activeUser.getUsername());
     List<BadgeModel> userBadges = updatedUser.getBadges();
 
+    // enable all badges the user has, disable everything else
     for (BadgeModel badge : badgeToButtonMap.keySet()) {
       if (userBadges.contains(badge)) {
         badgeToButtonMap.get(badge).setDisable(false);
