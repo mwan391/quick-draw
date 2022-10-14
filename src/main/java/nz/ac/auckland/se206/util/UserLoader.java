@@ -23,10 +23,10 @@ public class UserLoader {
    * @return whether or not file was found
    */
   private boolean existingFileExists() {
-    System.out.println("Checking for existing JSON file");
+    System.out.println("Checking for existing Users JSON file");
     Path path = Paths.get(FILE_NAME);
     if (Files.exists(path) && Files.isRegularFile(path)) {
-      System.out.println("Valid JSON file found");
+      System.out.println("Valid Users JSON file found");
       return true;
     } else {
       System.out.println("Invalid file or JSON not found");
