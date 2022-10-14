@@ -153,7 +153,7 @@
                            <graphic>
                               <ImageView fitHeight="80.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../images/badges/placeholder.png" />
+                                    <Image url="@../images/badges/badge1.png" />
                                  </image>
                                  <viewport>
                                     <Rectangle2D />
@@ -175,7 +175,7 @@
                            <graphic>
                               <ImageView fitHeight="80.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../images/badges/placeholder.png" />
+                                    <Image url="@../images/badges/badge2.png" />
                                  </image>
                                  <viewport>
                                     <Rectangle2D />
@@ -197,7 +197,7 @@
                            <graphic>
                               <ImageView fitHeight="80.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../images/badges/placeholder.png" />
+                                    <Image url="@../images/badges/badge3.png" />
                                  </image>
                                  <viewport>
                                     <Rectangle2D />
@@ -219,7 +219,7 @@
                            <graphic>
                               <ImageView fitHeight="80.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../images/badges/placeholder.png" />
+                                    <Image url="@../images/badges/badge4.png" />
                                  </image>
                                  <viewport>
                                     <Rectangle2D />
@@ -241,7 +241,7 @@
                            <graphic>
                               <ImageView fitHeight="80.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../images/badges/placeholder.png" />
+                                    <Image url="@../images/badges/badge5.png" />
                                  </image>
                                  <viewport>
                                     <Rectangle2D />
