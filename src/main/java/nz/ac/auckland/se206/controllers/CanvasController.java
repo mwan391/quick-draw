@@ -158,12 +158,19 @@ public class CanvasController implements Controller {
     return imageBinary;
   }
 
+  /**
+   * This method clears the scene and presses the new game button once to simulate a new game screen
+   */
   public void initializeGame() {
     resetGame();
     btnNewGame.fire();
   }
 
-  public void startTimer() throws SQLException {
+  /**
+   * This method sets the scene to what it looks like when running, sets up the timer and events,
+   * and formally starts the game
+   */
+  private void startTimer() {
     // set up the label and enable canvas
     isFinished = false;
     canvas.setDisable(false);
@@ -184,10 +191,14 @@ public class CanvasController implements Controller {
     runPredictionsInBkg();
   }
 
+  /**
+   * When triggered, this method updates the timer label in the scene by decrementing by one value
+   */
   private void changeTime() {
     lblTimer.setText(String.valueOf(Integer.valueOf(lblTimer.getText()) - 1));
   }
 
+  /** this method gets retrieves the ai predictions and adds them into a list */
   private void triggerPredict() {
 
     if (isFinished) {
@@ -226,6 +237,13 @@ public class CanvasController implements Controller {
     }
   }
 
+  /**
+   * This method formats the given prediction classification into a reader friendly string
+   *
+   * @param classification of the prediction to be formatted
+   * @param index number of top guesses
+   * @return the formatted string
+   */
   private String formatPrediction(Classification classification, int index) {
     StringBuilder sb = new StringBuilder();
     // format the string and replace the underscores with a space
@@ -237,6 +255,12 @@ public class CanvasController implements Controller {
     return sb.toString();
   }
 
+  /**
+   * This method identifies how close the game is to finishing, and updates the canvas frame to
+   * reflect that
+   *
+   * @param position of the category word
+   */
   private void checkCategoryPosition(int position) {
     // this determines which style class to use
     String pseudoClass = null;
@@ -274,6 +298,13 @@ public class CanvasController implements Controller {
     progressMessage.getStyleClass().add(messageClass);
   }
 
+  /**
+   * This method sets the scene to what it should look like when the game ends, regardless of win
+   * status. Also checks for new badges, and will show a popup if the user unlocks one or more
+   * badges.
+   *
+   * @param wonGame boolean. true if won, false otherwise
+   */
   private void endGame(Boolean wonGame) {
     // lock the drawing and stop timer
     canvas.setOnMouseDragged(e -> {});
@@ -316,6 +347,13 @@ public class CanvasController implements Controller {
     }
   }
 
+  /**
+   * This method creates and formats a pop up dialog box that displays the number of new badges
+   * received by the player. the pop up has the options to move to the statistics page or stay at
+   * the current page.
+   *
+   * @param newBadgeCount
+   */
   private void showNewBadgePopup(int newBadgeCount) {
     Dialog<Void> badgePopup = new Dialog<>();
     badgePopup.setTitle("Congratulations!");
@@ -368,6 +406,7 @@ public class CanvasController implements Controller {
     badgePopup.show();
   }
 
+  /** This method loads then takes the user to the statistics page */
   private void onViewBadges() {
     // get scene source from an arbitrary button on scene
     // get root and controller for statistics page
@@ -409,6 +448,11 @@ public class CanvasController implements Controller {
     }
   }
 
+  /**
+   * This method takes the user back to the category select page and resets the canvas page
+   *
+   * @param event
+   */
   @FXML
   private void onReturnToMenu(ActionEvent event) {
     resetGame();
@@ -418,9 +462,10 @@ public class CanvasController implements Controller {
     scene.setRoot(SceneManager.getUiRoot(AppUi.CATEGORY_SELECT));
 
     // repeat instructions
-    TextToSpeech.main(new String[] {"Pick a difficulty"});
+    TextToSpeech.main(new String[] {"Choose a difficulty"});
   }
 
+  /** This method reverts everything to it's initial state as seen when first entering the scene */
   private void resetGame() {
     // reset timer and re-enable the drawing tools
     switchToPen();
@@ -440,6 +485,11 @@ public class CanvasController implements Controller {
     progressMessage.getStyleClass().add("defaultMessage");
   }
 
+  /**
+   * This method depends on the status of the togglable button it is assigned to. The first click
+   * will set the cursor to the eraser, and the second will return to a pen. The label is updated as
+   * suitable.
+   */
   @FXML
   private void onToggleEraser() {
 
@@ -455,6 +505,13 @@ public class CanvasController implements Controller {
     }
   }
 
+  /**
+   * This method depends on the toggleable button it is assigned to. The first click will reset the
+   * scene back to it's initial state as if seeing it for the first time, and the second will start
+   * the game.
+   *
+   * @throws SQLException
+   */
   @FXML
   private void onNewGame() throws SQLException {
     if (btnNewGame.isSelected()) {
@@ -477,6 +534,7 @@ public class CanvasController implements Controller {
     }
   }
 
+  /** This method switches the cursor to a small paint-brush effect on the canvas with black ink. */
   private void switchToPen() {
     canvas.setOnMouseDragged(
         e -> {
@@ -499,6 +557,7 @@ public class CanvasController implements Controller {
         });
   }
 
+  /** This method changes the cursor to a large eraser like effect on the canvas */
   private void switchToEraser() {
     canvas.setOnMouseDragged(
         e -> {
@@ -517,6 +576,10 @@ public class CanvasController implements Controller {
         });
   }
 
+  /**
+   * This method runs the prediction service on a background task every second until the game is set
+   * as finished.
+   */
   private void runPredictionsInBkg() {
     // run the predictions on a background thread to avoid lag
     Task<Void> backgroundTask =
