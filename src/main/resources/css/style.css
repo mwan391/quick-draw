@@ -148,3 +148,9 @@
   -fx-background-color:  #882FF6;
   -fx-text-fill: white;
 }
+
+#badge-button {
+  -fx-border-radius: 100%;
+  -fx-background-color: transparent;
+  -fx-padding: -7;
+}

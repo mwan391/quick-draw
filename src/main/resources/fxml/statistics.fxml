@@ -123,15 +123,15 @@
       </HBox>
       <ScrollPane fx:id="spnBadgeView" layoutX="74.0" layoutY="402.0" prefHeight="100.0" prefWidth="574.0">
          <content>
-            <HBox spacing="10.0">
+            <HBox alignment="CENTER_LEFT" spacing="10.0">
                <children>
                   <Label fx:id="badgeDescription0">
                      <graphic>
-                        <Button fx:id="badge0" mnemonicParsing="false" onAction="#onPressBadge">
+                        <Button id="badge-button" fx:id="badge0" mnemonicParsing="false" onAction="#onPressBadge">
                            <graphic>
-                              <ImageView fitHeight="65.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fitHeight="80.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../images/badges/placeholder.png" />
+                                    <Image url="@../images/badges/badge0.png" />
                                  </image>
                                  <viewport>
                                     <Rectangle2D />
@@ -149,9 +149,9 @@
                   </Label>
                   <Label>
                      <graphic>
-                        <Button fx:id="badge1" mnemonicParsing="false" onAction="#onPressBadge">
+                        <Button id="badge-button" fx:id="badge1" mnemonicParsing="false" onAction="#onPressBadge">
                            <graphic>
-                              <ImageView fitHeight="65.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fitHeight="80.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../images/badges/placeholder.png" />
                                  </image>
@@ -171,9 +171,9 @@
                   </Label>
                   <Label>
                      <graphic>
-                        <Button fx:id="badge2" mnemonicParsing="false" onAction="#onPressBadge">
+                        <Button id="badge-button" fx:id="badge2" mnemonicParsing="false" onAction="#onPressBadge">
                            <graphic>
-                              <ImageView fitHeight="65.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fitHeight="80.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../images/badges/placeholder.png" />
                                  </image>
@@ -193,9 +193,9 @@
                   </Label>
                   <Label>
                      <graphic>
-                        <Button fx:id="badge3" mnemonicParsing="false" onAction="#onPressBadge">
+                        <Button id="badge-button" fx:id="badge3" mnemonicParsing="false" onAction="#onPressBadge">
                            <graphic>
-                              <ImageView fitHeight="65.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fitHeight="80.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../images/badges/placeholder.png" />
                                  </image>
@@ -215,9 +215,9 @@
                   </Label>
                   <Label>
                      <graphic>
-                        <Button fx:id="badge4" mnemonicParsing="false" onAction="#onPressBadge">
+                        <Button id="badge-button" fx:id="badge4" mnemonicParsing="false" onAction="#onPressBadge">
                            <graphic>
-                              <ImageView fitHeight="65.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fitHeight="80.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../images/badges/placeholder.png" />
                                  </image>
@@ -237,9 +237,9 @@
                   </Label>
                   <Label>
                      <graphic>
-                        <Button fx:id="badge5" mnemonicParsing="false" onAction="#onPressBadge">
+                        <Button id="badge-button" fx:id="badge5" mnemonicParsing="false" onAction="#onPressBadge">
                            <graphic>
-                              <ImageView fitHeight="65.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fitHeight="80.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../images/badges/placeholder.png" />
                                  </image>
@@ -259,9 +259,9 @@
                   </Label>
                   <Label>
                      <graphic>
-                        <Button fx:id="badge6" mnemonicParsing="false" onAction="#onPressBadge">
+                        <Button id="badge-button" fx:id="badge6" mnemonicParsing="false" onAction="#onPressBadge">
                            <graphic>
-                              <ImageView fitHeight="65.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fitHeight="80.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../images/badges/placeholder.png" />
                                  </image>
@@ -281,9 +281,9 @@
                   </Label>
                   <Label>
                      <graphic>
-                        <Button fx:id="badge7" mnemonicParsing="false" onAction="#onPressBadge">
+                        <Button id="badge-button" fx:id="badge7" mnemonicParsing="false" onAction="#onPressBadge">
                            <graphic>
-                              <ImageView fitHeight="65.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fitHeight="80.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../images/badges/placeholder.png" />
                                  </image>
@@ -303,9 +303,9 @@
                   </Label>
                   <Label>
                      <graphic>
-                        <Button fx:id="badge8" mnemonicParsing="false" onAction="#onPressBadge">
+                        <Button id="badge-button" fx:id="badge8" mnemonicParsing="false" onAction="#onPressBadge">
                            <graphic>
-                              <ImageView fitHeight="65.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fitHeight="80.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../images/badges/placeholder.png" />
                                  </image>
@@ -325,9 +325,9 @@
                   </Label>
                   <Label>
                      <graphic>
-                        <Button fx:id="badge9" mnemonicParsing="false" onAction="#onPressBadge">
+                        <Button id="badge-button" fx:id="badge9" mnemonicParsing="false" onAction="#onPressBadge">
                            <graphic>
-                              <ImageView fitHeight="65.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fitHeight="80.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../images/badges/placeholder.png" />
                                  </image>
@@ -347,9 +347,9 @@
                   </Label>
                   <Label>
                      <graphic>
-                        <Button fx:id="badge10" mnemonicParsing="false" onAction="#onPressBadge">
+                        <Button id="badge-button" fx:id="badge10" mnemonicParsing="false" onAction="#onPressBadge">
                            <graphic>
-                              <ImageView fitHeight="65.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fitHeight="80.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../images/badges/placeholder.png" />
                                  </image>
@@ -369,9 +369,9 @@
                   </Label>
                   <Label>
                      <graphic>
-                        <Button fx:id="badge11" mnemonicParsing="false" onAction="#onPressBadge">
+                        <Button id="badge-button" fx:id="badge11" mnemonicParsing="false" onAction="#onPressBadge">
                            <graphic>
-                              <ImageView fitHeight="65.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fitHeight="80.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../images/badges/placeholder.png" />
                                  </image>
@@ -389,11 +389,11 @@
                         <Tooltip fx:id="badgeDescription102" text="Easy Ace!&#10;&#10;Keep playing to unlock this badge!" />
                      </tooltip>
                   </Label>
-                  <Label>
+                  <Label id="badge-button">
                      <graphic>
-                        <Button fx:id="badge12" mnemonicParsing="false" onAction="#onPressBadge">
+                        <Button id="badge-button" fx:id="badge12" mnemonicParsing="false" onAction="#onPressBadge">
                            <graphic>
-                              <ImageView fitHeight="65.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fitHeight="80.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../images/badges/placeholder.png" />
                                  </image>
@@ -413,9 +413,9 @@
                   </Label>
                   <Label>
                      <graphic>
-                        <Button fx:id="badge13" mnemonicParsing="false" onAction="#onPressBadge">
+                        <Button id="badge-button" fx:id="badge13" mnemonicParsing="false" onAction="#onPressBadge">
                            <graphic>
-                              <ImageView fitHeight="65.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fitHeight="80.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../images/badges/placeholder.png" />
                                  </image>
@@ -435,9 +435,9 @@
                   </Label>
                   <Label>
                      <graphic>
-                        <Button fx:id="badge14" mnemonicParsing="false" onAction="#onPressBadge">
+                        <Button id="badge-button" fx:id="badge14" mnemonicParsing="false" onAction="#onPressBadge">
                            <graphic>
-                              <ImageView fitHeight="65.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fitHeight="80.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../images/badges/placeholder.png" />
                                  </image>
@@ -457,9 +457,9 @@
                   </Label>
                   <Label>
                      <graphic>
-                        <Button fx:id="badge15" mnemonicParsing="false" onAction="#onPressBadge">
+                        <Button id="badge-button" fx:id="badge15" mnemonicParsing="false" onAction="#onPressBadge">
                            <graphic>
-                              <ImageView fitHeight="65.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fitHeight="80.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../images/badges/placeholder.png" />
                                  </image>
@@ -479,9 +479,9 @@
                   </Label>
                   <Label>
                      <graphic>
-                        <Button fx:id="badge16" mnemonicParsing="false" onAction="#onPressBadge">
+                        <Button id="badge-button" fx:id="badge16" mnemonicParsing="false" onAction="#onPressBadge">
                            <graphic>
-                              <ImageView fitHeight="65.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fitHeight="80.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../images/badges/placeholder.png" />
                                  </image>
@@ -501,9 +501,9 @@
                   </Label>
                   <Label>
                      <graphic>
-                        <Button fx:id="badge17" mnemonicParsing="false" onAction="#onPressBadge">
+                        <Button id="badge-button" fx:id="badge17" mnemonicParsing="false" onAction="#onPressBadge">
                            <graphic>
-                              <ImageView fitHeight="65.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fitHeight="80.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../images/badges/placeholder.png" />
                                  </image>
@@ -523,9 +523,9 @@
                   </Label>
                   <Label>
                      <graphic>
-                        <Button fx:id="badge18" mnemonicParsing="false" onAction="#onPressBadge">
+                        <Button id="badge-button" fx:id="badge18" mnemonicParsing="false" onAction="#onPressBadge">
                            <graphic>
-                              <ImageView fitHeight="65.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fitHeight="80.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../images/badges/placeholder.png" />
                                  </image>
@@ -545,9 +545,9 @@
                   </Label>
                   <Label>
                      <graphic>
-                        <Button fx:id="badge19" mnemonicParsing="false" onAction="#onPressBadge">
+                        <Button id="badge-button" fx:id="badge19" mnemonicParsing="false" onAction="#onPressBadge">
                            <graphic>
-                              <ImageView fitHeight="65.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fitHeight="80.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../images/badges/placeholder.png" />
                                  </image>
