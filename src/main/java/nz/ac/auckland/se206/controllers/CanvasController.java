@@ -8,7 +8,6 @@ import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.sql.SQLException;
 import java.util.List;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -521,14 +520,12 @@ public class CanvasController implements Controller {
   }
 
   /**
-   * This method takes the user back to the category select page and resets the canvas page
+   * This method takes the user back to the category select, changing the scene where the button is
    *
-   * @param event
+   * @param event that triggers this call
    */
   @FXML
   private void onReturnToMenu(ActionEvent event) {
-    resetGame();
-    hbxNewGame.setVisible(false);
 
     Scene scene = ((Button) event.getSource()).getScene();
     scene.setRoot(SceneManager.getUiRoot(AppUi.CATEGORY_SELECT));
@@ -581,11 +578,9 @@ public class CanvasController implements Controller {
    * This method depends on the toggleable button it is assigned to. The first click will reset the
    * scene back to it's initial state as if seeing it for the first time, and the second will start
    * the game.
-   *
-   * @throws SQLException
    */
   @FXML
-  private void onNewGame() throws SQLException {
+  private void onNewGame() {
     if (btnNewGame.isSelected()) {
       // clear the canvas and timer
       resetGame();
