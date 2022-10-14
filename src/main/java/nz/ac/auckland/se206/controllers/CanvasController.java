@@ -19,10 +19,16 @@ import javafx.concurrent.Task;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonBar;
+import javafx.scene.control.ButtonBar.ButtonData;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.Dialog;
+import javafx.scene.control.DialogPane;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.ToggleButton;
@@ -31,6 +37,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
+import javafx.util.Callback;
 import javafx.util.Duration;
 import javax.imageio.ImageIO;
 import nz.ac.auckland.se206.BadgeManager;
@@ -283,25 +290,95 @@ public class CanvasController implements Controller {
 
     // check for badges
     UserModel activeUser = UserModel.getActiveUser();
-    BadgeManager.checkNewBadges(
-        activeUser.getUsername(), gameDao.getGameById(activeGameId), actualDifficulty);
+    int newBadgeCount =
+        BadgeManager.checkNewBadges(
+            activeUser.getUsername(), gameDao.getGameById(activeGameId), actualDifficulty);
 
+    // clear styles
+    canvasPane.getStyleClass().clear();
+    progressMessage.getStyleClass().clear();
     // set the label to win/lose event and use the tts
     if (wonGame) {
       progressMessage.setText("You Win!");
       TextToSpeech.main(new String[] {"You Win!"});
-      progressMessage.getStyleClass().clear();
       progressMessage.getStyleClass().add("winMessage");
-      canvasPane.getStyleClass().clear();
       canvasPane.getStyleClass().add("top3");
     } else {
       progressMessage.setText("You Lose!");
       TextToSpeech.main(new String[] {"You Lose!"});
-      progressMessage.getStyleClass().clear();
       progressMessage.getStyleClass().add("lossMessage");
-      canvasPane.getStyleClass().clear();
       canvasPane.getStyleClass().add("loss");
     }
+
+    // show pop up to display any new badge notifications
+    if (newBadgeCount > 0) {
+      showNewBadgePopup(newBadgeCount);
+    }
+  }
+
+  private void showNewBadgePopup(int newBadgeCount) {
+    Dialog<Void> badgePopup = new Dialog<>();
+    badgePopup.setTitle("Congratulations!");
+    // identify whether 'badge' or 'badges' should be used
+    String correctNoun = "";
+    if (newBadgeCount > 1) {
+      correctNoun = "s";
+    }
+    // build string and add to the alert box
+    String str =
+        "You have unlocked "
+            + newBadgeCount
+            + " new badge"
+            + correctNoun
+            + ". Check it out in the Statistics Page!\n\n\nTIP: Hover over the badges to find out more about them!";
+    badgePopup.setContentText(str);
+    // add buttons
+    ButtonType btnViewBadges = new ButtonType("View Badges", ButtonData.OK_DONE);
+    badgePopup.getDialogPane().getButtonTypes().add(btnViewBadges);
+    ButtonType btnKeepDrawing = new ButtonType("Keep Drawing", ButtonData.CANCEL_CLOSE);
+    badgePopup.getDialogPane().getButtonTypes().add(btnKeepDrawing);
+
+    // change the top title
+    badgePopup.setTitle("New Badge" + correctNoun + "!");
+    // set size of dialog and buttons
+    DialogPane popupPane = badgePopup.getDialogPane();
+    popupPane.setPrefSize(550, 200);
+    popupPane.getButtonTypes().stream()
+        .map(popupPane::lookupButton)
+        .forEach(btn -> ButtonBar.setButtonUniformSize(btn, false));
+    // set css formatting for pane and buttons
+    popupPane.getStylesheets().add("/css/style.css");
+
+    // trigger view badges method if the view badges button is pressed
+    badgePopup.setResultConverter(
+        (Callback<ButtonType, Void>)
+            new Callback<ButtonType, Void>() {
+              @Override
+              public Void call(ButtonType b) {
+
+                // trigger event if it is this button
+                if (b == btnViewBadges) {
+                  onViewBadges();
+                }
+
+                return null;
+              }
+            });
+
+    badgePopup.show();
+  }
+
+  private void onViewBadges() {
+    // get scene source from an arbitrary button on scene
+    // get root and controller for statistics page
+    Scene scene = btnSave.getScene();
+    Parent statsRoot = SceneManager.getUiRoot(AppUi.USER_STATS);
+    StatisticsController statisticsController =
+        (StatisticsController) SceneManager.getController(statsRoot);
+
+    // load the necessary stats and change the scene
+    statisticsController.loadPage();
+    scene.setRoot(statsRoot);
   }
 
   /**
@@ -353,6 +430,7 @@ public class CanvasController implements Controller {
     hbxGameEnd.setVisible(false);
     hbxDrawTools.setVisible(false);
     hbxNewGame.setVisible(true);
+    // clear predictions and canvas for new game
     predictions.clear();
     canvas.setDisable(true);
     onClear();
