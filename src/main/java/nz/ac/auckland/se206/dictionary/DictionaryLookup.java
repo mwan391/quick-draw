@@ -166,7 +166,7 @@ public class DictionaryLookup {
    * @return a hard word
    */
   private WordInfo getMasterLevel() {
-    List<WordInfo> hardWords = getAll();
+    List<WordInfo> hardWords = getWordsOfThisDifficulty(Difficulty.HARD);
     List<WordInfo> unplayedHardWords = getUnplayedWords(hardWords);
     // generate random number to select random word
     int randNum = new Random(System.currentTimeMillis()).nextInt(unplayedHardWords.size());
