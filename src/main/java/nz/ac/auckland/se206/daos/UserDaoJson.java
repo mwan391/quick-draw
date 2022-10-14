@@ -67,6 +67,7 @@ public class UserDaoJson {
    */
   public UserModel get(String username) {
     List<UserModel> users = getAll();
+    // Filter to match user by username
     UserModel foundUser =
         users.stream().filter(u -> username.equals(u.getUsername())).findFirst().orElse(null);
     return foundUser;
@@ -93,13 +94,14 @@ public class UserDaoJson {
    */
   public boolean addBadge(BadgeModel badge, String username) {
     List<UserModel> users = getAll();
-    // Find matching username
+    // Find the matching user from JSON file
     UserModel foundUser =
         users.stream().filter(user -> user.getUsername().equals(username)).findFirst().orElse(null);
     if (foundUser == null) {
       return false;
     }
     foundUser.getBadges().add(badge);
+    // Save updated user to JSON
     return saveToFile(users);
   }
 
@@ -145,7 +147,7 @@ public class UserDaoJson {
    * @return whether or not badge was found in the user
    */
   public boolean checkExists(BadgeModel badge, UserModel user) {
-    boolean foundMatch = user.getBadges().stream().anyMatch(nextBadge -> nextBadge.equals(badge));
+    boolean foundMatch = user.getBadges().contains(badge);
     return foundMatch;
   }
 
@@ -156,9 +158,10 @@ public class UserDaoJson {
    * @return whether or not saving to file was successful
    */
   private boolean saveToFile(List<UserModel> users) {
+    // Write to file 'users.json'
     try (Writer fileWriter = new FileWriter(FILE_NAME)) {
       Gson gson = new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create();
-      // Write Java object ot JSOn file
+      // Write Java object ot JSON file
       gson.toJson(users, fileWriter);
       return true;
     } catch (JsonIOException | IOException e) {

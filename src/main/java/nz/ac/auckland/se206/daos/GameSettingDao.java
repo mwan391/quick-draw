@@ -123,20 +123,27 @@ public class GameSettingDao {
   }
 
   /**
-   * getter for game settings instance
+   * 
+   * Helper to convert a game setting (in SQL) to setting instance
    *
-   * @param rs a table of data from a sql query
+   * @param rs rows of settings from a sql query
    * @return instance of game setting
-   * @throws SQLException
    */
-  private GameSettingModel getSettings(ResultSet rs) throws SQLException {
-    // helper to convert a game setting in sql to game setting in java
-    return new GameSettingModel(
-        rs.getInt("id"),
-        rs.getString("user_id"),
-        rs.getString("words"),
-        rs.getString("time"),
-        rs.getString("accuracy"),
-        rs.getString("confidence"));
+  private GameSettingModel getSettings(ResultSet rs) {
+    GameSettingModel gameSetting = null;
+    try {
+      // Construct game setting linking SQL columns (id, words, time, etc) to its fields
+      gameSetting =
+          new GameSettingModel(
+              rs.getInt("id"),
+              rs.getString("user_id"),
+              rs.getString("words"),
+              rs.getString("time"),
+              rs.getString("accuracy"),
+              rs.getString("confidence"));
+    } catch (SQLException e) {
+      Logger.printSqlError(e);
+    }
+    return gameSetting;
   }
 }

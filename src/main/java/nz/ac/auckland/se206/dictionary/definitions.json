@@ -1,0 +1,2417 @@
+[
+  {
+    "word": "aircraft carrier",
+    "meaning": {
+      "definition": "A warship designed to carry aircraft, serving as a seagoing air base, with a deck on which aircraft can be launched and landed."
+    },
+    "difficulty": "HARD"
+  },
+  {
+    "word": "airplane",
+    "meaning": {
+      "definition": "A powered heavier-than-air aircraft with fixed wings."
+    },
+    "difficulty": "EASY"
+  },
+  {
+    "word": "alarm clock",
+    "meaning": {
+      "definition": "A clock with an alarm that can be set to sound at a determined time."
+    },
+    "difficulty": "MEDIUM"
+  },
+  {
+    "word": "ambulance",
+    "meaning": {
+      "definition": "An emergency vehicle designed for transporting seriously ill or injured people to a hospital."
+    },
+    "difficulty": "MEDIUM"
+  },
+  {
+    "word": "angel",
+    "meaning": {
+      "definition": "An incorporeal and sometimes divine messenger from a deity, or other divine entity, often depicted in art as a youthful winged figure in flowing robes."
+    },
+    "difficulty": "MEDIUM"
+  },
+  {
+    "word": "animal migration",
+    "meaning": {
+      "definition": "The seasonal movement of animals from one place to another in search of food "
+    },
+    "difficulty": "HARD"
+  },
+  {
+    "word": "ant",
+    "meaning": {
+      "definition": "A very small black insect that lives in large, organized groups called colonies."
+    },
+    "difficulty": "EASY"
+  },
+  {
+    "word": "anvil",
+    "meaning": {
+      "definition": "A heavy iron block used in the blacksmithing trade as a surface upon which metal can be struck and shaped."
+    },
+    "difficulty": "EASY"
+  },
+  {
+    "word": "apple",
+    "meaning": {
+      "definition": "A common round red fruit."
+    },
+    "difficulty": "EASY"
+  },
+  {
+    "word": "arm",
+    "meaning": {
+      "definition": "The portion of the upper human appendage, from the shoulder to the wrist and sometimes including the hand."
+    },
+    "difficulty": "MEDIUM"
+  },
+  {
+    "word": "asparagus",
+    "meaning": {
+      "definition": "Any of various perennial plants of the genus Asparagus having leaflike stems, scalelike leaves, and small flowers."
+    },
+    "difficulty": "HARD"
+  },
+  {
+    "word": "axe",
+    "meaning": {
+      "definition": "A tool for felling trees or chopping wood etc. consisting of a heavy head flattened to a blade on one side, and a handle attached to it."
+    },
+    "difficulty": "EASY"
+  },
+  {
+    "word": "backpack",
+    "meaning": {
+      "definition": "A knapsack, sometimes mounted on a light frame, but always supported by straps, worn on a person’s back for the purpose of carrying things, especially when hiking, or on a student's back when carrying books."
+    },
+    "difficulty": "EASY"
+  },
+  {
+    "word": "banana",
+    "meaning": {
+      "definition": "An elongated curved tropical fruit that grows in bunches and has a creamy flesh and a smooth skin."
+    },
+    "difficulty": "EASY"
+  },
+  {
+    "word": "bandage",
+    "meaning": {
+      "definition": "A strip of gauze or similar material used to protect or support a wound or injury."
+    },
+    "difficulty": "MEDIUM"
+  },
+  {
+    "word": "barn",
+    "meaning": {
+      "definition": "A building, often found on a farm, used for storage or keeping animals such as cattle."
+    },
+    "difficulty": "HARD"
+  },
+  {
+    "word": "baseball",
+    "meaning": {
+      "definition": "A sport common in North America, the Caribbean, and Japan, in which the object is to strike a ball so that one of a nine-person team can run counter-clockwise among four bases, resulting in the scoring of a run. The team with the most runs after termination of play, usually nine innings, wins."
+    },
+    "difficulty": "HARD"
+  },
+  {
+    "word": "baseball bat",
+    "meaning": {
+      "definition": "A smooth wooden or metal club used to hit a ball"
+    },
+    "difficulty": "MEDIUM"
+  },
+  {
+    "word": "basket",
+    "meaning": {
+      "definition": "A lightweight container, generally round, open at the top, and tapering toward the bottom."
+    },
+    "difficulty": "MEDIUM"
+  },
+  {
+    "word": "basketball",
+    "meaning": {
+      "definition": "A sport in which two opposing teams of five players strive to put a ball through a hoop."
+    },
+    "difficulty": "HARD"
+  },
+  {
+    "word": "bat",
+    "meaning": {
+      "definition": "Any of the flying mammals of the order Chiroptera, usually small and nocturnal, insectivorous or frugivorous."
+    },
+    "difficulty": "MEDIUM"
+  },
+  {
+    "word": "bathtub",
+    "meaning": {
+      "definition": "A large container for holding water in which a person may bathe (take a bath)."
+    },
+    "difficulty": "MEDIUM"
+  },
+  {
+    "word": "beach",
+    "meaning": {
+      "definition": "The shore of a body of water, especially when sandy or pebbly."
+    },
+    "difficulty": "HARD"
+  },
+  {
+    "word": "bear",
+    "meaning": {
+      "definition": "A large furry mammal that can eat plants, honey, fish and other small mammals."
+    },
+    "difficulty": "MEDIUM"
+  },
+  {
+    "word": "beard",
+    "meaning": {
+      "definition": "Facial hair on the chin, cheeks, jaw and neck."
+    },
+    "difficulty": "MEDIUM"
+  },
+  {
+    "word": "bed",
+    "meaning": {
+      "definition": "A piece of furniture, usually flat and soft, on which to rest or sleep."
+    },
+    "difficulty": "EASY"
+  },
+  {
+    "word": "bee",
+    "meaning": {
+      "definition": "A flying insect found on flowers, able to make honey."
+    },
+    "difficulty": "EASY"
+  },
+  {
+    "word": "belt",
+    "meaning": {
+      "definition": "A band worn around the waist to hold clothing to one's body (usually pants), hold weapons (such as a gun or sword), or serve as a decorative piece of clothing."
+    },
+    "difficulty": "EASY"
+  },
+  {
+    "word": "bench",
+    "meaning": {
+      "definition": "A long seat with or without a back, found for example in parks and schools."
+    },
+    "difficulty": "EASY"
+  },
+  {
+    "word": "bicycle",
+    "meaning": {
+      "definition": "A vehicle that has two wheels, one behind the other, a steering handle, and a saddle seat or seats and is usually propelled by the action of a rider’s feet upon pedals."
+    },
+    "difficulty": "EASY"
+  },
+  {
+    "word": "binoculars",
+    "meaning": {
+      "definition": "A hand-held device consisting of a series of lenses and prisms, used to magnify objects so that they can be better seen from a distance, and looked at through both eyes."
+    },
+    "difficulty": "EASY"
+  },
+  {
+    "word": "bird",
+    "meaning": {
+      "definition": "A member of the class of animals Aves in the phylum Chordata, characterized by being warm-blooded, having feathers and wings usually capable of flight, and laying eggs."
+    },
+    "difficulty": "EASY"
+  },
+  {
+    "word": "birthday cake",
+    "meaning": {
+      "definition": "You eat this to celebrate someone's special day which happens once a year"
+    },
+    "difficulty": "EASY"
+  },
+  {
+    "word": "blackberry",
+    "meaning": {
+      "definition": "A dark purple or black berry that is made up of many large seeds."
+    },
+    "difficulty": "HARD"
+  },
+  {
+    "word": "blueberry",
+    "meaning": {
+      "definition": "An small round berry, that turns blue on ripening."
+    },
+    "difficulty": "HARD"
+  },
+  {
+    "word": "book",
+    "meaning": {
+      "definition": "Sheets of paper bound together between two covers. These pages can be blank or can have writing, printing, or pictures on them."
+    },
+    "difficulty": "EASY"
+  },
+  {
+    "word": "boomerang",
+    "meaning": {
+      "definition": "A curved wooden stick that can be thrown so that it will return to the thrower."
+    },
+    "difficulty": "EASY"
+  },
+  {
+    "word": "bottlecap",
+    "meaning": {
+      "definition": "A circular device used to close bottles"
+    },
+    "difficulty": "EASY"
+  },
+  {
+    "word": "bowtie",
+    "meaning": {
+      "definition": "A man's necktie tied in a bow around the throat."
+    },
+    "difficulty": "EASY"
+  },
+  {
+    "word": "bracelet",
+    "meaning": {
+      "definition": "A band or chain worn around the wrist as jewelry/jewellery or an ornament."
+    },
+    "difficulty": "EASY"
+  },
+  {
+    "word": "brain",
+    "meaning": {
+      "definition": "The control center of the central nervous system of an animal located in the skull which is responsible for perception, cognition, attention, memory, emotion, and action."
+    },
+    "difficulty": "EASY"
+  },
+  {
+    "word": "bread",
+    "meaning": {
+      "definition": "A foodstuff made by baking dough made from cereals."
+    },
+    "difficulty": "EASY"
+  },
+  {
+    "word": "bridge",
+    "meaning": {
+      "definition": "A construction or natural feature that spans a divide."
+    },
+    "difficulty": "EASY"
+  },
+  {
+    "word": "broccoli",
+    "meaning": {
+      "definition": "A plant whose green flower buds and stalk are used for food."
+    },
+    "difficulty": "MEDIUM"
+  },
+  {
+    "word": "broom",
+    "meaning": {
+      "definition": "A domestic utensil with fibers bound together at the end of a long handle, used for sweeping."
+    },
+    "difficulty": "EASY"
+  },
+  {
+    "word": "bucket",
+    "meaning": {
+      "definition": "A container made of rigid material, often with a handle, used to carry liquids or small items."
+    },
+    "difficulty": "EASY"
+  },
+  {
+    "word": "bulldozer",
+    "meaning": {
+      "definition": "A tractor with an attached blade for pushing earth and building debris for coarse preliminary surface grading, demolishing building structures, etc."
+    },
+    "difficulty": "MEDIUM"
+  },
+  {
+    "word": "bus",
+    "meaning": {
+      "definition": "A motor vehicle for transporting large numbers of people along roads."
+    },
+    "difficulty": "MEDIUM"
+  },
+  {
+    "word": "bush",
+    "meaning": {
+      "definition": "A woody plant distinguished from a tree by its multiple stems and lower height, being usually less than six metres tall; a horticultural rather than strictly botanical category."
+    },
+    "difficulty": "EASY"
+  },
+  {
+    "word": "butterfly",
+    "meaning": {
+      "definition": "A flying insect of the order Lepidoptera, distinguished from moths by their diurnal activity and generally brighter colouring."
+    },
+    "difficulty": "EASY"
+  },
+  {
+    "word": "cactus",
+    "meaning": {
+      "definition": "A prickly plant that grows in the hot desert."
+    },
+    "difficulty": "EASY"
+  },
+  {
+    "word": "cake",
+    "meaning": {
+      "definition": "A rich, sweet dessert food, typically made of flour, sugar and eggs and baked in an oven, and often covered in icing."
+    },
+    "difficulty": "EASY"
+  },
+  {
+    "word": "calculator",
+    "meaning": {
+      "definition": "A mechanical or electronic device that performs mathematical calculations."
+    },
+    "difficulty": "EASY"
+  },
+  {
+    "word": "calendar",
+    "meaning": {
+      "definition": "Any system by which time is divided into days, weeks, months, and years."
+    },
+    "difficulty": "MEDIUM"
+  },
+  {
+    "word": "camel",
+    "meaning": {
+      "definition": "A beast of burden, much used in desert areas, of the genus Camelus."
+    },
+    "difficulty": "MEDIUM"
+  },
+  {
+    "word": "camera",
+    "meaning": {
+      "definition": "A device for taking still or moving pictures or photographs."
+    },
+    "difficulty": "MEDIUM"
+  },
+  {
+    "word": "camouflage",
+    "meaning": {
+      "definition": "A disguise or covering up."
+    },
+    "difficulty": "HARD"
+  },
+  {
+    "word": "campfire",
+    "meaning": {
+      "definition": "A fire at a campground or on a camping trip, often used for cooking, to provide light and heat, to drive away bugs, and as a focal point for sitting around in the evening and talking, telling stories, and singing."
+    },
+    "difficulty": "MEDIUM"
+  },
+  {
+    "word": "candle",
+    "meaning": {
+      "definition": "A light source consisting of a wick embedded in a solid, flammable substance such as wax, tallow, or paraffin."
+    },
+    "difficulty": "EASY"
+  },
+  {
+    "word": "cannon",
+    "meaning": {
+      "definition": "A complete assembly, consisting of an artillery tube and a breech mechanism, firing mechanism or base cap, which is a component of a gun, howitzer or mortar. It may include muzzle appendages."
+    },
+    "difficulty": "EASY"
+  },
+  {
+    "word": "canoe",
+    "meaning": {
+      "definition": "A small long and narrow boat, propelled by one or more people (depending on the size of canoe), using single-bladed paddles. The paddlers face in the direction of travel, in either a seated position, or kneeling on the bottom of the boat. Canoes are open on top, and pointed at both ends."
+    },
+    "difficulty": "EASY"
+  },
+  {
+    "word": "car",
+    "meaning": {
+      "definition": "A wheeled vehicle that moves independently, with at least three wheels, powered mechanically, steered by a driver and mostly for personal transportation."
+    },
+    "difficulty": "EASY"
+  },
+  {
+    "word": "carrot",
+    "meaning": {
+      "definition": "A vegetable with a nutritious, juicy, sweet root that is often orange in colour."
+    },
+    "difficulty": "EASY"
+  },
+  {
+    "word": "castle",
+    "meaning": {
+      "definition": "A large building that is fortified and contains many defences; in previous ages often inhabited by a nobleman or king."
+    },
+    "difficulty": "EASY"
+  },
+  {
+    "word": "cat",
+    "meaning": {
+      "definition": "An animal that meows."
+    },
+    "difficulty": "EASY"
+  },
+  {
+    "word": "ceiling fan",
+    "meaning": {
+      "definition": "Something that's mounted to the ceiling that circulates air"
+    },
+    "difficulty": "MEDIUM"
+  },
+  {
+    "word": "cello",
+    "meaning": {
+      "definition": "A large musical instrument with four strings"
+    },
+    "difficulty": "HARD"
+  },
+  {
+    "word": "cell phone",
+    "meaning": {
+      "definition": "A portable, wireless telephone, which changes antenna connections seamlessly during travel from one radio reception cell to another without losing the party-to-party call connection."
+    },
+    "difficulty": "HARD"
+  },
+  {
+    "word": "chair",
+    "meaning": {
+      "definition": "An item of furniture used to sit on or in, comprising a seat, legs, back, and sometimes arm rests, for use by one person."
+    },
+    "difficulty": "EASY"
+  },
+  {
+    "word": "chandelier",
+    "meaning": {
+      "definition": "A branched, often ornate, lighting fixture suspended from the ceiling"
+    },
+    "difficulty": "EASY"
+  },
+  {
+    "word": "church",
+    "meaning": {
+      "definition": "A Christian house of worship; a building where Christian religious services take place."
+    },
+    "difficulty": "MEDIUM"
+  },
+  {
+    "word": "circle",
+    "meaning": {
+      "definition": "A two-dimensional geometric figure, a line, consisting of the set of all those points in a plane that are equally distant from a given point (center)."
+    },
+    "difficulty": "EASY"
+  },
+  {
+    "word": "clarinet",
+    "meaning": {
+      "definition": "A woodwind musical instrument that has a distinctive liquid tone whose characteristics vary among its three registers: chalumeau (low), clarion (medium), and altissimo (high)."
+    },
+    "difficulty": "HARD"
+  },
+  {
+    "word": "clock",
+    "meaning": {
+      "definition": "An instrument used to measure or keep track of time; a non-portable timepiece."
+    },
+    "difficulty": "EASY"
+  },
+  {
+    "word": "cloud",
+    "meaning": {
+      "definition": "White fluffy thing seen in the sky."
+    },
+    "difficulty": "EASY"
+  },
+  {
+    "word": "coffee cup",
+    "meaning": {
+      "definition": "A cup, typically a small one, in which coffee can be served."
+    },
+    "difficulty": "MEDIUM"
+  },
+  {
+    "word": "compass",
+    "meaning": {
+      "definition": "A magnetic or electronic device used to determine the cardinal directions."
+    },
+    "difficulty": "MEDIUM"
+  },
+  {
+    "word": "computer",
+    "meaning": {
+      "definition": "You are using this device right now to play this game."
+    },
+    "difficulty": "MEDIUM"
+  },
+  {
+    "word": "cookie",
+    "meaning": {
+      "definition": "A small, flat, baked good which is either crisp or soft but firm."
+    },
+    "difficulty": "MEDIUM"
+  },
+  {
+    "word": "cooler",
+    "meaning": {
+      "definition": "An insulated bin or box used with ice or freezer packs to keep food or beverages cold while picnicking or camping."
+    },
+    "difficulty": "MEDIUM"
+  },
+  {
+    "word": "couch",
+    "meaning": {
+      "definition": "You often sit on this to watch TV."
+    },
+    "difficulty": "MEDIUM"
+  },
+  {
+    "word": "cow",
+    "meaning": {
+      "definition": "An animal that that makes the sound 'moo'."
+    },
+    "difficulty": "MEDIUM"
+  },
+  {
+    "word": "crab",
+    "meaning": {
+      "definition": "A crustacean of the infraorder Brachyura, having five pairs of legs, the foremost of which are in the form of claws, and a carapace."
+    },
+    "difficulty": "MEDIUM"
+  },
+  {
+    "word": "crayon",
+    "meaning": {
+      "definition": "A stick of colored chalk or wax used for drawing."
+    },
+    "difficulty": "MEDIUM"
+  },
+  {
+    "word": "crocodile",
+    "meaning": {
+      "definition": "A large reptile that is found in tropical swamps. It has a thick, tough skin, a long tail, and a long, pointed snout.."
+    },
+    "difficulty": "MEDIUM"
+  },
+  {
+    "word": "crown",
+    "meaning": {
+      "definition": "Kings and queens wear this on their head."
+    },
+    "difficulty": "EASY"
+  },
+  {
+    "word": "cruise ship",
+    "meaning": {
+      "definition": "A passenger ship used for pleasure voyages, where the voyage itself and the ship's amenities are considered an essential part of the experience."
+    },
+    "difficulty": "HARD"
+  },
+  {
+    "word": "cup",
+    "meaning": {
+      "definition": "You use this to drink out of."
+    },
+    "difficulty": "MEDIUM"
+  },
+  {
+    "word": "diamond",
+    "meaning": {
+      "definition": "A glimmering glass-like mineral that is in the crystal form of carbon."
+    },
+    "difficulty": "EASY"
+  },
+  {
+    "word": "dishwasher",
+    "meaning": {
+      "definition": "A machine for washing dishes."
+    },
+    "difficulty": "HARD"
+  },
+  {
+    "word": "diving board",
+    "meaning": {
+      "definition": "A springboard used for diving into water."
+    },
+    "difficulty": "HARD"
+  },
+  {
+    "word": "dog",
+    "meaning": {
+      "definition": "An animal that barks."
+    },
+    "difficulty": "MEDIUM"
+  },
+  {
+    "word": "dolphin",
+    "meaning": {
+      "definition": "A carnivorous aquatic mammal, known for its intelligence and occasional willingness to approach humans."
+    },
+    "difficulty": "MEDIUM"
+  },
+  {
+    "word": "donut",
+    "meaning": {
+      "definition": "A deep-fried piece of dough, sometimes filled with jelly, custard or cream."
+    },
+    "difficulty": "EASY"
+  },
+  {
+    "word": "door",
+    "meaning": {
+      "definition": "A portal of entry into a building, room, or vehicle, can be open and closed."
+    },
+    "difficulty": "EASY"
+  },
+  {
+    "word": "dragon",
+    "meaning": {
+      "definition": "An imaginary monster that looks like a giant lizard with wings and can breathe fire."
+    },
+    "difficulty": "MEDIUM"
+  },
+  {
+    "word": "dresser",
+    "meaning": {
+      "definition": "An item of kitchen furniture, like a cabinet with shelves, for storing crockery or utensils."
+    },
+    "difficulty": "HARD"
+  },
+  {
+    "word": "drill",
+    "meaning": {
+      "definition": "A tool used to remove material so as to create a hole, typically by plunging a rotating cutting bit into a stationary workpiece."
+    },
+    "difficulty": "MEDIUM"
+  },
+  {
+    "word": "drums",
+    "meaning": {
+      "definition": "A percussive musical instrument spanned with a thin covering on at least one end for striking, forming an acoustic chamber, affecting what materials are used to make it; a membranophone."
+    },
+    "difficulty": "EASY"
+  },
+  {
+    "word": "duck",
+    "meaning": {
+      "definition": "An aquatic bird, having a flat bill and webbed feet for swimming."
+    },
+    "difficulty": "EASY"
+  },
+  {
+    "word": "dumbbell",
+    "meaning": {
+      "definition": "A short bar with a heavy weight at each end."
+    },
+    "difficulty": "EASY"
+  },
+  {
+    "word": "ear",
+    "meaning": {
+      "definition": "The organ of hearing in people and some other animals."
+    },
+    "difficulty": "EASY"
+  },
+  {
+    "word": "elbow",
+    "meaning": {
+      "definition": "The joint between the upper arm and the lower arm."
+    },
+    "difficulty": "MEDIUM"
+  },
+  {
+    "word": "elephant",
+    "meaning": {
+      "definition": "A very large mammal with a very long nose called a trunk."
+    },
+    "difficulty": "MEDIUM"
+  },
+  {
+    "word": "envelope",
+    "meaning": {
+      "definition": "A folded paper covering or container usually used to mail letters."
+    },
+    "difficulty": "MEDIUM"
+  },
+  {
+    "word": "eraser",
+    "meaning": {
+      "definition": "An object used to rub out writing or marks."
+    },
+    "difficulty": "MEDIUM"
+  },
+  {
+    "word": "eye",
+    "meaning": {
+      "definition": "An organ through which animals and humans see."
+    },
+    "difficulty": "EASY"
+  },
+  {
+    "word": "eyeglasses",
+    "meaning": {
+      "definition": "These are worn to help a person see better."
+    },
+    "difficulty": "MEDIUM"
+  },
+  {
+    "word": "face",
+    "meaning": {
+      "definition": "The front part of the head of a human or other animal, featuring the eyes, nose and mouth, and the surrounding area."
+    },
+    "difficulty": "EASY"
+  },
+  {
+    "word": "fan",
+    "meaning": {
+      "definition": "A device that is waved back and forth with the hand to cool the face or body."
+    },
+    "difficulty": "EASY"
+  },
+  {
+    "word": "feather",
+    "meaning": {
+      "definition": "A soft, hair-like structure that grows on the bodies of birds, used for flight, swimming, protection and display."
+    },
+    "difficulty": "EASY"
+  },
+  {
+    "word": "fence",
+    "meaning": {
+      "definition": "A thin artificial barrier that separates two pieces of land or a house perimeter."
+    },
+    "difficulty": "MEDIUM"
+  },
+  {
+    "word": "finger",
+    "meaning": {
+      "definition": "Ane of the five jointed parts at the end of the hand."
+    },
+    "difficulty": "EASY"
+  },
+  {
+    "word": "fire hydrant",
+    "meaning": {
+      "definition": "A device used by firefighters to obtain water from the main supply, consisting of a barrel, connections for hose and a valve assembly."
+    },
+    "difficulty": "EASY"
+  },
+  {
+    "word": "fireplace",
+    "meaning": {
+      "definition": "An open hearth for holding a fire at the base of a chimney."
+    },
+    "difficulty": "EASY"
+  },
+  {
+    "word": "firetruck",
+    "meaning": {
+      "definition": "A vehicle equipped with fire fighting apparatus"
+    },
+    "difficulty": "MEDIUM"
+  },
+  {
+    "word": "fish",
+    "meaning": {
+      "definition": "A cold-blooded vertebrate animal that lives in water, moving with the help of fins and breathing with gills."
+    },
+    "difficulty": "EASY"
+  },
+  {
+    "word": "flamingo",
+    "meaning": {
+      "definition": "A large pink bird found wading in shallow water."
+    },
+    "difficulty": "HARD"
+  },
+  {
+    "word": "flashlight",
+    "meaning": {
+      "definition": "A battery-powered hand-held light source."
+    },
+    "difficulty": "EASY"
+  },
+  {
+    "word": "flip flops",
+    "meaning": {
+      "definition": "A type of sandal worn often at the beach"
+    },
+    "difficulty": "HARD"
+  },
+  {
+    "word": "floor lamp",
+    "meaning": {
+      "definition": "A lamp supported by a tall vertical pole in order that light comes from above those seated in the vicinity."
+    },
+    "difficulty": "HARD"
+  },
+  {
+    "word": "flower",
+    "meaning": {
+      "definition": "A plant that blossoms and is grown for its beauty and pleasant smell."
+    },
+    "difficulty": "EASY"
+  },
+  {
+    "word": "flying saucer",
+    "meaning": {
+      "definition": "An unidentified flying object; UFO; usually with disc-like properties."
+    },
+    "difficulty": "MEDIUM"
+  },
+  {
+    "word": "foot",
+    "meaning": {
+      "definition": "The end part of the leg of humans and other animals, on which the body stands and walks."
+    },
+    "difficulty": "EASY"
+  },
+  {
+    "word": "fork",
+    "meaning": {
+      "definition": "A pronged tool having a long straight handle, used for digging, lifting, throwing etc."
+    },
+    "difficulty": "EASY"
+  },
+  {
+    "word": "frog",
+    "meaning": {
+      "definition": "A small tailless amphibian of the order Anura that typically hops."
+    },
+    "difficulty": "MEDIUM"
+  },
+  {
+    "word": "frying pan",
+    "meaning": {
+      "definition": "A long-handled, shallow pan used for frying food."
+    },
+    "difficulty": "HARD"
+  },
+  {
+    "word": "garden",
+    "meaning": {
+      "definition": "An outdoor area containing one or more types of plants, usually plants grown for food or ornamental purposes."
+    },
+    "difficulty": "HARD"
+  },
+  {
+    "word": "garden hose",
+    "meaning": {
+      "definition": "A long tube that carries water."
+    },
+    "difficulty": "HARD"
+  },
+  {
+    "word": "giraffe",
+    "meaning": {
+      "definition": "The tallest living animal."
+    },
+    "difficulty": "EASY"
+  },
+  {
+    "word": "goatee",
+    "meaning": {
+      "definition": "A beard trimmed to grow only at the center of the chin."
+    },
+    "difficulty": "HARD"
+  },
+  {
+    "word": "golf club",
+    "meaning": {
+      "definition": "In golf, the implement used to hit the golf ball."
+    },
+    "difficulty": "HARD"
+  },
+  {
+    "word": "grapes",
+    "meaning": {
+      "definition": "A small, juicy fruit, that is either green, red, or purple. They grows in bunches on vines."
+    },
+    "difficulty": "EASY"
+  },
+  {
+    "word": "grass",
+    "meaning": {
+      "definition": "A green plant that grows everywhere."
+    },
+    "difficulty": "EASY"
+  },
+  {
+    "word": "guitar",
+    "meaning": {
+      "definition": "A stringed instrument with a long neck and strings that are strummed or plucked."
+    },
+    "difficulty": "EASY"
+  },
+  {
+    "word": "hamburger",
+    "meaning": {
+      "definition": "A hot sandwich consisting of a patty of cooked ground beef or a meat substitute, in a sliced bun, sometimes also containing salad vegetables, condiments, or both."
+    },
+    "difficulty": "EASY"
+  },
+  {
+    "word": "hammer",
+    "meaning": {
+      "definition": "A tool with a heavy head and a handle used for pounding."
+    },
+    "difficulty": "EASY"
+  },
+  {
+    "word": "hand",
+    "meaning": {
+      "definition": "The part of the forelimb below the forearm or wrist in a human, and the corresponding part in many other animals."
+    },
+    "difficulty": "EASY"
+  },
+  {
+    "word": "harp",
+    "meaning": {
+      "definition": "A musical instrument consisting of a body and a curved neck, strung with strings of varying length that are stroked or plucked with the fingers and are vertical to the soundboard when viewed from the end of the body"
+    },
+    "difficulty": "EASY"
+  },
+  {
+    "word": "hat",
+    "meaning": {
+      "definition": "A covering for the head, often in the approximate form of a cone or a cylinder closed at its top end, and sometimes having a brim and other decoration."
+    },
+    "difficulty": "EASY"
+  },
+  {
+    "word": "headphones",
+    "meaning": {
+      "definition": "A pair of speakers worn over or in the ears so only the wearer can hear the sound."
+    },
+    "difficulty": "MEDIUM"
+  },
+  {
+    "word": "hedgehog",
+    "meaning": {
+      "definition": "A small mammal with spines that stick out"
+    },
+    "difficulty": "MEDIUM"
+  },
+  {
+    "word": "helicopter",
+    "meaning": {
+      "definition": "An aircraft that is borne along by one or more sets of long rotating blades which allow it to hover, move in any direction including reverse, or land; and typically having a smaller set of blades on its tail that stabilize the aircraft."
+    },
+    "difficulty": "EASY"
+  },
+  {
+    "word": "helmet",
+    "meaning": {
+      "definition": "A protective head covering, usually part of armour."
+    },
+    "difficulty": "HARD"
+  },
+  {
+    "word": "hexagon",
+    "meaning": {
+      "definition": "A polygon with six sides and six angles."
+    },
+    "difficulty": "EASY"
+  },
+  {
+    "word": "hockey puck",
+    "meaning": {
+      "definition": "A small disc that is used instead of a ball in a sport"
+    },
+    "difficulty": "HARD"
+  },
+  {
+    "word": "hockey stick",
+    "meaning": {
+      "definition": "A stick used to handle the puck in ice hockey, having a flat, angled blade at the end."
+    },
+    "difficulty": "HARD"
+  },
+  {
+    "word": "horse",
+    "meaning": {
+      "definition": "Any of several animals related to Equus ferus caballus."
+    },
+    "difficulty": "MEDIUM"
+  },
+  {
+    "word": "hospital",
+    "meaning": {
+      "definition": "A place where sick or hurt people go to find care or help."
+    },
+    "difficulty": "HARD"
+  },
+  {
+    "word": "hot air balloon",
+    "meaning": {
+      "definition": "A bag made of thin material that is inflated with hot air, causing it to rise and float up into the sky."
+    },
+    "difficulty": "EASY"
+  },
+  {
+    "word": "hot dog",
+    "meaning": {
+      "definition": "A sandwich consisting of a frankfurter, or wiener, in a bread roll, usually served with ketchup, mustard, relish."
+    },
+    "difficulty": "EASY"
+  },
+  {
+    "word": "hot tub",
+    "meaning": {
+      "definition": "A large tub, often situated outdoors, filled with hot water and used for communal leisure bathing."
+    },
+    "difficulty": "MEDIUM"
+  },
+  {
+    "word": "hourglass",
+    "meaning": {
+      "definition": "A clock made of two glass vessels connected by a narrow passage through which sand flows."
+    },
+    "difficulty": "EASY"
+  },
+  {
+    "word": "house",
+    "meaning": {
+      "definition": "A structure built or serving as an abode of human beings."
+    },
+    "difficulty": "EASY"
+  },
+  {
+    "word": "house plant",
+    "meaning": {
+      "definition": "A plant that is grown indoors in places such as a house or office for decorative purposes."
+    },
+    "difficulty": "HARD"
+  },
+  {
+    "word": "hurricane",
+    "meaning": {
+      "definition": "A severe tropical cyclone in the North Atlantic Ocean, Caribbean Sea, Gulf of Mexico, or in the eastern North Pacific off the west coast of Mexico, with winds of 119 km/h (74 miles per hour) or greater accompanied by rain, lightning, and thunder that sometimes moves into temperate latitudes."
+    },
+    "difficulty": "MEDIUM"
+  },
+  {
+    "word": "ice cream",
+    "meaning": {
+      "definition": "A dessert made from frozen sweetened cream or a similar substance, usually flavoured."
+    },
+    "difficulty": "EASY"
+  },
+  {
+    "word": "jacket",
+    "meaning": {
+      "definition": "A piece of clothing worn on the upper body outside a shirt or blouse, often waist length to thigh length."
+    },
+    "difficulty": "MEDIUM"
+  },
+  {
+    "word": "jail",
+    "meaning": {
+      "definition": "A building in which a government keeps people who are waiting for a trial or who have been found guilty of breaking the law."
+    },
+    "difficulty": "HARD"
+  },
+  {
+    "word": "kangaroo",
+    "meaning": {
+      "definition": "A mammal with strong back legs for hopping, native to Australia."
+    },
+    "difficulty": "MEDIUM"
+  },
+  {
+    "word": "key",
+    "meaning": {
+      "definition": "A metal object used to open or close locks."
+    },
+    "difficulty": "EASY"
+  },
+  {
+    "word": "keyboard",
+    "meaning": {
+      "definition": "A set of keys used to operate a computer."
+    },
+    "difficulty": "EASY"
+  },
+  {
+    "word": "knee",
+    "meaning": {
+      "definition": "In humans, the joint or the region of the joint in the middle part of the leg between the thigh and the shank."
+    },
+    "difficulty": "MEDIUM"
+  },
+  {
+    "word": "knife",
+    "meaning": {
+      "definition": "A utensil or a tool designed for cutting, consisting of a flat piece of hard material, usually steel or other metal (the blade), usually sharpened on one edge, attached to a handle. The blade may be pointed for piercing."
+    },
+    "difficulty": "EASY"
+  },
+  {
+    "word": "ladder",
+    "meaning": {
+      "definition": "A frame, usually portable, of wood, metal, or rope, used for ascent and descent, consisting of two side pieces to which are fastened rungs (cross strips or rounds acting as steps)."
+    },
+    "difficulty": "EASY"
+  },
+  {
+    "word": "lantern",
+    "meaning": {
+      "definition": "A case of translucent or transparent material made to protect a flame, or light, used to illuminate its surroundings."
+    },
+    "difficulty": "EASY"
+  },
+  {
+    "word": "laptop",
+    "meaning": {
+      "definition": "A laptop computer."
+    },
+    "difficulty": "HARD"
+  },
+  {
+    "word": "leaf",
+    "meaning": {
+      "definition": "The usually green and flat organ that represents the most prominent feature of most vegetative plants."
+    },
+    "difficulty": "EASY"
+  },
+  {
+    "word": "leg",
+    "meaning": {
+      "definition": "A limb or appendage that an animal uses for support or locomotion."
+    },
+    "difficulty": "MEDIUM"
+  },
+  {
+    "word": "light bulb",
+    "meaning": {
+      "definition": "An evacuated glass bulb containing a metal filament which is heated by electrical resistance to produce light."
+    },
+    "difficulty": "EASY"
+  },
+  {
+    "word": "lighter",
+    "meaning": {
+      "definition": "A small, reusable handheld device for creating fire, especially for lighting cigarettes."
+    },
+    "difficulty": "MEDIUM"
+  },
+  {
+    "word": "lighthouse",
+    "meaning": {
+      "definition": "A tower or other structure exhibiting a light or lights to warn or guide sailors."
+    },
+    "difficulty": "MEDIUM"
+  },
+  {
+    "word": "lightning",
+    "meaning": {
+      "definition": "A flash of light produced by short-duration, high-voltage discharge of electricity within a cloud, between clouds, or between a cloud and the earth."
+    },
+    "difficulty": "EASY"
+  },
+  {
+    "word": "line",
+    "meaning": {
+      "definition": "A curved or straight path through two or more points."
+    },
+    "difficulty": "EASY"
+  },
+  {
+    "word": "lion",
+    "meaning": {
+      "definition": "An animal native to Africa, known as The King of the Jungle."
+    },
+    "difficulty": "MEDIUM"
+  },
+  {
+    "word": "lipstick",
+    "meaning": {
+      "definition": "Makeup for the lips."
+    },
+    "difficulty": "MEDIUM"
+  },
+  {
+    "word": "lobster",
+    "meaning": {
+      "definition": "An animal with a hard blue-black shell and turns bright red when cooked."
+    },
+    "difficulty": "MEDIUM"
+  },
+  {
+    "word": "lollipop",
+    "meaning": {
+      "definition": "An item of confectionery consisting of a piece of candy/sweet attached to a stick."
+    },
+    "difficulty": "EASY"
+  },
+  {
+    "word": "mailbox",
+    "meaning": {
+      "definition": "A box into which mail is put"
+    },
+    "difficulty": "EASY"
+  },
+  {
+    "word": "map",
+    "meaning": {
+      "definition": "A visual representation of an area, whether real or imaginary."
+    },
+    "difficulty": "MEDIUM"
+  },
+  {
+    "word": "marker",
+    "meaning": {
+      "definition": "An object used to mark a location."
+    },
+    "difficulty": "MEDIUM"
+  },
+  {
+    "word": "matches",
+    "meaning": {
+      "definition": "A competitive sporting event such as a boxing meet, a baseball game, or a cricket match."
+    },
+    "difficulty": "MEDIUM"
+  },
+  {
+    "word": "megaphone",
+    "meaning": {
+      "definition": "A portable, usually hand-held, funnel-shaped device that is used to amplify a person’s natural voice toward a targeted direction."
+    },
+    "difficulty": "MEDIUM"
+  },
+  {
+    "word": "mermaid",
+    "meaning": {
+      "definition": "A mythological creature with a woman's head and upper body, and a tail of a fish."
+    },
+    "difficulty": "MEDIUM"
+  },
+  {
+    "word": "microphone",
+    "meaning": {
+      "definition": "A device (transducer) used to convert sound waves into a varying electric current; normally fed into an amplifier and either recorded or broadcast."
+    },
+    "difficulty": "EASY"
+  },
+  {
+    "word": "microwave",
+    "meaning": {
+      "definition": "An electromagnetic wave with wavelength between that of infrared light and radio waves."
+    },
+    "difficulty": "HARD"
+  },
+  {
+    "word": "monkey",
+    "meaning": {
+      "definition": "Any member of the clade Simiiformes not also of the clade Hominoidea containing humans and apes, from which they are usually, but not universally, distinguished by smaller size, a tail, and cheek pouches."
+    },
+    "difficulty": "MEDIUM"
+  },
+  {
+    "word": "moon",
+    "meaning": {
+      "definition": "Any natural satellite of a planet."
+    },
+    "difficulty": "EASY"
+  },
+  {
+    "word": "mosquito",
+    "meaning": {
+      "definition": "A small insect. The females bite and suck the blood of humans and animals leaving them itchy."
+    },
+    "difficulty": "MEDIUM"
+  },
+  {
+    "word": "motorbike",
+    "meaning": {
+      "definition": "A small motorcycle."
+    },
+    "difficulty": "MEDIUM"
+  },
+  {
+    "word": "mountain",
+    "meaning": {
+      "definition": "A land mass with great height and steep sides."
+    },
+    "difficulty": "MEDIUM"
+  },
+  {
+    "word": "mouse",
+    "meaning": {
+      "definition": "A very small gray mammal that enjoys eating cheese"
+    },
+    "difficulty": "MEDIUM"
+  },
+  {
+    "word": "moustache",
+    "meaning": {
+      "definition": "A growth of facial hair between the nose and the upper lip."
+    },
+    "difficulty": "MEDIUM"
+  },
+  {
+    "word": "mouth",
+    "meaning": {
+      "definition": "The opening of a creature through which food is ingested."
+    },
+    "difficulty": "MEDIUM"
+  },
+  {
+    "word": "mug",
+    "meaning": {
+      "definition": "A large cup for hot liquids, usually having a handle and used without a saucer."
+    },
+    "difficulty": "MEDIUM"
+  },
+  {
+    "word": "mushroom",
+    "meaning": {
+      "definition": "Any of the fleshy fruiting bodies of fungi typically produced above ground on soil or on their food sources (such as decaying wood)."
+    },
+    "difficulty": "MEDIUM"
+  },
+  {
+    "word": "nail",
+    "meaning": {
+      "definition": "The thin, horny plate at the ends of fingers and toes on humans and some other animals."
+    },
+    "difficulty": "MEDIUM"
+  },
+  {
+    "word": "necklace",
+    "meaning": {
+      "definition": "An article of jewelry that is worn around the neck, most often made of a string of precious metal, pearls, gems, beads or shells, and sometimes having a pendant attached."
+    },
+    "difficulty": "MEDIUM"
+  },
+  {
+    "word": "nose",
+    "meaning": {
+      "definition": "A protuberance on the face housing the nostrils, which are used to breathe or smell."
+    },
+    "difficulty": "EASY"
+  },
+  {
+    "word": "ocean",
+    "meaning": {
+      "definition": "One of the large bodies of water separating the continents."
+    },
+    "difficulty": "HARD"
+  },
+  {
+    "word": "octagon",
+    "meaning": {
+      "definition": "A polygon with eight sides and eight angles."
+    },
+    "difficulty": "EASY"
+  },
+  {
+    "word": "octopus",
+    "meaning": {
+      "definition": "A sea animal with eight tentacles"
+    },
+    "difficulty": "MEDIUM"
+  },
+  {
+    "word": "onion",
+    "meaning": {
+      "definition": "A vegetable that makes you cry when you chop them."
+    },
+    "difficulty": "MEDIUM"
+  },
+  {
+    "word": "oven",
+    "meaning": {
+      "definition": "A chamber used for baking or heating."
+    },
+    "difficulty": "HARD"
+  },
+  {
+    "word": "owl",
+    "meaning": {
+      "definition": "A bird that is nocturnal (hunts for food at night)."
+    },
+    "difficulty": "HARD"
+  },
+  {
+    "word": "paintbrush",
+    "meaning": {
+      "definition": "A thin brush for applying paint."
+    },
+    "difficulty": "EASY"
+  },
+  {
+    "word": "paint can",
+    "meaning": {
+      "definition": "You store paint in this."
+    },
+    "difficulty": "MEDIUM"
+  },
+  {
+    "word": "palm tree",
+    "meaning": {
+      "definition": "A type of tree with several leaves giving a shape like an outstretched hand."
+    },
+    "difficulty": "EASY"
+  },
+  {
+    "word": "panda",
+    "meaning": {
+      "definition": "A bearlike mammal with black and white markings."
+    },
+    "difficulty": "MEDIUM"
+  },
+  {
+    "word": "pants",
+    "meaning": {
+      "definition": "You wear this to cover your legs."
+    },
+    "difficulty": "MEDIUM"
+  },
+  {
+    "word": "paper clip",
+    "meaning": {
+      "definition": "A small, folded, wire or plastic device used to hold sheets of paper together."
+    },
+    "difficulty": "EASY"
+  },
+  {
+    "word": "parachute",
+    "meaning": {
+      "definition": "A device, generally constructed from fabric, that is designed to employ air resistance to control the fall of an object."
+    },
+    "difficulty": "MEDIUM"
+  },
+  {
+    "word": "parrot",
+    "meaning": {
+      "definition": "A kind of bird that is often brightly coloured. They are able to repeat spoken words from a human."
+    },
+    "difficulty": "MEDIUM"
+  },
+  {
+    "word": "passport",
+    "meaning": {
+      "definition": "An official document normally used for international journeys, which proves the identity and nationality of the person for whom it was issued."
+    },
+    "difficulty": "HARD"
+  },
+  {
+    "word": "peanut",
+    "meaning": {
+      "definition": "A legume resembling a nut, the fruit of the plant Arachis hypogaea."
+    },
+    "difficulty": "EASY"
+  },
+  {
+    "word": "pear",
+    "meaning": {
+      "definition": "An edible fruit produced by the pear tree, similar to an apple but elongated towards the stem."
+    },
+    "difficulty": "EASY"
+  },
+  {
+    "word": "peas",
+    "meaning": {
+      "definition": "A small, round, green seed grown in a pod on a climbing plant."
+    },
+    "difficulty": "EASY"
+  },
+  {
+    "word": "pencil",
+    "meaning": {
+      "definition": "A long, thin tool used for writing or drawing"
+    },
+    "difficulty": "EASY"
+  },
+  {
+    "word": "penguin",
+    "meaning": {
+      "definition": "Any of several flightless sea birds, of order Sphenisciformes, found in the Southern Hemisphere, marked by their usual upright stance, walking on short legs, and (generally) their stark black and white plumage."
+    },
+    "difficulty": "MEDIUM"
+  },
+  {
+    "word": "piano",
+    "meaning": {
+      "definition": "A musical instrument, with white and black colored keys"
+    },
+    "difficulty": "MEDIUM"
+  },
+  {
+    "word": "pickup truck",
+    "meaning": {
+      "definition": "A light truck with an open area to carry things."
+    },
+    "difficulty": "HARD"
+  },
+  {
+    "word": "picture frame",
+    "meaning": {
+      "definition": "Used to decorate the border of a painting."
+    },
+    "difficulty": "MEDIUM"
+  },
+  {
+    "word": "pig",
+    "meaning": {
+      "definition": "A pink mammal that likes to roll in mud."
+    },
+    "difficulty": "EASY"
+  },
+  {
+    "word": "pillow",
+    "meaning": {
+      "definition": "A soft cushion used to support the head in bed."
+    },
+    "difficulty": "EASY"
+  },
+  {
+    "word": "pineapple",
+    "meaning": {
+      "definition": "A tropical fruit, sour, and having long and pointed leaves surrounding a thick stem."
+    },
+    "difficulty": "EASY"
+  },
+  {
+    "word": "pizza",
+    "meaning": {
+      "definition": "An Italian food made from bread dough covered with tomatoes and cheese and then baked"
+    },
+    "difficulty": "EASY"
+  },
+  {
+    "word": "pliers",
+    "meaning": {
+      "definition": "A pincer-like gripping tool that multiplies the strength of the user's hand, often used for bending things."
+    },
+    "difficulty": "MEDIUM"
+  },
+  {
+    "word": "police car",
+    "meaning": {
+      "definition": "A vehicle with red and blue siren lights"
+    },
+    "difficulty": "HARD"
+  },
+  {
+    "word": "pond",
+    "meaning": {
+      "definition": "An inland body of standing water, either natural or man-made, that is smaller than a lake."
+    },
+    "difficulty": "MEDIUM"
+  },
+  {
+    "word": "pool",
+    "meaning": {
+      "definition": "A small and rather deep collection of (usually) fresh water, as one supplied by a spring, or occurring in the course of a stream; a reservoir for water."
+    },
+    "difficulty": "MEDIUM"
+  },
+  {
+    "word": "popsicle",
+    "meaning": {
+      "definition": "Frozen fruit juice, flavored sugar water or the like, on a stick, of a size to be one serving."
+    },
+    "difficulty": "MEDIUM"
+  },
+  {
+    "word": "postcard",
+    "meaning": {
+      "definition": "A rectangular piece of thick paper or thin cardboard intended to be written on and mailed without an envelope. In the case of a picture postcard one side carries a picture or photograph."
+    },
+    "difficulty": "MEDIUM"
+  },
+  {
+    "word": "potato",
+    "meaning": {
+      "definition": "The tuber of a plant, Solanum tuberosum, eaten as a starchy vegetable, particularly in the Americas and Europe; this plant."
+    },
+    "difficulty": "MEDIUM"
+  },
+  {
+    "word": "power outlet",
+    "meaning": {
+      "definition": "A device to which a piece of electrical equipment can be connected to"
+    },
+    "difficulty": "MEDIUM"
+  },
+  {
+    "word": "purse",
+    "meaning": {
+      "definition": "A small bag for carrying money."
+    },
+    "difficulty": "MEDIUM"
+  },
+  {
+    "word": "rabbit",
+    "meaning": {
+      "definition": "A small mammal with long ears and long back legs for jumping."
+    },
+    "difficulty": "EASY"
+  },
+  {
+    "word": "raccoon",
+    "meaning": {
+      "definition": "A nocturnal omnivore native to North America, typically with a mixture of gray, brown, and black fur, a mask-like marking around the eyes and a striped tail; Procyon lotor."
+    },
+    "difficulty": "MEDIUM"
+  },
+  {
+    "word": "radio",
+    "meaning": {
+      "definition": "The technology that allows for the transmission of sound or other signals by modulation of electromagnetic waves."
+    },
+    "difficulty": "MEDIUM"
+  },
+  {
+    "word": "rain",
+    "meaning": {
+      "definition": "Condensed water falling from a cloud."
+    },
+    "difficulty": "MEDIUM"
+  },
+  {
+    "word": "rainbow",
+    "meaning": {
+      "definition": "A multicoloured arch in the sky, produced by prismatic refraction of light within droplets of rain in the air."
+    },
+    "difficulty": "EASY"
+  },
+  {
+    "word": "rake",
+    "meaning": {
+      "definition": "A garden tool with a row of pointed teeth fixed to a long handle, used for collecting debris, grass, etc., for flattening the ground, or for loosening soil; also, a similar wheel-mounted tool drawn by a horse or a tractor."
+    },
+    "difficulty": "MEDIUM"
+  },
+  {
+    "word": "remote control",
+    "meaning": {
+      "definition": "A device used to operate an appliance (such as a television), vehicle or mechanical toy from a short distance away."
+    },
+    "difficulty": "MEDIUM"
+  },
+  {
+    "word": "rhinoceros",
+    "meaning": {
+      "definition": "A mammal with thick, gray skin and one or two horns on their noses."
+    },
+    "difficulty": "MEDIUM"
+  },
+  {
+    "word": "rifle",
+    "meaning": {
+      "definition": "A gun that has a long barrel and that is shot from the shoulder."
+    },
+    "difficulty": "MEDIUM"
+  },
+  {
+    "word": "river",
+    "meaning": {
+      "definition": "A large natural stream of water flowing in a particular course toward a lake, ocean, or other body of water."
+    },
+    "difficulty": "MEDIUM"
+  },
+  {
+    "word": "roller coaster",
+    "meaning": {
+      "definition": "An amusement park ride in which a train of open cars rides up and down track."
+    },
+    "difficulty": "MEDIUM"
+  },
+  {
+    "word": "rollerskates",
+    "meaning": {
+      "definition": "A boot having small wheels or casters attached to its sole; used for roller skating"
+    },
+    "difficulty": "MEDIUM"
+  },
+  {
+    "word": "sailboat",
+    "meaning": {
+      "definition": "A boat propelled by a sail."
+    },
+    "difficulty": "HARD"
+  },
+  {
+    "word": "sandwich",
+    "meaning": {
+      "definition": "A dish or foodstuff where two or more slices of bread serve as the wrapper or container of some other food."
+    },
+    "difficulty": "MEDIUM"
+  },
+  {
+    "word": "saw",
+    "meaning": {
+      "definition": "A tool with a toothed blade used for cutting hard substances, in particular wood or metal"
+    },
+    "difficulty": "MEDIUM"
+  },
+  {
+    "word": "saxophone",
+    "meaning": {
+      "definition": "A wind instrument with a curved metal body and a mouthpiece with a single reed."
+    },
+    "difficulty": "MEDIUM"
+  },
+  {
+    "word": "school bus",
+    "meaning": {
+      "definition": "A vehicle used to take students from and to school"
+    },
+    "difficulty": "HARD"
+  },
+  {
+    "word": "scissors",
+    "meaning": {
+      "definition": "One blade on a pair of scissors."
+    },
+    "difficulty": "EASY"
+  },
+  {
+    "word": "scorpion",
+    "meaning": {
+      "definition": "A small animal related to the spider. It has a tail with a poisonous tip."
+    },
+    "difficulty": "EASY"
+  },
+  {
+    "word": "screwdriver",
+    "meaning": {
+      "definition": "A hand or machine tool which engages with the head of a screw and allows torque to be applied to turn the screw, thus driving it in or loosening it."
+    },
+    "difficulty": "EASY"
+  },
+  {
+    "word": "sea turtle",
+    "meaning": {
+      "definition": "Any turtle that inhabits oceans."
+    },
+    "difficulty": "HARD"
+  },
+  {
+    "word": "see saw",
+    "meaning": {
+      "definition": "Something thats found at a playground that moves up and down"
+    },
+    "difficulty": "HARD"
+  },
+  {
+    "word": "shark",
+    "meaning": {
+      "definition": "A scaleless, predatory fish of the superorder Selachimorpha, with a cartilaginous skeleton and 5 to 7 gill slits on each side of its head."
+    },
+    "difficulty": "HARD"
+  },
+  {
+    "word": "sheep",
+    "meaning": {
+      "definition": "A woolly animal"
+    },
+    "difficulty": "EASY"
+  },
+  {
+    "word": "shoe",
+    "meaning": {
+      "definition": "A protective covering for the foot, with a bottom part composed of thick leather or plastic sole and often a thicker heel, and a softer upper part made of leather or synthetic material. Shoes generally do not extend above the ankle, as opposed to boots, which do."
+    },
+    "difficulty": "EASY"
+  },
+  {
+    "word": "shorts",
+    "meaning": {
+      "definition": "A short circuit."
+    },
+    "difficulty": "MEDIUM"
+  },
+  {
+    "word": "shovel",
+    "meaning": {
+      "definition": "A hand tool with a handle, used for moving portions of material such as earth, snow, and grain from one place to another, with some forms also used for digging. Not to be confused with a spade, which is designed solely for small-scale digging and incidental tasks such as chopping of small roots."
+    },
+    "difficulty": "EASY"
+  },
+  {
+    "word": "sink",
+    "meaning": {
+      "definition": "A basin used for holding water for washing."
+    },
+    "difficulty": "MEDIUM"
+  },
+  {
+    "word": "skateboard",
+    "meaning": {
+      "definition": "A narrow, wooden or plastic platform mounted on pairs of wheels, on which one stands and propels oneself by pushing along the ground with one foot."
+    },
+    "difficulty": "EASY"
+  },
+  {
+    "word": "skull",
+    "meaning": {
+      "definition": "The main bones of the head considered as a unit; including the cranium, facial bones, and mandible."
+    },
+    "difficulty": "EASY"
+  },
+  {
+    "word": "skyscraper",
+    "meaning": {
+      "definition": "A very tall building with a large number of floors."
+    },
+    "difficulty": "HARD"
+  },
+  {
+    "word": "sleeping bag",
+    "meaning": {
+      "definition": "A padded or insulated bag large enough to surround the whole body and which keeps the user warm while sleeping, used as a substitute for bedclothes."
+    },
+    "difficulty": "HARD"
+  },
+  {
+    "word": "smiley face",
+    "meaning": {
+      "definition": "A simplified drawing of a smiling face, using two dots for the eyes and an arc for the mouth."
+    },
+    "difficulty": "EASY"
+  },
+  {
+    "word": "snail",
+    "meaning": {
+      "definition": "Any of very many animals (either hermaphroditic or nonhermaphroditic), of the class Gastropoda, having a coiled shell."
+    },
+    "difficulty": "EASY"
+  },
+  {
+    "word": "snake",
+    "meaning": {
+      "definition": "A legless reptile of the sub-order Serpentes with a long, thin body and a fork-shaped tongue."
+    },
+    "difficulty": "EASY"
+  },
+  {
+    "word": "snorkel",
+    "meaning": {
+      "definition": "A hollow tube, held in the mouth, or mounted on and opening into a diving mask, used by swimmers for breathing underwater."
+    },
+    "difficulty": "HARD"
+  },
+  {
+    "word": "snowflake",
+    "meaning": {
+      "definition": "A crystal of snow, having approximate hexagonal symmetry."
+    },
+    "difficulty": "MEDIUM"
+  },
+  {
+    "word": "snowman",
+    "meaning": {
+      "definition": "A humanoid figure made with large snowballs stacked on each other. Human traits like a face and arms may be fashioned with sticks (arms), a carrot (nose), and stones or coal (eyes, mouth)."
+    },
+    "difficulty": "EASY"
+  },
+  {
+    "word": "soccer ball",
+    "meaning": {
+      "definition": "Something that you kick in a particular sport"
+    },
+    "difficulty": "MEDIUM"
+  },
+  {
+    "word": "sock",
+    "meaning": {
+      "definition": "A knitted or woven covering for the foot."
+    },
+    "difficulty": "MEDIUM"
+  },
+  {
+    "word": "speedboat",
+    "meaning": {
+      "definition": "A fast boat, usually small (for 1-8 people)."
+    },
+    "difficulty": "MEDIUM"
+  },
+  {
+    "word": "spider",
+    "meaning": {
+      "definition": "Any of various eight-legged, predatory arthropods, of the order Araneae, most of which spin webs to catch prey."
+    },
+    "difficulty": "MEDIUM"
+  },
+  {
+    "word": "spoon",
+    "meaning": {
+      "definition": "An implement for eating or serving; a scooped utensil whose long handle is straight, in contrast to a ladle."
+    },
+    "difficulty": "MEDIUM"
+  },
+  {
+    "word": "spreadsheet",
+    "meaning": {
+      "definition": "A sheet of paper, marked with a grid, in which financial data is recorded and totals calculated manually."
+    },
+    "difficulty": "HARD"
+  },
+  {
+    "word": "square",
+    "meaning": {
+      "definition": "A polygon with four sides of equal length and four right angles; an equilateral rectangle; a regular quadrilateral."
+    },
+    "difficulty": "EASY"
+  },
+  {
+    "word": "squiggle",
+    "meaning": {
+      "definition": "A short twisting or wiggling line or mark"
+    },
+    "difficulty": "HARD"
+  },
+  {
+    "word": "squirrel",
+    "meaning": {
+      "definition": "A rodents with a large bushy tail and known to eat acorns."
+    },
+    "difficulty": "HARD"
+  },
+  {
+    "word": "stairs",
+    "meaning": {
+      "definition": "A single step in a staircase."
+    },
+    "difficulty": "EASY"
+  },
+  {
+    "word": "star",
+    "meaning": {
+      "definition": "Any small luminous dot appearing in the cloudless portion of the night sky, especially with a fixed location relative to other such dots."
+    },
+    "difficulty": "EASY"
+  },
+  {
+    "word": "steak",
+    "meaning": {
+      "definition": "Beefsteak, a slice of beef, broiled or cut for broiling."
+    },
+    "difficulty": "HARD"
+  },
+  {
+    "word": "stereo",
+    "meaning": {
+      "definition": "A system of recording or reproducing sound that uses two channels, each playing a portion of the original sound in such a way as to create the illusion of locating the sound at a particular position, each offset from the other, thereby more accurately imitating the location of the original sound when the recorded or reproduced sound is heard."
+    },
+    "difficulty": "HARD"
+  },
+  {
+    "word": "stethoscope",
+    "meaning": {
+      "definition": "A medical instrument used for listening to sounds produced within the body, often combined with a sphygmomanometer"
+    },
+    "difficulty": "HARD"
+  },
+  {
+    "word": "stitches",
+    "meaning": {
+      "definition": "A single pass of a needle in sewing; the loop or turn of the thread thus made."
+    },
+    "difficulty": "HARD"
+  },
+  {
+    "word": "stop sign",
+    "meaning": {
+      "definition": "It's red and seen on roads"
+    },
+    "difficulty": "HARD"
+  },
+  {
+    "word": "stove",
+    "meaning": {
+      "definition": "A heater, a closed apparatus to burn fuel for the warming of a room."
+    },
+    "difficulty": "HARD"
+  },
+  {
+    "word": "strawberry",
+    "meaning": {
+      "definition": "The sweet, usually red, edible fruit of certain plants of the genus Fragaria."
+    },
+    "difficulty": "EASY"
+  },
+  {
+    "word": "streetlight",
+    "meaning": {
+      "definition": "Any large outdoor light used to illuminate a public area, usually urban."
+    },
+    "difficulty": "HARD"
+  },
+  {
+    "word": "string bean",
+    "meaning": {
+      "definition": "A long, slender variety of green bean."
+    },
+    "difficulty": "HARD"
+  },
+  {
+    "word": "submarine",
+    "meaning": {
+      "definition": "A boat that can go underwater."
+    },
+    "difficulty": "HARD"
+  },
+  {
+    "word": "suitcase",
+    "meaning": {
+      "definition": "A large (usually rectangular) piece of luggage used for carrying clothes, and sometimes suits, when travelling."
+    },
+    "difficulty": "HARD"
+  },
+  {
+    "word": "sun",
+    "meaning": {
+      "definition": "A star, especially when seen as the centre of any single solar system."
+    },
+    "difficulty": "EASY"
+  },
+  {
+    "word": "swan",
+    "meaning": {
+      "definition": "A large water bird, usually white, with a very long neck and webbed feet."
+    },
+    "difficulty": "EASY"
+  },
+  {
+    "word": "sweater",
+    "meaning": {
+      "definition": "A knitted jacket or jersey, usually of thick wool, worn by athletes before or after exercise."
+    },
+    "difficulty": "HARD"
+  },
+  {
+    "word": "swing set",
+    "meaning": {
+      "definition": "A playground equipment that oscillates"
+    },
+    "difficulty": "HARD"
+  },
+  {
+    "word": "sword",
+    "meaning": {
+      "definition": "A long-bladed weapon with a hilt, and usually a pommel and cross-guard, which is designed to stab, slash, and/or hack."
+    },
+    "difficulty": "EASY"
+  },
+  {
+    "word": "syringe",
+    "meaning": {
+      "definition": "A device used for injecting or drawing fluids through a membrane."
+    },
+    "difficulty": "EASY"
+  },
+  {
+    "word": "table",
+    "meaning": {
+      "definition": "Furniture with a top surface to accommodate a variety of uses."
+    },
+    "difficulty": "EASY"
+  },
+  {
+    "word": "teapot",
+    "meaning": {
+      "definition": "A vessel for brewing and serving tea."
+    },
+    "difficulty": "EASY"
+  },
+  {
+    "word": "teddy-bear",
+    "meaning": {
+      "definition": "A plush toy in the shape of a bear."
+    },
+    "difficulty": "EASY"
+  },
+  {
+    "word": "telephone",
+    "meaning": {
+      "definition": "A telecommunication device (originally mechanical, and now electronic) used for two-way talking with another person (now often shortened to phone)."
+    },
+    "difficulty": "EASY"
+  },
+  {
+    "word": "television",
+    "meaning": {
+      "definition": "An electronic communication medium that allows the transmission of real-time visual images, and often sound."
+    },
+    "difficulty": "EASY"
+  },
+  {
+    "word": "tennis racquet",
+    "meaning": {
+      "definition": "Used to hit a tennis ball"
+    },
+    "difficulty": "EASY"
+  },
+  {
+    "word": "tent",
+    "meaning": {
+      "definition": "A pavilion or portable lodge consisting of skins, canvas, or some strong cloth, stretched and sustained by poles, used for sheltering people from the weather."
+    },
+    "difficulty": "EASY"
+  },
+  {
+    "word": "The Eiffel Tower",
+    "meaning": {
+      "definition": "A very famous building in Paris, France"
+    },
+    "difficulty": "MEDIUM"
+  },
+  {
+    "word": "The Great Wall of China",
+    "meaning": {
+      "definition": "An ancient fortification that extends over 20,000 km"
+    },
+    "difficulty": "HARD"
+  },
+  {
+    "word": "The Mona Lisa",
+    "meaning": {
+      "definition": "A very famous painting by Leonardo Da Vinci"
+    },
+    "difficulty": "HARD"
+  },
+  {
+    "word": "tiger",
+    "meaning": {
+      "definition": "An orange wildcat with a strong roar"
+    },
+    "difficulty": "MEDIUM"
+  },
+  {
+    "word": "toaster",
+    "meaning": {
+      "definition": "One who toasts (cooks lightly by browning)."
+    },
+    "difficulty": "MEDIUM"
+  },
+  {
+    "word": "toe",
+    "meaning": {
+      "definition": "Each of the five digits on the end of the foot."
+    },
+    "difficulty": "MEDIUM"
+  },
+  {
+    "word": "toilet",
+    "meaning": {
+      "definition": "A covering of linen, silk, or tapestry, spread over a dressing table in a chamber or dressing room."
+    },
+    "difficulty": "MEDIUM"
+  },
+  {
+    "word": "tooth",
+    "meaning": {
+      "definition": "A hard, calcareous structure present in the mouth of many vertebrate animals, generally used for eating."
+    },
+    "difficulty": "MEDIUM"
+  },
+  {
+    "word": "toothbrush",
+    "meaning": {
+      "definition": "A brush, used with toothpaste, for cleaning the teeth."
+    },
+    "difficulty": "EASY"
+  },
+  {
+    "word": "toothpaste",
+    "meaning": {
+      "definition": "A paste, normally used with a toothbrush, for cleaning the teeth."
+    },
+    "difficulty": "MEDIUM"
+  },
+  {
+    "word": "tornado",
+    "meaning": {
+      "definition": "A violent windstorm characterized by a mobile, twisting, funnel-shaped cloud."
+    },
+    "difficulty": "EASY"
+  },
+  {
+    "word": "tractor",
+    "meaning": {
+      "definition": "A vehicle used in farms e.g. for pulling farm equipment and preparing the fields."
+    },
+    "difficulty": "MEDIUM"
+  },
+  {
+    "word": "traffic light",
+    "meaning": {
+      "definition": "A signalling device positioned at a road intersection or pedestrian crossing to indicate when it may be safe to drive, ride or walk, using a universal colour code."
+    },
+    "difficulty": "EASY"
+  },
+  {
+    "word": "train",
+    "meaning": {
+      "definition": "Elongated portion."
+    },
+    "difficulty": "MEDIUM"
+  },
+  {
+    "word": "tree",
+    "meaning": {
+      "definition": "Fast growing function based on Kruskal's tree theorem."
+    },
+    "difficulty": "EASY"
+  },
+  {
+    "word": "triangle",
+    "meaning": {
+      "definition": "A polygon with three sides and three angles."
+    },
+    "difficulty": "EASY"
+  },
+  {
+    "word": "trombone",
+    "meaning": {
+      "definition": "A brass wind instrument with a part that can slide in and out to make different sounds."
+    },
+    "difficulty": "MEDIUM"
+  },
+  {
+    "word": "truck",
+    "meaning": {
+      "definition": "A small wheel or roller, specifically the wheel of a gun carriage."
+    },
+    "difficulty": "MEDIUM"
+  },
+  {
+    "word": "trumpet",
+    "meaning": {
+      "definition": "A bell shaped wind instrument that makes a bright and strong sound."
+    },
+    "difficulty": "MEDIUM"
+  },
+  {
+    "word": "t-shirt",
+    "meaning": {
+      "definition": "A lightweight shirt without buttons, usually with short sleeves and no collar. Often made of cotton and frequently bears a picture or slogan."
+    },
+    "difficulty": "MEDIUM"
+  },
+  {
+    "word": "umbrella",
+    "meaning": {
+      "definition": "Cloth-covered frame used for protection against rain or sun."
+    },
+    "difficulty": "EASY"
+  },
+  {
+    "word": "underwear",
+    "meaning": {
+      "definition": "Clothes worn next to the skin, underneath outer clothing."
+    },
+    "difficulty": "MEDIUM"
+  },
+  {
+    "word": "van",
+    "meaning": {
+      "definition": "A covered vehicle used for carrying goods or people, usually roughly cuboid in shape, longer and higher than a car but smaller than a truck/lorry."
+    },
+    "difficulty": "HARD"
+  },
+  {
+    "word": "vase",
+    "meaning": {
+      "definition": "An upright open container used mainly for displaying fresh, dried, or artificial flowers."
+    },
+    "difficulty": "EASY"
+  },
+  {
+    "word": "violin",
+    "meaning": {
+      "definition": "A musical instrument that is held between the chin and shoulder and played with a bow."
+    },
+    "difficulty": "MEDIUM"
+  },
+  {
+    "word": "washing machine",
+    "meaning": {
+      "definition": "A machine, usually automatic, which washes clothes."
+    },
+    "difficulty": "HARD"
+  },
+  {
+    "word": "watermelon",
+    "meaning": {
+      "definition": "A fruit often eaten in the summer, with green skin and red juicy flesh inside."
+    },
+    "difficulty": "MEDIUM"
+  },
+  {
+    "word": "waterslide",
+    "meaning": {
+      "definition": "A recreational slide with water flowing down it to reduce friction, sometimes involving the participant sitting on a mat or raft and sometimes leading into a pool at the bottom."
+    },
+    "difficulty": "HARD"
+  },
+  {
+    "word": "whale",
+    "meaning": {
+      "definition": "A very large sea mammal."
+    },
+    "difficulty": "MEDIUM"
+  },
+  {
+    "word": "wheel",
+    "meaning": {
+      "definition": "A circular device capable of rotating on its axis, facilitating movement or transportation or performing labour in machines."
+    },
+    "difficulty": "EASY"
+  },
+  {
+    "word": "windmill",
+    "meaning": {
+      "definition": "A machine which translates linear motion of wind to rotational motion by means of adjustable vanes called sails."
+    },
+    "difficulty": "EASY"
+  },
+  {
+    "word": "wine bottle",
+    "meaning": {
+      "definition": "A tall bottle with a long neck, normally made of dark or clear glass, for holding and serving wine."
+    },
+    "difficulty": "EASY"
+  },
+  {
+    "word": "wine glass",
+    "meaning": {
+      "definition": "A glass vessel, normally with a stem, from which wine is drunk."
+    },
+    "difficulty": "EASY"
+  },
+  {
+    "word": "wristwatch",
+    "meaning": {
+      "definition": "Something that's worn on the wrist to tell the time."
+    },
+    "difficulty": "HARD"
+  },
+  {
+    "word": "yoga",
+    "meaning": {
+      "definition": "Any of several Hindu or Buddhist disciplines aimed at training the consciousness for a state of perfect spiritual insight and tranquillity; especially a system of exercises practiced to promote control of the body and mind."
+    },
+    "difficulty": "HARD"
+  },
+  {
+    "word": "zebra",
+    "meaning": {
+      "definition": "A black and white striped animal, native to Africa."
+    },
+    "difficulty": "MEDIUM"
+  },
+  {
+    "word": "zigzag",
+    "meaning": {
+      "definition": "A line or path that proceeds by sharp turns in alternating directions"
+    },
+    "difficulty": "MEDIUM"
+  }
+]
