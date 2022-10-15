@@ -214,7 +214,7 @@
             </Button>
             <HBox alignment="CENTER" prefHeight="67.0" prefWidth="700.0">
                <children>
-                  <CheckBox alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="46.0" prefWidth="267.0" style="-fx-background-color: #882FF6;" text="Hidden Word Mode" textFill="WHITE">
+                  <CheckBox fx:id="hiddenMode" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="46.0" prefWidth="267.0" style="-fx-background-color: #882FF6;" text="Hidden Word Mode" textFill="WHITE">
                      <HBox.margin>
                         <Insets right="10.0" />
                      </HBox.margin>
@@ -225,7 +225,7 @@
                         <Font name="Arial Rounded MT Bold" size="21.0" />
                      </font>
                   </CheckBox>
-                  <CheckBox alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="46.0" prefWidth="267.0" style="-fx-background-color: #882FF6;" text="Zen Mode" textFill="WHITE">
+                  <CheckBox fx:id="zenMode" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="46.0" prefWidth="267.0" style="-fx-background-color: #882FF6;" text="Zen Mode" textFill="WHITE">
                      <padding>
                         <Insets left="20.0" />
                      </padding>

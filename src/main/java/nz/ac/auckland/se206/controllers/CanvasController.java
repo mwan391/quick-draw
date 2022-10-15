@@ -83,10 +83,13 @@ public class CanvasController implements Controller {
   private Timeline timer;
   private ObservableList<String> predictions;
   private String category;
-
   private GraphicsContext graphic;
   private DoodlePrediction model;
   private Boolean isFinished;
+
+  // Alternative modes
+  public Boolean isHidden = false;
+  public Boolean isZen = false;
 
   // mouse coordinates
   private double currentX;
