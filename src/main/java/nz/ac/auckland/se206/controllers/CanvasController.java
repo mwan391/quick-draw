@@ -443,8 +443,8 @@ public class CanvasController implements Controller {
       return;
     }
 
-    // lock the drawing and stop timer
     if (!isZen) {
+      // lock the drawing and stop timer
       canvas.setOnMouseDragged(e -> {});
       timer.pause();
       canvas.setDisable(true);
@@ -452,14 +452,14 @@ public class CanvasController implements Controller {
       hbxGameEnd.setVisible(true);
       hbxNewGame.setVisible(true);
       isFinished = true;
+
+      // update current game stats
+      gameDao.setWon(wonGame, activeGameId);
+      gameDao.setTime((time - Integer.valueOf(lblTimer.getText())), activeGameId);
     }
 
     // showing user what the word was
     hintMessage.setText("The word was " + category + "!");
-
-    // update current game stats
-    gameDao.setWon(wonGame, activeGameId);
-    gameDao.setTime((time - Integer.valueOf(lblTimer.getText())), activeGameId);
 
     // check for badges
     UserModel activeUser = UserModel.getActiveUser();
