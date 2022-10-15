@@ -281,7 +281,10 @@ public class CanvasController implements Controller {
       btnHint.setVisible(true);
     }
     // create new game database object
-    activeGameId = gameDao.addNewGame(activeUserId, actualDifficulty, category);
+    if (!isZen) {
+      activeGameId = gameDao.addNewGame(activeUserId, actualDifficulty, category);
+    }
+
     // set up what to do every second
     timer = new Timeline(new KeyFrame(Duration.seconds(1), e -> changeTime()));
     timer.setCycleCount(time);
@@ -443,8 +446,8 @@ public class CanvasController implements Controller {
       return;
     }
 
-    // lock the drawing and stop timer
     if (!isZen) {
+      // lock the drawing and stop timer
       canvas.setOnMouseDragged(e -> {});
       timer.pause();
       canvas.setDisable(true);
@@ -452,20 +455,27 @@ public class CanvasController implements Controller {
       hbxGameEnd.setVisible(true);
       hbxNewGame.setVisible(true);
       isFinished = true;
+
+      // update current game stats
+      gameDao.setWon(wonGame, activeGameId);
+      gameDao.setTime((time - Integer.valueOf(lblTimer.getText())), activeGameId);
+
+      // check for badges
+      UserModel activeUser = UserModel.getActiveUser();
+      int newBadgeCount =
+          BadgeManager.checkNewBadges(
+              activeUser.getUsername(), gameDao.getGameById(activeGameId), actualDifficulty);
+
+      // show pop up to display any new badge notifications
+      if (newBadgeCount > 0) {
+        showNewBadgePopup(newBadgeCount);
+      }
     }
 
-    // showing user what the word was
-    hintMessage.setText("The word was " + category + "!");
-
-    // update current game stats
-    gameDao.setWon(wonGame, activeGameId);
-    gameDao.setTime((time - Integer.valueOf(lblTimer.getText())), activeGameId);
-
-    // check for badges
-    UserModel activeUser = UserModel.getActiveUser();
-    int newBadgeCount =
-        BadgeManager.checkNewBadges(
-            activeUser.getUsername(), gameDao.getGameById(activeGameId), actualDifficulty);
+    if (isHidden) {
+      // showing user what the word was
+      hintMessage.setText("The word was " + category + "!");
+    }
 
     // clear styles
     canvasPane.getStyleClass().clear();
@@ -486,11 +496,6 @@ public class CanvasController implements Controller {
       progressMessage.getStyleClass().add("lossMessage");
       canvasPane.getStyleClass().add("loss");
       SoundManager.playSound(SoundName.LOSE_GAME);
-    }
-
-    // show pop up to display any new badge notifications
-    if (newBadgeCount > 0) {
-      showNewBadgePopup(newBadgeCount);
     }
   }
 
@@ -713,6 +718,7 @@ public class CanvasController implements Controller {
   private void onHint() {
     if (!isFinished) {
       hintMessage.setText("It begins with: " + category.charAt(0));
+      SoundManager.playSound();
     }
   }
 
@@ -720,6 +726,7 @@ public class CanvasController implements Controller {
   @FXML
   private void onColorPick() {
     selectedPen = zenPicker.getValue();
+    SoundManager.playSound();
     switchToPen();
   }
 
