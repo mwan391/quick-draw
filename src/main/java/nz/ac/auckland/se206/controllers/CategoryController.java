@@ -63,7 +63,7 @@ public class CategoryController implements Controller {
   }
 
   @FXML
-  private void onSetWordDifficulty() {
+  private void onSetWordDifficulty(ActionEvent event) {
     // get difficulty and check if it is valid
     String wordDifficulty = dbxWordDifficulty.getValue().toUpperCase();
 
@@ -81,6 +81,11 @@ public class CategoryController implements Controller {
 
     // update box graphics
     vbxWordDifficulty.setId(wordDifficulty.toLowerCase());
+
+    // play sound only if an event triggered it
+    if (event != null) {
+      SoundManager.playSound();
+    }
   }
 
   private void loadAllDifficulty() {
@@ -88,31 +93,31 @@ public class CategoryController implements Controller {
     String wordDifficulty = userSetting.getWords().toLowerCase();
     wordDifficulty = wordDifficulty.substring(0, 1).toUpperCase() + wordDifficulty.substring(1);
     dbxWordDifficulty.setValue(wordDifficulty);
-    onSetWordDifficulty();
+    onSetWordDifficulty(null);
 
     // accuracy
     String accuracyDifficulty = userSetting.getAccuracy().toLowerCase();
     accuracyDifficulty =
         accuracyDifficulty.substring(0, 1).toUpperCase() + accuracyDifficulty.substring(1);
     dbxAccuracyDifficulty.setValue(accuracyDifficulty);
-    onSetAccuracyDifficulty();
+    onSetAccuracyDifficulty(null);
 
     // time
     String timeDifficulty = userSetting.getTime().toLowerCase();
     timeDifficulty = timeDifficulty.substring(0, 1).toUpperCase() + timeDifficulty.substring(1);
     dbxTimeDifficulty.setValue(timeDifficulty);
-    onSetTimeDifficulty();
+    onSetTimeDifficulty(null);
 
     // confidence
     String confidenceDifficulty = userSetting.getConfidence().toLowerCase();
     confidenceDifficulty =
         confidenceDifficulty.substring(0, 1).toUpperCase() + confidenceDifficulty.substring(1);
     dbxConfidenceDifficulty.setValue(confidenceDifficulty);
-    onSetConfidenceDifficulty();
+    onSetConfidenceDifficulty(null);
   }
 
   @FXML
-  private void onSetAccuracyDifficulty() {
+  private void onSetAccuracyDifficulty(ActionEvent event) {
     // get difficulty and check if it is valid
     String accuracyDifficulty = dbxAccuracyDifficulty.getValue().toUpperCase();
 
@@ -121,10 +126,15 @@ public class CategoryController implements Controller {
 
     // update box graphics
     vbxAccuracyDifficulty.setId(accuracyDifficulty.toLowerCase());
+
+    // play sound only if an event triggered it
+    if (event != null) {
+      SoundManager.playSound();
+    }
   }
 
   @FXML
-  private void onSetTimeDifficulty() {
+  private void onSetTimeDifficulty(ActionEvent event) {
     // get difficulty and check if it is valid
     String difficulty = dbxTimeDifficulty.getValue().toUpperCase();
 
@@ -133,10 +143,15 @@ public class CategoryController implements Controller {
 
     // update box graphics
     vbxTimeDifficulty.setId(difficulty.toLowerCase());
+
+    // play sound only if an event triggered it
+    if (event != null) {
+      SoundManager.playSound();
+    }
   }
 
   @FXML
-  private void onSetConfidenceDifficulty() {
+  private void onSetConfidenceDifficulty(ActionEvent event) {
     // get difficulty and check if it is valid
     String difficulty = dbxConfidenceDifficulty.getValue().toUpperCase();
 
@@ -145,6 +160,11 @@ public class CategoryController implements Controller {
 
     // update box graphics
     vbxConfidenceDifficulty.setId(difficulty.toLowerCase());
+
+    // play sound only if an event triggered it
+    if (event != null) {
+      SoundManager.playSound();
+    }
   }
 
   @FXML
