@@ -12,6 +12,11 @@ public class MenuController implements Controller {
 
   @FXML private Button btnStart;
 
+  /**
+   * This method takes the user to the sign in screen and plays appropriate sound effect + tts
+   *
+   * @param event that triggers this method call
+   */
   @FXML
   private void onStartGame(ActionEvent event) {
     // change the scene
