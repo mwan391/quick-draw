@@ -71,8 +71,10 @@ public class CanvasController implements Controller {
 
   @FXML private ListView<String> lvwPredictions;
   @FXML private Canvas canvas;
+  @FXML private Pane timeBg;
   @FXML private Pane canvasPane;
   @FXML private Label lblTimer;
+  @FXML private Label timeLeft;
   @FXML private Label lblCategory;
   @FXML private Label lblDefinition;
   @FXML private Label eraserMessage;
@@ -98,6 +100,7 @@ public class CanvasController implements Controller {
   // Alternative modes
   public Boolean isHidden = false;
   public Boolean isZen = false;
+  private Boolean zenWin = false;
 
   // mouse coordinates
   private double currentX;
@@ -189,6 +192,17 @@ public class CanvasController implements Controller {
     GameSettingDao settingDao = new GameSettingDao();
     GameSettingModel userSettings = settingDao.get(activeUserId);
 
+    // disable timer in zen mode
+    if (isZen) {
+      timeBg.setVisible(false);
+      timeLeft.setVisible(false);
+      lblTimer.setVisible(false);
+    } else {
+      timeBg.setVisible(true);
+      timeLeft.setVisible(true);
+      lblTimer.setVisible(true);
+    }
+
     // set time settings
     CategorySelect.Difficulty timeDifficulty =
         CategorySelect.Difficulty.valueOf(userSettings.getTime());
@@ -268,7 +282,13 @@ public class CanvasController implements Controller {
     timer.setOnFinished(
         e -> {
           endGame(false);
-        }); // if the timer runs to zero
+        });
+    // disable timer in zen mode
+    if (isZen) {
+      timer.setOnFinished(e -> {});
+    }
+
+    // if the timer runs to zero
     timer.play();
     runPredictionsInBkg();
   }
@@ -359,6 +379,11 @@ public class CanvasController implements Controller {
       // finish the game if and only if the guess is within the accuracy range and the
       // confidence range
       endGame(true);
+      // activate message background in zen mode
+      if (zenWin) {
+        progressMessage.getStyleClass().add("winMessage");
+        canvasPane.getStyleClass().add("top3");
+      }
       // highlight word in list view if not hidden
       lvwPredictions.getSelectionModel().select(position);
     } else if (position < 10) {
@@ -399,14 +424,21 @@ public class CanvasController implements Controller {
    * @param wonGame boolean. true if won, false otherwise
    */
   private void endGame(Boolean wonGame) {
+    // cancel method if already won in zen
+    if (zenWin) {
+      return;
+    }
+
     // lock the drawing and stop timer
-    canvas.setOnMouseDragged(e -> {});
-    timer.pause();
-    canvas.setDisable(true);
-    hbxDrawTools.setVisible(false);
-    hbxGameEnd.setVisible(true);
-    hbxNewGame.setVisible(true);
-    isFinished = true;
+    if (!isZen) {
+      canvas.setOnMouseDragged(e -> {});
+      timer.pause();
+      canvas.setDisable(true);
+      hbxDrawTools.setVisible(false);
+      hbxGameEnd.setVisible(true);
+      hbxNewGame.setVisible(true);
+      isFinished = true;
+    }
 
     // showing user what the word was
     hintMessage.setText("The word was " + category + "!");
@@ -431,6 +463,7 @@ public class CanvasController implements Controller {
       progressMessage.getStyleClass().add("winMessage");
       canvasPane.getStyleClass().add("top3");
       SoundManager.playSound(SoundName.WIN_GAME);
+      zenWin = true;
     } else {
       progressMessage.setText("You Lose!");
       TextToSpeech.main(new String[] {"You Lose!"});
@@ -582,6 +615,8 @@ public class CanvasController implements Controller {
     hbxGameEnd.setVisible(false);
     hbxDrawTools.setVisible(false);
     hbxNewGame.setVisible(true);
+    // reset zen win
+    zenWin = false;
     // reset hint
     btnHint.setVisible(false);
     hintMessage.setText("Give me a hint!");
