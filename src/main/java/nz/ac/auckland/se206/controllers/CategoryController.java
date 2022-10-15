@@ -154,12 +154,17 @@ public class CategoryController implements Controller {
     Parent canvasRoot = SceneManager.getUiRoot(AppUi.CANVAS);
     CanvasController canvasController = (CanvasController) SceneManager.getController(canvasRoot);
 
-    // enabling hidden or zen mode
+    // enabling or disabling hidden mode
     if (hiddenMode.isSelected()) {
       canvasController.isHidden = true;
+    } else {
+      canvasController.isHidden = false;
     }
+    // enabling or disabling zen mode
     if (zenMode.isSelected()) {
       canvasController.isZen = true;
+    } else {
+      canvasController.isZen = false;
     }
 
     // update settings in database
