@@ -7,7 +7,12 @@ import javafx.scene.media.MediaPlayer;
 public class SoundManager {
 
   public enum SoundName {
-    START_GAME
+    START_GAME,
+    GENERIC,
+    LOG_IN,
+    LOG_OUT,
+    WIN_GAME,
+    LOSE_GAME
   }
 
   /**
@@ -23,5 +28,10 @@ public class SoundManager {
     MediaPlayer mediaPlayer = new MediaPlayer(media);
     // play sound
     mediaPlayer.play();
+  }
+
+  /** This method plays the sound set as generic for quick access */
+  public static void playSound() {
+    playSound(SoundName.GENERIC);
   }
 }
