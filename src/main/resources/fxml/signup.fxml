@@ -56,13 +56,16 @@
                               <Insets />
                            </opaqueInsets>
                         </Label>
-                        <TextField fx:id="userEntry" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="41.0" prefWidth="261.0" style="-fx-background-color: #4e79ec; -fx-border-width: 2px; -fx-border-color: BLACK; -fx-border-radius: 5px; -fx-background-radius: 5px; -fx-font: 18px &quot;Comic Sans MS&quot;, &quot;Comic Sans&quot;, sans-serif;">
+                        <TextField fx:id="userEntry" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="41.0" prefWidth="261.0" style="-fx-background-color: #bec7ff; -fx-border-radius: 5px; -fx-background-radius: 5px; -fx-font: 18px &quot;Comic Sans MS&quot;, &quot;Comic Sans&quot;, sans-serif;">
                            <VBox.margin>
                               <Insets top="20.0" />
                            </VBox.margin>
                            <cursor>
                               <Cursor fx:constant="TEXT" />
                            </cursor>
+                           <font>
+                              <Font name="Comic Sans MS" size="12.0" />
+                           </font>
                         </TextField>
                         <Label fx:id="lblWarning">
                            <VBox.margin>
