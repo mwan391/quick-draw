@@ -281,7 +281,10 @@ public class CanvasController implements Controller {
       btnHint.setVisible(true);
     }
     // create new game database object
-    activeGameId = gameDao.addNewGame(activeUserId, actualDifficulty, category);
+    if (!isZen) {
+      activeGameId = gameDao.addNewGame(activeUserId, actualDifficulty, category);
+    }
+
     // set up what to do every second
     timer = new Timeline(new KeyFrame(Duration.seconds(1), e -> changeTime()));
     timer.setCycleCount(time);
