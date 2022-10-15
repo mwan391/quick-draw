@@ -456,16 +456,23 @@ public class CanvasController implements Controller {
       // update current game stats
       gameDao.setWon(wonGame, activeGameId);
       gameDao.setTime((time - Integer.valueOf(lblTimer.getText())), activeGameId);
+
+      // check for badges
+      UserModel activeUser = UserModel.getActiveUser();
+      int newBadgeCount =
+          BadgeManager.checkNewBadges(
+              activeUser.getUsername(), gameDao.getGameById(activeGameId), actualDifficulty);
+
+      // show pop up to display any new badge notifications
+      if (newBadgeCount > 0) {
+        showNewBadgePopup(newBadgeCount);
+      }
     }
 
-    // showing user what the word was
-    hintMessage.setText("The word was " + category + "!");
-
-    // check for badges
-    UserModel activeUser = UserModel.getActiveUser();
-    int newBadgeCount =
-        BadgeManager.checkNewBadges(
-            activeUser.getUsername(), gameDao.getGameById(activeGameId), actualDifficulty);
+    if (isHidden) {
+      // showing user what the word was
+      hintMessage.setText("The word was " + category + "!");
+    }
 
     // clear styles
     canvasPane.getStyleClass().clear();
@@ -486,11 +493,6 @@ public class CanvasController implements Controller {
       progressMessage.getStyleClass().add("lossMessage");
       canvasPane.getStyleClass().add("loss");
       SoundManager.playSound(SoundName.LOSE_GAME);
-    }
-
-    // show pop up to display any new badge notifications
-    if (newBadgeCount > 0) {
-      showNewBadgePopup(newBadgeCount);
     }
   }
 
