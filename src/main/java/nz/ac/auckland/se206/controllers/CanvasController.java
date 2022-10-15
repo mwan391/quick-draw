@@ -652,7 +652,9 @@ public class CanvasController implements Controller {
    */
   @FXML
   private void onHint() {
-    hintMessage.setText("It begins with: " + category.charAt(0));
+    if (!isFinished) {
+      hintMessage.setText("It begins with: " + category.charAt(0));
+    }
   }
 
   /** This method will generate a word or definition dependent on the selected gamemode */
