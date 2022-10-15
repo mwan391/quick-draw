@@ -15,6 +15,8 @@ import javafx.scene.layout.VBox;
 import nz.ac.auckland.se206.CategorySelect;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
+import nz.ac.auckland.se206.SoundManager;
+import nz.ac.auckland.se206.SoundManager.SoundName;
 import nz.ac.auckland.se206.daos.GameSettingDao;
 import nz.ac.auckland.se206.models.GameSettingModel;
 import nz.ac.auckland.se206.models.UserModel;
@@ -38,6 +40,10 @@ public class CategoryController implements Controller {
 
   private GameSettingModel userSetting;
 
+  /**
+   * This method sets up necessary variables and dependencies that only need to be done once during
+   * the initial fxml load
+   */
   public void initialize() {
     // add items to difficulty combo boxes
     ObservableList<String> difficultiesAll = FXCollections.observableArrayList();
@@ -50,6 +56,12 @@ public class CategoryController implements Controller {
     dbxAccuracyDifficulty.setItems(difficultiesAccuracy);
   }
 
+  /**
+   * This method updates the category screen to the preset settings as saved from the user's last
+   * session, or all on easy if new user, as well as playing the necessary sounds
+   *
+   * @param userId ID of the user playing
+   */
   public void setUserSettings(String userId) {
     GameSettingDao settingDao = new GameSettingDao();
     userSetting = settingDao.get(userId);
@@ -57,12 +69,20 @@ public class CategoryController implements Controller {
     // Activating text to speech instructions
     TextToSpeech.main(new String[] {"Choose a difficulty"});
 
+    SoundManager.playSound(SoundName.LOG_IN);
+
     // set presets
     loadAllDifficulty();
   }
 
+  /**
+   * updates the saved word difficulty setting according to what the user selects. this will not be
+   * saved unless the user chooses to move onto the game scene
+   *
+   * @param event that triggers this method call
+   */
   @FXML
-  private void onSetWordDifficulty() {
+  private void onSetWordDifficulty(ActionEvent event) {
     // get difficulty and check if it is valid
     String wordDifficulty = dbxWordDifficulty.getValue().toUpperCase();
 
@@ -80,38 +100,50 @@ public class CategoryController implements Controller {
 
     // update box graphics
     vbxWordDifficulty.setId(wordDifficulty.toLowerCase());
+
+    // play sound only if an event triggered it
+    if (event != null) {
+      SoundManager.playSound();
+    }
   }
 
+  /** This method loads loads all of the saved settings for each individual setting */
   private void loadAllDifficulty() {
     // word
     String wordDifficulty = userSetting.getWords().toLowerCase();
     wordDifficulty = wordDifficulty.substring(0, 1).toUpperCase() + wordDifficulty.substring(1);
     dbxWordDifficulty.setValue(wordDifficulty);
-    onSetWordDifficulty();
+    onSetWordDifficulty(null);
 
     // accuracy
     String accuracyDifficulty = userSetting.getAccuracy().toLowerCase();
     accuracyDifficulty =
         accuracyDifficulty.substring(0, 1).toUpperCase() + accuracyDifficulty.substring(1);
     dbxAccuracyDifficulty.setValue(accuracyDifficulty);
-    onSetAccuracyDifficulty();
+    onSetAccuracyDifficulty(null);
 
     // time
     String timeDifficulty = userSetting.getTime().toLowerCase();
     timeDifficulty = timeDifficulty.substring(0, 1).toUpperCase() + timeDifficulty.substring(1);
     dbxTimeDifficulty.setValue(timeDifficulty);
-    onSetTimeDifficulty();
+    onSetTimeDifficulty(null);
 
     // confidence
     String confidenceDifficulty = userSetting.getConfidence().toLowerCase();
     confidenceDifficulty =
         confidenceDifficulty.substring(0, 1).toUpperCase() + confidenceDifficulty.substring(1);
     dbxConfidenceDifficulty.setValue(confidenceDifficulty);
-    onSetConfidenceDifficulty();
+    onSetConfidenceDifficulty(null);
   }
 
+  /**
+   * updates the saved accuracy difficulty setting according to what the user. this will not be
+   * saved unless the user chooses to move onto the game scene selects
+   *
+   * @param event that triggers this method call
+   */
   @FXML
-  private void onSetAccuracyDifficulty() {
+  private void onSetAccuracyDifficulty(ActionEvent event) {
     // get difficulty and check if it is valid
     String accuracyDifficulty = dbxAccuracyDifficulty.getValue().toUpperCase();
 
@@ -120,10 +152,21 @@ public class CategoryController implements Controller {
 
     // update box graphics
     vbxAccuracyDifficulty.setId(accuracyDifficulty.toLowerCase());
+
+    // play sound only if an event triggered it
+    if (event != null) {
+      SoundManager.playSound();
+    }
   }
 
+  /**
+   * updates the saved time difficulty setting according to what the user selects. this will not be
+   * saved unless the user chooses to move onto the game scene
+   *
+   * @param event that triggers this method call
+   */
   @FXML
-  private void onSetTimeDifficulty() {
+  private void onSetTimeDifficulty(ActionEvent event) {
     // get difficulty and check if it is valid
     String difficulty = dbxTimeDifficulty.getValue().toUpperCase();
 
@@ -132,10 +175,21 @@ public class CategoryController implements Controller {
 
     // update box graphics
     vbxTimeDifficulty.setId(difficulty.toLowerCase());
+
+    // play sound only if an event triggered it
+    if (event != null) {
+      SoundManager.playSound();
+    }
   }
 
+  /**
+   * updates the saved confidence difficulty setting according to what the user selects. this will
+   * not be saved unless the user chooses to move onto the game scene
+   *
+   * @param event that triggers this method call
+   */
   @FXML
-  private void onSetConfidenceDifficulty() {
+  private void onSetConfidenceDifficulty(ActionEvent event) {
     // get difficulty and check if it is valid
     String difficulty = dbxConfidenceDifficulty.getValue().toUpperCase();
 
@@ -144,8 +198,19 @@ public class CategoryController implements Controller {
 
     // update box graphics
     vbxConfidenceDifficulty.setId(difficulty.toLowerCase());
+
+    // play sound only if an event triggered it
+    if (event != null) {
+      SoundManager.playSound();
+    }
   }
 
+  /**
+   * This method updates the saved settings and changes the scene to the game scene
+   *
+   * @param event
+   * @throws SQLException
+   */
   @FXML
   private void onStartGame(ActionEvent event) throws SQLException {
 
@@ -175,9 +240,15 @@ public class CategoryController implements Controller {
     canvasController.initializeGame();
     scene.setRoot(canvasRoot);
 
-    // reset the page in case a new game gets started
+    SoundManager.playSound(SoundName.START_GAME);
   }
 
+  /**
+   * This method logs the current user out by taking the user back to the log in scene and
+   * deactivating the saved user
+   *
+   * @param event
+   */
   @FXML
   private void onLogOut(ActionEvent event) {
     // finding the scene
@@ -189,8 +260,16 @@ public class CategoryController implements Controller {
     // updating the userlist
     LogInController controller = (LogInController) SceneManager.getController(logInRoot);
     controller.loadUserData();
+
+    SoundManager.playSound(SoundName.LOG_OUT);
   }
 
+  /**
+   * this method takes the user to the statistics page and calls the method to load the statistics
+   * onto the page
+   *
+   * @param event
+   */
   @FXML
   private void onSeeUserStatistics(ActionEvent event) {
     // get root and controller for statistics page
@@ -202,5 +281,7 @@ public class CategoryController implements Controller {
     // load the necessary stats and change the scene
     statisticsController.loadPage();
     scene.setRoot(statsRoot);
+
+    SoundManager.playSound();
   }
 }

@@ -43,6 +43,8 @@ import nz.ac.auckland.se206.BadgeManager;
 import nz.ac.auckland.se206.CategorySelect;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
+import nz.ac.auckland.se206.SoundManager;
+import nz.ac.auckland.se206.SoundManager.SoundName;
 import nz.ac.auckland.se206.daos.GameDao;
 import nz.ac.auckland.se206.daos.GameSettingDao;
 import nz.ac.auckland.se206.dictionary.DictionaryLookup;
@@ -145,8 +147,12 @@ public class CanvasController implements Controller {
 
   /** This method is called when the "Clear" button is pressed. */
   @FXML
-  private void onClear() {
+  private void onClear(ActionEvent event) {
     graphic.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
+
+    if (event != null) {
+      SoundManager.playSound();
+    }
   }
 
   /**
@@ -421,11 +427,13 @@ public class CanvasController implements Controller {
       TextToSpeech.main(new String[] {"You Win!"});
       progressMessage.getStyleClass().add("winMessage");
       canvasPane.getStyleClass().add("top3");
+      SoundManager.playSound(SoundName.WIN_GAME);
     } else {
       progressMessage.setText("You Lose!");
       TextToSpeech.main(new String[] {"You Lose!"});
       progressMessage.getStyleClass().add("lossMessage");
       canvasPane.getStyleClass().add("loss");
+      SoundManager.playSound(SoundName.LOSE_GAME);
     }
 
     // show pop up to display any new badge notifications
@@ -442,8 +450,10 @@ public class CanvasController implements Controller {
    * @param newBadgeCount
    */
   private void showNewBadgePopup(int newBadgeCount) {
+    // play positive sound
+    SoundManager.playSound(SoundName.LOG_IN);
+
     Dialog<Void> badgePopup = new Dialog<>();
-    badgePopup.setTitle("Congratulations!");
     // identify whether 'badge' or 'badges' should be used
     String correctNoun = "";
     if (newBadgeCount > 1) {
@@ -485,6 +495,9 @@ public class CanvasController implements Controller {
                 if (b == btnViewBadges) {
                   onViewBadges();
                 }
+
+                // play sound regardless of button
+                SoundManager.playSound();
 
                 return null;
               }
@@ -529,9 +542,13 @@ public class CanvasController implements Controller {
     try {
       ImageIO.write(getCurrentSnapshot(), "bmp", fileToSave);
       lblCategory.setText("File Saved!");
+      // play positive sound on success
+      SoundManager.playSound(SoundName.LOG_IN);
     } catch (Exception e) {
       // if the file save fails, tell the user.
       lblCategory.setText("Save cancelled.");
+      // play negative sound on fail
+      SoundManager.playSound(SoundName.LOG_OUT);
     }
   }
 
@@ -548,6 +565,8 @@ public class CanvasController implements Controller {
 
     // repeat instructions
     TextToSpeech.main(new String[] {"Choose a difficulty"});
+
+    SoundManager.playSound();
   }
 
   /** This method reverts everything to it's initial state as seen when first entering the scene */
@@ -566,7 +585,7 @@ public class CanvasController implements Controller {
     // clear predictions and canvas for new game
     predictions.clear();
     canvas.setDisable(true);
-    onClear();
+    onClear(null);
     // reset conditional border color rendering
     canvasPane.getStyleClass().add("end-game");
     progressMessage.getStyleClass().clear();
@@ -580,6 +599,8 @@ public class CanvasController implements Controller {
    */
   @FXML
   private void onToggleEraser() {
+
+    SoundManager.playSound();
 
     // Switching between pen and eraser
     if (btnToggleEraser.isSelected()) {
@@ -618,6 +639,7 @@ public class CanvasController implements Controller {
       hbxNewGame.setVisible(false);
       btnNewGame.setText("Play Again?");
       startTimer();
+      SoundManager.playSound();
     }
   }
 

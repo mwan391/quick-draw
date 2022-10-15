@@ -19,6 +19,8 @@ import javafx.scene.text.Text;
 import nz.ac.auckland.se206.BadgeManager;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
+import nz.ac.auckland.se206.SoundManager;
+import nz.ac.auckland.se206.SoundManager.SoundName;
 import nz.ac.auckland.se206.daos.UserDaoJson;
 import nz.ac.auckland.se206.daos.UserStatsDao;
 import nz.ac.auckland.se206.models.BadgeModel;
@@ -131,6 +133,8 @@ public class StatisticsController implements Controller {
     Scene scene = ((Button) event.getSource()).getScene();
     Parent logInRoot = SceneManager.getUiRoot(AppUi.CATEGORY_SELECT);
     scene.setRoot(logInRoot);
+
+    SoundManager.playSound();
   }
 
   /** retrieves and formats the necessary statistics of the user onto the page */
@@ -284,5 +288,7 @@ public class StatisticsController implements Controller {
 
   /** plays a sound whenever an unlocked badge is pressed inside the badge view area */
   @FXML
-  private void onPressBadge() {}
+  private void onPressBadge() {
+    SoundManager.playSound(SoundName.LOG_IN);
+  }
 }

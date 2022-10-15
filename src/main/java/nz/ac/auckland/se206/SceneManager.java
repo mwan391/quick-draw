@@ -18,6 +18,12 @@ public class SceneManager {
   private static HashMap<AppUi, Parent> sceneMap = new HashMap<AppUi, Parent>();
   private static HashMap<Parent, Controller> controllerMap = new HashMap<>();
 
+  /**
+   * This method adds the specified item into the ui and parent hashmap
+   *
+   * @param appUi name of fxml
+   * @param uiRoot parent of fxml
+   */
   public static void addUi(AppUi appUi, Parent uiRoot) {
     sceneMap.put(appUi, uiRoot);
   }
@@ -26,6 +32,12 @@ public class SceneManager {
     return sceneMap.get(appUi);
   }
 
+  /**
+   * This method adds the specified item into the parent and controller hashmap
+   *
+   * @param uiRoot parent of the fxml
+   * @param controller object of the fxml
+   */
   public static void addController(Parent uiRoot, Controller controller) {
     controllerMap.put(uiRoot, controller);
   }
