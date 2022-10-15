@@ -8,7 +8,6 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.lang.reflect.Type;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
@@ -22,7 +21,7 @@ import nz.ac.auckland.se206.models.UserModel;
 
 public class DictionaryLookup {
 
-  private final String FILE_NAME = "definitions.json";
+  private final String FILE_PATH = "src/main/java/nz/ac/auckland/se206/dictionary/definitions.json";
   private UserModel user;
 
   /**
@@ -67,12 +66,12 @@ public class DictionaryLookup {
    */
   private List<WordInfo> getAll() {
     List<WordInfo> words = new ArrayList<>();
-    URL definitionsUrl = DictionaryLookup.class.getResource(FILE_NAME);
+
     // Typing to convert JSON object to Java object
     Type wordsType = new TypeToken<List<WordInfo>>() {}.getType();
     try {
       // Open JSON file
-      File file = new File(definitionsUrl.getPath());
+      File file = new File(FILE_PATH);
       BufferedReader br = new BufferedReader(new FileReader(file));
       Gson gson = new GsonBuilder().setPrettyPrinting().create();
       // Converts JSON objects to List of Java objects
