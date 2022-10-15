@@ -347,14 +347,16 @@ public class CanvasController implements Controller {
       // finish the game if and only if the guess is within the accuracy range and the
       // confidence range
       endGame(true);
-      // highlight word in list view
+      // highlight word in list view if not hidden
       lvwPredictions.getSelectionModel().select(position);
     } else if (position < 10) {
       pseudoClass = "top10";
       messageClass = "message10";
       progressMessage.setText("You're almost there!");
-      // highlight word in list view
-      lvwPredictions.getSelectionModel().select(position);
+      // highlight word in list view if not hidden
+      if (!isHidden) {
+        lvwPredictions.getSelectionModel().select(position);
+      }
     } else if (position < 20) {
       pseudoClass = "top20";
       messageClass = "message20";
