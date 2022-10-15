@@ -37,6 +37,10 @@ public class CategoryController implements Controller {
 
   private GameSettingModel userSetting;
 
+  /**
+   * This method sets up necessary variables and dependencies that only need to be done once during
+   * the initial fxml load
+   */
   public void initialize() {
     // add items to difficulty combo boxes
     ObservableList<String> difficultiesAll = FXCollections.observableArrayList();
@@ -49,6 +53,12 @@ public class CategoryController implements Controller {
     dbxAccuracyDifficulty.setItems(difficultiesAccuracy);
   }
 
+  /**
+   * This method updates the category screen to the preset settings as saved from the user's last
+   * session, or all on easy if new user, as well as playing the necessary sounds
+   *
+   * @param userId ID of the user playing
+   */
   public void setUserSettings(String userId) {
     GameSettingDao settingDao = new GameSettingDao();
     userSetting = settingDao.get(userId);
@@ -62,6 +72,12 @@ public class CategoryController implements Controller {
     loadAllDifficulty();
   }
 
+  /**
+   * updates the saved word difficulty setting according to what the user selects. this will not be
+   * saved unless the user chooses to move onto the game scene
+   *
+   * @param event that triggers this method call
+   */
   @FXML
   private void onSetWordDifficulty(ActionEvent event) {
     // get difficulty and check if it is valid
@@ -88,6 +104,7 @@ public class CategoryController implements Controller {
     }
   }
 
+  /** This method loads loads all of the saved settings for each individual setting */
   private void loadAllDifficulty() {
     // word
     String wordDifficulty = userSetting.getWords().toLowerCase();
@@ -116,6 +133,12 @@ public class CategoryController implements Controller {
     onSetConfidenceDifficulty(null);
   }
 
+  /**
+   * updates the saved accuracy difficulty setting according to what the user. this will not be
+   * saved unless the user chooses to move onto the game scene selects
+   *
+   * @param event that triggers this method call
+   */
   @FXML
   private void onSetAccuracyDifficulty(ActionEvent event) {
     // get difficulty and check if it is valid
@@ -133,6 +156,12 @@ public class CategoryController implements Controller {
     }
   }
 
+  /**
+   * updates the saved time difficulty setting according to what the user selects. this will not be
+   * saved unless the user chooses to move onto the game scene
+   *
+   * @param event that triggers this method call
+   */
   @FXML
   private void onSetTimeDifficulty(ActionEvent event) {
     // get difficulty and check if it is valid
@@ -150,6 +179,12 @@ public class CategoryController implements Controller {
     }
   }
 
+  /**
+   * updates the saved confidence difficulty setting according to what the user selects. this will
+   * not be saved unless the user chooses to move onto the game scene
+   *
+   * @param event that triggers this method call
+   */
   @FXML
   private void onSetConfidenceDifficulty(ActionEvent event) {
     // get difficulty and check if it is valid
@@ -167,6 +202,12 @@ public class CategoryController implements Controller {
     }
   }
 
+  /**
+   * This method updates the saved settings and changes the scene to the game scene
+   *
+   * @param event
+   * @throws SQLException
+   */
   @FXML
   private void onStartGame(ActionEvent event) throws SQLException {
 
@@ -186,6 +227,12 @@ public class CategoryController implements Controller {
     SoundManager.playSound(SoundName.START_GAME);
   }
 
+  /**
+   * This method logs the current user out by taking the user back to the log in scene and
+   * deactivating the saved user
+   *
+   * @param event
+   */
   @FXML
   private void onLogOut(ActionEvent event) {
     // finding the scene
@@ -201,6 +248,12 @@ public class CategoryController implements Controller {
     SoundManager.playSound(SoundName.LOG_OUT);
   }
 
+  /**
+   * this method takes the user to the statistics page and calls the method to load the statistics
+   * onto the page
+   *
+   * @param event
+   */
   @FXML
   private void onSeeUserStatistics(ActionEvent event) {
     // get root and controller for statistics page
