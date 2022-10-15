@@ -26,6 +26,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonBar.ButtonData;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.ColorPicker;
 import javafx.scene.control.Dialog;
 import javafx.scene.control.DialogPane;
 import javafx.scene.control.Label;
@@ -35,6 +36,7 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 import javafx.stage.FileChooser;
 import javafx.util.Callback;
 import javafx.util.Duration;
@@ -89,6 +91,7 @@ public class CanvasController implements Controller {
   @FXML private HBox hbxGameEnd;
   @FXML private HBox hbxDrawTools;
   @FXML private HBox hbxNewGame;
+  @FXML private ColorPicker zenPicker;
 
   private Timeline timer;
   private ObservableList<String> predictions;
@@ -101,6 +104,7 @@ public class CanvasController implements Controller {
   public Boolean isHidden = false;
   public Boolean isZen = false;
   private Boolean zenWin = false;
+  private Color selectedPen;
 
   // mouse coordinates
   private double currentX;
@@ -140,6 +144,7 @@ public class CanvasController implements Controller {
           currentY = e.getY();
         });
 
+    selectedPen = Color.BLACK;
     switchToPen();
 
     model = new DoodlePrediction();
@@ -197,10 +202,12 @@ public class CanvasController implements Controller {
       timeBg.setVisible(false);
       timeLeft.setVisible(false);
       lblTimer.setVisible(false);
+      zenPicker.setVisible(true);
     } else {
       timeBg.setVisible(true);
       timeLeft.setVisible(true);
       lblTimer.setVisible(true);
+      zenPicker.setVisible(false);
     }
 
     // set time settings
@@ -608,6 +615,7 @@ public class CanvasController implements Controller {
   /** This method reverts everything to it's initial state as seen when first entering the scene */
   private void resetGame() {
     // reset timer and re-enable the drawing tools
+    selectedPen = Color.BLACK;
     switchToPen();
     eraserMessage.setText("Eraser OFF");
     btnToggleEraser.setSelected(false);
@@ -692,6 +700,13 @@ public class CanvasController implements Controller {
     }
   }
 
+  /** This method will change the color of the drawing tool */
+  @FXML
+  private void onColorPick() {
+    selectedPen = zenPicker.getValue();
+    switchToPen();
+  }
+
   /** This method will generate a word or definition dependent on the selected gamemode */
   private void generateWord() {
     if (!isHidden) {
@@ -718,7 +733,10 @@ public class CanvasController implements Controller {
     }
   }
 
-  /** This method switches the cursor to a small paint-brush effect on the canvas with black ink. */
+  /**
+   * This method switches the cursor to a small paint-brush effect on the canvas with color
+   * specified ink.
+   */
   private void switchToPen() {
     canvas.setOnMouseDragged(
         e -> {
@@ -729,7 +747,8 @@ public class CanvasController implements Controller {
           final double y = e.getY() - size / 2;
 
           // This is the colour of the brush.
-          graphic.setFill(Color.BLACK);
+          Paint fill = Paint.valueOf(selectedPen.toString());
+          graphic.setStroke(fill);
           graphic.setLineWidth(size);
 
           // Create a line that goes from the point (currentX, currentY) and (x,y)

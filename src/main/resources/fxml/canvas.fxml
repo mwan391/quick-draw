@@ -271,10 +271,13 @@
             </VBox>
          </graphic>
       </Button>
-      <ColorPicker fx:id="zenPicker" layoutX="44.0" layoutY="527.0" prefHeight="51.0" prefWidth="356.0" promptText="Choose a Pen Colour!" style="-fx-background-color: #882FF6;">
+      <ColorPicker fx:id="zenPicker" layoutX="44.0" layoutY="527.0" onAction="#onColorPick" prefHeight="51.0" prefWidth="356.0" promptText="Choose a Pen Colour!" style="-fx-background-color: #882FF6;">
          <value>
             <Color />
          </value>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </ColorPicker>
    </children>
 </AnchorPane>
