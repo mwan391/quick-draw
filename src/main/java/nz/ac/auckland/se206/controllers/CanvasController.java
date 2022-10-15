@@ -47,6 +47,9 @@ import nz.ac.auckland.se206.SoundManager;
 import nz.ac.auckland.se206.SoundManager.SoundName;
 import nz.ac.auckland.se206.daos.GameDao;
 import nz.ac.auckland.se206.daos.GameSettingDao;
+import nz.ac.auckland.se206.daos.HiddenWordDao;
+import nz.ac.auckland.se206.dictionary.DictionaryLookup;
+import nz.ac.auckland.se206.dictionary.WordInfo;
 import nz.ac.auckland.se206.ml.DoodlePrediction;
 import nz.ac.auckland.se206.models.GameSettingModel;
 import nz.ac.auckland.se206.models.UserModel;
@@ -71,11 +74,14 @@ public class CanvasController implements Controller {
   @FXML private Pane canvasPane;
   @FXML private Label lblTimer;
   @FXML private Label lblCategory;
+  @FXML private Label lblDefinition;
   @FXML private Label eraserMessage;
   @FXML private Label progressMessage;
+  @FXML private Label hintMessage;
   @FXML private Button clearButton;
   @FXML private Button btnSave;
   @FXML private Button btnReturnToMenu;
+  @FXML private Button btnHint;
   @FXML private ToggleButton btnToggleEraser;
   @FXML private ToggleButton btnNewGame;
   @FXML private HBox hbxGameEnd;
@@ -85,10 +91,13 @@ public class CanvasController implements Controller {
   private Timeline timer;
   private ObservableList<String> predictions;
   private String category;
-
   private GraphicsContext graphic;
   private DoodlePrediction model;
   private Boolean isFinished;
+
+  // Alternative modes
+  public Boolean isHidden = false;
+  public Boolean isZen = false;
 
   // mouse coordinates
   private double currentX;
@@ -248,8 +257,9 @@ public class CanvasController implements Controller {
     isFinished = false;
     canvas.setDisable(false);
     hbxDrawTools.setVisible(true);
-    category = CategorySelect.getCategory();
-    lblCategory.setText("Draw: " + category);
+    if (isHidden) {
+      btnHint.setVisible(true);
+    }
     // create new game database object
     activeGameId = gameDao.addNewGame(activeUserId, actualDifficulty, category);
     // set up what to do every second
@@ -349,14 +359,16 @@ public class CanvasController implements Controller {
       // finish the game if and only if the guess is within the accuracy range and the
       // confidence range
       endGame(true);
-      // highlight word in list view
+      // highlight word in list view if not hidden
       lvwPredictions.getSelectionModel().select(position);
     } else if (position < 10) {
       pseudoClass = "top10";
       messageClass = "message10";
       progressMessage.setText("You're almost there!");
-      // highlight word in list view
-      lvwPredictions.getSelectionModel().select(position);
+      // highlight word in list view if not hidden
+      if (!isHidden) {
+        lvwPredictions.getSelectionModel().select(position);
+      }
     } else if (position < 20) {
       pseudoClass = "top20";
       messageClass = "message20";
@@ -395,6 +407,9 @@ public class CanvasController implements Controller {
     hbxGameEnd.setVisible(true);
     hbxNewGame.setVisible(true);
     isFinished = true;
+
+    // showing user what the word was
+    hintMessage.setText("The word was " + category + "!");
 
     // update current game stats
     gameDao.setWon(wonGame, activeGameId);
@@ -567,6 +582,9 @@ public class CanvasController implements Controller {
     hbxGameEnd.setVisible(false);
     hbxDrawTools.setVisible(false);
     hbxNewGame.setVisible(true);
+    // reset hint
+    btnHint.setVisible(false);
+    hintMessage.setText("Give me a hint!");
     // clear predictions and canvas for new game
     predictions.clear();
     canvas.setDisable(true);
@@ -611,13 +629,13 @@ public class CanvasController implements Controller {
       resetGame();
       btnNewGame.setText("Start Game");
       progressMessage.setText("Get ready to start!");
-      // generate a new word
-      actualDifficulty = CategorySelect.generateSetCategory();
-      category = CategorySelect.getCategory();
-      lblCategory.setText("Draw: " + category);
-      TextToSpeech.main(new String[] {"Your word is:" + category});
-      SoundManager.playSound(SoundName.START_GAME);
-
+      generateWord();
+      // show hidden definition
+      if (isHidden) {
+        lblDefinition.setVisible(true);
+      } else {
+        lblDefinition.setVisible(false);
+      }
     } else {
       TextToSpeech.main(new String[] {"Let's draw"});
       // start the game and hide the new game toolbar
@@ -625,6 +643,43 @@ public class CanvasController implements Controller {
       btnNewGame.setText("Play Again?");
       startTimer();
       SoundManager.playSound();
+    }
+  }
+
+  /**
+   * This method will give the user a hint by telling them the first letter of the word they are
+   * drawing
+   */
+  @FXML
+  private void onHint() {
+    if (!isFinished) {
+      hintMessage.setText("It begins with: " + category.charAt(0));
+    }
+  }
+
+  /** This method will generate a word or definition dependent on the selected gamemode */
+  private void generateWord() {
+    if (!isHidden) {
+      // generate a new word
+      actualDifficulty = CategorySelect.generateSetCategory();
+      category = CategorySelect.getCategory();
+      lblCategory.setText("Draw: " + category);
+      TextToSpeech.main(new String[] {"Your word is:" + category});
+    } else {
+      // generate a new definition for hidden word mode
+      UserModel activeUser = UserModel.getActiveUser();
+      DictionaryLookup lookup = new DictionaryLookup(activeUser);
+      actualDifficulty = CategorySelect.getWordDifficulty();
+      WordInfo generatedWord = lookup.generateWordInLevel(actualDifficulty);
+      // getting word and definition
+      category = generatedWord.getWord();
+      String definition = generatedWord.getMeaning().getDefinition();
+      // add definition to canvas
+      lblDefinition.setText("Draw: " + definition);
+      TextToSpeech.main(new String[] {"The definition is:" + definition});
+      // adding word to database
+      HiddenWordDao dao = new HiddenWordDao();
+      dao.add(category, activeUserId);
     }
   }
 

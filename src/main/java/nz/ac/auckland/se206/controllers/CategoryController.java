@@ -9,6 +9,7 @@ import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.layout.VBox;
 import nz.ac.auckland.se206.CategorySelect;
@@ -34,6 +35,8 @@ public class CategoryController implements Controller {
   @FXML private VBox vbxConfidenceDifficulty;
   @FXML private ComboBox<String> dbxConfidenceDifficulty;
   @FXML private VBox vbxAccuracyDifficulty;
+  @FXML private CheckBox hiddenMode;
+  @FXML private CheckBox zenMode;
 
   private GameSettingModel userSetting;
 
@@ -215,6 +218,19 @@ public class CategoryController implements Controller {
     Scene scene = ((Button) event.getSource()).getScene();
     Parent canvasRoot = SceneManager.getUiRoot(AppUi.CANVAS);
     CanvasController canvasController = (CanvasController) SceneManager.getController(canvasRoot);
+
+    // enabling or disabling hidden mode
+    if (hiddenMode.isSelected()) {
+      canvasController.isHidden = true;
+    } else {
+      canvasController.isHidden = false;
+    }
+    // enabling or disabling zen mode
+    if (zenMode.isSelected()) {
+      canvasController.isZen = true;
+    } else {
+      canvasController.isZen = false;
+    }
 
     // update settings in database
     GameSettingDao settingDao = new GameSettingDao();
