@@ -41,7 +41,6 @@ import javafx.util.Duration;
 import javax.imageio.ImageIO;
 import nz.ac.auckland.se206.BadgeManager;
 import nz.ac.auckland.se206.CategorySelect;
-import nz.ac.auckland.se206.CategorySelect.Difficulty;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.daos.GameDao;
@@ -606,6 +605,7 @@ public class CanvasController implements Controller {
     }
   }
 
+  /** This method will generate a word or definition dependent on the selected gamemode */
   private void generateWord() {
     if (!isHidden) {
       // generate a new word
@@ -617,8 +617,10 @@ public class CanvasController implements Controller {
       // generate a new definition for hidden word mode
       UserModel activeUser = UserModel.getActiveUser();
       DictionaryLookup lookup = new DictionaryLookup(activeUser);
-      Difficulty difficulty = CategorySelect.getWordDifficulty();
-      WordInfo generatedWord = lookup.generateWordInLevel(difficulty);
+      actualDifficulty = CategorySelect.getWordDifficulty();
+      WordInfo generatedWord = lookup.generateWordInLevel(actualDifficulty);
+      // getting word and definition
+      category = generatedWord.getWord();
       String definition = generatedWord.getMeaning().getDefinition();
       // add definition to canvas
       lblCategory.setText("Draw: " + definition);
