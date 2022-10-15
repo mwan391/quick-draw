@@ -404,10 +404,12 @@ public class CanvasController implements Controller {
     timer.pause();
     canvas.setDisable(true);
     hbxDrawTools.setVisible(false);
-    btnHint.setVisible(false);
     hbxGameEnd.setVisible(true);
     hbxNewGame.setVisible(true);
     isFinished = true;
+
+    // showing user what the word was
+    hintMessage.setText("The word was " + category + "!");
 
     // update current game stats
     gameDao.setWon(wonGame, activeGameId);
