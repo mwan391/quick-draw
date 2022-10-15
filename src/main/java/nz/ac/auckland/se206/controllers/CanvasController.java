@@ -583,12 +583,9 @@ public class CanvasController implements Controller {
     // save the file to the selected directory and name (if selected)
     try {
       ImageIO.write(getCurrentSnapshot(), "bmp", fileToSave);
-      lblCategory.setText("File Saved!");
       // play positive sound on success
       SoundManager.playSound(SoundName.LOG_IN);
     } catch (Exception e) {
-      // if the file save fails, tell the user.
-      lblCategory.setText("Save cancelled.");
       // play negative sound on fail
       SoundManager.playSound(SoundName.LOG_OUT);
     }
