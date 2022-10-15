@@ -247,8 +247,6 @@ public class CanvasController implements Controller {
     isFinished = false;
     canvas.setDisable(false);
     hbxDrawTools.setVisible(true);
-    category = CategorySelect.getCategory();
-    lblCategory.setText("Draw: " + category);
     // create new game database object
     activeGameId = gameDao.addNewGame(activeUserId, actualDifficulty, category);
     // set up what to do every second
