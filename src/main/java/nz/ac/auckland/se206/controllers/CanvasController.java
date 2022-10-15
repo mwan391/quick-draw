@@ -417,6 +417,14 @@ public class CanvasController implements Controller {
       messageClass = "defaultMessage";
       progressMessage.setText("Keep drawing!");
     }
+
+    // set zen colors and message
+    if (zenWin) {
+      pseudoClass = "top3";
+      messageClass = "winMessage";
+      progressMessage.setText("You win and can keep drawing!");
+    }
+
     // set color to border
     canvasPane.getStyleClass().add(pseudoClass);
     progressMessage.getStyleClass().add(messageClass);
@@ -469,7 +477,9 @@ public class CanvasController implements Controller {
       progressMessage.getStyleClass().add("winMessage");
       canvasPane.getStyleClass().add("top3");
       SoundManager.playSound(SoundName.WIN_GAME);
-      zenWin = true;
+      if (isZen) {
+        zenWin = true;
+      }
     } else {
       progressMessage.setText("You Lose!");
       TextToSpeech.main(new String[] {"You Lose!"});
