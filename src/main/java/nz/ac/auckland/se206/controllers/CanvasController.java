@@ -8,7 +8,6 @@ import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.sql.SQLException;
 import java.util.List;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -45,7 +44,9 @@ import nz.ac.auckland.se206.CategorySelect;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.daos.GameDao;
+import nz.ac.auckland.se206.daos.GameSettingDao;
 import nz.ac.auckland.se206.ml.DoodlePrediction;
+import nz.ac.auckland.se206.models.GameSettingModel;
 import nz.ac.auckland.se206.models.UserModel;
 import nz.ac.auckland.se206.speech.TextToSpeech;
 
@@ -96,6 +97,11 @@ public class CanvasController implements Controller {
   private String activeUserId;
   private int activeGameId;
   private CategorySelect.Difficulty actualDifficulty;
+
+  // settings
+  private int time;
+  private int accuracy;
+  private int confidence;
 
   /**
    * JavaFX calls this method once the GUI elements are loaded. In our case we create a listener for
@@ -158,12 +164,80 @@ public class CanvasController implements Controller {
     return imageBinary;
   }
 
+  /**
+   * This method clears the scene and presses the new game button once to simulate a new game screen
+   * and applies the selected user settings
+   */
   public void initializeGame() {
+    // get settings
+    activeUserId = UserModel.getActiveUser().getId();
+    GameSettingDao settingDao = new GameSettingDao();
+    GameSettingModel userSettings = settingDao.get(activeUserId);
+
+    // set time settings
+    CategorySelect.Difficulty timeDifficulty =
+        CategorySelect.Difficulty.valueOf(userSettings.getTime());
+    // set time according to the setting
+    switch (timeDifficulty) {
+      case EASY:
+        time = 60;
+        break;
+      case MEDIUM:
+        time = 45;
+        break;
+      case HARD:
+        time = 30;
+        break;
+      default:
+        time = 15;
+        break;
+    }
+
+    // set accuracy settings
+    CategorySelect.Difficulty accuracyDifficulty =
+        CategorySelect.Difficulty.valueOf(userSettings.getAccuracy());
+    // set accuracy according to the setting
+    switch (accuracyDifficulty) {
+      case EASY:
+        accuracy = 3;
+        break;
+      case MEDIUM:
+        accuracy = 2;
+        break;
+      default:
+        accuracy = 1;
+        break;
+    }
+
+    // set confidence settings
+    CategorySelect.Difficulty confidenceDifficulty =
+        CategorySelect.Difficulty.valueOf(userSettings.getConfidence());
+    // set confidence according to the setting
+    switch (confidenceDifficulty) {
+      case EASY:
+        confidence = 1;
+        break;
+      case MEDIUM:
+        confidence = 10;
+        break;
+      case HARD:
+        confidence = 25;
+        break;
+      default:
+        confidence = 50;
+        break;
+    }
+
+    // set the page as it should look like and generate the word
     resetGame();
     btnNewGame.fire();
   }
 
-  public void startTimer() throws SQLException {
+  /**
+   * This method sets the scene to what it looks like when running, sets up the timer and events,
+   * and formally starts the game
+   */
+  private void startTimer() {
     // set up the label and enable canvas
     isFinished = false;
     canvas.setDisable(false);
@@ -171,11 +245,10 @@ public class CanvasController implements Controller {
     category = CategorySelect.getCategory();
     lblCategory.setText("Draw: " + category);
     // create new game database object
-    activeUserId = UserModel.getActiveUser().getId();
     activeGameId = gameDao.addNewGame(activeUserId, actualDifficulty, category);
     // set up what to do every second
     timer = new Timeline(new KeyFrame(Duration.seconds(1), e -> changeTime()));
-    timer.setCycleCount(60);
+    timer.setCycleCount(time);
     timer.setOnFinished(
         e -> {
           endGame(false);
@@ -184,10 +257,14 @@ public class CanvasController implements Controller {
     runPredictionsInBkg();
   }
 
+  /**
+   * When triggered, this method updates the timer label in the scene by decrementing by one value
+   */
   private void changeTime() {
     lblTimer.setText(String.valueOf(Integer.valueOf(lblTimer.getText()) - 1));
   }
 
+  /** this method gets retrieves the ai predictions and adds them into a list */
   private void triggerPredict() {
 
     if (isFinished) {
@@ -219,13 +296,21 @@ public class CanvasController implements Controller {
       // format the string and replace the underscores with a space
       String categoryClass = classification.getClassName().replace('_', ' ');
       if (category.equals(categoryClass)) {
-        // check if player won (guess is correct within the top three)
-        checkCategoryPosition(i);
+        // check if player won (guess is correct within the top three and within
+        // confidence range)
+        checkCategoryPosition(i, classification.getProbability());
       }
       i++;
     }
   }
 
+  /**
+   * This method formats the given prediction classification into a reader friendly string
+   *
+   * @param classification of the prediction to be formatted
+   * @param index number of top guesses
+   * @return the formatted string
+   */
   private String formatPrediction(Classification classification, int index) {
     StringBuilder sb = new StringBuilder();
     // format the string and replace the underscores with a space
@@ -237,21 +322,35 @@ public class CanvasController implements Controller {
     return sb.toString();
   }
 
-  private void checkCategoryPosition(int position) {
+  /**
+   * This method identifies how close the game is to finishing, and updates the canvas frame to
+   * reflect that
+   *
+   * @param position of the category word
+   * @param confidenceDecimal percent of guess in decimal form
+   */
+  private void checkCategoryPosition(int position, double confidenceDecimal) {
     // this determines which style class to use
     String pseudoClass = null;
     String messageClass = null;
     // remove border color when cateogry is outside any ranking
     canvasPane.getStyleClass().clear();
     progressMessage.getStyleClass().clear();
-    ;
+    // update confidence to 0dp and in percentage form
+    int confidencePercent = (int) Math.round(100 * confidenceDecimal);
     // change the border color depending on its ranking
-    if (position < 3) {
+    if ((position < accuracy) && (confidencePercent >= confidence)) {
+      // finish the game if and only if the guess is within the accuracy range and the
+      // confidence range
       endGame(true);
+      // highlight word in list view
+      lvwPredictions.getSelectionModel().select(position);
     } else if (position < 10) {
       pseudoClass = "top10";
       messageClass = "message10";
       progressMessage.setText("You're almost there!");
+      // highlight word in list view
+      lvwPredictions.getSelectionModel().select(position);
     } else if (position < 20) {
       pseudoClass = "top20";
       messageClass = "message20";
@@ -274,6 +373,13 @@ public class CanvasController implements Controller {
     progressMessage.getStyleClass().add(messageClass);
   }
 
+  /**
+   * This method sets the scene to what it should look like when the game ends, regardless of win
+   * status. Also checks for new badges, and will show a popup if the user unlocks one or more
+   * badges.
+   *
+   * @param wonGame boolean. true if won, false otherwise
+   */
   private void endGame(Boolean wonGame) {
     // lock the drawing and stop timer
     canvas.setOnMouseDragged(e -> {});
@@ -286,7 +392,7 @@ public class CanvasController implements Controller {
 
     // update current game stats
     gameDao.setWon(wonGame, activeGameId);
-    gameDao.setTime((60 - Integer.valueOf(lblTimer.getText())), activeGameId);
+    gameDao.setTime((time - Integer.valueOf(lblTimer.getText())), activeGameId);
 
     // check for badges
     UserModel activeUser = UserModel.getActiveUser();
@@ -316,6 +422,13 @@ public class CanvasController implements Controller {
     }
   }
 
+  /**
+   * This method creates and formats a pop up dialog box that displays the number of new badges
+   * received by the player. the pop up has the options to move to the statistics page or stay at
+   * the current page.
+   *
+   * @param newBadgeCount
+   */
   private void showNewBadgePopup(int newBadgeCount) {
     Dialog<Void> badgePopup = new Dialog<>();
     badgePopup.setTitle("Congratulations!");
@@ -368,6 +481,7 @@ public class CanvasController implements Controller {
     badgePopup.show();
   }
 
+  /** This method loads then takes the user to the statistics page */
   private void onViewBadges() {
     // get scene source from an arbitrary button on scene
     // get root and controller for statistics page
@@ -409,24 +523,28 @@ public class CanvasController implements Controller {
     }
   }
 
+  /**
+   * This method takes the user back to the category select, changing the scene where the button is
+   *
+   * @param event that triggers this call
+   */
   @FXML
   private void onReturnToMenu(ActionEvent event) {
-    resetGame();
-    hbxNewGame.setVisible(false);
 
     Scene scene = ((Button) event.getSource()).getScene();
     scene.setRoot(SceneManager.getUiRoot(AppUi.CATEGORY_SELECT));
 
     // repeat instructions
-    TextToSpeech.main(new String[] {"Pick a difficulty"});
+    TextToSpeech.main(new String[] {"Choose a difficulty"});
   }
 
+  /** This method reverts everything to it's initial state as seen when first entering the scene */
   private void resetGame() {
     // reset timer and re-enable the drawing tools
     switchToPen();
     eraserMessage.setText("Eraser OFF");
     btnToggleEraser.setSelected(false);
-    lblTimer.setText("60");
+    lblTimer.setText(String.valueOf(time));
     hbxGameEnd.setVisible(false);
     hbxDrawTools.setVisible(false);
     hbxNewGame.setVisible(true);
@@ -440,6 +558,11 @@ public class CanvasController implements Controller {
     progressMessage.getStyleClass().add("defaultMessage");
   }
 
+  /**
+   * This method depends on the status of the togglable button it is assigned to. The first click
+   * will set the cursor to the eraser, and the second will return to a pen. The label is updated as
+   * suitable.
+   */
   @FXML
   private void onToggleEraser() {
 
@@ -455,8 +578,13 @@ public class CanvasController implements Controller {
     }
   }
 
+  /**
+   * This method depends on the toggleable button it is assigned to. The first click will reset the
+   * scene back to it's initial state as if seeing it for the first time, and the second will start
+   * the game.
+   */
   @FXML
-  private void onNewGame() throws SQLException {
+  private void onNewGame() {
     if (btnNewGame.isSelected()) {
       // clear the canvas and timer
       resetGame();
@@ -477,6 +605,7 @@ public class CanvasController implements Controller {
     }
   }
 
+  /** This method switches the cursor to a small paint-brush effect on the canvas with black ink. */
   private void switchToPen() {
     canvas.setOnMouseDragged(
         e -> {
@@ -499,6 +628,7 @@ public class CanvasController implements Controller {
         });
   }
 
+  /** This method changes the cursor to a large eraser like effect on the canvas */
   private void switchToEraser() {
     canvas.setOnMouseDragged(
         e -> {
@@ -517,6 +647,10 @@ public class CanvasController implements Controller {
         });
   }
 
+  /**
+   * This method runs the prediction service on a background task every second until the game is set
+   * as finished.
+   */
   private void runPredictionsInBkg() {
     // run the predictions on a background thread to avoid lag
     Task<Void> backgroundTask =
