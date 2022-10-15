@@ -6,6 +6,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
+import nz.ac.auckland.se206.SoundManager;
+import nz.ac.auckland.se206.SoundManager.SoundName;
 import nz.ac.auckland.se206.speech.TextToSpeech;
 
 public class MenuController implements Controller {
@@ -22,6 +24,8 @@ public class MenuController implements Controller {
     // change the scene
     Scene scene = ((Button) event.getSource()).getScene();
     scene.setRoot(SceneManager.getUiRoot(AppUi.LOG_IN));
+
+    SoundManager.playSound(SoundName.START_GAME);
 
     // run the text to speech on a background thread to avoid lags
     TextToSpeech.main(new String[] {"Welcome to Quick Draw!"});
