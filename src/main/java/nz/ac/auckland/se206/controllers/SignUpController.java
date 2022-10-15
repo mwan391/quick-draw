@@ -7,7 +7,7 @@ import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -24,7 +24,7 @@ public class SignUpController implements Controller {
 
   @FXML private TextField userEntry;
   @FXML private Label lblWarning;
-  @FXML private ChoiceBox<String> picChooser;
+  @FXML private ComboBox<String> picChooser;
   @FXML private ImageView picPreview;
 
   /** This method loads default values and images upon scene load in the UI */
