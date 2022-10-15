@@ -26,6 +26,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonBar.ButtonData;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.ColorPicker;
 import javafx.scene.control.Dialog;
 import javafx.scene.control.DialogPane;
 import javafx.scene.control.Label;
@@ -35,6 +36,7 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 import javafx.stage.FileChooser;
 import javafx.util.Callback;
 import javafx.util.Duration;
@@ -71,8 +73,10 @@ public class CanvasController implements Controller {
 
   @FXML private ListView<String> lvwPredictions;
   @FXML private Canvas canvas;
+  @FXML private Pane timeBg;
   @FXML private Pane canvasPane;
   @FXML private Label lblTimer;
+  @FXML private Label timeLeft;
   @FXML private Label lblCategory;
   @FXML private Label lblDefinition;
   @FXML private Label eraserMessage;
@@ -87,6 +91,7 @@ public class CanvasController implements Controller {
   @FXML private HBox hbxGameEnd;
   @FXML private HBox hbxDrawTools;
   @FXML private HBox hbxNewGame;
+  @FXML private ColorPicker zenPicker;
 
   private Timeline timer;
   private ObservableList<String> predictions;
@@ -98,6 +103,8 @@ public class CanvasController implements Controller {
   // Alternative modes
   public Boolean isHidden = false;
   public Boolean isZen = false;
+  private Boolean zenWin = false;
+  private Color selectedPen;
 
   // mouse coordinates
   private double currentX;
@@ -137,6 +144,7 @@ public class CanvasController implements Controller {
           currentY = e.getY();
         });
 
+    selectedPen = Color.BLACK;
     switchToPen();
 
     model = new DoodlePrediction();
@@ -188,6 +196,18 @@ public class CanvasController implements Controller {
     activeUserId = UserModel.getActiveUser().getId();
     GameSettingDao settingDao = new GameSettingDao();
     GameSettingModel userSettings = settingDao.get(activeUserId);
+
+    zenPicker.setVisible(false);
+    // disable timer in zen mode
+    if (isZen) {
+      timeBg.setVisible(false);
+      timeLeft.setVisible(false);
+      lblTimer.setVisible(false);
+    } else {
+      timeBg.setVisible(true);
+      timeLeft.setVisible(true);
+      lblTimer.setVisible(true);
+    }
 
     // set time settings
     CategorySelect.Difficulty timeDifficulty =
@@ -268,7 +288,13 @@ public class CanvasController implements Controller {
     timer.setOnFinished(
         e -> {
           endGame(false);
-        }); // if the timer runs to zero
+        });
+    // disable timer in zen mode
+    if (isZen) {
+      timer.setOnFinished(e -> {});
+    }
+
+    // if the timer runs to zero
     timer.play();
     runPredictionsInBkg();
   }
@@ -359,6 +385,11 @@ public class CanvasController implements Controller {
       // finish the game if and only if the guess is within the accuracy range and the
       // confidence range
       endGame(true);
+      // activate message background in zen mode
+      if (zenWin) {
+        progressMessage.getStyleClass().add("winMessage");
+        canvasPane.getStyleClass().add("top3");
+      }
       // highlight word in list view if not hidden
       lvwPredictions.getSelectionModel().select(position);
     } else if (position < 10) {
@@ -386,6 +417,14 @@ public class CanvasController implements Controller {
       messageClass = "defaultMessage";
       progressMessage.setText("Keep drawing!");
     }
+
+    // set zen colors and message
+    if (zenWin) {
+      pseudoClass = "top3";
+      messageClass = "winMessage";
+      progressMessage.setText("You win and can keep drawing!");
+    }
+
     // set color to border
     canvasPane.getStyleClass().add(pseudoClass);
     progressMessage.getStyleClass().add(messageClass);
@@ -399,14 +438,21 @@ public class CanvasController implements Controller {
    * @param wonGame boolean. true if won, false otherwise
    */
   private void endGame(Boolean wonGame) {
+    // cancel method if already won in zen
+    if (zenWin) {
+      return;
+    }
+
     // lock the drawing and stop timer
-    canvas.setOnMouseDragged(e -> {});
-    timer.pause();
-    canvas.setDisable(true);
-    hbxDrawTools.setVisible(false);
-    hbxGameEnd.setVisible(true);
-    hbxNewGame.setVisible(true);
-    isFinished = true;
+    if (!isZen) {
+      canvas.setOnMouseDragged(e -> {});
+      timer.pause();
+      canvas.setDisable(true);
+      hbxDrawTools.setVisible(false);
+      hbxGameEnd.setVisible(true);
+      hbxNewGame.setVisible(true);
+      isFinished = true;
+    }
 
     // showing user what the word was
     hintMessage.setText("The word was " + category + "!");
@@ -431,6 +477,9 @@ public class CanvasController implements Controller {
       progressMessage.getStyleClass().add("winMessage");
       canvasPane.getStyleClass().add("top3");
       SoundManager.playSound(SoundName.WIN_GAME);
+      if (isZen) {
+        zenWin = true;
+      }
     } else {
       progressMessage.setText("You Lose!");
       TextToSpeech.main(new String[] {"You Lose!"});
@@ -544,12 +593,9 @@ public class CanvasController implements Controller {
     // save the file to the selected directory and name (if selected)
     try {
       ImageIO.write(getCurrentSnapshot(), "bmp", fileToSave);
-      lblCategory.setText("File Saved!");
       // play positive sound on success
       SoundManager.playSound(SoundName.LOG_IN);
     } catch (Exception e) {
-      // if the file save fails, tell the user.
-      lblCategory.setText("Save cancelled.");
       // play negative sound on fail
       SoundManager.playSound(SoundName.LOG_OUT);
     }
@@ -575,13 +621,17 @@ public class CanvasController implements Controller {
   /** This method reverts everything to it's initial state as seen when first entering the scene */
   private void resetGame() {
     // reset timer and re-enable the drawing tools
+    selectedPen = Color.BLACK;
     switchToPen();
     eraserMessage.setText("Eraser OFF");
     btnToggleEraser.setSelected(false);
     lblTimer.setText(String.valueOf(time));
     hbxGameEnd.setVisible(false);
     hbxDrawTools.setVisible(false);
+    zenPicker.setVisible(false);
     hbxNewGame.setVisible(true);
+    // reset zen win
+    zenWin = false;
     // reset hint
     btnHint.setVisible(false);
     hintMessage.setText("Give me a hint!");
@@ -630,17 +680,26 @@ public class CanvasController implements Controller {
       btnNewGame.setText("Start Game");
       progressMessage.setText("Get ready to start!");
       generateWord();
+
       // show hidden definition
       if (isHidden) {
         lblDefinition.setVisible(true);
       } else {
         lblDefinition.setVisible(false);
       }
+
     } else {
       TextToSpeech.main(new String[] {"Let's draw"});
       // start the game and hide the new game toolbar
-      hbxNewGame.setVisible(false);
-      btnNewGame.setText("Play Again?");
+      if (isZen) {
+        hbxGameEnd.setVisible(true);
+        btnNewGame.setText("New Word");
+        zenPicker.setVisible(true);
+      } else {
+        hbxNewGame.setVisible(false);
+        btnNewGame.setText("Play Again?");
+      }
+
       startTimer();
       SoundManager.playSound();
     }
@@ -655,6 +714,13 @@ public class CanvasController implements Controller {
     if (!isFinished) {
       hintMessage.setText("It begins with: " + category.charAt(0));
     }
+  }
+
+  /** This method will change the color of the drawing tool */
+  @FXML
+  private void onColorPick() {
+    selectedPen = zenPicker.getValue();
+    switchToPen();
   }
 
   /** This method will generate a word or definition dependent on the selected gamemode */
@@ -683,7 +749,10 @@ public class CanvasController implements Controller {
     }
   }
 
-  /** This method switches the cursor to a small paint-brush effect on the canvas with black ink. */
+  /**
+   * This method switches the cursor to a small paint-brush effect on the canvas with color
+   * specified ink.
+   */
   private void switchToPen() {
     canvas.setOnMouseDragged(
         e -> {
@@ -694,7 +763,8 @@ public class CanvasController implements Controller {
           final double y = e.getY() - size / 2;
 
           // This is the colour of the brush.
-          graphic.setFill(Color.BLACK);
+          Paint fill = Paint.valueOf(selectedPen.toString());
+          graphic.setStroke(fill);
           graphic.setLineWidth(size);
 
           // Create a line that goes from the point (currentX, currentY) and (x,y)

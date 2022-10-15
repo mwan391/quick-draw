@@ -5,6 +5,13 @@
   -fx-cursor: hand;
 }
 
+.check-box:hover {
+  -fx-scale-y: 1.1;
+  -fx-scale-x: 1.1;
+  -fx-border-color: BLACK;
+  -fx-cursor: hand;
+}
+
 .loss {
   -fx-border-color: RED;
 }
@@ -139,13 +146,13 @@
   -fx-background-color: #bec7ff;
   -fx-background-image: url("/images/popupbg.jpg");
   -fx-font: 16px "Comic Sans MS", "Comic Sans", sans-serif;
-  -fx-border-color:  #173ab5;
+  -fx-border-color: #173ab5;
   -fx-border-width: 7px;
   -fx-border-radius: 20px;
 }
 
 .button {
-  -fx-background-color:  #882FF6;
+  -fx-background-color: #882ff6;
   -fx-text-fill: white;
 }
 
@@ -161,34 +168,36 @@
 }
 
 .scroll-bar:horizontal {
-  -fx-background-color:  #882FF6;
+  -fx-background-color: #882ff6;
 }
 
-.increment-button, .decrement-button {
+.increment-button,
+.decrement-button {
   -fx-background-color: transparent;
   -fx-border-color: white;
-  -fx-border-width: 0px,3px,0px,0px;
+  -fx-border-width: 0px, 3px, 0px, 0px;
 }
 
-.increment-arrow, .decrement-arrow {
+.increment-arrow,
+.decrement-arrow {
   -fx-background-color: white;
 }
 
 .scroll-bar:horizontal .thumb {
-    -fx-background-color: white;
-    -fx-background-radius: 20px;
+  -fx-background-color: white;
+  -fx-background-radius: 20px;
 }
 
-#badge-box{
+#badge-box {
   -fx-background-color: transparent;
 }
 
-.scroll-pane > .viewport  { 
+.scroll-pane > .viewport {
   -fx-background-color: #bec7ff;
   -fx-background-image: url("/images/badgeviewbg.jpg");
 }
 
-.scroll-pane  { 
+.scroll-pane {
   -fx-background-color: transparent;
   -fx-border-color: transparent;
 }
