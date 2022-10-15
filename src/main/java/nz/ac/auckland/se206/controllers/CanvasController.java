@@ -41,10 +41,13 @@ import javafx.util.Duration;
 import javax.imageio.ImageIO;
 import nz.ac.auckland.se206.BadgeManager;
 import nz.ac.auckland.se206.CategorySelect;
+import nz.ac.auckland.se206.CategorySelect.Difficulty;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.daos.GameDao;
 import nz.ac.auckland.se206.daos.GameSettingDao;
+import nz.ac.auckland.se206.dictionary.DictionaryLookup;
+import nz.ac.auckland.se206.dictionary.WordInfo;
 import nz.ac.auckland.se206.ml.DoodlePrediction;
 import nz.ac.auckland.se206.models.GameSettingModel;
 import nz.ac.auckland.se206.models.UserModel;
@@ -593,18 +596,33 @@ public class CanvasController implements Controller {
       resetGame();
       btnNewGame.setText("Start Game");
       progressMessage.setText("Get ready to start!");
-      // generate a new word
-      actualDifficulty = CategorySelect.generateSetCategory();
-      category = CategorySelect.getCategory();
-      lblCategory.setText("Draw: " + category);
-      TextToSpeech.main(new String[] {"Your word is:" + category});
-
+      generateWord();
     } else {
       TextToSpeech.main(new String[] {"Let's draw"});
       // start the game and hide the new game toolbar
       hbxNewGame.setVisible(false);
       btnNewGame.setText("Play Again?");
       startTimer();
+    }
+  }
+
+  private void generateWord() {
+    if (!isHidden) {
+      // generate a new word
+      actualDifficulty = CategorySelect.generateSetCategory();
+      category = CategorySelect.getCategory();
+      lblCategory.setText("Draw: " + category);
+      TextToSpeech.main(new String[] {"Your word is:" + category});
+    } else {
+      // generate a new definition for hidden word mode
+      UserModel activeUser = UserModel.getActiveUser();
+      DictionaryLookup lookup = new DictionaryLookup(activeUser);
+      Difficulty difficulty = CategorySelect.getWordDifficulty();
+      WordInfo generatedWord = lookup.generateWordInLevel(difficulty);
+      String definition = generatedWord.getMeaning().getDefinition();
+      // add definition to canvas
+      lblCategory.setText("Draw: " + definition);
+      TextToSpeech.main(new String[] {"The definition is:" + definition});
     }
   }
 
