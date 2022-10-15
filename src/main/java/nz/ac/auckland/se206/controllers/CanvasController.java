@@ -197,17 +197,16 @@ public class CanvasController implements Controller {
     GameSettingDao settingDao = new GameSettingDao();
     GameSettingModel userSettings = settingDao.get(activeUserId);
 
+    zenPicker.setVisible(false);
     // disable timer in zen mode
     if (isZen) {
       timeBg.setVisible(false);
       timeLeft.setVisible(false);
       lblTimer.setVisible(false);
-      zenPicker.setVisible(true);
     } else {
       timeBg.setVisible(true);
       timeLeft.setVisible(true);
       lblTimer.setVisible(true);
-      zenPicker.setVisible(false);
     }
 
     // set time settings
@@ -673,12 +672,14 @@ public class CanvasController implements Controller {
       btnNewGame.setText("Start Game");
       progressMessage.setText("Get ready to start!");
       generateWord();
+
       // show hidden definition
       if (isHidden) {
         lblDefinition.setVisible(true);
       } else {
         lblDefinition.setVisible(false);
       }
+
     } else {
       TextToSpeech.main(new String[] {"Let's draw"});
       // start the game and hide the new game toolbar
@@ -686,6 +687,11 @@ public class CanvasController implements Controller {
       btnNewGame.setText("Play Again?");
       startTimer();
       SoundManager.playSound();
+
+      // show zen color picker
+      if (isZen) {
+        zenPicker.setVisible(true);
+      }
     }
   }
 
