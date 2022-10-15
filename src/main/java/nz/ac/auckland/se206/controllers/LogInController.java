@@ -11,6 +11,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
+import nz.ac.auckland.se206.SoundManager;
+import nz.ac.auckland.se206.SoundManager.SoundName;
 import nz.ac.auckland.se206.daos.UserDaoJson;
 import nz.ac.auckland.se206.models.UserModel;
 
@@ -182,6 +184,8 @@ public class LogInController implements Controller {
     Scene scene = ((Button) event.getSource()).getScene();
     Parent signUpRoot = SceneManager.getUiRoot(AppUi.SIGN_UP);
 
+    SoundManager.playSound();
+
     // change scene
     scene.setRoot(signUpRoot);
   }
@@ -205,5 +209,7 @@ public class LogInController implements Controller {
 
     // change scene
     scene.setRoot(categoryRoot);
+
+    SoundManager.playSound(SoundName.LOG_IN);
   }
 }

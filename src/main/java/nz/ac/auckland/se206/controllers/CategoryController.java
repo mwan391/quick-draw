@@ -14,6 +14,8 @@ import javafx.scene.layout.VBox;
 import nz.ac.auckland.se206.CategorySelect;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
+import nz.ac.auckland.se206.SoundManager;
+import nz.ac.auckland.se206.SoundManager.SoundName;
 import nz.ac.auckland.se206.daos.GameSettingDao;
 import nz.ac.auckland.se206.models.GameSettingModel;
 import nz.ac.auckland.se206.models.UserModel;
@@ -53,6 +55,8 @@ public class CategoryController implements Controller {
 
     // Activating text to speech instructions
     TextToSpeech.main(new String[] {"Choose a difficulty"});
+
+    SoundManager.playSound(SoundName.LOG_IN);
 
     // set presets
     loadAllDifficulty();
@@ -159,7 +163,7 @@ public class CategoryController implements Controller {
     canvasController.initializeGame();
     scene.setRoot(canvasRoot);
 
-    // reset the page in case a new game gets started
+    SoundManager.playSound(SoundName.START_GAME);
   }
 
   @FXML
@@ -173,6 +177,8 @@ public class CategoryController implements Controller {
     // updating the userlist
     LogInController controller = (LogInController) SceneManager.getController(logInRoot);
     controller.loadUserData();
+
+    SoundManager.playSound(SoundName.LOG_OUT);
   }
 
   @FXML
@@ -186,5 +192,7 @@ public class CategoryController implements Controller {
     // load the necessary stats and change the scene
     statisticsController.loadPage();
     scene.setRoot(statsRoot);
+
+    SoundManager.playSound();
   }
 }
