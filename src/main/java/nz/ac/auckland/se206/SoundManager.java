@@ -30,7 +30,7 @@ public class SoundManager {
     mediaPlayer.play();
   }
 
-  /** This method plays the sound set as generic for quick access */
+  /** This method plays the sound set as generic for easy and quick access */
   public static void playSound() {
     playSound(SoundName.GENERIC);
   }

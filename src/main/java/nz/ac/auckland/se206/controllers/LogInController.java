@@ -113,7 +113,7 @@ public class LogInController implements Controller {
     }
   }
 
-  /** loads userdata by displaying the username and icon for each user */
+  /** this method loads userdata by displaying the username and icon for each user */
   public void loadUserData() {
     List<UserModel> tempUsers = userDao.getAll();
     // Putting info onto usercards
@@ -150,7 +150,7 @@ public class LogInController implements Controller {
   }
 
   /**
-   * Creates an image by finding its source file using its filename
+   * This method creates an image by finding its source file using its filename
    *
    * @param name, the name of the image file being loaded
    * @return icon, the loaded image
@@ -161,7 +161,7 @@ public class LogInController implements Controller {
   }
 
   /**
-   * logs the user in by setting them as the active user
+   * This method logs the user in by setting them as the active user
    *
    * @param event, the button press
    * @param username, the name of the active user
@@ -175,7 +175,7 @@ public class LogInController implements Controller {
   }
 
   /**
-   * sends the user to the sign up page
+   * This method sends the user to the sign up page and plays the appropriate sound
    *
    * @param event, the button press
    */

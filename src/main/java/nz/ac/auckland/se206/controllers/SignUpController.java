@@ -27,7 +27,7 @@ public class SignUpController implements Controller {
   @FXML private ChoiceBox<String> picChooser;
   @FXML private ImageView picPreview;
 
-  /** Loads default values and images upon scene load */
+  /** This method loads default values and images upon scene load in the UI */
   public void initialize() {
     // Loading options for profile picture
     String picStrings[] = {"boy", "dad", "girl", "mother", "woman"};
