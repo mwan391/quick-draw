@@ -718,6 +718,7 @@ public class CanvasController implements Controller {
   private void onHint() {
     if (!isFinished) {
       hintMessage.setText("It begins with: " + category.charAt(0));
+      SoundManager.playSound();
     }
   }
 
@@ -725,6 +726,7 @@ public class CanvasController implements Controller {
   @FXML
   private void onColorPick() {
     selectedPen = zenPicker.getValue();
+    SoundManager.playSound();
     switchToPen();
   }
 
