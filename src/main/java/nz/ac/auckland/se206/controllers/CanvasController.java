@@ -74,9 +74,11 @@ public class CanvasController implements Controller {
   @FXML private Label lblDefinition;
   @FXML private Label eraserMessage;
   @FXML private Label progressMessage;
+  @FXML private Label hintMessage;
   @FXML private Button clearButton;
   @FXML private Button btnSave;
   @FXML private Button btnReturnToMenu;
+  @FXML private Button btnHint;
   @FXML private ToggleButton btnToggleEraser;
   @FXML private ToggleButton btnNewGame;
   @FXML private HBox hbxGameEnd;
@@ -248,6 +250,9 @@ public class CanvasController implements Controller {
     isFinished = false;
     canvas.setDisable(false);
     hbxDrawTools.setVisible(true);
+    if (isHidden) {
+      btnHint.setVisible(true);
+    }
     // create new game database object
     activeGameId = gameDao.addNewGame(activeUserId, actualDifficulty, category);
     // set up what to do every second
@@ -392,6 +397,7 @@ public class CanvasController implements Controller {
     timer.pause();
     canvas.setDisable(true);
     hbxDrawTools.setVisible(false);
+    btnHint.setVisible(false);
     hbxGameEnd.setVisible(true);
     hbxNewGame.setVisible(true);
     isFinished = true;
@@ -554,6 +560,9 @@ public class CanvasController implements Controller {
     hbxGameEnd.setVisible(false);
     hbxDrawTools.setVisible(false);
     hbxNewGame.setVisible(true);
+    // reset hint
+    btnHint.setVisible(false);
+    hintMessage.setText("Give me a hint!");
     // clear predictions and canvas for new game
     predictions.clear();
     canvas.setDisable(true);
@@ -610,6 +619,15 @@ public class CanvasController implements Controller {
       btnNewGame.setText("Play Again?");
       startTimer();
     }
+  }
+
+  /**
+   * This method will give the user a hint by telling them the first letter of the word they are
+   * drawing
+   */
+  @FXML
+  private void onHint() {
+    hintMessage.setText("It begins with: " + category.charAt(0));
   }
 
   /** This method will generate a word or definition dependent on the selected gamemode */

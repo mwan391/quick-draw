@@ -250,5 +250,24 @@
             <Insets left="10.0" right="10.0" />
          </padding>
       </Label>
+      <Button fx:id="btnHint" layoutX="118.0" layoutY="527.0" mnemonicParsing="false" onAction="#onHint" prefHeight="51.0" prefWidth="200.0" style="-fx-background-color: #882FF6;" textFill="WHITE">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="20.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <graphic>
+            <VBox alignment="CENTER" prefHeight="72.0" prefWidth="188.0">
+               <children>
+                  <Label fx:id="hintMessage" text="Give me a hint!" textFill="WHITE">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="20.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+         </graphic>
+      </Button>
    </children>
 </AnchorPane>
