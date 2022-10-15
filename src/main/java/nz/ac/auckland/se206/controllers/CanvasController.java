@@ -71,6 +71,7 @@ public class CanvasController implements Controller {
   @FXML private Pane canvasPane;
   @FXML private Label lblTimer;
   @FXML private Label lblCategory;
+  @FXML private Label lblDefinition;
   @FXML private Label eraserMessage;
   @FXML private Label progressMessage;
   @FXML private Button clearButton;
@@ -594,6 +595,12 @@ public class CanvasController implements Controller {
       btnNewGame.setText("Start Game");
       progressMessage.setText("Get ready to start!");
       generateWord();
+      // show hidden definition
+      if (isHidden) {
+        lblDefinition.setVisible(true);
+      } else {
+        lblDefinition.setVisible(false);
+      }
     } else {
       TextToSpeech.main(new String[] {"Let's draw"});
       // start the game and hide the new game toolbar
@@ -621,7 +628,7 @@ public class CanvasController implements Controller {
       category = generatedWord.getWord();
       String definition = generatedWord.getMeaning().getDefinition();
       // add definition to canvas
-      lblCategory.setText("Draw: " + definition);
+      lblDefinition.setText("Draw: " + definition);
       TextToSpeech.main(new String[] {"The definition is:" + definition});
     }
   }
