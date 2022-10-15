@@ -621,6 +621,7 @@ public class CanvasController implements Controller {
     lblTimer.setText(String.valueOf(time));
     hbxGameEnd.setVisible(false);
     hbxDrawTools.setVisible(false);
+    zenPicker.setVisible(false);
     hbxNewGame.setVisible(true);
     // reset zen win
     zenWin = false;
@@ -683,15 +684,17 @@ public class CanvasController implements Controller {
     } else {
       TextToSpeech.main(new String[] {"Let's draw"});
       // start the game and hide the new game toolbar
-      hbxNewGame.setVisible(false);
-      btnNewGame.setText("Play Again?");
+      if (isZen) {
+        hbxGameEnd.setVisible(true);
+        btnNewGame.setText("New Word");
+        zenPicker.setVisible(true);
+      } else {
+        hbxNewGame.setVisible(false);
+        btnNewGame.setText("Play Again?");
+      }
+
       startTimer();
       SoundManager.playSound();
-
-      // show zen color picker
-      if (isZen) {
-        zenPicker.setVisible(true);
-      }
     }
   }
 
