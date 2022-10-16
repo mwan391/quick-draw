@@ -33,6 +33,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
@@ -74,6 +75,7 @@ public class CanvasController implements Controller {
   @FXML private Canvas canvas;
   @FXML private Pane timeBg;
   @FXML private Pane canvasPane;
+  @FXML private ImageView sceneBg;
   @FXML private Label lblTimer;
   @FXML private Label timeLeft;
   @FXML private Label lblCategory;
@@ -202,10 +204,12 @@ public class CanvasController implements Controller {
       timeBg.setVisible(false);
       timeLeft.setVisible(false);
       lblTimer.setVisible(false);
+      sceneBg.setImage(new Image(getClass().getResourceAsStream("/images/zenbg.png")));
     } else {
       timeBg.setVisible(true);
       timeLeft.setVisible(true);
       lblTimer.setVisible(true);
+      sceneBg.setImage(new Image(getClass().getResourceAsStream("/images/doodlebg.jpg")));
     }
 
     // set time settings
