@@ -88,6 +88,8 @@ public class UserDaoJson {
   }
 
   /**
+   * Store new achievement to users list of badges
+   *
    * @param badge new badge to be added (duplicates are allowed)
    * @param username of user
    * @return whether badge was added to file successfully

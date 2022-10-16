@@ -191,7 +191,9 @@ public class GameDao {
               rs.getString("word"),
               rs.getBoolean("won"),
               rs.getInt("time"));
+      // all table columns converted to fields
     } catch (SQLException e) {
+      // Catch invalid SQL results
       Logger.printSqlError(e);
     }
     return game;
