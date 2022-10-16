@@ -54,6 +54,8 @@ public class BadgeModel {
     this.imageUrl = imageUrl;
   }
 
+  /** Format badge by ID, Name and Description */
+  @Override
   public String toString() {
     StringBuilder sb = new StringBuilder("ID: ");
     sb.append(id);
@@ -74,12 +76,22 @@ public class BadgeModel {
   /** Badges are the same if they have the same id */
   @Override
   public boolean equals(Object obj) {
-    if (this == obj) return true;
-    if (obj == null) return false;
-    if (getClass() != obj.getClass()) return false;
+    // Same reference
+    if (this == obj) {
+      return true;
+    }
+    if (obj == null) {
+      return false;
+    }
+    if (getClass() != obj.getClass()) {
+      return false;
+    }
+    // Typecast to compare
     BadgeModel other = (BadgeModel) obj;
     // Same ID
-    if (id != other.id) return false;
+    if (id != other.id) {
+      return false;
+    }
     return true;
   }
 }
