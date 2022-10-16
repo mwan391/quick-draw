@@ -1,6 +1,5 @@
 package nz.ac.auckland.se206.controllers;
 
-import java.sql.SQLException;
 import java.util.Collections;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -208,11 +207,10 @@ public class CategoryController implements Controller {
   /**
    * This method updates the saved settings and changes the scene to the game scene
    *
-   * @param event
-   * @throws SQLException
+   * @param event that triggers this method call
    */
   @FXML
-  private void onStartGame(ActionEvent event) throws SQLException {
+  private void onStartGame(ActionEvent event) {
 
     // get the parent and controller of the canvas game page
     Scene scene = ((Button) event.getSource()).getScene();
@@ -247,7 +245,7 @@ public class CategoryController implements Controller {
    * This method logs the current user out by taking the user back to the log in scene, deactivating
    * the saved user, and reloading the user data
    *
-   * @param event
+   * @param event that triggers this method call
    */
   @FXML
   private void onLogOut(ActionEvent event) {
@@ -287,7 +285,7 @@ public class CategoryController implements Controller {
 
   /**
    * this method takes the user to the Profile settings page and calls the method to load the image
-   * and barsonto the page
+   * and bars onto the page
    *
    * @param event that calls this method
    */
