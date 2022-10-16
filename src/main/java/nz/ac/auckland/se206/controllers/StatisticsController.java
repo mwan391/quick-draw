@@ -90,26 +90,26 @@ public class StatisticsController implements Controller {
     ArrayList<Button> allBadgeButtons = new ArrayList<>();
     Collections.addAll(
         allBadgeButtons,
-        // beginner badges
+        // add all beginner badges to array
         badge0,
         badge1,
         badge2,
-        // speed badges
+        // add all speed badges to array
         badge3,
         badge4,
         badge5,
         badge6,
-        // settings badges
+        // add all settings badges to array
         badge7,
         badge8,
         badge9,
         badge10,
-        // words badges
+        // add all words badges to array
         badge11,
         badge12,
         badge13,
         badge14,
-        // quantity of games
+        // add all quantity of games badges to array
         badge15,
         badge16,
         badge17,
@@ -124,7 +124,7 @@ public class StatisticsController implements Controller {
   }
 
   /**
-   * returns scene to the category select menu from the statistics page
+   * this method returns scene to the category select menu from the statistics page
    *
    * @param event that triggers the method
    */
@@ -187,7 +187,7 @@ public class StatisticsController implements Controller {
     // build strings and add to list view
     for (GameModel game : latestGames) {
 
-      // get won status
+      // get won status and update the string accordingly
       String won;
       if (game.getWon()) {
         won = "Won \"";
@@ -209,7 +209,10 @@ public class StatisticsController implements Controller {
     }
   }
 
-  /** retrieves, formats, and displays the user's overall win rate of games */
+  /**
+   * this method retrieves, formats, and displays the user's overall win rate of games into the
+   * label
+   */
   private void setWinRate() {
     // get relevant statistics
     // initialise counts to avoid breakage
@@ -262,7 +265,7 @@ public class StatisticsController implements Controller {
     txtBestGame.setText(stringBuilder.toString());
   }
 
-  /** retrieves, formats, and displays the user's latest game played */
+  /** this method retrieves, formats, and displays the user's latest game played into the label */
   private void setLastGame() {
     // get relevant statistics
     List<GameModel> lastGames = userStatsDao.getTen(activeUser.getId());
