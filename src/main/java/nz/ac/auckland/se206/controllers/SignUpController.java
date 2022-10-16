@@ -7,7 +7,7 @@ import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -24,11 +24,14 @@ public class SignUpController implements Controller {
 
   @FXML private TextField userEntry;
   @FXML private Label lblWarning;
-  @FXML private ChoiceBox<String> picChooser;
+  @FXML private ComboBox<String> picChooser;
   @FXML private ImageView picPreview;
 
   /** This method loads default values and images upon scene load in the UI */
   public void initialize() {
+    // Disabling error message
+    lblWarning.setVisible(false);
+
     // Loading options for profile picture
     String picStrings[] = {"boy", "dad", "girl", "mother", "woman"};
     ObservableList<String> picNames = FXCollections.observableArrayList(picStrings);
@@ -49,6 +52,7 @@ public class SignUpController implements Controller {
                           "/images/profileicons/" + picChooser.getValue() + ".png"));
           // Changing the preview to the new selection
           picPreview.setImage(preview);
+          SoundManager.playSound();
         });
   }
 
@@ -64,18 +68,21 @@ public class SignUpController implements Controller {
 
     // check if the user name is taken
     if (userDao.checkExists(userName)) {
+      lblWarning.setVisible(true);
       lblWarning.setText("This username is already taken.");
       return;
     }
 
     // check if the field is left blank
     if (userName.equals("")) {
+      lblWarning.setVisible(true);
       lblWarning.setText("Please select a valid username.");
       return;
     }
 
     // check if the user name is too long
     if (userName.length() > 15) {
+      lblWarning.setVisible(true);
       lblWarning.setText("Max length is 15.");
       return;
     }
@@ -104,9 +111,25 @@ public class SignUpController implements Controller {
     // reset the page
     userEntry.setText("");
     lblWarning.setText("");
+    lblWarning.setVisible(false);
 
     // change scene
     scene.setRoot(categoryRoot);
     SoundManager.playSound(SoundName.LOG_IN);
+  }
+
+  /**
+   * Changes the current scene from sign up back to log in
+   *
+   * @param event, the button press used to determine current scene
+   */
+  @FXML
+  private void onBack(ActionEvent event) {
+    // get root
+    Scene scene = ((Button) event.getSource()).getScene();
+    Parent loginRoot = SceneManager.getUiRoot(AppUi.LOG_IN);
+    // change scene
+    SoundManager.playSound(SoundName.LOG_OUT);
+    scene.setRoot(loginRoot);
   }
 }
