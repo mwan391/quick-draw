@@ -12,6 +12,7 @@ public class SceneManager {
     SIGN_UP,
     CATEGORY_SELECT,
     USER_STATS,
+    PROFILE_SETTINGS,
     CANVAS
   }
 
