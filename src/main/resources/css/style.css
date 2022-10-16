@@ -86,6 +86,11 @@
   -fx-prompt-text-fill: #856ea2;
 }
 
+.combo-box-popup{
+  -fx-font: 18px "Comic Sans MS", "Comic Sans", sans-serif;
+}
+
+
 .list-cell {
   -fx-font: 12px "Comic Sans MS", "Comic Sans", sans-serif;
 }

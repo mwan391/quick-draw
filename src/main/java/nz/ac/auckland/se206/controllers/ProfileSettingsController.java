@@ -49,7 +49,7 @@ public class ProfileSettingsController implements Controller {
   public void initialize() {
 
     // Loading options for profile picture
-    String picStrings[] = {"boy", "dad", "girl", "mother", "woman"};
+    String picStrings[] = {"Boy", "Dad", "Girl", "Mother", "Woman"};
     ObservableList<String> picNames = FXCollections.observableArrayList(picStrings);
     picChooser.setItems(picNames);
 
@@ -65,7 +65,10 @@ public class ProfileSettingsController implements Controller {
 
     // get user image and set it
     activeUser = UserModel.getActiveUser();
-    picChooser.setValue(activeUser.getIcon());
+    // capitalise string
+    String userPic = activeUser.getIcon();
+    userPic = userPic.substring(0, 1).toUpperCase() + userPic.substring(1);
+    picChooser.setValue(userPic);
     onChangePicture();
 
     // get progress dao variables
@@ -101,7 +104,7 @@ public class ProfileSettingsController implements Controller {
 
     // save image to database
     UserDaoJson userDao = new UserDaoJson();
-    userDao.updateAvatar(activeUser, picChooser.getValue());
+    userDao.updateAvatar(activeUser, picChooser.getValue().toLowerCase());
 
     // change scene
     SoundManager.playSound();
@@ -114,7 +117,8 @@ public class ProfileSettingsController implements Controller {
     Image preview =
         new Image(
             getClass()
-                .getResourceAsStream("/images/profileicons/" + picChooser.getValue() + ".png"));
+                .getResourceAsStream(
+                    "/images/profileicons/" + picChooser.getValue().toLowerCase() + ".png"));
     // Changing the preview to the new selection
     picPreview.setImage(preview);
     SoundManager.playSound();
