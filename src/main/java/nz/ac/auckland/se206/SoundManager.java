@@ -21,13 +21,24 @@ public class SoundManager {
    * @param soundName name of file
    */
   public static void playSound(SoundName soundName) {
-    // get path address
-    String pathName = "src/main/resources/sounds/" + soundName.toString().toLowerCase() + ".mp3";
-    // set up player
-    Media media = new Media(new File(pathName).toURI().toString());
-    MediaPlayer mediaPlayer = new MediaPlayer(media);
-    // play sound
-    mediaPlayer.play();
+    Runnable sound =
+        new Runnable() {
+          @Override
+          public void run() {
+            // get path address
+            String pathName =
+                "src/main/resources/sounds/" + soundName.toString().toLowerCase() + ".mp3";
+            // set up player
+            Media media = new Media(new File(pathName).toURI().toString());
+            MediaPlayer mediaPlayer = new MediaPlayer(media);
+            // play sound
+            mediaPlayer.play();
+          }
+        };
+
+    // Running the sound on a new thread
+    Thread soundThread = new Thread(sound);
+    soundThread.start();
   }
 
   /** This method plays the sound set as generic for easy and quick access */

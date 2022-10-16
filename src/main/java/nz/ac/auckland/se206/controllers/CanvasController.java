@@ -612,6 +612,8 @@ public class CanvasController implements Controller {
    */
   @FXML
   private void onReturnToMenu(ActionEvent event) {
+    timer.pause();
+    isFinished = true;
 
     Scene scene = ((Button) event.getSource()).getScene();
     scene.setRoot(SceneManager.getUiRoot(AppUi.CATEGORY_SELECT));
@@ -663,10 +665,12 @@ public class CanvasController implements Controller {
     if (btnToggleEraser.isSelected()) {
       // Changing label
       eraserMessage.setText("Eraser ON");
+      zenPicker.setDisable(true);
       switchToEraser();
     } else {
       // Changing label
       eraserMessage.setText("Eraser OFF");
+      zenPicker.setDisable(false);
       switchToPen();
     }
   }
