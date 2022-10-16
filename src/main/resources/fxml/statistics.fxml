@@ -75,7 +75,7 @@
                   <Insets top="2.0" />
                </VBox.margin>
             </Text>
-            <Label alignment="CENTER" prefHeight="22.0" prefWidth="134.0" style="-fx-background-color: white; -fx-background-radius: 10px;" text="Winrate">
+            <Label alignment="CENTER" prefHeight="22.0" prefWidth="134.0" style="-fx-background-color: white; -fx-background-radius: 10px;" text="Win Rate">
                <font>
                   <Font name="Arial Rounded MT Bold" size="15.0" />
                </font>

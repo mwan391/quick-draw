@@ -29,6 +29,7 @@ import nz.ac.auckland.se206.daos.GameSettingDao;
 import nz.ac.auckland.se206.daos.UserDaoJson;
 import nz.ac.auckland.se206.dictionary.DictionaryLookup;
 import nz.ac.auckland.se206.models.UserModel;
+import nz.ac.auckland.se206.util.ComboBoxRender;
 
 public class ProfileSettingsController implements Controller {
 
@@ -51,6 +52,9 @@ public class ProfileSettingsController implements Controller {
 
   /** This method loads default values and images upon scene load in the UI */
   public void initialize() {
+
+    // Increase font size of text in combobox to 18px
+    ComboBoxRender.increaseFontSize(picChooser);
 
     // Loading options for profile picture
     String[] picStrings = {"Boy", "Dad", "Girl", "Mother", "Woman"};

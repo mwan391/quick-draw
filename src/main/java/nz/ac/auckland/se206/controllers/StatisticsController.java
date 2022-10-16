@@ -186,23 +186,21 @@ public class StatisticsController implements Controller {
 
     // build strings and add to list view
     for (GameModel game : latestGames) {
+      // get won status
+      StringBuilder timeString = new StringBuilder("\"");
 
-      // get won status and update the string accordingly
+      // update the string accordingly
       String won;
       if (game.getWon()) {
         won = "Won \"";
+        timeString = timeString.append(" in ").append(game.getTime()).append(" seconds");
       } else {
         won = "Lost \"";
       }
 
       // build string
       stringBuilder.setLength(0);
-      stringBuilder
-          .append(won)
-          .append(game.getWord())
-          .append("\" in ")
-          .append(game.getTime())
-          .append(" seconds");
+      stringBuilder.append(won).append(game.getWord()).append(timeString);
 
       // add to list
       gamesEasyHistory.add(stringBuilder.toString());
@@ -238,7 +236,7 @@ public class StatisticsController implements Controller {
     stringBuilder.setLength(0);
     stringBuilder
         .append("Win rate of ")
-        .append(100 * ((float) winCount / (float) gameCount))
+        .append(Math.round(100 * ((float) winCount / (float) gameCount)))
         .append("%");
     txtWinRatePercent.setText(stringBuilder.toString());
   }
