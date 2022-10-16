@@ -24,15 +24,12 @@ public class CategorySelect {
   private static String category = null;
   private static Difficulty wordDifficulty;
 
-  /*
-   * This method is invoked when the application starts. It loads the given csv
-   * file into a hashmap
+  /**
+   * This method is invoked when the application starts. It loads the given csv file into a hashmap
    * corresponding to the difficulty.
    *
    * @param csvName the name of the csv file in the resource folder.
-   *
    * @throws IOException If "src/main/resources/csvName.csv" is not found.
-   *
    */
   public static void setCategories(String csvName) throws IOException {
 
