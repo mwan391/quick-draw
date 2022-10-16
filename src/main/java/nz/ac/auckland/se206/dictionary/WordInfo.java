@@ -8,6 +8,13 @@ public class WordInfo {
   private Meaning meaning;
   private Difficulty difficulty;
 
+  /**
+   * Models a category combined with its definition and difficulty
+   *
+   * @param word the category selected
+   * @param meaning holds the definition
+   * @param difficulty level of difficulty
+   */
   public WordInfo(String word, Meaning meaning, Difficulty difficulty) {
     this.word = word;
     this.meaning = meaning;
@@ -26,6 +33,7 @@ public class WordInfo {
     return difficulty;
   }
 
+  /** Formats WordInfo by word, meaning (definition) and difficulty */
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder("Word: ");

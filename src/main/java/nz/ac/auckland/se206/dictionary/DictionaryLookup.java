@@ -21,7 +21,7 @@ import nz.ac.auckland.se206.models.UserModel;
 
 public class DictionaryLookup {
 
-  private final String FILE_PATH = "src/main/resources/dictionary/definitions.json";
+  private static final String FILE_PATH = "src/main/resources/dictionary/definitions.json";
   private UserModel user;
 
   /**
