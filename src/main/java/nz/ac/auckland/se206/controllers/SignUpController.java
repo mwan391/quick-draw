@@ -52,6 +52,7 @@ public class SignUpController implements Controller {
                           "/images/profileicons/" + picChooser.getValue() + ".png"));
           // Changing the preview to the new selection
           picPreview.setImage(preview);
+          SoundManager.playSound();
         });
   }
 
@@ -117,6 +118,11 @@ public class SignUpController implements Controller {
     SoundManager.playSound(SoundName.LOG_IN);
   }
 
+  /**
+   * Changes the current scene from sign up back to log in
+   *
+   * @param event, the button press used to determine current scene
+   */
   @FXML
   private void onBack(ActionEvent event) {
     // get root
