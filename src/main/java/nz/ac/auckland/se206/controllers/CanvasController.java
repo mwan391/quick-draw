@@ -281,7 +281,7 @@ public class CanvasController implements Controller {
     isFinished = false;
     canvas.setDisable(false);
     hbxDrawTools.setVisible(true);
-    if (isHidden) {
+    if (isHidden && !isZen) {
       btnHint.setVisible(true);
     }
     // create new game database object
