@@ -20,6 +20,8 @@ import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.SoundManager;
 import nz.ac.auckland.se206.SoundManager.SoundName;
+import nz.ac.auckland.se206.daos.GameDao;
+import nz.ac.auckland.se206.daos.GameSettingDao;
 import nz.ac.auckland.se206.daos.UserDaoJson;
 import nz.ac.auckland.se206.models.UserModel;
 
@@ -120,12 +122,48 @@ public class ProfileSettingsController implements Controller {
       case OK_DONE:
         // play sad sound
         SoundManager.playSound(SoundName.LOG_OUT);
-        // delete user
+        // delete all saved user data
+        deleteUser();
         // take user to first menu
+        returnToFirstMenu();
         break;
       default:
         // play happy sound
         SoundManager.playSound(SoundName.LOG_IN);
     }
+  }
+
+  /**
+   * This method takes the user back to the very first menu as if booting the game from start again
+   */
+  private void returnToFirstMenu() {
+    // get scene from arbitrary element on stage
+    Scene scene = picChooser.getScene();
+    // get root
+    Parent menuRoot = SceneManager.getUiRoot(AppUi.MAIN_MENU);
+
+    // change scene
+    scene.setRoot(menuRoot);
+  }
+
+  /**
+   * This method deletes everything related to the given user, including settings profiles and game
+   * history
+   */
+  private void deleteUser() {
+    // delete game difficulty settings
+    GameSettingDao difficultyDao = new GameSettingDao();
+    difficultyDao.removeSettingsFromUser(activeUser);
+
+    // delete game history for user
+    GameDao gameDao = new GameDao();
+    gameDao.removeGamesFromUser(activeUser);
+
+    // delete user from json
+    UserDaoJson userDao = new UserDaoJson();
+    userDao.remove(activeUser);
+
+    // set active user as null
+    UserModel.setActiveUser(null);
   }
 }
