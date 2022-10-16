@@ -190,7 +190,7 @@ public class LogInController implements Controller {
     UserModel.setActiveUser(userDao.get(username));
 
     // go to the next screen
-    nextCategory(event);
+    seeNextCategory(event);
   }
 
   /**
@@ -214,7 +214,7 @@ public class LogInController implements Controller {
    *
    * @param event the button press
    */
-  private void nextCategory(ActionEvent event) {
+  private void seeNextCategory(ActionEvent event) {
 
     // get root and controller
     Scene scene = ((Button) event.getSource()).getScene();
