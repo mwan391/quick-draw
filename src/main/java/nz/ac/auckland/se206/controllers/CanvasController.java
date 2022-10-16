@@ -507,7 +507,7 @@ public class CanvasController implements Controller {
    * received by the player. the pop up has the options to move to the statistics page or stay at
    * the current page.
    *
-   * @param newBadgeCount
+   * @param newBadgeCount the number of new badges found by the badge manager
    */
   private void showNewBadgePopup(int newBadgeCount) {
     // play positive sound
@@ -546,27 +546,26 @@ public class CanvasController implements Controller {
 
     // trigger view badges method if the view badges button is pressed
     badgePopup.setResultConverter(
-        (Callback<ButtonType, Void>)
-            new Callback<ButtonType, Void>() {
-              @Override
-              public Void call(ButtonType b) {
+        new Callback<ButtonType, Void>() {
+          @Override
+          public Void call(ButtonType b) {
 
-                // trigger event if it is this button
-                if (b == btnViewBadges) {
-                  onViewBadges();
-                }
+            // trigger event if it is this button
+            if (b == btnViewBadges) {
+              onViewBadges();
+            }
 
-                // play sound regardless of button
-                SoundManager.playSound();
+            // play sound regardless of button
+            SoundManager.playSound();
 
-                return null;
-              }
-            });
+            return null;
+          }
+        });
 
     badgePopup.show();
   }
 
-  /** This method loads then takes the user to the statistics page */
+  /** This method loads the statistics page then takes the user to it */
   private void onViewBadges() {
     // get scene source from an arbitrary button on scene
     // get root and controller for statistics page

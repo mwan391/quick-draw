@@ -33,7 +33,7 @@ public class SignUpController implements Controller {
     lblWarning.setVisible(false);
 
     // Loading options for profile picture
-    String picStrings[] = {"Boy", "Dad", "Girl", "Mother", "Woman"};
+    String[] picStrings = {"Boy", "Dad", "Girl", "Mother", "Woman"};
     ObservableList<String> picNames = FXCollections.observableArrayList(picStrings);
     picChooser.setItems(picNames);
 
@@ -59,7 +59,7 @@ public class SignUpController implements Controller {
   /**
    * creates a new user with the specified fields and logs them into the game
    *
-   * @param event, the button press
+   * @param event the button press
    */
   @FXML
   private void onLogIn(ActionEvent event) {
@@ -120,7 +120,7 @@ public class SignUpController implements Controller {
   /**
    * Changes the current scene from sign up back to log in
    *
-   * @param event, the button press used to determine current scene
+   * @param event the button press used to determine current scene
    */
   @FXML
   private void onBack(ActionEvent event) {
