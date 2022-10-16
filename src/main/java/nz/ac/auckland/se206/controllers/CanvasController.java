@@ -663,10 +663,12 @@ public class CanvasController implements Controller {
     if (btnToggleEraser.isSelected()) {
       // Changing label
       eraserMessage.setText("Eraser ON");
+      zenPicker.setDisable(true);
       switchToEraser();
     } else {
       // Changing label
       eraserMessage.setText("Eraser OFF");
+      zenPicker.setDisable(false);
       switchToPen();
     }
   }
