@@ -304,5 +304,20 @@
             </HBox>
          </children>
       </VBox>
+      <Button layoutX="13.0" layoutY="536.0" mnemonicParsing="false" onAction="#onSeeSettings" prefHeight="51.0" prefWidth="100.0" style="-fx-background-color: #882FF6;" textFill="WHITE">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="4.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <graphic>
+            <ImageView fitHeight="48.0" fitWidth="64.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/buttonicons/settings.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
    </children>
 </Pane>

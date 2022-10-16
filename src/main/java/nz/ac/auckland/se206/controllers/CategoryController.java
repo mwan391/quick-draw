@@ -268,7 +268,7 @@ public class CategoryController implements Controller {
    * this method takes the user to the statistics page and calls the method to load the statistics
    * onto the page
    *
-   * @param event
+   * @param event that calls this method
    */
   @FXML
   private void onSeeUserStatistics(ActionEvent event) {
@@ -281,6 +281,26 @@ public class CategoryController implements Controller {
     // load the necessary stats and change the scene
     statisticsController.loadPage();
     scene.setRoot(statsRoot);
+
+    SoundManager.playSound();
+  }
+
+  /**
+   * this method takes the user to the Profile settings page and calls the method to load the image
+   * and barsonto the page
+   *
+   * @param event that calls this method
+   */
+  @FXML
+  private void onSeeSettings(ActionEvent event) {
+    // get root and controller for settings page
+    Scene scene = ((Button) event.getSource()).getScene();
+    Parent settingsRoot = SceneManager.getUiRoot(AppUi.PROFILE_SETTINGS);
+    ProfileSettingsController settingsController =
+        (ProfileSettingsController) SceneManager.getController(settingsRoot);
+
+    // load the necessary stats and change the scene
+    scene.setRoot(settingsRoot);
 
     SoundManager.playSound();
   }
