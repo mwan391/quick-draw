@@ -109,6 +109,29 @@ public class UserDaoJson {
   }
 
   /**
+   * Update the profile picture for an existing user, returns true if update to file is succesful
+   *
+   * @param user old user to update
+   * @param picUrl new picture to replace
+   * @return true if updating user's avatar is succesful
+   */
+  public boolean updateAvatar(UserModel user, String picUrl) {
+    List<UserModel> users = getAll();
+    UserModel foundUser =
+        users.stream()
+            .filter(u -> u.getUsername().equals(user.getUsername()))
+            .findFirst()
+            .orElse(null);
+    // No user found in file
+    if (foundUser == null) {
+      return false;
+    }
+    // Set the new picture url
+    foundUser.setIcon(picUrl);
+    return saveToFile(users);
+  }
+
+  /**
    * Deletes a user from the JSON file and returns if it was successful
    *
    * @param username of user to remove
