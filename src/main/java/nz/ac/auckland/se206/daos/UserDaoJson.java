@@ -106,10 +106,11 @@ public class UserDaoJson {
   }
 
   /**
-   * Replaces a user's profile picture, returns true if user is updated succesfully to file
+   * Update the profile picture for an existing user, returns true if update to file is succesful
    *
-   * @param user new user to update old user to
-   * @return true if user is updated to file
+   * @param user old user to update
+   * @param picUrl new picture to replace
+   * @return true if updating user's avatar is succesful
    */
   public boolean updateAvatar(UserModel user, String picUrl) {
     List<UserModel> users = getAll();
