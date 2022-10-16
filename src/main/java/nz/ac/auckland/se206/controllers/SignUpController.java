@@ -19,6 +19,7 @@ import nz.ac.auckland.se206.SoundManager.SoundName;
 import nz.ac.auckland.se206.daos.GameSettingDao;
 import nz.ac.auckland.se206.daos.UserDaoJson;
 import nz.ac.auckland.se206.models.UserModel;
+import nz.ac.auckland.se206.util.ComboBoxRender;
 
 public class SignUpController implements Controller {
 
@@ -29,6 +30,9 @@ public class SignUpController implements Controller {
 
   /** This method loads default values and images upon scene load in the UI */
   public void initialize() {
+
+    // Increase default size of font in combo box to 18px
+    ComboBoxRender.increaseFontSize(picChooser);
     // Disabling error message
     lblWarning.setVisible(false);
 
