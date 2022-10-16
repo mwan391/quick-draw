@@ -39,7 +39,11 @@ public class ProfileSettingsController implements Controller {
 
   private UserModel activeUser;
   private int totalCountEasy;
+  private int totalCountMedium;
+  private int totalCountHard;
   private double progressEasy;
+  private double progressMedium;
+  private double progressHard;
 
   /** This method loads default values and images upon scene load in the UI */
   public void initialize() {
@@ -49,8 +53,11 @@ public class ProfileSettingsController implements Controller {
     ObservableList<String> picNames = FXCollections.observableArrayList(picStrings);
     picChooser.setItems(picNames);
 
+    // get number of words in each difficulty
     DictionaryLookup dictionary = new DictionaryLookup(null);
     totalCountEasy = dictionary.getWordsOfThisDifficulty(Difficulty.EASY).size();
+    totalCountMedium = dictionary.getWordsOfThisDifficulty(Difficulty.MEDIUM).size();
+    totalCountHard = dictionary.getWordsOfThisDifficulty(Difficulty.HARD).size();
   }
 
   /** This method loads the user's profile pic and progress bars into the scene */
@@ -66,9 +73,19 @@ public class ProfileSettingsController implements Controller {
     GameProgressDao progressDao = new GameProgressDao();
 
     // set easy progress
-    int playCountEasy = progressDao.getNumberPlayedOfThisDifficulty(Difficulty.EASY, activeUserId);
-    progressEasy = (double) playCountEasy / totalCountEasy;
+    int playCount = progressDao.getNumberPlayedOfThisDifficulty(Difficulty.EASY, activeUserId);
+    progressEasy = (double) playCount / totalCountEasy;
     pbarEasy.setProgress(progressEasy);
+
+    // set medium progress
+    playCount = progressDao.getNumberPlayedOfThisDifficulty(Difficulty.MEDIUM, activeUserId);
+    progressMedium = (double) playCount / totalCountMedium;
+    pbarMedium.setProgress(progressMedium);
+
+    // set hard progress
+    playCount = progressDao.getNumberPlayedOfThisDifficulty(Difficulty.HARD, activeUserId);
+    progressHard = (double) playCount / totalCountHard;
+    pbarHard.setProgress(progressHard);
   }
 
   /**
