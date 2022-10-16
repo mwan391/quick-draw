@@ -284,4 +284,10 @@ public class CategoryController implements Controller {
 
     SoundManager.playSound();
   }
+
+  /** this method plays a sound whenever one of the boxes are checked */
+  @FXML
+  private void onCheck() {
+    SoundManager.playSound();
+  }
 }

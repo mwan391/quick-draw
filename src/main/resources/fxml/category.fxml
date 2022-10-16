@@ -214,7 +214,7 @@
             </Button>
             <HBox alignment="CENTER" prefHeight="67.0" prefWidth="700.0">
                <children>
-                  <CheckBox fx:id="hiddenMode" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="46.0" prefWidth="267.0" style="-fx-background-color: #882FF6;" text="Hidden Word Mode" textFill="WHITE">
+                  <CheckBox fx:id="hiddenMode" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onCheck" prefHeight="46.0" prefWidth="267.0" style="-fx-background-color: #882FF6;" text="Hidden Word Mode" textFill="WHITE">
                      <HBox.margin>
                         <Insets right="20.0" />
                      </HBox.margin>
@@ -228,7 +228,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </CheckBox>
-                  <CheckBox fx:id="zenMode" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="46.0" prefWidth="267.0" style="-fx-background-color: #882FF6;" text="Zen Mode" textFill="WHITE">
+                  <CheckBox fx:id="zenMode" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onCheck" prefHeight="46.0" prefWidth="267.0" style="-fx-background-color: #882FF6;" text="Zen Mode" textFill="WHITE">
                      <padding>
                         <Insets left="20.0" />
                      </padding>
