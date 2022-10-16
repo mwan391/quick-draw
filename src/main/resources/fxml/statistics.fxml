@@ -41,7 +41,7 @@
             <Font name="Arial Rounded MT Bold" size="15.0" />
          </font>
       </Label>
-      <VBox alignment="TOP_CENTER" layoutX="373.0" layoutY="139.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="246.0" prefWidth="275.0" style="-fx-background-color: PURPLE; -fx-background-radius: 10px;">
+      <VBox alignment="TOP_CENTER" layoutX="373.0" layoutY="139.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="246.0" prefWidth="275.0" style="-fx-background-color: #173ab5; -fx-background-radius: 10px;">
          <children>
             <Label alignment="CENTER" prefHeight="22.0" prefWidth="134.0" style="-fx-background-color: white; -fx-background-radius: 10px;" text="Best Game">
                <font>
