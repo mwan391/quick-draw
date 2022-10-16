@@ -4,6 +4,7 @@ import ai.djl.ModelException;
 import ai.djl.modality.Classifications;
 import ai.djl.modality.Classifications.Classification;
 import ai.djl.translate.TranslateException;
+import animatefx.animation.Pulse;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -305,7 +306,14 @@ public class CanvasController implements Controller {
    * When triggered, this method updates the timer label in the scene by decrementing by one value
    */
   private void changeTime() {
-    lblTimer.setText(String.valueOf(Integer.valueOf(lblTimer.getText()) - 1));
+    int timeValue = Integer.valueOf(lblTimer.getText()) - 1;
+    lblTimer.setText(String.valueOf(timeValue));
+    // set red timer when less than ten seconds left
+    if (timeValue == 10) {
+      new Pulse(lblTimer).play();
+      ;
+      lblTimer.getStyleClass().add("red-timer");
+    }
   }
 
   /** this method gets retrieves the ai predictions and adds them into a list */
@@ -682,6 +690,7 @@ public class CanvasController implements Controller {
    */
   @FXML
   private void onNewGame() {
+    lblTimer.getStyleClass().clear();
     if (btnNewGame.isSelected()) {
       // clear the canvas and timer
       resetGame();
