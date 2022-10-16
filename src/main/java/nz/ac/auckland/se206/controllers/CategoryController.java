@@ -285,7 +285,10 @@ public class CategoryController implements Controller {
     SoundManager.playSound();
   }
 
-  /** this method plays a sound whenever one of the boxes are checked */
+  /**
+   * this method plays a sound whenever one of the boxes are checked for either zen mode or hidden
+   * word mode
+   */
   @FXML
   private void onCheck() {
     SoundManager.playSound();
