@@ -77,7 +77,7 @@
 
 .combo-box {
   -fx-font: 18px "Comic Sans MS", "Comic Sans", sans-serif;
-  -fx-background-color: rgb(190, 199, 255);
+  -fx-background-color: #bec7ff;
   -fx-prompt-text-fill: #411a72;
 }
 
@@ -200,4 +200,13 @@
 .scroll-pane {
   -fx-background-color: transparent;
   -fx-border-color: transparent;
+}
+
+.color-picker .color-picker-label .text {
+  -fx-font: 18px "Arial Rounded MT Bold";
+  -fx-fill: white;
+}
+
+.color-picker .arrow {
+  -fx-background-color: white;
 }
