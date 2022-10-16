@@ -612,6 +612,8 @@ public class CanvasController implements Controller {
    */
   @FXML
   private void onReturnToMenu(ActionEvent event) {
+    timer.pause();
+    isFinished = true;
 
     Scene scene = ((Button) event.getSource()).getScene();
     scene.setRoot(SceneManager.getUiRoot(AppUi.CATEGORY_SELECT));
