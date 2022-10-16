@@ -19,7 +19,7 @@ public class UserLoader {
   }
 
   /**
-   * Check if 'users.json' has been created
+   * Check if the file 'users.json' has been created at location path
    *
    * @return whether or not file was found
    */
@@ -35,7 +35,7 @@ public class UserLoader {
     }
   }
 
-  /** Create the JSON files to store users */
+  /** Create a new JSON file to store users and all its details */
   private void createFile() {
     // Create new JSON file at location
     try {

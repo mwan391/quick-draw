@@ -16,7 +16,7 @@ import nz.ac.auckland.se206.util.SqliteConnection;
 public class GameDao {
 
   /**
-   * add a new game to the database and return its id
+   * add a new game to the SQLite games table and return its unique id
    *
    * @param userId of current user
    * @param difficulty using difficulty enum
@@ -49,7 +49,7 @@ public class GameDao {
   }
 
   /**
-   * when game ends, update time it took to draw the prediction in seconds
+   * when game ends, update time it took to draw the prediction in seconds to SQLite
    *
    * @param time in seconds of drawing time
    * @param gameId of current game
@@ -72,7 +72,7 @@ public class GameDao {
   }
 
   /**
-   * set the result of the game
+   * set and update the result of a particular game to SQLite
    *
    * @param won boolean of winning status
    * @param gameId of current game
@@ -95,7 +95,7 @@ public class GameDao {
   }
 
   /**
-   * Removes any games linked to a given user from Sqlite games database
+   * Removes all games linked to a given user from SQLite database for the games table
    *
    * @param user to remove games for
    * @return true if removal is successful
@@ -121,7 +121,7 @@ public class GameDao {
   }
 
   /**
-   * retrieves a previously played game by its id
+   * retrieves a previously played game as an instance by its id from SQLite
    *
    * @param gameId of current game
    * @return the game instance with all its details
@@ -146,7 +146,7 @@ public class GameDao {
   }
 
   /**
-   * retrieves all games played by a given user
+   * retrieves all games played as a list by a given user from SQLite
    *
    * @param userId of given user
    * @return list of game session

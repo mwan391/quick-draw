@@ -23,7 +23,7 @@ public class UserDaoJson {
   private static final String FILE_NAME = "./users.json";
 
   /**
-   * Returns a list of all existing users from file
+   * Returns a list of all existing users with its details from JSON file
    *
    * @return a list of all users
    */
@@ -49,7 +49,8 @@ public class UserDaoJson {
   }
 
   /**
-   * check if a username has already been add to file and returns the result
+   * check if a username has already been add to JSON file and returns true if user with the
+   * username exists
    *
    * @param username to check for
    * @return whether user with username was found
@@ -60,7 +61,7 @@ public class UserDaoJson {
   }
 
   /**
-   * get instance of user by username
+   * get instance of user from JSON file by username, returns null if none is found
    *
    * @param username of user
    * @return the username
@@ -74,7 +75,7 @@ public class UserDaoJson {
   }
 
   /**
-   * Creates and save a new user to file and returns result
+   * Creates and save a new user to JSON file and returns true if succesful
    *
    * @param user new user to be added
    * @return whether user was added to file succesfully
@@ -88,7 +89,7 @@ public class UserDaoJson {
   }
 
   /**
-   * Store new achievement to users list of badges
+   * Add and store a new achievement for user to its list of badges in JSON
    *
    * @param badge new badge to be added (duplicates are allowed)
    * @param username of user
@@ -130,7 +131,7 @@ public class UserDaoJson {
   }
 
   /**
-   * Removes all saved users from JSON file
+   * Removes all existing saved users from JSON file and returns true if was succesful
    *
    * @return whether or not removal was successful
    */
@@ -142,7 +143,7 @@ public class UserDaoJson {
   }
 
   /**
-   * Check if a user has already a particular badge
+   * Check if a user has already a particular badge from the JSON file
    *
    * @param badge to find match for
    * @param user user to check its badges
@@ -154,7 +155,7 @@ public class UserDaoJson {
   }
 
   /**
-   * Writes all users and its details to file
+   * Writes all users and its old or new details to JSON file
    *
    * @param users list of updated users to save to file
    * @return whether or not saving to file was successful

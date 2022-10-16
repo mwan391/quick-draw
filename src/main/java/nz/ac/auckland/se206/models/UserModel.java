@@ -22,7 +22,7 @@ public class UserModel {
   private List<BadgeModel> badges;
 
   /**
-   * Creates a new user according to the inserted parameters
+   * Creates a new user according to the inserted parameters to be stored in JSON
    *
    * @param username the user's name
    * @param icon the filename of the selected profile icon
@@ -63,7 +63,7 @@ public class UserModel {
   }
 
   /**
-   * Converts the user and their badges into a string
+   * Converts the user and their badges as a list into a formatted string
    *
    * @return a string of badges
    */

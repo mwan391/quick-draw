@@ -9,7 +9,7 @@ public class WordInfo {
   private Difficulty difficulty;
 
   /**
-   * Models a category combined with its definition and difficulty
+   * Models a category combined with its definition and difficulty as showned in JSON
    *
    * @param word the category selected
    * @param meaning holds the definition
@@ -33,7 +33,7 @@ public class WordInfo {
     return difficulty;
   }
 
-  /** Formats WordInfo by word, meaning (definition) and difficulty */
+  /** Formats WordInfo by word, meaning (definition) and difficulty as string for printing */
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder("Word: ");

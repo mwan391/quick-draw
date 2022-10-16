@@ -16,7 +16,7 @@ public class SqliteConnection {
   }
 
   /**
-   * starts connection to a database
+   * starts connection to a JDBC database where all data tables are stored
    *
    * @return the connection (session) with the local database
    */
@@ -48,7 +48,7 @@ public class SqliteConnection {
   }
 
   /**
-   * Removes all rows (data) for a database table
+   * Helper that removes all rows (data) for a database table
    *
    * @param tableName of given table
    * @return the given SQL query command
@@ -59,7 +59,7 @@ public class SqliteConnection {
   }
 
   /**
-   * Resets autoincrement for SQLite databases so that the column ID start from 1 again
+   * Resets autoincrement for SQLite databases so that the column ID start from 1
    *
    * @param tableName of given table
    * @return the given SQL query command
@@ -70,7 +70,7 @@ public class SqliteConnection {
   }
 
   /**
-   * Deletes all data from a given database
+   * Deletes all data from a given database by table name
    *
    * @param tableName of table to remove
    */

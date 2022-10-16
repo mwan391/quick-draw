@@ -8,7 +8,7 @@ import nz.ac.auckland.se206.models.GameSettingModel;
 public class SqlConverter {
 
   /**
-   * Helper to convert a row (game details) to a game instance,
+   * Helper to convert a SQL row (game details) to a game instance,
    *
    * @param rs a table of data from a sql query
    * @return instance of game session
@@ -34,7 +34,7 @@ public class SqlConverter {
   }
 
   /**
-   * Helper to convert a game setting (in SQL) to setting instance
+   * Helper to convert a game setting (in SQL) to a setting instance
    *
    * @param rs result rows of settings from a sql query
    * @return instance of game setting
