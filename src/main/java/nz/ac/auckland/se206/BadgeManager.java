@@ -324,7 +324,7 @@ public class BadgeManager {
 
     // calculate if the user has played all of the words at least once AND they
     // don't already have the badge
-    if ((historySize == categorySize)) {
+    if ((historySize == categorySize) && !userDao.checkBadgeExists(badge, user)) {
       userDao.addBadge(badge, user.getUsername());
       newBadgeCount++;
 
@@ -363,8 +363,11 @@ public class BadgeManager {
     for (int countThreshold : gameCountThreshold.keySet()) {
       if ((gameCount == countThreshold)) {
         BadgeModel badge = gameCountThreshold.get(countThreshold);
-        userDao.addBadge(badge, user.getUsername());
-        return 1;
+        // check if they already have it
+        if (!userDao.checkBadgeExists(badge, user)) {
+          userDao.addBadge(badge, user.getUsername());
+          return 1;
+        }
       }
     }
 
