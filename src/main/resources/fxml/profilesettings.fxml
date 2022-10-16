@@ -19,7 +19,7 @@
             <Image url="@../images/doodlebg.jpg" />
          </image>
       </ImageView>
-      <VBox alignment="CENTER" prefHeight="600.0" prefWidth="700.0">
+      <VBox alignment="CENTER" prefHeight="600.0" prefWidth="700.0" spacing="10.0">
          <children>
             <HBox prefHeight="369.0" prefWidth="700.0">
                <children>
@@ -33,14 +33,14 @@
                               <Insets />
                            </opaqueInsets>
                         </Label>
-                        <ImageView fx:id="picPreview" fitHeight="200.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="picPreview" fitHeight="206.0" fitWidth="226.0" pickOnBounds="true" preserveRatio="true">
                            <VBox.margin>
-                              <Insets top="20.0" />
+                              <Insets top="25.0" />
                            </VBox.margin>
                         </ImageView>
-                        <ComboBox id="picture-select" fx:id="picChooser" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#onChangePicture" prefHeight="40.0" prefWidth="261.0" stylesheets="@../css/style.css">
+                        <ComboBox fx:id="picChooser" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#onChangePicture" prefHeight="40.0" prefWidth="261.0" stylesheets="@../css/style.css">
                            <VBox.margin>
-                              <Insets bottom="35.0" top="20.0" />
+                              <Insets top="25.0" />
                            </VBox.margin>
                         </ComboBox>
                      </children>
@@ -108,7 +108,12 @@
                               <Insets bottom="32.0" />
                            </VBox.margin>
                         </HBox>
-                        <Button mnemonicParsing="false" onAction="#onDeleteAccount" prefHeight="41.0" prefWidth="256.0" style="-fx-background-color: #882FF6;" text="Delete Your Account" textFill="WHITE">
+                        <Button mnemonicParsing="false" onAction="#onDeleteX" prefHeight="41.0" prefWidth="256.0" style="-fx-background-color: #882FF6;" text="Delete Your Progress" textFill="WHITE">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="21.0" />
+                           </font>
+                        </Button>
+                        <Button mnemonicParsing="false" onAction="#onDeleteX" prefHeight="41.0" prefWidth="256.0" style="-fx-background-color: #882FF6;" text="Delete Your Account" textFill="WHITE">
                            <font>
                               <Font name="Arial Rounded MT Bold" size="21.0" />
                            </font>
@@ -121,7 +126,7 @@
                   <Font name="Arial Rounded MT Bold" size="30.0" />
                </font>
                <VBox.margin>
-                  <Insets />
+                  <Insets top="25.0" />
                </VBox.margin>
             </Button>
          </children>

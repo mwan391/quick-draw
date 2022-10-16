@@ -129,19 +129,29 @@ public class ProfileSettingsController implements Controller {
    * user back to the first screen, while clicking cancel will do nothing.
    */
   @FXML
-  private void onDeleteAccount() {
+  private void onDeleteX(ActionEvent event) {
+
+    boolean isFromAccount = false;
 
     // create popup
     Dialog<ButtonType> warningPopup = new Dialog<>();
 
     // write main dialog
     String str =
-        "WARNING!\nYou will lose all progress, and you cannot undo this.\n\nAre you sure you want to delete everything?";
+        "WARNING!\nYou will lose all your word progress, and you cannot undo this.\nYour badges will still be here though!.\nAre you sure you want to delete your progress?";
+
+    // identify if delete account or progress
+    if (((Button) event.getSource()).getText().equals("Delete Your Account")) {
+      isFromAccount = true;
+      str =
+          "WARNING!\nYou will lose all progress, and you cannot undo this.\n\nAre you sure you want to delete everything?";
+    }
+
     warningPopup.setContentText(str);
     // add buttons
-    ButtonType btnDelete = new ButtonType("Delete Account", ButtonData.OK_DONE);
+    ButtonType btnDelete = new ButtonType("Yes, Delete It", ButtonData.OK_DONE);
     warningPopup.getDialogPane().getButtonTypes().add(btnDelete);
-    ButtonType btnCancel = new ButtonType("Go Back", ButtonData.CANCEL_CLOSE);
+    ButtonType btnCancel = new ButtonType("No, Go Back", ButtonData.CANCEL_CLOSE);
     warningPopup.getDialogPane().getButtonTypes().add(btnCancel);
 
     // change the top title
@@ -164,10 +174,18 @@ public class ProfileSettingsController implements Controller {
       case OK_DONE:
         // play sad sound
         SoundManager.playSound(SoundName.LOG_OUT);
-        // delete all saved user data
-        deleteUser();
-        // take user to first menu
-        returnToFirstMenu();
+        if (isFromAccount) {
+          // delete all saved user data
+          deleteUser();
+          // take user to first menu
+          returnToFirstMenu();
+        } else {
+          // delete only game history for user
+          GameDao gameDao = new GameDao();
+          gameDao.removeGamesFromUser(activeUser);
+          // reload page
+          this.loadProfileInfo();
+        }
         break;
       default:
         // play happy sound
