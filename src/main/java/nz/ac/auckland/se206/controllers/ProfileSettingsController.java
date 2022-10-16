@@ -15,6 +15,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Dialog;
 import javafx.scene.control.DialogPane;
 import javafx.scene.control.ProgressBar;
+import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import nz.ac.auckland.se206.CategorySelect.Difficulty;
@@ -36,6 +37,9 @@ public class ProfileSettingsController implements Controller {
   @FXML private ProgressBar pbarEasy;
   @FXML private ProgressBar pbarMedium;
   @FXML private ProgressBar pbarHard;
+  @FXML private Tooltip ttpEasy;
+  @FXML private Tooltip ttpMedium;
+  @FXML private Tooltip ttpHard;
 
   private UserModel activeUser;
   private int totalCountEasy;
@@ -74,21 +78,25 @@ public class ProfileSettingsController implements Controller {
     // get progress dao variables
     String activeUserId = activeUser.getId();
     GameProgressDao progressDao = new GameProgressDao();
+    String tooltipFormat = "You've seen %d words out of %d! (%.0f%%)";
 
     // set easy progress
     int playCount = progressDao.getNumberPlayedOfThisDifficulty(Difficulty.EASY, activeUserId);
     progressEasy = (double) playCount / totalCountEasy;
     pbarEasy.setProgress(progressEasy);
+    ttpEasy.setText(String.format(tooltipFormat, playCount, totalCountEasy, progressEasy));
 
     // set medium progress
     playCount = progressDao.getNumberPlayedOfThisDifficulty(Difficulty.MEDIUM, activeUserId);
     progressMedium = (double) playCount / totalCountMedium;
     pbarMedium.setProgress(progressMedium);
+    ttpMedium.setText(String.format(tooltipFormat, playCount, totalCountMedium, progressMedium));
 
     // set hard progress
     playCount = progressDao.getNumberPlayedOfThisDifficulty(Difficulty.HARD, activeUserId);
     progressHard = (double) playCount / totalCountHard;
     pbarHard.setProgress(progressHard);
+    ttpHard.setText(String.format(tooltipFormat, playCount, totalCountHard, progressHard));
   }
 
   /**

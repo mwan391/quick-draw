@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -42,6 +44,9 @@
                            <VBox.margin>
                               <Insets top="25.0" />
                            </VBox.margin>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
                         </ComboBox>
                      </children>
                   </VBox>
@@ -73,7 +78,10 @@
                                     <Insets />
                                  </opaqueInsets>
                               </Label>
-                              <ProgressBar id="pbar-easy" fx:id="pbarEasy" prefHeight="30.0" prefWidth="200.0" progress="0.0" />
+                              <ProgressBar id="pbar-easy" fx:id="pbarEasy" prefHeight="30.0" prefWidth="200.0" progress="0.0">
+                                 <tooltip>
+                                    <Tooltip fx:id="ttpEasy" text="easy" />
+                                 </tooltip></ProgressBar>
                            </children>
                            <VBox.margin>
                               <Insets top="32.0" />
@@ -89,7 +97,10 @@
                                     <Insets />
                                  </opaqueInsets>
                               </Label>
-                              <ProgressBar id="pbar-medium" fx:id="pbarMedium" prefHeight="30.0" prefWidth="200.0" progress="0.0" />
+                              <ProgressBar id="pbar-medium" fx:id="pbarMedium" prefHeight="30.0" prefWidth="200.0" progress="0.0">
+                                 <tooltip>
+                                    <Tooltip fx:id="ttpMedium" text="medium" />
+                                 </tooltip></ProgressBar>
                            </children>
                         </HBox>
                         <HBox alignment="CENTER" spacing="10.0">
@@ -102,7 +113,10 @@
                                     <Insets />
                                  </opaqueInsets>
                               </Label>
-                              <ProgressBar id="pbar-hard" fx:id="pbarHard" prefHeight="30.0" prefWidth="200.0" progress="0.0" />
+                              <ProgressBar id="pbar-hard" fx:id="pbarHard" prefHeight="30.0" prefWidth="200.0" progress="0.0">
+                                 <tooltip>
+                                    <Tooltip fx:id="ttpHard" text="hard" />
+                                 </tooltip></ProgressBar>
                            </children>
                            <VBox.margin>
                               <Insets bottom="32.0" />
