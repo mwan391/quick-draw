@@ -762,8 +762,6 @@ public class CanvasController implements Controller {
       // add definition to canvas
       lblDefinition.setText("Draw: " + definition);
       TextToSpeech.main(new String[] {"The definition is:" + definition});
-      // adding word to database
-      gameDao.addNewGame(activeUserId, actualDifficulty, category);
     }
   }
 
