@@ -88,19 +88,20 @@ public class ProfileSettingsController implements Controller {
     int playCount = progressDao.getNumberPlayedOfThisDifficulty(Difficulty.EASY, activeUserId);
     progressEasy = (double) playCount / totalCountEasy;
     pbarEasy.setProgress(progressEasy);
-    ttpEasy.setText(String.format(tooltipFormat, playCount, totalCountEasy, progressEasy));
+    ttpEasy.setText(String.format(tooltipFormat, playCount, totalCountEasy, progressEasy * 100));
 
     // set medium progress
     playCount = progressDao.getNumberPlayedOfThisDifficulty(Difficulty.MEDIUM, activeUserId);
     progressMedium = (double) playCount / totalCountMedium;
     pbarMedium.setProgress(progressMedium);
-    ttpMedium.setText(String.format(tooltipFormat, playCount, totalCountMedium, progressMedium));
+    ttpMedium.setText(
+        String.format(tooltipFormat, playCount, totalCountMedium, progressMedium * 100));
 
     // set hard progress
     playCount = progressDao.getNumberPlayedOfThisDifficulty(Difficulty.HARD, activeUserId);
     progressHard = (double) playCount / totalCountHard;
     pbarHard.setProgress(progressHard);
-    ttpHard.setText(String.format(tooltipFormat, playCount, totalCountHard, progressHard));
+    ttpHard.setText(String.format(tooltipFormat, playCount, totalCountHard, progressHard * 100));
   }
 
   /**
