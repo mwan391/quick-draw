@@ -14,23 +14,32 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Dialog;
 import javafx.scene.control.DialogPane;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import nz.ac.auckland.se206.CategorySelect.Difficulty;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.SoundManager;
 import nz.ac.auckland.se206.SoundManager.SoundName;
 import nz.ac.auckland.se206.daos.GameDao;
+import nz.ac.auckland.se206.daos.GameProgressDao;
 import nz.ac.auckland.se206.daos.GameSettingDao;
 import nz.ac.auckland.se206.daos.UserDaoJson;
+import nz.ac.auckland.se206.dictionary.DictionaryLookup;
 import nz.ac.auckland.se206.models.UserModel;
 
 public class ProfileSettingsController implements Controller {
 
   @FXML private ComboBox<String> picChooser;
   @FXML private ImageView picPreview;
+  @FXML private ProgressBar pbarEasy;
+  @FXML private ProgressBar pbarMedium;
+  @FXML private ProgressBar pbarHard;
 
   private UserModel activeUser;
+  private int totalCountEasy;
+  private double progressEasy;
 
   /** This method loads default values and images upon scene load in the UI */
   public void initialize() {
@@ -39,6 +48,9 @@ public class ProfileSettingsController implements Controller {
     String picStrings[] = {"boy", "dad", "girl", "mother", "woman"};
     ObservableList<String> picNames = FXCollections.observableArrayList(picStrings);
     picChooser.setItems(picNames);
+
+    DictionaryLookup dictionary = new DictionaryLookup(null);
+    totalCountEasy = dictionary.getWordsOfThisDifficulty(Difficulty.EASY).size();
   }
 
   /** This method loads the user's profile pic and progress bars into the scene */
@@ -48,6 +60,15 @@ public class ProfileSettingsController implements Controller {
     activeUser = UserModel.getActiveUser();
     picChooser.setValue(activeUser.getIcon());
     onChangePicture();
+
+    // get progress dao variables
+    String activeUserId = activeUser.getId();
+    GameProgressDao progressDao = new GameProgressDao();
+
+    // set easy progress
+    int playCountEasy = progressDao.getNumberPlayedOfThisDifficulty(Difficulty.EASY, activeUserId);
+    progressEasy = (double) playCountEasy / totalCountEasy;
+    pbarEasy.setProgress(progressEasy);
   }
 
   /**
