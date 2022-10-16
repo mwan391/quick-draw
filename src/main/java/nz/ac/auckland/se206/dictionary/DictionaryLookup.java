@@ -117,7 +117,7 @@ public class DictionaryLookup {
    * @param difficulty of category
    * @return list of E,M,H,M words
    */
-  private List<WordInfo> getWordsOfThisDifficulty(Difficulty difficulty) {
+  public List<WordInfo> getWordsOfThisDifficulty(Difficulty difficulty) {
     List<WordInfo> words = getAll();
     // Filter for words of given difficulty
     List<WordInfo> easyWords =
