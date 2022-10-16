@@ -623,6 +623,8 @@ public class CanvasController implements Controller {
    */
   @FXML
   private void onReturnToMenu(ActionEvent event) {
+    // Reset red timer to white
+    lblTimer.getStyleClass().clear();
     timer.pause();
     isFinished = true;
 
