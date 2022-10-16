@@ -47,23 +47,6 @@ public class SqliteConnection {
     }
   }
 
-  /** initialises all the tables that will store the game's info */
-  private void createTables() {
-    Connection connection = null;
-    try {
-      // establish connetion to jdbc sqlite
-      connection = openConnection();
-      Statement statement = connection.createStatement();
-      // initialise tables if they do not exist
-      createGamesTable(statement);
-      createSettingsTable(statement);
-    } catch (SQLException e) {
-      Logger.printSqlError(e);
-    } finally {
-      closeConnection(connection);
-    }
-  }
-
   /**
    * Removes all rows (data) for a database table
    *
@@ -102,6 +85,23 @@ public class SqliteConnection {
       statement.addBatch(resetAutoIncrement(tableName));
       // run both commands
       statement.executeBatch();
+    } catch (SQLException e) {
+      Logger.printSqlError(e);
+    } finally {
+      closeConnection(connection);
+    }
+  }
+
+  /** initialises all the tables that will store the game's info */
+  private void createTables() {
+    Connection connection = null;
+    try {
+      // establish connetion to jdbc sqlite
+      connection = openConnection();
+      Statement statement = connection.createStatement();
+      // initialise tables if they do not exist
+      createGamesTable(statement);
+      createSettingsTable(statement);
     } catch (SQLException e) {
       Logger.printSqlError(e);
     } finally {
