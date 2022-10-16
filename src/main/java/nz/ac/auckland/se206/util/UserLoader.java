@@ -13,6 +13,7 @@ public class UserLoader {
   public static void start() {
     UserLoader loader = new UserLoader();
     if (!loader.existingFileExists()) {
+      // JSON created at location
       loader.createFile();
     }
   }
@@ -23,19 +24,20 @@ public class UserLoader {
    * @return whether or not file was found
    */
   private boolean existingFileExists() {
-    System.out.println("Checking for existing Users JSON file");
+    // Check for existing JSON file to store users
     Path path = Paths.get(FILE_NAME);
     if (Files.exists(path) && Files.isRegularFile(path)) {
-      System.out.println("Valid Users JSON file found");
+      // Valid Users JSON file found
       return true;
     } else {
-      System.out.println("Invalid file or JSON not found");
+      // Invalid file or JSON not found
       return false;
     }
   }
 
   /** Create the JSON files to store users */
   private void createFile() {
+    // Create new JSON file at location
     try {
       File saveFile = new File(FILE_NAME);
       System.out.println("File created: " + saveFile.createNewFile());

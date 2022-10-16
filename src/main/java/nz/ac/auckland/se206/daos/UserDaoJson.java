@@ -20,7 +20,7 @@ import nz.ac.auckland.se206.models.UserModel;
 
 public class UserDaoJson {
 
-  private final String FILE_NAME = "./users.json";
+  private static final String FILE_NAME = "./users.json";
 
   /**
    * Returns a list of all existing users from file
@@ -30,13 +30,13 @@ public class UserDaoJson {
   public List<UserModel> getAll() {
     List<UserModel> users = new ArrayList<>();
     // Typing to match JSON to Java types
-    Type UsersType = new TypeToken<List<UserModel>>() {}.getType();
+    Type usersType = new TypeToken<List<UserModel>>() {}.getType();
     try {
       File file = new File(FILE_NAME);
       BufferedReader br = new BufferedReader(new FileReader(file));
       Gson gson = new GsonBuilder().setPrettyPrinting().create();
       // Convert from JSON to Java object
-      users = gson.fromJson(br, UsersType);
+      users = gson.fromJson(br, usersType);
       // Empty file, start a new list
       if (users == null) {
         users = new ArrayList<>();
