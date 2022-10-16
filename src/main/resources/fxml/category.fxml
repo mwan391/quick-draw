@@ -244,7 +244,7 @@
                   </CheckBox>
                </children>
             </HBox>
-            <HBox alignment="CENTER" prefHeight="80.0" prefWidth="700.0">
+            <HBox alignment="CENTER" prefHeight="80.0" prefWidth="700.0" spacing="10.0">
                <children>
                   <Button fx:id="btnLogOut" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onLogOut" prefHeight="70.0" prefWidth="110.0" style="-fx-background-color: #882FF6;" textFill="WHITE">
                      <font>
@@ -275,7 +275,7 @@
                         <Font name="Gill Sans MT" size="16.0" />
                      </font>
                      <HBox.margin>
-                        <Insets left="10.0" />
+                        <Insets />
                      </HBox.margin>
                      <graphic>
                         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
@@ -300,24 +300,36 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
+                  <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onSeeSettings" prefHeight="70.0" prefWidth="110.0" style="-fx-background-color: #882FF6;" textFill="WHITE">
+                     <font>
+                        <Font name="Gill Sans MT" size="16.0" />
+                     </font>
+                     <graphic>
+                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                           <children>
+                              <ImageView fitHeight="38.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/buttonicons/settings.png" />
+                                 </image>
+                              </ImageView>
+                              <Label text="Settings" textFill="WHITE">
+                                 <font>
+                                    <Font name="Arial Rounded MT Bold" size="17.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                              </Label>
+                           </children>
+                        </VBox>
+                     </graphic>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
                </children>
             </HBox>
          </children>
       </VBox>
-      <Button layoutX="13.0" layoutY="536.0" mnemonicParsing="false" onAction="#onSeeSettings" prefHeight="51.0" prefWidth="100.0" style="-fx-background-color: #882FF6;" textFill="WHITE">
-         <font>
-            <Font name="Arial Rounded MT Bold" size="4.0" />
-         </font>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-         <graphic>
-            <ImageView fitHeight="48.0" fitWidth="64.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../images/buttonicons/settings.png" />
-               </image>
-            </ImageView>
-         </graphic>
-      </Button>
    </children>
 </Pane>
