@@ -10,6 +10,7 @@ import nz.ac.auckland.se206.CategorySelect.Difficulty;
 import nz.ac.auckland.se206.models.GameModel;
 import nz.ac.auckland.se206.models.UserModel;
 import nz.ac.auckland.se206.util.Logger;
+import nz.ac.auckland.se206.util.SqlConverter;
 import nz.ac.auckland.se206.util.SqliteConnection;
 
 public class GameDao {
@@ -135,7 +136,7 @@ public class GameDao {
       ps.setInt(1, gameId);
       ResultSet rs = ps.executeQuery();
       // return an instance of the given game
-      game = rs.next() ? getGame(rs) : null;
+      game = rs.next() ? SqlConverter.getGame(rs) : null;
     } catch (SQLException e) {
       Logger.printSqlError(e);
     } finally {
@@ -162,7 +163,7 @@ public class GameDao {
       ResultSet rs = ps.executeQuery();
       // convert the results to game instances
       while (rs.next()) {
-        GameModel game = getGame(rs);
+        GameModel game = SqlConverter.getGame(rs);
         games.add(game);
       }
     } catch (SQLException e) {
@@ -171,31 +172,5 @@ public class GameDao {
       SqliteConnection.closeConnection(connection);
     }
     return games;
-  }
-
-  /**
-   * Helper to convert a row (game details) to a game instance
-   *
-   * @param rs a table of data from a sql query
-   * @return instance of game session
-   */
-  private GameModel getGame(ResultSet rs) {
-    GameModel game = null;
-    try {
-      // translate each game detail (id, time, result) to its game field
-      game =
-          new GameModel(
-              rs.getInt("id"),
-              rs.getString("user_id"),
-              rs.getString("difficulty"),
-              rs.getString("word"),
-              rs.getBoolean("won"),
-              rs.getInt("time"));
-      // all table columns converted to fields
-    } catch (SQLException e) {
-      // Catch invalid SQL results
-      Logger.printSqlError(e);
-    }
-    return game;
   }
 }

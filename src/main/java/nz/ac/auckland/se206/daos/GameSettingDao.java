@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import nz.ac.auckland.se206.models.GameSettingModel;
 import nz.ac.auckland.se206.models.UserModel;
 import nz.ac.auckland.se206.util.Logger;
+import nz.ac.auckland.se206.util.SqlConverter;
 import nz.ac.auckland.se206.util.SqliteConnection;
 
 public class GameSettingDao {
@@ -58,7 +59,7 @@ public class GameSettingDao {
       ResultSet rs = ps.executeQuery();
       // convert result to an instance of game settings
       if (rs.next()) {
-        user = getSettings(rs);
+        user = SqlConverter.getSettings(rs);
       }
     } catch (SQLException e) {
       Logger.printSqlError(e);
@@ -123,31 +124,5 @@ public class GameSettingDao {
       SqliteConnection.closeConnection(connection);
     }
     return isRemoved;
-  }
-
-  /**
-   * Helper to convert a game setting (in SQL) to setting instance
-   *
-   * @param rs result rows of settings from a sql query
-   * @return instance of game setting
-   */
-  private GameSettingModel getSettings(ResultSet rs) {
-    GameSettingModel gameSetting = null;
-    try {
-      // Construct game setting linking SQL columns (id, words, time, etc) to its fields
-      gameSetting =
-          new GameSettingModel(
-              rs.getInt("id"),
-              rs.getString("user_id"),
-              rs.getString("words"),
-              rs.getString("time"),
-              rs.getString("accuracy"),
-              rs.getString("confidence"));
-      // All columns of settings specified
-    } catch (SQLException e) {
-      // Catch exceptions
-      Logger.printSqlError(e);
-    }
-    return gameSetting;
   }
 }
