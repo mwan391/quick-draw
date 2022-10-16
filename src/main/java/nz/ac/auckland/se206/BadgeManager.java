@@ -105,7 +105,7 @@ public class BadgeManager {
    * Returns all of the initialized badges in the game, or a null object if nothing has been
    * initialized.
    *
-   * @return List<BadgeModel> representation of badges
+   * @return a list representation of badges
    */
   public static List<BadgeModel> getAllBadges() {
     return availBadges;
