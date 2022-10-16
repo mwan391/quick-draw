@@ -128,7 +128,7 @@ public class GameSettingDao {
   /**
    * Helper to convert a game setting (in SQL) to setting instance
    *
-   * @param rs rows of settings from a sql query
+   * @param rs result rows of settings from a sql query
    * @return instance of game setting
    */
   private GameSettingModel getSettings(ResultSet rs) {
@@ -143,7 +143,9 @@ public class GameSettingDao {
               rs.getString("time"),
               rs.getString("accuracy"),
               rs.getString("confidence"));
+      // All columns of settings specified
     } catch (SQLException e) {
+      // Catch exceptions
       Logger.printSqlError(e);
     }
     return gameSetting;
