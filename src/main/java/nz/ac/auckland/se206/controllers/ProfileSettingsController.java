@@ -57,7 +57,7 @@ public class ProfileSettingsController implements Controller {
     ComboBoxRender.increaseFontSize(picChooser);
 
     // Loading options for profile picture
-    String picStrings[] = {"Boy", "Dad", "Girl", "Mother", "Woman"};
+    String[] picStrings = {"Boy", "Dad", "Girl", "Mother", "Woman"};
     ObservableList<String> picNames = FXCollections.observableArrayList(picStrings);
     picChooser.setItems(picNames);
 
@@ -106,7 +106,7 @@ public class ProfileSettingsController implements Controller {
   /**
    * This method changes the scene back to the category select and saves the selected user picture
    *
-   * @param event, the button press used to determine current scene
+   * @param event the button press used to determine current scene
    */
   @FXML
   private void onSeeMenu(ActionEvent event) {
@@ -139,6 +139,8 @@ public class ProfileSettingsController implements Controller {
   /**
    * This method will show a warning pop up. clicking delete will delete everything and take the
    * user back to the first screen, while clicking cancel will do nothing.
+   *
+   * @param event that triggers this call
    */
   @FXML
   private void onDeleteX(ActionEvent event) {

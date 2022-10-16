@@ -36,7 +36,7 @@ public class LogInController implements Controller {
   /**
    * onLogOne logs in the first user or sends them to the signup page
    *
-   * @param the pressed button
+   * @param event that calls this method
    */
   @FXML
   private void onLogOne(ActionEvent event) {
@@ -46,7 +46,7 @@ public class LogInController implements Controller {
   /**
    * onLogTwo logs in the second user or sends them to the signup page
    *
-   * @param the pressed button
+   * @param event that calls this method
    */
   @FXML
   private void onLogTwo(ActionEvent event) {
@@ -56,7 +56,7 @@ public class LogInController implements Controller {
   /**
    * onLogThree logs in the third user or sends them to the signup page
    *
-   * @param the pressed button
+   * @param event that calls this method
    */
   @FXML
   private void onLogThree(ActionEvent event) {
@@ -66,7 +66,7 @@ public class LogInController implements Controller {
   /**
    * onLogFour logs in the fourth user or sends them to the signup page
    *
-   * @param the pressed button
+   * @param event that calls this method
    */
   @FXML
   private void onLogFour(ActionEvent event) {
@@ -76,7 +76,7 @@ public class LogInController implements Controller {
   /**
    * onLogFive logs in the fifth user or sends them to the signup page
    *
-   * @param the pressed button
+   * @param event that calls this method
    */
   @FXML
   private void onLogFive(ActionEvent event) {
@@ -86,7 +86,7 @@ public class LogInController implements Controller {
   /**
    * onLogSix logs in the sixth user or sends them to the signup page
    *
-   * @param the pressed button
+   * @param event that calls this method
    */
   @FXML
   private void onLogSix(ActionEvent event) {
@@ -96,8 +96,8 @@ public class LogInController implements Controller {
   /**
    * Logs in the user using their username or sends to signup
    *
-   * @param the pressed button
-   * @param the name of the account being logged in
+   * @param event that calls this method
+   * @param username the name of the account being logged in
    */
   private void logX(ActionEvent event, String username) {
     // Logging in the user if the profile has been created
@@ -171,8 +171,8 @@ public class LogInController implements Controller {
   /**
    * This method creates an image by finding its source file using its filename
    *
-   * @param name, the name of the image file being loaded
-   * @return icon, the loaded image
+   * @param name of the image file being loaded
+   * @return the loaded image
    */
   private Image loadImage(String name) {
     Image icon = new Image(getClass().getResourceAsStream("/images/profileicons/" + name + ".png"));
@@ -182,21 +182,21 @@ public class LogInController implements Controller {
   /**
    * This method logs the user in by setting them as the active user
    *
-   * @param event, the button press
-   * @param username, the name of the active user
+   * @param event the button press
+   * @param username the name of the active user
    */
   private void logIn(ActionEvent event, String username) {
     // set the user as the active user
     UserModel.setActiveUser(userDao.get(username));
 
     // go to the next screen
-    nextCategory(event);
+    seeNextCategory(event);
   }
 
   /**
    * This method sends the user to the sign up page and plays the appropriate sound
    *
-   * @param event, the button press
+   * @param event the button press
    */
   private void signUp(ActionEvent event) {
     // get root and signup
@@ -212,9 +212,9 @@ public class LogInController implements Controller {
   /**
    * sends the logged in user to the category screen and gives them a setting model
    *
-   * @param event, the button press
+   * @param event the button press
    */
-  private void nextCategory(ActionEvent event) {
+  private void seeNextCategory(ActionEvent event) {
 
     // get root and controller
     Scene scene = ((Button) event.getSource()).getScene();
