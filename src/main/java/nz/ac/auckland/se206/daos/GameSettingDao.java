@@ -7,12 +7,13 @@ import java.sql.SQLException;
 import nz.ac.auckland.se206.models.GameSettingModel;
 import nz.ac.auckland.se206.models.UserModel;
 import nz.ac.auckland.se206.util.Logger;
+import nz.ac.auckland.se206.util.SqlConverter;
 import nz.ac.auckland.se206.util.SqliteConnection;
 
 public class GameSettingDao {
 
   /**
-   * creates a new setting into the database and returns the id
+   * creates a new setting into the SQLite settings table and returns the id
    *
    * @param userId of current user
    * @return id of new setting
@@ -42,7 +43,7 @@ public class GameSettingDao {
   }
 
   /**
-   * retrieves the settings of the latest game played by a user
+   * retrieves the settings of the latest game played by a user from SQLite
    *
    * @param userId of current user
    * @return the settings for the user
@@ -58,7 +59,7 @@ public class GameSettingDao {
       ResultSet rs = ps.executeQuery();
       // convert result to an instance of game settings
       if (rs.next()) {
-        user = getSettings(rs);
+        user = SqlConverter.getSettings(rs);
       }
     } catch (SQLException e) {
       Logger.printSqlError(e);
@@ -69,7 +70,7 @@ public class GameSettingDao {
   }
 
   /**
-   * update the selected settings for a game played by a user
+   * update the new settings into SQLite, as selected by the user from the game
    *
    * @param settings any changes to settings even if user keeps the same settings
    * @return whether or not the settings have been updated
@@ -100,7 +101,8 @@ public class GameSettingDao {
   }
 
   /**
-   * Remove settings linked to a given user from Sqlite database
+   * Remove settings linked to a given user from SQlite, this is used when a user is erased from
+   * game
    *
    * @param user user to remove settings from
    * @return whether or not removal was successful
@@ -123,29 +125,5 @@ public class GameSettingDao {
       SqliteConnection.closeConnection(connection);
     }
     return isRemoved;
-  }
-
-  /**
-   * Helper to convert a game setting (in SQL) to setting instance
-   *
-   * @param rs rows of settings from a sql query
-   * @return instance of game setting
-   */
-  private GameSettingModel getSettings(ResultSet rs) {
-    GameSettingModel gameSetting = null;
-    try {
-      // Construct game setting linking SQL columns (id, words, time, etc) to its fields
-      gameSetting =
-          new GameSettingModel(
-              rs.getInt("id"),
-              rs.getString("user_id"),
-              rs.getString("words"),
-              rs.getString("time"),
-              rs.getString("accuracy"),
-              rs.getString("confidence"));
-    } catch (SQLException e) {
-      Logger.printSqlError(e);
-    }
-    return gameSetting;
   }
 }

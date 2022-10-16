@@ -11,12 +11,13 @@ import java.util.Map;
 import nz.ac.auckland.se206.CategorySelect.Difficulty;
 import nz.ac.auckland.se206.models.GameModel;
 import nz.ac.auckland.se206.util.Logger;
+import nz.ac.auckland.se206.util.SqlConverter;
 import nz.ac.auckland.se206.util.SqliteConnection;
 
 public class UserStatsDao {
 
   /**
-   * Returns the number of games in SQLite for a user
+   * Returns the number of games played by a user from SQLite for a user
    *
    * @param userId of given user
    * @return how many games were found
@@ -66,7 +67,7 @@ public class UserStatsDao {
   }
 
   /**
-   * Return the fastest played game (win result) for a user
+   * Return the fastest played game from SQLite (shortest played winning game) for a user
    *
    * @param userId of given user
    * @return the game instance
@@ -85,7 +86,7 @@ public class UserStatsDao {
       ps.setString(1, userId);
       ResultSet rs = ps.executeQuery();
       // convert results to a game instance
-      game = rs.next() ? getGame(rs) : null;
+      game = rs.next() ? SqlConverter.getGame(rs) : null;
     } catch (SQLException e) {
       Logger.printSqlError(e);
     } finally {
@@ -95,7 +96,8 @@ public class UserStatsDao {
   }
 
   /**
-   * Returns all the words played by a user
+   * Returns all the words played by a user from SQLite as a list, will contain all easy, medium and
+   * hard words
    *
    * @param userId of user
    * @return list of words
@@ -123,7 +125,7 @@ public class UserStatsDao {
   }
 
   /**
-   * Returns the ten most recently played games for a user
+   * Returns the ten most recently played games from SQLite as a list for a user
    *
    * @param userId of user
    * @return list of games
@@ -140,7 +142,7 @@ public class UserStatsDao {
       ResultSet rs = ps.executeQuery();
       // convert results to a game instance to list
       while (rs.next()) {
-        games.add(getGame(rs));
+        games.add(SqlConverter.getGame(rs));
       }
     } catch (SQLException e) {
       Logger.printSqlError(e);
@@ -151,31 +153,8 @@ public class UserStatsDao {
   }
 
   /**
-   * Helper to convert a row (game details) to a game instance
-   *
-   * @param rs sql table results
-   * @return an instance of that game with related fields
-   */
-  private GameModel getGame(ResultSet rs) {
-    GameModel game = null;
-    try {
-      // translate each game detail (id, time, result) to its game field
-      game =
-          new GameModel(
-              rs.getInt("id"),
-              rs.getString("user_id"),
-              rs.getString("difficulty"),
-              rs.getString("word"),
-              rs.getBoolean("won"),
-              rs.getInt("time"));
-    } catch (SQLException e) {
-      Logger.printSqlError(e);
-    }
-    return game;
-  }
-
-  /**
-   * Helper to convert SQL rows to map
+   * Helper to convert SQL results to a map where each difficulty contains a list of words of that
+   * difficulty
    *
    * @param rs a set of SQL rows as a result of a query
    * @param map where each difficulty contains a list of words of that difficulty
@@ -194,7 +173,7 @@ public class UserStatsDao {
   }
 
   /**
-   * Retrives all words played by a user by its difficulty
+   * Retrives all words from SQLite as list played by a user by its difficulty
    *
    * @param userId of game user
    * @return a map where each difficulty maps to a list of words of same difficulty

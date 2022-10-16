@@ -21,7 +21,7 @@ import nz.ac.auckland.se206.models.UserModel;
 
 public class DictionaryLookup {
 
-  private final String FILE_PATH = "src/main/resources/dictionary/definitions.json";
+  private static final String FILE_PATH = "src/main/resources/dictionary/definitions.json";
   private UserModel user;
 
   /**
@@ -60,7 +60,7 @@ public class DictionaryLookup {
   }
 
   /**
-   * Returns a list of all WordInfo objects from JSON file
+   * Returns a list of all 345 WordInfo objects from JSON file
    *
    * @return all words objects (with its definition)
    */
@@ -85,6 +85,7 @@ public class DictionaryLookup {
 
   /**
    * Return a list of words that haven't been played before by filtering out those that have been
+   * from word history
    *
    * @param uniqueWords words that are to be played in the game
    * @return playable words
@@ -99,7 +100,7 @@ public class DictionaryLookup {
   }
 
   /**
-   * Generates a random word classified as easy
+   * Generates a random word classified as easy and returns it
    *
    * @return a easy word
    */
@@ -112,7 +113,7 @@ public class DictionaryLookup {
   }
 
   /**
-   * Returns a list of all words of given difficulty
+   * Returns a list of all words (with its definitions) of given difficulty
    *
    * @param difficulty of category
    * @return list of E,M,H,M words
@@ -128,7 +129,7 @@ public class DictionaryLookup {
   }
 
   /**
-   * Generates a random word classified as easy or medium
+   * Generates a random word classified as easy or medium and returns it
    *
    * @return a easy or medium word
    */
@@ -147,7 +148,7 @@ public class DictionaryLookup {
   }
 
   /**
-   * Generates a random word classified as easy, medium or hard
+   * Generates a random word classified as easy, medium or hard and returns it
    *
    * @return a easy, medium or hard word
    */
@@ -160,7 +161,7 @@ public class DictionaryLookup {
   }
 
   /**
-   * Generates a random word classified as hard
+   * Generates a random word classified as hard and returns it
    *
    * @return a hard word
    */

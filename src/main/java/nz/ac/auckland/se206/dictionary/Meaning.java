@@ -4,8 +4,12 @@ public class Meaning {
 
   private String definition;
 
+  /**
+   * Contains the definition of the category, models how it is stored in JSON file
+   *
+   * @param definition
+   */
   public Meaning(String definition) {
-
     this.definition = definition;
   }
 
@@ -13,6 +17,7 @@ public class Meaning {
     return definition;
   }
 
+  /** Converts the word's definition to a formatted string for printing */
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
