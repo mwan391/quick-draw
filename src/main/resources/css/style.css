@@ -202,6 +202,11 @@
   -fx-border-color: transparent;
 }
 
+.color-picker {
+  -fx-color-rect-width: 30px;
+  -fx-color-rect-height: 30px;
+}
+
 .color-picker .color-picker-label .text {
   -fx-font: 18px "Arial Rounded MT Bold";
   -fx-fill: white;
