@@ -44,7 +44,18 @@
                         </ComboBox>
                      </children>
                   </VBox>
-                  <VBox alignment="CENTER" prefHeight="451.0" prefWidth="344.0" />
+                  <VBox alignment="CENTER" prefHeight="451.0" prefWidth="344.0">
+                     <children>
+                        <HBox alignment="CENTER">
+                           <children>
+                              <Button mnemonicParsing="false" onAction="#onDeleteAccount" prefHeight="41.0" prefWidth="256.0" style="-fx-background-color: #882FF6;" text="Delete Your Account" textFill="WHITE">
+                                 <font>
+                                    <Font name="Arial Rounded MT Bold" size="21.0" />
+                                 </font>
+                              </Button>
+                           </children>
+                        </HBox>
+                     </children></VBox>
                </children>
             </HBox>
             <Button mnemonicParsing="false" onAction="#onSeeMenu" prefHeight="62.0" prefWidth="273.0" style="-fx-background-color: #882FF6;" text="Back to Menu" textFill="WHITE">

@@ -19,6 +19,7 @@ import javafx.scene.image.ImageView;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.SoundManager;
+import nz.ac.auckland.se206.SoundManager.SoundName;
 import nz.ac.auckland.se206.daos.UserDaoJson;
 import nz.ac.auckland.se206.models.UserModel;
 
@@ -111,6 +112,7 @@ public class ProfileSettingsController implements Controller {
     popupPane.getStylesheets().add("/css/style.css");
 
     // show badge
+    SoundManager.playSound(SoundName.LOSE_GAME);
     Optional<Void> result = badgePopup.showAndWait();
   }
 }
