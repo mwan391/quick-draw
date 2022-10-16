@@ -33,7 +33,7 @@ public class SignUpController implements Controller {
     lblWarning.setVisible(false);
 
     // Loading options for profile picture
-    String picStrings[] = {"Boy", "Dad", "Girl", "Mother", "Woman"};
+    String[] picStrings = {"Boy", "Dad", "Girl", "Mother", "Woman"};
     ObservableList<String> picNames = FXCollections.observableArrayList(picStrings);
     picChooser.setItems(picNames);
 

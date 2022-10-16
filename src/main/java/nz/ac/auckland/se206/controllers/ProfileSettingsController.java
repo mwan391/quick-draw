@@ -53,7 +53,7 @@ public class ProfileSettingsController implements Controller {
   public void initialize() {
 
     // Loading options for profile picture
-    String picStrings[] = {"Boy", "Dad", "Girl", "Mother", "Woman"};
+    String[] picStrings = {"Boy", "Dad", "Girl", "Mother", "Woman"};
     ObservableList<String> picNames = FXCollections.observableArrayList(picStrings);
     picChooser.setItems(picNames);
 
