@@ -71,19 +71,19 @@ public class BadgeManager {
     boolean won = game.getWon();
 
     // check for first game
-    if (!(userDao.checkExists(availBadges.get(0), user))) {
+    if (!(userDao.checkBadgeExists(availBadges.get(0), user))) {
       userDao.addBadge(availBadges.get(0), username);
       newBadgeCount++;
     }
 
     // check for first win badge
-    if (won && !(userDao.checkExists(availBadges.get(1), user))) {
+    if (won && !(userDao.checkBadgeExists(availBadges.get(1), user))) {
       userDao.addBadge(availBadges.get(1), username);
       newBadgeCount++;
     }
 
     // check for first lose badge
-    if (!(won) && !(userDao.checkExists(availBadges.get(2), user))) {
+    if (!(won) && !(userDao.checkBadgeExists(availBadges.get(2), user))) {
       userDao.addBadge(availBadges.get(2), username);
       newBadgeCount++;
     }
@@ -253,7 +253,7 @@ public class BadgeManager {
     for (int time : timeThreshold.keySet()) {
       // check requirements
       BadgeModel badge = timeThreshold.get(time);
-      Boolean hasBadgeAlready = userDao.checkExists(badge, user);
+      Boolean hasBadgeAlready = userDao.checkBadgeExists(badge, user);
       Boolean isWithinTime = (userTime <= time);
       if (!(hasBadgeAlready) && isWithinTime) {
         // add to database and set the boolean
@@ -295,7 +295,7 @@ public class BadgeManager {
     if (isTheSameGeneral || isTheSameMaster) {
       // identify badge and whether the user already has it
       BadgeModel badge = settingsBadges.get(words);
-      if (!userDao.checkExists(badge, user)) {
+      if (!userDao.checkBadgeExists(badge, user)) {
         userDao.addBadge(badge, user.getUsername());
         return 1;
       }
@@ -331,7 +331,7 @@ public class BadgeManager {
       // calculate how much word badges they have
       int wordBadgeCount = 0;
       for (Difficulty diff : wordsBadges.keySet()) {
-        if (userDao.checkExists(wordsBadges.get(diff), user)) {
+        if (userDao.checkBadgeExists(wordsBadges.get(diff), user)) {
           wordBadgeCount++;
         }
       }

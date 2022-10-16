@@ -52,6 +52,7 @@ public class GameModel {
     return time;
   }
 
+  /** Formats the Game ID, User ID and result details for a game when printing */
   @Override
   public String toString() {
     // print out details of the game

@@ -16,7 +16,7 @@ public class SqliteConnection {
   }
 
   /**
-   * starts connection to a database
+   * starts connection to a JDBC database where all data tables are stored
    *
    * @return the connection (session) with the local database
    */
@@ -47,25 +47,8 @@ public class SqliteConnection {
     }
   }
 
-  /** initialises all the tables that will store the game's info */
-  private void createTables() {
-    Connection connection = null;
-    try {
-      // establish connetion to jdbc sqlite
-      connection = openConnection();
-      Statement statement = connection.createStatement();
-      // initialise tables if they do not exist
-      createGamesTable(statement);
-      createSettingsTable(statement);
-    } catch (SQLException e) {
-      Logger.printSqlError(e);
-    } finally {
-      closeConnection(connection);
-    }
-  }
-
   /**
-   * Removes all rows (data) for a database table
+   * Helper that removes all rows (data) for a database table
    *
    * @param tableName of given table
    * @return the given SQL query command
@@ -76,7 +59,7 @@ public class SqliteConnection {
   }
 
   /**
-   * Resets autoincrement for SQLite databases so that the column ID start from 1 again
+   * Resets autoincrement for SQLite databases so that the column ID start from 1
    *
    * @param tableName of given table
    * @return the given SQL query command
@@ -87,7 +70,7 @@ public class SqliteConnection {
   }
 
   /**
-   * Deletes all data from a given database
+   * Deletes all data from a given database by table name
    *
    * @param tableName of table to remove
    */
@@ -102,6 +85,23 @@ public class SqliteConnection {
       statement.addBatch(resetAutoIncrement(tableName));
       // run both commands
       statement.executeBatch();
+    } catch (SQLException e) {
+      Logger.printSqlError(e);
+    } finally {
+      closeConnection(connection);
+    }
+  }
+
+  /** initialises all the tables that will store the game's info */
+  private void createTables() {
+    Connection connection = null;
+    try {
+      // establish connetion to jdbc sqlite
+      connection = openConnection();
+      Statement statement = connection.createStatement();
+      // initialise tables if they do not exist
+      createGamesTable(statement);
+      createSettingsTable(statement);
     } catch (SQLException e) {
       Logger.printSqlError(e);
     } finally {
