@@ -1,0 +1,178 @@
+[
+  {
+    "id": "38ac64db-c70f-412f-a3ec-15e4bdf3549f",
+    "username": "Foo",
+    "icon": "dad",
+    "badges": [
+      {
+        "id": 0,
+        "name": "Play First Game!",
+        "description": "You have played your first Quick Draw game! Welcome to the party!",
+        "imageUrl": ""
+      },
+      {
+        "id": 1,
+        "name": "Win a Game!",
+        "description": "Congrats on your first win! Let's Keep Going!",
+        "imageUrl": ""
+      },
+      {
+        "id": 3,
+        "name": "Fast!",
+        "description": "You finished a game under 30 seconds!",
+        "imageUrl": ""
+      },
+      {
+        "id": 4,
+        "name": "Speedy!",
+        "description": "You finished a game under 15 seconds!",
+        "imageUrl": ""
+      },
+      {
+        "id": 5,
+        "name": "Turbo!",
+        "description": "You finished a game under 10 seconds!",
+        "imageUrl": ""
+      },
+      {
+        "id": 6,
+        "name": "Lightning!",
+        "description": "You finished a game under 5 seconds! You're cracked!",
+        "imageUrl": ""
+      },
+      {
+        "id": 7,
+        "name": "Easy-Peasy!",
+        "description": "You won a game with all 'easy' settings!",
+        "imageUrl": ""
+      },
+      {
+        "id": 2,
+        "name": "Lose a Game!",
+        "description": "Tough luck! Try again, and you'll get it!",
+        "imageUrl": ""
+      },
+      {
+        "id": 15,
+        "name": "Newbie!",
+        "description": "You've played 5 games!",
+        "imageUrl": ""
+      },
+      {
+        "id": 16,
+        "name": "Amateur!",
+        "description": "You've played 10 games!",
+        "imageUrl": ""
+      },
+      {
+        "id": 17,
+        "name": "Competent!",
+        "description": "You've played 25 games!",
+        "imageUrl": ""
+      },
+      {
+        "id": 18,
+        "name": "Proficient!",
+        "description": "You've played 50 games!",
+        "imageUrl": ""
+      },
+      {
+        "id": 19,
+        "name": "Expert!",
+        "description": "You've played 100 games! That's a lot!",
+        "imageUrl": ""
+      }
+    ]
+  },
+  {
+    "id": "06b7eb13-b9c4-47ec-8d4e-0d72d2a592d7",
+    "username": "Anna",
+    "icon": "woman",
+    "badges": [
+      {
+        "id": 0,
+        "name": "Play First Game!",
+        "description": "You have played your first Quick Draw game! Welcome to the party!",
+        "imageUrl": ""
+      },
+      {
+        "id": 1,
+        "name": "Win a Game!",
+        "description": "Congrats on your first win! Let's Keep Going!",
+        "imageUrl": ""
+      },
+      {
+        "id": 3,
+        "name": "Fast!",
+        "description": "You finished a game under 30 seconds!",
+        "imageUrl": ""
+      },
+      {
+        "id": 4,
+        "name": "Speedy!",
+        "description": "You finished a game under 15 seconds!",
+        "imageUrl": ""
+      },
+      {
+        "id": 5,
+        "name": "Turbo!",
+        "description": "You finished a game under 10 seconds!",
+        "imageUrl": ""
+      },
+      {
+        "id": 7,
+        "name": "Easy-Peasy!",
+        "description": "You won a game with all 'easy' settings!",
+        "imageUrl": ""
+      },
+      {
+        "id": 6,
+        "name": "Lightning!",
+        "description": "You finished a game under 5 seconds! You're cracked!",
+        "imageUrl": ""
+      },
+      {
+        "id": 2,
+        "name": "Lose a Game!",
+        "description": "Tough luck! Try again, and you'll get it!",
+        "imageUrl": ""
+      },
+      {
+        "id": 15,
+        "name": "Newbie!",
+        "description": "You've played 5 games!",
+        "imageUrl": ""
+      },
+      {
+        "id": 16,
+        "name": "Amateur!",
+        "description": "You've played 10 games!",
+        "imageUrl": ""
+      },
+      {
+        "id": 17,
+        "name": "Competent!",
+        "description": "You've played 25 games!",
+        "imageUrl": ""
+      },
+      {
+        "id": 18,
+        "name": "Proficient!",
+        "description": "You've played 50 games!",
+        "imageUrl": ""
+      },
+      {
+        "id": 19,
+        "name": "Expert!",
+        "description": "You've played 100 games! That's a lot!",
+        "imageUrl": ""
+      }
+    ]
+  },
+  {
+    "id": "85cc9d5b-b8da-4097-a7a2-da64777618f7",
+    "username": "Boi",
+    "icon": "boy",
+    "badges": []
+  }
+]
