@@ -88,31 +88,44 @@ public class ProfileSettingsController implements Controller {
   private void onDeleteAccount() {
 
     // create popup
-    Dialog<Void> badgePopup = new Dialog<>();
+    Dialog<ButtonType> warningPopup = new Dialog<>();
 
     // write main dialog
     String str =
         "WARNING!\nYou will lose all progress, and you cannot undo this.\n\nAre you sure you want to delete everything?";
-    badgePopup.setContentText(str);
+    warningPopup.setContentText(str);
     // add buttons
     ButtonType btnDelete = new ButtonType("Delete Account", ButtonData.OK_DONE);
-    badgePopup.getDialogPane().getButtonTypes().add(btnDelete);
+    warningPopup.getDialogPane().getButtonTypes().add(btnDelete);
     ButtonType btnCancel = new ButtonType("Go Back", ButtonData.CANCEL_CLOSE);
-    badgePopup.getDialogPane().getButtonTypes().add(btnCancel);
+    warningPopup.getDialogPane().getButtonTypes().add(btnCancel);
 
     // change the top title
-    badgePopup.setTitle("WARNING!");
-    // set size of dialog and buttons
-    DialogPane popupPane = badgePopup.getDialogPane();
+    warningPopup.setTitle("WARNING!");
+    // set size of dialog
+    DialogPane popupPane = warningPopup.getDialogPane();
     popupPane.setPrefSize(550, 200);
     popupPane.getButtonTypes().stream()
         .map(popupPane::lookupButton)
         .forEach(btn -> ButtonBar.setButtonUniformSize(btn, false));
-    // set css formatting for pane and buttons
+    // set css formatting for popup
     popupPane.getStylesheets().add("/css/style.css");
 
-    // show badge
+    // show warning
     SoundManager.playSound(SoundName.LOSE_GAME);
-    Optional<Void> result = badgePopup.showAndWait();
+    Optional<ButtonType> result = warningPopup.showAndWait();
+
+    // format response
+    switch (result.get().getButtonData()) {
+      case OK_DONE:
+        // play sad sound
+        SoundManager.playSound(SoundName.LOG_OUT);
+        // delete user
+        // take user to first menu
+        break;
+      default:
+        // play happy sound
+        SoundManager.playSound(SoundName.LOG_IN);
+    }
   }
 }
