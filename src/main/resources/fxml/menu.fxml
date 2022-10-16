@@ -16,7 +16,7 @@
             <Image url="@../images/doodlebg.jpg" />
          </image>
       </ImageView>
-      <ImageView fitHeight="397.0" fitWidth="419.0" layoutX="168.0" layoutY="54.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="image" fitHeight="397.0" fitWidth="419.0" layoutX="168.0" layoutY="54.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/logo.png" />
          </image>
