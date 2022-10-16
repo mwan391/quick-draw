@@ -33,11 +33,6 @@ public class LogInController implements Controller {
 
   private UserDaoJson userDao = new UserDaoJson();
 
-  /** Initialise method loads up and refreshes user data when the scene is loaded */
-  public void initialize() {
-    loadUserData();
-  }
-
   /**
    * onLogOne logs in the first user or sends them to the signup page
    *
@@ -104,7 +99,7 @@ public class LogInController implements Controller {
    * @param the pressed button
    * @param the name of the account being logged in
    */
-  public void logX(ActionEvent event, String username) {
+  private void logX(ActionEvent event, String username) {
     // Logging in the user if the profile has been created
     if (username.equals("New User")) {
       signUp(event);
@@ -116,6 +111,8 @@ public class LogInController implements Controller {
   /** this method loads userdata by displaying the username and icon for each user */
   public void loadUserData() {
     List<UserModel> tempUsers = userDao.getAll();
+
+    resetAll();
     // Putting info onto usercards
     if (tempUsers.size() >= 1) {
       // Updating usercard one
@@ -147,6 +144,28 @@ public class LogInController implements Controller {
         }
       }
     }
+  }
+
+  /** This method resets every card back to it's initial state, as if no users have signed up */
+  private void resetAll() {
+    // user One
+    userTextOne.setText("New User");
+    iconOne.setImage(loadImage("new"));
+    // user Two
+    userTextTwo.setText("New User");
+    iconTwo.setImage(loadImage("new"));
+    // user Three
+    userTextThree.setText("New User");
+    iconThree.setImage(loadImage("new"));
+    // user Four
+    userTextFour.setText("New User");
+    iconFour.setImage(loadImage("new"));
+    // user Five
+    userTextFive.setText("New User");
+    iconFive.setImage(loadImage("new"));
+    // user Six
+    userTextSix.setText("New User");
+    iconSix.setImage(loadImage("new"));
   }
 
   /**

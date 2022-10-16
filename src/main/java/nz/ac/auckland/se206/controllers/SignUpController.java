@@ -37,12 +37,12 @@ public class SignUpController implements Controller {
     lblWarning.setVisible(false);
 
     // Loading options for profile picture
-    String picStrings[] = {"boy", "dad", "girl", "mother", "woman"};
+    String picStrings[] = {"Boy", "Dad", "Girl", "Mother", "Woman"};
     ObservableList<String> picNames = FXCollections.observableArrayList(picStrings);
     picChooser.setItems(picNames);
 
     // Loading default option
-    picChooser.setValue("boy");
+    picChooser.setValue("Boy");
     Image boyImage = new Image(getClass().getResourceAsStream("/images/profileicons/boy.png"));
     picPreview.setImage(boyImage);
 
@@ -53,7 +53,7 @@ public class SignUpController implements Controller {
               new Image(
                   getClass()
                       .getResourceAsStream(
-                          "/images/profileicons/" + picChooser.getValue() + ".png"));
+                          "/images/profileicons/" + picChooser.getValue().toLowerCase() + ".png"));
           // Changing the preview to the new selection
           picPreview.setImage(preview);
           SoundManager.playSound();
@@ -73,26 +73,25 @@ public class SignUpController implements Controller {
     // check if the user name is taken
     if (userDao.checkExists(userName)) {
       lblWarning.setVisible(true);
-      lblWarning.setText("This username is already taken.");
+      lblWarning.setText("This name is taken!");
       return;
     }
 
     // check if the field is left blank
     if (userName.equals("")) {
       lblWarning.setVisible(true);
-      lblWarning.setText("Please select a valid username.");
+      lblWarning.setText("You can't have an empty name!");
       return;
     }
 
     // check if the user name is too long
     if (userName.length() > 15) {
       lblWarning.setVisible(true);
-      lblWarning.setText("Max length is 15.");
-      return;
+      lblWarning.setText("Your name is too long!");
     }
 
     // add new user to database
-    UserModel user = new UserModel(userName, picChooser.getValue());
+    UserModel user = new UserModel(userName, picChooser.getValue().toLowerCase());
     userDao.add(user);
 
     // set the user as the active user

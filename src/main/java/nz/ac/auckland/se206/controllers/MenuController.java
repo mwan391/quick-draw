@@ -2,6 +2,7 @@ package nz.ac.auckland.se206.controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import nz.ac.auckland.se206.SceneManager;
@@ -21,13 +22,17 @@ public class MenuController implements Controller {
    */
   @FXML
   private void onStartGame(ActionEvent event) {
-    // change the scene
+    // get scene, root and controller
     Scene scene = ((Button) event.getSource()).getScene();
-    scene.setRoot(SceneManager.getUiRoot(AppUi.LOG_IN));
+    Parent root = SceneManager.getUiRoot(AppUi.LOG_IN);
+    LogInController controller = (LogInController) SceneManager.getController(root);
 
+    // initialise login screen and change scene
+    controller.loadUserData();
+    scene.setRoot(root);
+
+    // play sound effects + tts
     SoundManager.playSound(SoundName.START_GAME);
-
-    // run the text to speech on a background thread to avoid lags
     TextToSpeech.main(new String[] {"Welcome to Quick Draw!"});
   }
 }

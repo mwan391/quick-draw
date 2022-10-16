@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.control.Tooltip?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="700.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.ProfileSettingsController">
+   <children>
+      <ImageView fitHeight="600.0" fitWidth="700.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/doodlebg.jpg" />
+         </image>
+      </ImageView>
+      <VBox alignment="CENTER" prefHeight="600.0" prefWidth="700.0" spacing="10.0">
+         <children>
+            <HBox prefHeight="369.0" prefWidth="700.0">
+               <children>
+                  <VBox alignment="TOP_CENTER" prefHeight="451.0" prefWidth="345.0">
+                     <children>
+                        <Label alignment="CENTER" prefHeight="50.0" prefWidth="316.0" style="-fx-background-color: #173ab5; -fx-background-radius: 10px; -fx-border-width: 2px; -fx-border-color: BLACK; -fx-border-radius: 10px;" text="Change Your Picture" textFill="WHITE">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="29.0" />
+                           </font>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                        </Label>
+                        <ImageView fx:id="picPreview" fitHeight="206.0" fitWidth="226.0" pickOnBounds="true" preserveRatio="true">
+                           <VBox.margin>
+                              <Insets top="25.0" />
+                           </VBox.margin>
+                        </ImageView>
+                        <ComboBox fx:id="picChooser" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#onChangePicture" prefHeight="40.0" prefWidth="261.0" stylesheets="@../css/style.css">
+                           <VBox.margin>
+                              <Insets top="25.0" />
+                           </VBox.margin>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </ComboBox>
+                     </children>
+                  </VBox>
+                  <VBox alignment="TOP_CENTER" prefHeight="451.0" prefWidth="344.0" spacing="10.0">
+                     <children>
+                        <Label alignment="CENTER" prefHeight="50.0" prefWidth="330.0" style="-fx-background-color: #173ab5; -fx-background-radius: 10px; -fx-border-width: 2px; -fx-border-color: BLACK; -fx-border-radius: 10px;" text="Word List Progress" textFill="WHITE">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="29.0" />
+                           </font>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                        </Label>
+                        <Label alignment="CENTER" prefHeight="30.0" prefWidth="260.0" style="-fx-background-color: #173ab5; -fx-background-radius: 10px; -fx-border-width: 2px; -fx-border-color: BLACK; -fx-border-radius: 10px;" text="How much words you've completed!" textFill="WHITE">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="13.0" />
+                           </font>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                        </Label>
+                        <HBox alignment="CENTER" prefHeight="30.0" prefWidth="270.0" spacing="10.0">
+                           <children>
+                              <Label alignment="CENTER" prefHeight="30.0" prefWidth="62.0" style="-fx-background-color: #35d461; -fx-background-radius: 10px; -fx-border-width: 3; -fx-border-color: #882ff6; -fx-border-radius: 8px;" text="Easy" textFill="WHITE">
+                                 <font>
+                                    <Font name="Arial Rounded MT Bold" size="13.0" />
+                                 </font>
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                              </Label>
+                              <ProgressBar id="pbar-easy" fx:id="pbarEasy" prefHeight="30.0" prefWidth="200.0" progress="0.0">
+                                 <tooltip>
+                                    <Tooltip fx:id="ttpEasy" text="easy" />
+                                 </tooltip></ProgressBar>
+                           </children>
+                           <VBox.margin>
+                              <Insets top="32.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <HBox alignment="CENTER" spacing="10.0">
+                           <children>
+                              <Label alignment="CENTER" prefHeight="30.0" prefWidth="62.0" style="-fx-background-color: #f99d07; -fx-background-radius: 10px; -fx-border-width: 3; -fx-border-color: #882ff6; -fx-border-radius: 8;" text="Medium" textFill="WHITE">
+                                 <font>
+                                    <Font name="Arial Rounded MT Bold" size="13.0" />
+                                 </font>
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                              </Label>
+                              <ProgressBar id="pbar-medium" fx:id="pbarMedium" prefHeight="30.0" prefWidth="200.0" progress="0.0">
+                                 <tooltip>
+                                    <Tooltip fx:id="ttpMedium" text="medium" />
+                                 </tooltip></ProgressBar>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" spacing="10.0">
+                           <children>
+                              <Label alignment="CENTER" prefHeight="30.0" prefWidth="62.0" style="-fx-background-color: red; -fx-background-radius: 10px; -fx-border-width: 3; -fx-border-color: #882ff6; -fx-border-radius: 8px;" text="Hard" textFill="WHITE">
+                                 <font>
+                                    <Font name="Arial Rounded MT Bold" size="13.0" />
+                                 </font>
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                              </Label>
+                              <ProgressBar id="pbar-hard" fx:id="pbarHard" prefHeight="30.0" prefWidth="200.0" progress="0.0">
+                                 <tooltip>
+                                    <Tooltip fx:id="ttpHard" text="hard" />
+                                 </tooltip></ProgressBar>
+                           </children>
+                           <VBox.margin>
+                              <Insets bottom="32.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <Button mnemonicParsing="false" onAction="#onDeleteX" prefHeight="41.0" prefWidth="256.0" style="-fx-background-color: #882FF6;" text="Delete Your Progress" textFill="WHITE">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="21.0" />
+                           </font>
+                        </Button>
+                        <Button mnemonicParsing="false" onAction="#onDeleteX" prefHeight="41.0" prefWidth="256.0" style="-fx-background-color: #882FF6;" text="Delete Your Account" textFill="WHITE">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="21.0" />
+                           </font>
+                        </Button>
+                     </children></VBox>
+               </children>
+            </HBox>
+            <Button mnemonicParsing="false" onAction="#onSeeMenu" prefHeight="62.0" prefWidth="273.0" style="-fx-background-color: #882FF6;" text="Back to Menu" textFill="WHITE">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="30.0" />
+               </font>
+               <VBox.margin>
+                  <Insets top="25.0" />
+               </VBox.margin>
+            </Button>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>
