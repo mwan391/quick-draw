@@ -17,7 +17,7 @@
 }
 
 .red-timer {
-  -fx-text-fill: rgb(235, 59, 59);
+  -fx-text-fill: RED;
 }
 
 .top3 {
