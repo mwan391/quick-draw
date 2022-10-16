@@ -57,8 +57,6 @@ public class SqliteConnection {
       // initialise tables if they do not exist
       createGamesTable(statement);
       createSettingsTable(statement);
-      // storing words for Hidden Game Mode
-      createWordsTable(statement);
     } catch (SQLException e) {
       Logger.printSqlError(e);
     } finally {
@@ -143,22 +141,6 @@ public class SqliteConnection {
     sb.append("user_id STRING, ");
     sb.append("words TEXT, time TEXT, ");
     sb.append("accuracy TEXT, confidence TEXT);");
-    return statement.execute(sb.toString());
-  }
-
-  /**
-   * initialises a table to track words from hidden game mode if it does not already exist
-   *
-   * @param statement
-   * @return whether or not command successful
-   * @throws SQLException when SQL query is invalid
-   */
-  private boolean createWordsTable(Statement statement) throws SQLException {
-    // create words table with the following fields
-    StringBuilder sb = new StringBuilder("CREATE TABLE IF NOT EXISTS hidden_words ");
-    sb.append("(id INTEGER PRIMARY KEY AUTOINCREMENT, ");
-    sb.append("user_id STRING, ");
-    sb.append("word TEXT);");
     return statement.execute(sb.toString());
   }
 }

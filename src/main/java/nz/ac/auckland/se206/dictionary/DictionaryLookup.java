@@ -16,7 +16,7 @@ import java.util.Random;
 import java.util.Set;
 import java.util.stream.Collectors;
 import nz.ac.auckland.se206.CategorySelect.Difficulty;
-import nz.ac.auckland.se206.daos.HiddenWordDao;
+import nz.ac.auckland.se206.daos.UserStatsDao;
 import nz.ac.auckland.se206.models.UserModel;
 
 public class DictionaryLookup {
@@ -90,7 +90,7 @@ public class DictionaryLookup {
    * @return playable words
    */
   private List<WordInfo> getUnplayedWords(List<WordInfo> uniqueWords) {
-    HiddenWordDao dao = new HiddenWordDao();
+    UserStatsDao dao = new UserStatsDao();
     List<String> wordHistory = dao.getWordHistory(user.getId());
     Set<String> playedWords = new HashSet<String>(wordHistory);
     // Remove word if word has been played before

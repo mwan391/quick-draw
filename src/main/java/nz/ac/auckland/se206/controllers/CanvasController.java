@@ -49,7 +49,6 @@ import nz.ac.auckland.se206.SoundManager;
 import nz.ac.auckland.se206.SoundManager.SoundName;
 import nz.ac.auckland.se206.daos.GameDao;
 import nz.ac.auckland.se206.daos.GameSettingDao;
-import nz.ac.auckland.se206.daos.HiddenWordDao;
 import nz.ac.auckland.se206.dictionary.DictionaryLookup;
 import nz.ac.auckland.se206.dictionary.WordInfo;
 import nz.ac.auckland.se206.ml.DoodlePrediction;
@@ -751,8 +750,7 @@ public class CanvasController implements Controller {
       lblDefinition.setText("Draw: " + definition);
       TextToSpeech.main(new String[] {"The definition is:" + definition});
       // adding word to database
-      HiddenWordDao dao = new HiddenWordDao();
-      dao.add(category, activeUserId);
+      gameDao.addNewGame(activeUserId, actualDifficulty, category);
     }
   }
 
