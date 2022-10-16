@@ -546,22 +546,21 @@ public class CanvasController implements Controller {
 
     // trigger view badges method if the view badges button is pressed
     badgePopup.setResultConverter(
-        (Callback<ButtonType, Void>)
-            new Callback<ButtonType, Void>() {
-              @Override
-              public Void call(ButtonType b) {
+        new Callback<ButtonType, Void>() {
+          @Override
+          public Void call(ButtonType b) {
 
-                // trigger event if it is this button
-                if (b == btnViewBadges) {
-                  onViewBadges();
-                }
+            // trigger event if it is this button
+            if (b == btnViewBadges) {
+              onViewBadges();
+            }
 
-                // play sound regardless of button
-                SoundManager.playSound();
+            // play sound regardless of button
+            SoundManager.playSound();
 
-                return null;
-              }
-            });
+            return null;
+          }
+        });
 
     badgePopup.show();
   }
