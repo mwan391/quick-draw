@@ -106,6 +106,26 @@ public class UserDaoJson {
   }
 
   /**
+   * Replaces a old user with a different user, returns true if user is updated succesfully to file
+   *
+   * @param user new user to update old user to
+   * @return true if user is updated to file
+   */
+  public boolean update(UserModel user) {
+    List<UserModel> users = getAll();
+    UserModel foundUser =
+        users.stream()
+            .filter(u -> u.getUsername().equals(user.getUsername()))
+            .findFirst()
+            .orElse(null);
+    if (foundUser == null) {
+      return false;
+    }
+    foundUser = user;
+    return saveToFile(users);
+  }
+
+  /**
    * Deletes a user from the JSON file and returns if it was successful
    *
    * @param username of user to remove
