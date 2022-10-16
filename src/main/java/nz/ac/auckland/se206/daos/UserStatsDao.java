@@ -168,7 +168,9 @@ public class UserStatsDao {
               rs.getString("word"),
               rs.getBoolean("won"),
               rs.getInt("time"));
+      // All fields specified
     } catch (SQLException e) {
+      // Catch invalid SQL results
       Logger.printSqlError(e);
     }
     return game;

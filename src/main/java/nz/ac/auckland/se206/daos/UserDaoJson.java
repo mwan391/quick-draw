@@ -148,7 +148,7 @@ public class UserDaoJson {
    * @param user user to check its badges
    * @return whether or not badge was found in the user
    */
-  public boolean checkExists(BadgeModel badge, UserModel user) {
+  public boolean checkBadgeExists(BadgeModel badge, UserModel user) {
     boolean foundMatch = user.getBadges().contains(badge);
     return foundMatch;
   }
