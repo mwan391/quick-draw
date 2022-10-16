@@ -63,9 +63,9 @@
                               <Insets />
                            </opaqueInsets>
                         </Label>
-                        <HBox alignment="CENTER" spacing="10.0">
+                        <HBox alignment="CENTER" prefHeight="30.0" prefWidth="270.0" spacing="10.0">
                            <children>
-                              <Label alignment="CENTER" prefHeight="30.0" prefWidth="60.0" style="-fx-background-color: #35d461; -fx-background-radius: 10px; -fx-border-width: 2px; -fx-border-color: BLACK; -fx-border-radius: 10px;" text="Easy" textFill="WHITE">
+                              <Label alignment="CENTER" prefHeight="30.0" prefWidth="70.0" style="-fx-background-color: #35d461; -fx-background-radius: 10px; -fx-border-width: 3; -fx-border-color: #882ff6; -fx-border-radius: 8px;" text="Easy" textFill="WHITE">
                                  <font>
                                     <Font name="Arial Rounded MT Bold" size="13.0" />
                                  </font>
@@ -73,7 +73,7 @@
                                     <Insets />
                                  </opaqueInsets>
                               </Label>
-                              <ProgressBar fx:id="pbarEasy" prefWidth="200.0" progress="0.0" />
+                              <ProgressBar id="pbar-easy" fx:id="pbarEasy" prefHeight="30.0" prefWidth="250.0" progress="0.0" />
                            </children>
                            <VBox.margin>
                               <Insets top="32.0" />
@@ -81,7 +81,7 @@
                         </HBox>
                         <HBox alignment="CENTER" spacing="10.0">
                            <children>
-                              <Label alignment="CENTER" prefHeight="30.0" prefWidth="60.0" style="-fx-background-color: #f99d07; -fx-background-radius: 10px; -fx-border-width: 2px; -fx-border-color: BLACK; -fx-border-radius: 10px;" text="Medium" textFill="WHITE">
+                              <Label alignment="CENTER" prefHeight="30.0" prefWidth="70.0" style="-fx-background-color: #f99d07; -fx-background-radius: 10px; -fx-border-width: 3; -fx-border-color: #882ff6; -fx-border-radius: 8;" text="Medium" textFill="WHITE">
                                  <font>
                                     <Font name="Arial Rounded MT Bold" size="13.0" />
                                  </font>
@@ -89,12 +89,12 @@
                                     <Insets />
                                  </opaqueInsets>
                               </Label>
-                              <ProgressBar fx:id="pbarMedium" prefWidth="200.0" progress="0.0" />
+                              <ProgressBar id="pbar-medium" fx:id="pbarMedium" prefHeight="30.0" prefWidth="250.0" progress="0.0" />
                            </children>
                         </HBox>
                         <HBox alignment="CENTER" spacing="10.0">
                            <children>
-                              <Label alignment="CENTER" prefHeight="30.0" prefWidth="60.0" style="-fx-background-color: red; -fx-background-radius: 10px; -fx-border-width: 2px; -fx-border-color: BLACK; -fx-border-radius: 10px;" text="Hard" textFill="WHITE">
+                              <Label alignment="CENTER" prefHeight="30.0" prefWidth="70.0" style="-fx-background-color: red; -fx-background-radius: 10px; -fx-border-width: 3; -fx-border-color: #882ff6; -fx-border-radius: 8px;" text="Hard" textFill="WHITE">
                                  <font>
                                     <Font name="Arial Rounded MT Bold" size="13.0" />
                                  </font>
@@ -102,7 +102,7 @@
                                     <Insets />
                                  </opaqueInsets>
                               </Label>
-                              <ProgressBar fx:id="pbarHard" prefWidth="200.0" progress="0.0" />
+                              <ProgressBar id="pbar-hard" fx:id="pbarHard" prefHeight="30.0" prefWidth="250.0" progress="0.0" />
                            </children>
                            <VBox.margin>
                               <Insets bottom="32.0" />

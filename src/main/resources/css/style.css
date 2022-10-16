@@ -215,3 +215,35 @@
 .color-picker .arrow {
   -fx-background-color: white;
 }
+
+.progress-bar {
+  -fx-border-color: #882ff6;
+  -fx-border-width: 3px;
+  -fx-border-radius: 6px;
+}
+
+.progress-bar>.track {
+  -fx-text-box-border: #882ff6;
+  -fx-control-inner-background: #6f1fd1;
+}
+.progress-bar>.bar {
+  -fx-background-color: linear-gradient(from 0em 0.75em to 0.75em 0px,
+      repeat,
+      -fx-accent 0%,
+      -fx-accent 49%,
+      derive(-fx-accent, 30%) 50%,
+      derive(-fx-accent, 30%) 99%);
+}
+
+
+#pbar-easy {
+  -fx-accent: #35d461;
+}
+
+#pbar-medium {
+  -fx-accent: #f99d07;
+}
+
+#pbar-hard {
+  -fx-accent: red
+}
