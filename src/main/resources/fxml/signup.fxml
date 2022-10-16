@@ -81,6 +81,14 @@
                   <Font name="Arial Rounded MT Bold" size="30.0" />
                </font>
                <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#onBack" prefHeight="35.0" prefWidth="116.0" style="-fx-background-color: #8b0000;" text="Go Back" textFill="WHITE">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="19.0" />
+               </font>
+               <VBox.margin>
                   <Insets top="20.0" />
                </VBox.margin>
             </Button>

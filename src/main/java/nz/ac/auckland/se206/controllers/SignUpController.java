@@ -109,4 +109,14 @@ public class SignUpController implements Controller {
     scene.setRoot(categoryRoot);
     SoundManager.playSound(SoundName.LOG_IN);
   }
+
+  @FXML
+  private void onBack(ActionEvent event) {
+    // get root
+    Scene scene = ((Button) event.getSource()).getScene();
+    Parent loginRoot = SceneManager.getUiRoot(AppUi.LOG_IN);
+    // change scene
+    SoundManager.playSound(SoundName.LOG_OUT);
+    scene.setRoot(loginRoot);
+  }
 }
