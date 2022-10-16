@@ -244,8 +244,8 @@ public class CategoryController implements Controller {
   }
 
   /**
-   * This method logs the current user out by taking the user back to the log in scene and
-   * deactivating the saved user
+   * This method logs the current user out by taking the user back to the log in scene, deactivating
+   * the saved user, and reloading the user data
    *
    * @param event
    */
@@ -300,6 +300,7 @@ public class CategoryController implements Controller {
         (ProfileSettingsController) SceneManager.getController(settingsRoot);
 
     // load the necessary stats and change the scene
+    settingsController.loadProfileInfo();
     scene.setRoot(settingsRoot);
     SoundManager.playSound();
   }
