@@ -59,7 +59,7 @@ public class BadgeManager {
    *
    * @param username of the user to check the badges of
    * @param game that may trigger a new badge
-   * @param actualDifficulty
+   * @param actualDifficulty of the word being played
    * @return the number of new badges that was given
    */
   public static int checkNewBadges(String username, GameModel game, Difficulty actualDifficulty) {
