@@ -1,5 +1,3 @@
-# SE206 - 2022 - Beta & Final Releases
-
 ### Quick, Draw! 
 
 **Requirements**
